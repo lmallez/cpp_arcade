@@ -29,6 +29,10 @@ namespace arc
 		Vertex operator-(const Vertex &) const;
 		Vertex operator*(const Vertex &) const;
 		Vertex operator/(const Vertex &) const;
+		Vertex operator+(T) const;
+		Vertex operator-(T) const;
+		Vertex operator*(T) const;
+		Vertex operator/(T) const;
 	private:
 		T _x;
 		T _y;

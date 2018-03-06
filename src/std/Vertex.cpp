@@ -7,11 +7,6 @@
 
 #include "Vertex.hpp"
 
-template class arc::Vertex<int>;
-template class arc::Vertex<size_t>;
-template class arc::Vertex<float>;
-template class arc::Vertex<double>;
-
 template <typename T>
 arc::Vertex<T>::Vertex() :
 _x(0),
@@ -101,3 +96,48 @@ arc::Vertex<T> arc::Vertex<T>::operator*(const Vertex<T> &other) const
 	res._y *= other.getY();
 	return res;
 }
+
+template <typename T>
+arc::Vertex<T> arc::Vertex<T>::operator+(T other) const
+{
+	arc::Vertex res(*this);
+
+	res._x += other;
+	res._y += other;
+	return res;
+}
+
+template <typename T>
+arc::Vertex<T> arc::Vertex<T>::operator-(T other) const
+{
+	arc::Vertex res(*this);
+
+	res._x -= other;
+	res._y -= other;
+	return res;
+}
+
+template <typename T>
+arc::Vertex<T> arc::Vertex<T>::operator*(T other) const
+{
+	arc::Vertex res(*this);
+
+	res._x *= other;
+	res._y *= other;
+	return res;
+}
+
+template <typename T>
+arc::Vertex<T> arc::Vertex<T>::operator/(T other) const
+{
+	arc::Vertex res(*this);
+
+	res._x /= other;
+	res._y /= other;
+	return res;
+}
+
+template class arc::Vertex<int>;
+template class arc::Vertex<size_t>;
+template class arc::Vertex<float>;
+template class arc::Vertex<double>;

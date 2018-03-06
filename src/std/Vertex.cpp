@@ -9,21 +9,21 @@
 
 template <typename T>
 arc::Vertex<T>::Vertex() :
-_x(0),
-_y(0)
-{}
+	_x(0), _y(0)
+{
+}
 
 template <typename T>
 arc::Vertex<T>::Vertex(T x, T y) :
-_x(x),
-_y(y)
-{}
+	_x(x), _y(y)
+{
+}
 
 template <typename T>
 arc::Vertex<T>::Vertex(const Vertex &cpy) :
-_x(cpy.getX()),
-_y(cpy.getY())
-{}
+	_x(cpy.getX()), _y(cpy.getY())
+{
+}
 
 template <typename T>
 T arc::Vertex<T>::getX() const

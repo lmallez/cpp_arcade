@@ -8,7 +8,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -Wall -Wextra -std=c++17")
 set(
         STD_FILE
         src/std/Vertex.cpp
-        src/std/Vertex.hpp)
+        src/std/Vertex.hpp
+        src/std/Rect.cpp
+        src/std/Rect.hpp
+)
 
 ### GRAPHICS LIBS ###
 

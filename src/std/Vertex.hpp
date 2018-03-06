@@ -12,7 +12,6 @@
 
 namespace arc
 {
-
 	template <class T>
 	class Vertex
 	{
@@ -20,6 +19,8 @@ namespace arc
 		Vertex<T>();
 		Vertex<T>(const Vertex<T> &);
 		Vertex<T>(T x, T y);
+		~Vertex<T>() = default;
+
 		T getX() const;
 		T getY() const;
 		T &getrX();
@@ -33,11 +34,16 @@ namespace arc
 		Vertex operator-(T) const;
 		Vertex operator*(T) const;
 		Vertex operator/(T) const;
+
 	private:
 		T _x;
 		T _y;
 	};
 
+	typedef Vertex<size_t> VertexS;
+	typedef Vertex<int> VertexI;
+	typedef Vertex<float> VertexF;
+	typedef Vertex<double> VertexD;
 }
 
 #endif //CPP_ARCADE_VERTEX_HPP

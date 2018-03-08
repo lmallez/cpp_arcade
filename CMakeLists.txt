@@ -48,6 +48,12 @@ target_link_libraries(QTArcade Qt5::Widgets)
 add_executable(
         arcade
         ${STD_FILE}
-        src/core/main.cpp)
+        src/core/main.cpp
+        src/graphic/core/shape/IShape.cpp
+        src/graphic/core/shape/IShape.hpp
+        src/graphic/core/shape/ShapeRect.cpp
+        src/graphic/core/shape/ShapeRect.hpp
+        src/graphic/core/shape/ShapeCircle.cpp
+        src/graphic/core/shape/ShapeCircle.hpp)
 
 target_link_libraries(arcade dl)

@@ -25,7 +25,9 @@ set(
         src/core/shape/ShapeCircle.cpp
         src/core/shape/ShapeCircle.hpp
         src/core/shape/AShape.cpp
-        src/core/shape/AShape.hpp)
+        src/core/shape/AShape.hpp
+        src/core/shape/ShapeText.cpp
+        src/core/shape/ShapeText.hpp)
 
 ### GRAPHICS LIBS ###
 

@@ -41,19 +41,7 @@ std::unique_ptr<arc::IDraw> arc::ShapeCircle::convert(
 	return nullptr;
 }
 
-std::unique_ptr<arc::IShape> arc::ShapeCircle::getChild(__attribute((unused))
-						      size_t id)
-{
-	return nullptr;
-}
-
-std::unique_ptr<arc::IShape> arc::ShapeCircle::operator[](__attribute((unused))
-							size_t id)
-{
-	return nullptr;
-}
-
-std::unique_ptr<arc::IShape> arc::ShapeCircle::clone()
+std::unique_ptr<arc::IShape> arc::ShapeCircle::clone() const
 {
 	return std::make_unique<arc::ShapeCircle>(*this);
 }

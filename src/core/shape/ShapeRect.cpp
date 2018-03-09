@@ -35,19 +35,7 @@ std::unique_ptr<arc::IDraw> arc::ShapeRect::convert(
 	return nullptr;
 }
 
-std::unique_ptr<arc::IShape> arc::ShapeRect::getChild(__attribute((unused))
-						      size_t id)
-{
-	return nullptr;
-}
-
-std::unique_ptr<arc::IShape> arc::ShapeRect::operator[](__attribute((unused))
-							size_t id)
-{
-	return nullptr;
-}
-
-std::unique_ptr<arc::IShape> arc::ShapeRect::clone()
+std::unique_ptr<arc::IShape> arc::ShapeRect::clone() const
 {
 	return std::make_unique<arc::ShapeRect>(*this);
 }

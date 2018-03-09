@@ -11,6 +11,19 @@ set(
         src/std/Vertex.hpp
         src/std/Rect.cpp
         src/std/Rect.hpp
+        src/graphic/IGraphic.hpp
+        src/graphic/IDraw.hpp
+        src/exception/Exception.cpp
+        src/exception/Exception.hpp
+)
+
+set(
+        SHAPE
+        src/core/shape/IShape.hpp
+        src/core/shape/ShapeRect.cpp
+        src/core/shape/ShapeRect.hpp
+        src/core/shape/ShapeCircle.cpp
+        src/core/shape/ShapeCircle.hpp
 )
 
 ### GRAPHICS LIBS ###
@@ -18,6 +31,7 @@ set(
 add_library(
         NCArcade
         ${STD_FILE}
+        ${SHAPE}
 )
 
 target_link_libraries(NCArcade nurses)
@@ -25,7 +39,12 @@ target_link_libraries(NCArcade nurses)
 add_library(
         SFArcade SHARED
         ${STD_FILE}
-)
+        ${SHAPE}
+        src/graphic/sfml/SFGraphic.cpp
+        src/graphic/sfml/SFGraphic.hpp
+        src/graphic/sfml/SFDraw.cpp
+        src/graphic/sfml/SFDraw.hpp
+        src/graphic/sfml/draw/SFDrawRect.cpp src/graphic/sfml/draw/SFDrawRect.hpp)
 
 target_link_libraries(SFArcade smfl-graphics smfl-window sfml-system)
 
@@ -35,9 +54,13 @@ set(CMAKE_AUTOMOC ON)
 find_package(Qt5Widgets)
 
 add_library(
-        QTArcade WIN32
+        QTArcade
         ${STD_FILE}
+        ${SHAPE}
 )
+
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOMOC ON)
 
 target_link_libraries(QTArcade Qt5::Widgets)
 
@@ -47,13 +70,9 @@ target_link_libraries(QTArcade Qt5::Widgets)
 
 add_executable(
         arcade
+        src/main.cpp
         ${STD_FILE}
-        src/core/main.cpp
-        src/graphic/core/shape/IShape.cpp
-        src/graphic/core/shape/IShape.hpp
-        src/graphic/core/shape/ShapeRect.cpp
-        src/graphic/core/shape/ShapeRect.hpp
-        src/graphic/core/shape/ShapeCircle.cpp
-        src/graphic/core/shape/ShapeCircle.hpp)
+        ${SHAPE}
+)
 
 target_link_libraries(arcade dl)

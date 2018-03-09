@@ -19,10 +19,12 @@ namespace arc
 	{
 	public:
 		virtual ~IShape() {};
+
 		virtual std::unique_ptr<IDraw>
 		convert(std::unique_ptr<IShapeLoader> &) = 0;
 		virtual std::unique_ptr<IShape> clone() = 0;
 		virtual std::unique_ptr<IShape> getChild(size_t id) = 0;
+
 		virtual std::unique_ptr<IShape> operator[](size_t id) = 0;
 	};
 

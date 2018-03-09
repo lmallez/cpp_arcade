@@ -21,19 +21,28 @@ namespace arc
 		Vertex<T>(T x, T y);
 		~Vertex<T>() = default;
 
-		T getX() const;
-		T getY() const;
-		T &getrX();
-		T &getrY();
-		Vertex &operator=(const Vertex &);
-		Vertex operator+(const Vertex &) const;
-		Vertex operator-(const Vertex &) const;
-		Vertex operator*(const Vertex &) const;
-		Vertex operator/(const Vertex &) const;
-		Vertex operator+(T) const;
-		Vertex operator-(T) const;
-		Vertex operator*(T) const;
-		Vertex operator/(T) const;
+		T x() const;
+		T y() const;
+		T &rx();
+		T &ry();
+		template <typename U>
+		Vertex &operator=(const Vertex<U> &);
+		template <typename U>
+		Vertex operator+(const Vertex<U> &) const;
+		template <typename U>
+		Vertex operator-(const Vertex<U> &) const;
+		template <typename U>
+		Vertex operator*(const Vertex<U> &) const;
+		template <typename U>
+		Vertex operator/(const Vertex<U> &) const;
+		template <typename U>
+		Vertex operator+(U) const;
+		template <typename U>
+		Vertex operator-(U) const;
+		template <typename U>
+		Vertex operator*(U) const;
+		template <typename U>
+		Vertex operator/(U) const;
 
 	private:
 		T _x;

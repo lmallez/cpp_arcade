@@ -50,6 +50,113 @@ arc::Vertex <T> &arc::Rect<T>::rsize()
 	return _size;
 }
 
+template <typename T>
+template <typename U>
+arc::Rect<T> &arc::Rect<T>::operator=(const arc::Rect<U> &other)
+{
+	this->_pos = other.pos();
+	this->_size = other.size();
+	return *this;
+}
+
+template <typename T>
+template <typename U>
+arc::Rect<T> &arc::Rect<T>::operator*(const arc::Rect<U> &other) const
+{
+	arc::Rect res(*this);
+
+	res._pos = res._pos + other.pos();
+	res._size = res._size * other.size();
+	return res;
+}
+
+template <typename T>
+template <typename U>
+arc::Rect<T> arc::Rect<T>::operator*(const arc::Vertex<U> &other) const
+{
+	arc::Rect res(*this);
+
+	res._pos = res._pos + other * res._size;
+	res._size = res._size * other;
+	return res;
+}
+
+template <typename T>
+template <typename U>
+arc::Rect<T> arc::Rect<T>::operator/(const arc::Vertex<U> &other) const
+{
+	arc::Rect res(*this);
+
+	res._pos = res._pos + other / res._size;
+	res._size = res._size / other;
+	return res;
+}
+
+template <typename T>
+template <typename U>
+arc::Rect<T> arc::Rect<T>::operator*(U other) const
+{
+	arc::Rect res(*this);
+
+	res._pos = res._pos;
+	res._size = res._size * other;
+	return res;
+}
+
+template <typename T>
+template <typename U>
+arc::Rect<T> arc::Rect<T>::operator/(U other) const
+{
+	arc::Rect res(*this);
+
+	res._pos = res._pos;
+	res._size = res._size / other;
+	return res;
+}
+
+template <typename T>
+template <typename U>
+arc::Rect<T> arc::Rect<T>::operator+(const arc::Vertex<U> &other) const
+{
+	arc::Rect res(*this);
+
+	res._pos = res._pos + other;
+	res._size = res._size;
+	return res;}
+
+template <typename T>
+template <typename U>
+arc::Rect<T> arc::Rect<T>::operator-(const arc::Vertex<U> &other) const
+{
+	arc::Rect res(*this);
+
+	res._pos = res._pos - other;
+	res._size = res._size;
+	return res;
+}
+
+template <typename T>
+template <typename U>
+arc::Rect<T> arc::Rect<T>::operator+(U other) const
+{
+	arc::Rect res(*this);
+
+	res._pos = res._pos + other;
+	res._size = res._size;
+	return res;
+}
+
+template <typename T>
+template <typename U>
+arc::Rect<T> arc::Rect<T>::operator-(U other) const
+{
+	arc::Rect res(*this);
+
+	res._pos = res._pos - other;
+	res._size = res._size;
+	return res;
+}
+
 template class arc::Rect<size_t>;
 template class arc::Rect<int>;
 template class arc::Rect<float>;

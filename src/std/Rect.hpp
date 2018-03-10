@@ -24,6 +24,30 @@ namespace arc {
 		Vertex<T> &rpos();
 		Vertex<T> &rsize();
 
+		template <typename U>
+		Rect &operator=(const Rect<U> &other);
+
+		template <typename U>
+		Rect &operator*(const Rect<U> &other) const;
+
+		template <typename U>
+		Rect operator+(const Vertex<U> &other) const;
+		template <typename U>
+		Rect operator-(const Vertex<U> &other) const;
+		template <typename U>
+		Rect operator*(const Vertex<U> &other) const;
+		template <typename U>
+		Rect operator/(const Vertex<U> &other) const;
+
+		template <typename U>
+		Rect operator+(U other) const;
+		template <typename U>
+		Rect operator-(U other) const;
+		template <typename U>
+		Rect operator*(U other) const;
+		template <typename U>
+		Rect operator/(U other) const;
+
 	private:
 		Vertex<T> _pos;
 		Vertex<T> _size;

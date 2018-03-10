@@ -14,7 +14,7 @@
 #include "src/std/Vertex.hpp"
 
 namespace arc {
-	class SFGraphic : public IGraphic {
+	class SFGraphic : public virtual IGraphic {
 	public:
 		static std::unique_ptr<SFGraphic> &initialize();
 		~SFGraphic();

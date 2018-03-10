@@ -15,7 +15,7 @@ set(
         src/graphic/IDraw.hpp
         src/exception/Exception.cpp
         src/exception/Exception.hpp
-)
+        src/graphic/ADraw.cpp src/graphic/ADraw.hpp)
 
 set(
         SHAPE
@@ -44,7 +44,8 @@ add_library(
         src/graphic/sfml/SFGraphic.hpp
         src/graphic/sfml/SFDraw.cpp
         src/graphic/sfml/SFDraw.hpp
-        src/graphic/sfml/draw/SFDrawRect.cpp src/graphic/sfml/draw/SFDrawRect.hpp)
+        src/graphic/sfml/draw/SFDrawRect.cpp
+        src/graphic/sfml/draw/SFDrawRect.hpp src/graphic/sfml/operator.cpp src/graphic/sfml/operator.hpp)
 
 target_link_libraries(SFArcade smfl-graphics smfl-window sfml-system)
 

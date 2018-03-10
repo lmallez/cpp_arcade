@@ -9,12 +9,12 @@
 #define CPP_ARCADE_SHAPERECT_HPP
 
 #include <src/std/Rect.hpp>
-#include "IShape.hpp"
+#include "AShape.hpp"
 
 namespace arc
 {
 
-	class ShapeRect : public virtual arc::IShape
+	class ShapeRect : public virtual arc::AShape
 	{
 	public:
 		ShapeRect();
@@ -22,9 +22,7 @@ namespace arc
 		ShapeRect(const arc::ShapeRect &);
 		std::unique_ptr<IDraw>
 		convert(std::unique_ptr<IShapeLoader> &) override;
-		std::unique_ptr<arc::IShape> clone() override;
-		std::unique_ptr<IShape> getChild(size_t id) override;
-		std::unique_ptr<IShape> operator[](size_t id) override;
+		std::unique_ptr<arc::IShape> clone() const override;
 		arc::Rect<float> getGeometry() const;
 		void setGeometry(const arc::Rect<float> &);
 	private:

@@ -24,7 +24,10 @@ set(
         src/core/shape/ShapeRect.hpp
         src/core/shape/ShapeCircle.cpp
         src/core/shape/ShapeCircle.hpp
-)
+        src/core/shape/AShape.cpp
+        src/core/shape/AShape.hpp
+        src/core/shape/ShapeText.cpp
+        src/core/shape/ShapeText.hpp)
 
 ### GRAPHICS LIBS ###
 
@@ -45,7 +48,11 @@ add_library(
         src/graphic/sfml/SFDraw.cpp
         src/graphic/sfml/SFDraw.hpp
         src/graphic/sfml/draw/SFDrawRect.cpp
-        src/graphic/sfml/draw/SFDrawRect.hpp src/graphic/sfml/operator.cpp src/graphic/sfml/operator.hpp)
+        src/graphic/sfml/draw/SFDrawRect.hpp
+        src/graphic/sfml/operator.cpp
+        src/graphic/sfml/operator.hpp
+        src/graphic/sfml/draw/SFDrawRect.hpp
+)
 
 target_link_libraries(SFArcade smfl-graphics smfl-window sfml-system)
 

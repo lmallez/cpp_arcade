@@ -9,23 +9,25 @@
 #define CPP_ARCADE_ISHAPE_HPP
 
 #include <memory>
+#include "../../graphic/IDraw.hpp"
 
 namespace arc
 {
-	class IDraw;
 	class IShapeLoader;
 
 	class IShape
 	{
 	public:
-		virtual ~IShape() {};
-
+		virtual ~IShape() = default;
 		virtual std::unique_ptr<IDraw>
 		convert(std::unique_ptr<IShapeLoader> &) = 0;
-		virtual std::unique_ptr<IShape> clone() = 0;
-		virtual std::unique_ptr<IShape> getChild(size_t id) = 0;
-
-		virtual std::unique_ptr<IShape> operator[](size_t id) = 0;
+		virtual std::unique_ptr<IShape> clone() const = 0;
+		virtual IShape &getChild(size_t id) = 0;
+		virtual IShape &operator[](size_t id) = 0;
+		virtual void addChild(std::unique_ptr<IShape>) = 0;
+		virtual void operator<<(std::unique_ptr<IShape>) = 0;
+		virtual size_t getChildNbr() const = 0;
+		virtual bool operator!() const = 0;
 	};
 
 }

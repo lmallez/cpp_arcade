@@ -35,4 +35,5 @@ arc::RectS &arc::SFDrawRect::getGeometry()
 
 void arc::SFDrawRect::draw()
 {
+	sf::RectangleShape drawRect;
 }

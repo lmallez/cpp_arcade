@@ -8,26 +8,30 @@
 #include "operator.hpp"
 
 template <typename T>
-sf::Vector2<T> operator~(const arc::Vertex<T> &ex)
+sf::Vector2<T> &operator~(const arc::Vertex<T> &ex)
 {
-	return sf::Vector2<T>(ex.x(), ex.y());
+	sf::Vector2<T> item(ex.x(), ex.y());
+	return item;
 }
 
 template <typename T>
-arc::Vertex<T> operator~(const sf::Vector2<T> &ex)
+arc::Vertex<T> &operator~(const sf::Vector2<T> &ex)
 {
-	return arc::Vertex<T>(ex.x, ex.y);
+	arc::Vertex<T> item(ex.x, ex.y);
+	return item;
 }
 
 template <typename T>
-arc::Rect<T> operator~(const sf::Rect<T> &ex)
+sf::Rect<T> &operator~(const arc::Rect<T> &ex)
 {
-	return arc::Rect<T>(ex.top, ex.left, ex.width, ex.left);
-}
-
-template <typename T>
-sf::Rect<T> operator~(const arc::Rect<T> &ex)
-{
-	return sf::Rect<T>(ex.pos().x(), ex.pos().y,
+	sf::Rect<T> item(ex.pos().x(), ex.pos().y(),
 		ex.size().x(), ex.size().y());
+	return item;
+}
+
+template <typename T>
+arc::Rect<T> &operator~(const sf::Rect<T> &ex)
+{
+	arc::Rect<T> item(ex.top, ex.left, ex.width, ex.height);
+	return item;
 }

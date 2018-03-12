@@ -6,6 +6,7 @@
 //
 
 #include "SFDrawRect.hpp"
+#include "src/graphic/sfml/operator.hpp"
 
 arc::SFDrawRect::SFDrawRect(const arc::VertexF &pos, const arc::VertexF &size,
 	std::shared_ptr<arc::IDraw> parent):
@@ -27,12 +28,13 @@ arc::SFDrawRect::SFDrawRect(const arc::SFDrawRect &ex):
 
 void arc::SFDrawRect::draw() const
 {
-	sf::Rect geometry = ~winPos();
+	sf::FloatRect geometry = ~winPos();
 	sf::RectangleShape rect;
 
 	rect.setPosition(sf::Vector2<float>(geometry.top, geometry.left));
 	rect.setSize(sf::Vector2<float>(geometry.width, geometry.height));
-	SFGraphic::initialize()->draw(rect);
+	rect.setFillColor(sf::Color::White);
+	displayItem(rect);
 }
 
 std::unique_ptr<arc::IDraw> arc::SFDrawRect::clone()

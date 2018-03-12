@@ -23,19 +23,18 @@ arc::SFDraw::SFDraw(const arc::ADraw &ex):
 {
 }
 
-arc::RectI arc::SFDraw::winPos() const
+arc::RectF arc::SFDraw::winPos() const
 {
-	RectI pos;
-	RectF temp;
+	RectF pos;
 
 	if (!_parent) {
-		temp = _geometry * arc::SFGraphic::initialize()->getSize();
-		pos = RectI(
-			(int)temp.pos().x(),
-			(int)temp.pos().y(),
-			(int)temp.size().x(),
-			(int)temp.size().y());
+		pos = _geometry * arc::SFGraphic::initialize()->getSize();
 	} else
 		pos = _parent->winPos() * getGeometry();
 	return pos;
+}
+
+void arc::SFDraw::displayItem(const sf::Drawable &item) const
+{
+	SFGraphic::initialize()->draw(item);
 }

@@ -9,8 +9,8 @@
 #define CPP_ARCADE_SFDRAWRECT_HPP
 
 #include <SFML/Graphics/RectangleShape.hpp>
+#include "SFDraw.hpp"
 #include "src/std/Rect.hpp"
-#include "src/graphic/sfml/SFDraw.hpp"
 #include "src/graphic/sfml/operator.hpp"
 
 namespace arc {
@@ -27,6 +27,9 @@ namespace arc {
 
 		virtual void draw() const override;
 		virtual std::unique_ptr<IDraw> clone() override;
+
+	private:
+		sf::Color _color;
 	};
 }
 

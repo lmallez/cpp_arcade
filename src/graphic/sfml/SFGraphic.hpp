@@ -19,7 +19,7 @@ namespace arc {
 		static std::unique_ptr<SFGraphic> &initialize();
 		~SFGraphic();
 
-		VertexI getSize() const;
+		VertexF getSize() const;
 		void draw(const sf::Drawable &toDraw);
 
 	private:

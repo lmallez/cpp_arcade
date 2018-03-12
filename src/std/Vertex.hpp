@@ -25,24 +25,15 @@ namespace arc
 		T y() const;
 		T &rx();
 		T &ry();
-		template <typename U>
-		Vertex &operator=(const Vertex<U> &);
-		template <typename U>
-		Vertex operator+(const Vertex<U> &) const;
-		template <typename U>
-		Vertex operator-(const Vertex<U> &) const;
-		template <typename U>
-		Vertex operator*(const Vertex<U> &) const;
-		template <typename U>
-		Vertex operator/(const Vertex<U> &) const;
-		template <typename U>
-		Vertex operator+(U) const;
-		template <typename U>
-		Vertex operator-(U) const;
-		template <typename U>
-		Vertex operator*(U) const;
-		template <typename U>
-		Vertex operator/(U) const;
+		Vertex &operator=(const Vertex<T> &);
+		Vertex operator+(const Vertex<T> &) const;
+		Vertex operator-(const Vertex<T> &) const;
+		Vertex operator*(const Vertex<T> &) const;
+		Vertex operator/(const Vertex<T> &) const;
+		Vertex operator+(T) const;
+		Vertex operator-(T) const;
+		Vertex operator*(T) const;
+		Vertex operator/(T) const;
 
 	private:
 		T _x;

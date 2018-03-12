@@ -30,9 +30,9 @@ arc::SFGraphic::SFGraphic(arc::VertexS size)
 		throw arc::Exception("SFWindow", "Can't creat Win");
 }
 
-arc::VertexI arc::SFGraphic::getSize() const
+arc::VertexF arc::SFGraphic::getSize() const
 {
-	return VertexI(_window->getSize().x, _window->getSize().y);
+	return VertexF(_window->getSize().x, _window->getSize().y);
 }
 
 void arc::SFGraphic::draw(const sf::Drawable &toDraw)

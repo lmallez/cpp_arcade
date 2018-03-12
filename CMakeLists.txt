@@ -6,7 +6,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -Wall -Wextra -std=c++17")
 ### STD CLASS ###
 
 set(
-        STD_FILE
+        STD_FILES
         src/std/Vertex.cpp
         src/std/Vertex.hpp
         src/std/Rect.cpp
@@ -34,27 +34,38 @@ set(
 
 ### GRAPHICS LIBS ###
 
+set(
+        NC_FILES
+        ${STD_FILES}
+        ${SHAPE}
+)
+
 add_library(
         NCArcade
-        ${STD_FILE}
-        ${SHAPE}
+        ${NC_FILES}
 )
 
 target_link_libraries(NCArcade nurses)
 
-add_library(
-        SFArcade SHARED
-        ${STD_FILE}
-        ${SHAPE}
-        src/graphic/sfml/SFGraphic.cpp
-        src/graphic/sfml/SFGraphic.hpp
-        src/graphic/sfml/SFDraw.cpp
-        src/graphic/sfml/SFDraw.hpp
-        src/graphic/sfml/draw/SFDrawRect.cpp
-        src/graphic/sfml/draw/SFDrawRect.hpp
+set(
+        SF_FILES
+        ${STD_FILES}
         src/graphic/sfml/operator.cpp
         src/graphic/sfml/operator.hpp
+        src/graphic/sfml/SFGraphic.cpp
+        src/graphic/sfml/SFGraphic.hpp
+        src/graphic/sfml/draw/SFDraw.cpp
+        src/graphic/sfml/draw/SFDraw.hpp
+        src/graphic/sfml/draw/SFDrawRect.cpp
         src/graphic/sfml/draw/SFDrawRect.hpp
+        src/graphic/sfml/draw/SFDrawRect.hpp
+        src/graphic/sfml/draw/SFDrawCircle.cpp
+        src/graphic/sfml/draw/SFDrawCircle.hpp
+)
+
+add_library(
+        SFArcade SHARED
+        ${SF_FILES}
 )
 
 target_link_libraries(SFArcade sfml-graphics sfml-window sfml-system)
@@ -64,10 +75,15 @@ set(CMAKE_AUTOMOC ON)
 
 find_package(Qt5Widgets)
 
+set(
+        QT_FILES
+        ${STD_FILES}
+        ${SHAPE}
+)
+
 add_library(
         QTArcade
-        ${STD_FILE}
-        ${SHAPE}
+        ${QTFILE}
 )
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -82,8 +98,17 @@ target_link_libraries(QTArcade Qt5::Widgets)
 add_executable(
         arcade
         src/main.cpp
-        ${STD_FILE}
+        ${STD_FILES}
         ${SHAPE}
 )
 
 target_link_libraries(arcade dl)
+
+### TESTING ###
+
+add_executable(
+        test_sfml_shape
+        ${SF_FILES}
+        tests/test_sfml_shape.cpp
+)
+target_link_libraries(test_sfml_shape sfml-graphics sfml-window sfml-system)

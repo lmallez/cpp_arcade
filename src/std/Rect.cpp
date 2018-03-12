@@ -51,8 +51,7 @@ arc::Vertex <T> &arc::Rect<T>::rsize()
 }
 
 template <typename T>
-template <typename U>
-arc::Rect<T> &arc::Rect<T>::operator=(const arc::Rect<U> &other)
+arc::Rect<T> &arc::Rect<T>::operator=(const arc::Rect<T> &other)
 {
 	this->_pos = other.pos();
 	this->_size = other.size();
@@ -60,10 +59,9 @@ arc::Rect<T> &arc::Rect<T>::operator=(const arc::Rect<U> &other)
 }
 
 template <typename T>
-template <typename U>
-arc::Rect<T> &arc::Rect<T>::operator*(const arc::Rect<U> &other) const
+arc::Rect<T> arc::Rect<T>::operator*(const arc::Rect<T> &other) const
 {
-	arc::Rect res(*this);
+	arc::Rect<T> res(*this);
 
 	res._pos = res._pos + other.pos();
 	res._size = res._size * other.size();
@@ -71,8 +69,7 @@ arc::Rect<T> &arc::Rect<T>::operator*(const arc::Rect<U> &other) const
 }
 
 template <typename T>
-template <typename U>
-arc::Rect<T> arc::Rect<T>::operator*(const arc::Vertex<U> &other) const
+arc::Rect<T> arc::Rect<T>::operator*(const arc::Vertex<T> &other) const
 {
 	arc::Rect res(*this);
 
@@ -82,8 +79,7 @@ arc::Rect<T> arc::Rect<T>::operator*(const arc::Vertex<U> &other) const
 }
 
 template <typename T>
-template <typename U>
-arc::Rect<T> arc::Rect<T>::operator/(const arc::Vertex<U> &other) const
+arc::Rect<T> arc::Rect<T>::operator/(const arc::Vertex<T> &other) const
 {
 	arc::Rect res(*this);
 
@@ -93,8 +89,7 @@ arc::Rect<T> arc::Rect<T>::operator/(const arc::Vertex<U> &other) const
 }
 
 template <typename T>
-template <typename U>
-arc::Rect<T> arc::Rect<T>::operator*(U other) const
+arc::Rect<T> arc::Rect<T>::operator*(T other) const
 {
 	arc::Rect res(*this);
 
@@ -104,8 +99,7 @@ arc::Rect<T> arc::Rect<T>::operator*(U other) const
 }
 
 template <typename T>
-template <typename U>
-arc::Rect<T> arc::Rect<T>::operator/(U other) const
+arc::Rect<T> arc::Rect<T>::operator/(T other) const
 {
 	arc::Rect res(*this);
 
@@ -115,8 +109,7 @@ arc::Rect<T> arc::Rect<T>::operator/(U other) const
 }
 
 template <typename T>
-template <typename U>
-arc::Rect<T> arc::Rect<T>::operator+(const arc::Vertex<U> &other) const
+arc::Rect<T> arc::Rect<T>::operator+(const arc::Vertex<T> &other) const
 {
 	arc::Rect res(*this);
 
@@ -125,8 +118,7 @@ arc::Rect<T> arc::Rect<T>::operator+(const arc::Vertex<U> &other) const
 	return res;}
 
 template <typename T>
-template <typename U>
-arc::Rect<T> arc::Rect<T>::operator-(const arc::Vertex<U> &other) const
+arc::Rect<T> arc::Rect<T>::operator-(const arc::Vertex<T> &other) const
 {
 	arc::Rect res(*this);
 
@@ -136,8 +128,7 @@ arc::Rect<T> arc::Rect<T>::operator-(const arc::Vertex<U> &other) const
 }
 
 template <typename T>
-template <typename U>
-arc::Rect<T> arc::Rect<T>::operator+(U other) const
+arc::Rect<T> arc::Rect<T>::operator+(T other) const
 {
 	arc::Rect res(*this);
 
@@ -147,8 +138,7 @@ arc::Rect<T> arc::Rect<T>::operator+(U other) const
 }
 
 template <typename T>
-template <typename U>
-arc::Rect<T> arc::Rect<T>::operator-(U other) const
+arc::Rect<T> arc::Rect<T>::operator-(T other) const
 {
 	arc::Rect res(*this);
 

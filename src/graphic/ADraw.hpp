@@ -14,11 +14,11 @@
 namespace arc {
 	class ADraw : public virtual IDraw {
 	public:
-		explicit ADraw(RectF geometry = RectF(0, 0, 0, 0),
+		explicit ADraw(const RectF &geometry = RectF(0, 0, 0, 0),
 			std::shared_ptr<IDraw> parent = nullptr);
 		virtual ~ADraw() = default;
 
-		virtual std::shared_ptr<IDraw> &getParent() override;
+		virtual const std::shared_ptr<IDraw> &getParent() const override;
 		virtual IDraw &getChild(size_t pos) override;
 		virtual void addChild(std::unique_ptr<IDraw> child) override;
 		virtual size_t nbChild() const override;

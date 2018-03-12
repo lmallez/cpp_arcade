@@ -14,21 +14,19 @@
 #include "src/graphic/sfml/operator.hpp"
 
 namespace arc {
-	class SFDrawRect : public virtual SFDraw {
+	class SFDrawRect : public SFDraw {
 	public:
 		explicit SFDrawRect(
-			const VertexS &pos = VertexS(0, 0),
-			const VertexS &size = VertexS(0, 0));
-		explicit SFDrawRect(const RectS &rect);
+			const VertexF &pos = VertexF(0, 0),
+			const VertexF &size = VertexF(0, 0),
+			std::shared_ptr<IDraw> parent = nullptr);
+		explicit SFDrawRect(const RectF &rect,
+			std::shared_ptr<IDraw> parent);
+		SFDrawRect(const SFDrawRect &ex);
 		~SFDrawRect() = default;
 
-		void setGeometry(const VertexS &pos, const VertexS &size);
-		void setGeometry(const RectS &rect);
-		RectS &getGeometry();
 		virtual void draw() const override;
-
-	private:
-		RectS _geometry;
+		virtual std::unique_ptr<IDraw> clone() override;
 	};
 }
 

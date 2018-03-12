@@ -17,7 +17,7 @@ namespace arc {
 	public:
 		virtual ~IDraw() = default;
 
-		virtual std::shared_ptr<IDraw> &getParent() = 0;
+		virtual const std::shared_ptr<IDraw> &getParent() const = 0;
 		virtual IDraw &getChild(size_t pos) = 0;
 		virtual size_t nbChild() const = 0;
 		virtual void addChild(std::unique_ptr<IDraw> child) = 0;

@@ -16,11 +16,12 @@
 namespace arc {
 	class SFDraw : public ADraw {
 	public:
+		explicit SFDraw(const RectF &geometry,
+			std::shared_ptr<IDraw> parent = nullptr);
+		explicit SFDraw(const VertexF &pos, const VertexF &size,
+			std::shared_ptr<IDraw> parent = nullptr);
+		SFDraw(const ADraw &ex);
 		virtual RectI winPos() const override;
-
-	protected:
-		VertexF _pos;
-		VertexF _size;
 	};
 }
 

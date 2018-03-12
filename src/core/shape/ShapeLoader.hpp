@@ -11,6 +11,10 @@
 #include <algorithm>
 #include <unordered_map>
 #include "IShape.hpp"
+#include "ShapeCircle.hpp"
+#include "ShapeRect.hpp"
+#include "ShapeText.hpp"
+
 
 namespace arc
 {

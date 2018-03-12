@@ -8,12 +8,25 @@
 #ifndef CPP_ARCADE_SFDRAWRECT_HPP
 #define CPP_ARCADE_SFDRAWRECT_HPP
 
-#include <src/graphic/sfml/SFDraw.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
+#include "src/std/Rect.hpp"
+#include "src/graphic/sfml/SFDraw.hpp"
+#include "src/graphic/sfml/operator.hpp"
 
 namespace arc {
 	class SFDrawRect : public SFDraw {
 	public:
-		virtual void draw() override;
+		explicit SFDrawRect(
+			const VertexF &pos = VertexF(0, 0),
+			const VertexF &size = VertexF(0, 0),
+			std::shared_ptr<IDraw> parent = nullptr);
+		explicit SFDrawRect(const RectF &rect,
+			std::shared_ptr<IDraw> parent);
+		SFDrawRect(const SFDrawRect &ex);
+		~SFDrawRect() = default;
+
+		virtual void draw() const override;
+		virtual std::unique_ptr<IDraw> clone() override;
 	};
 }
 

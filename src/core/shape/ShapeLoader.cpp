@@ -19,5 +19,13 @@ arc::ShapeLoader& arc::ShapeLoader::getInstance()
 
 arc::ShapeLoader::ShapeLoader()
 {
-	_inst[""] = ;
+	_inst["rect"] = std::make_unique<arc::ShapeRect>();
+	_inst["circle"] = std::make_unique<arc::ShapeCircle>();
+	_inst["text"] = std::make_unique<arc::ShapeText>();
+}
+
+std::unique_ptr<arc::IShape> arc::ShapeLoader::loadShape(
+	const std::string &tName)
+{
+	return _inst[tName]->clone();
 }

@@ -7,35 +7,35 @@
 
 #include "SFDraw.hpp"
 
-arc::SFDraw::SFDraw(std::unique_ptr<arc::IDraw> parent)
-{
-	_parent = parent.get();
-}
-
-arc::SFDraw::~SFDraw()
+arc::SFDraw::SFDraw(const RectF &geometry, std::shared_ptr<arc::IDraw> parent):
+	ADraw(geometry, parent)
 {
 }
 
-std::unique_ptr<arc::IDraw> arc::SFDraw::getParent() const
+arc::SFDraw::SFDraw(const VertexF &pos, const VertexF &size,
+	std::shared_ptr<arc::IDraw> parent):
+	ADraw(arc::RectF(pos, size), parent)
 {
-	return _parent;
 }
 
-std::vector<std::unique_ptr<arc::IDraw>> arc::SFDraw::getChild() const
+arc::SFDraw::SFDraw(const arc::ADraw &ex):
+	ADraw(ex.getGeometry(), ex.getParent())
 {
-	return _child;
 }
 
-void arc::SFDraw::addChild(std::unique_ptr<arc::IDraw> child)
+arc::RectI arc::SFDraw::winPos() const
 {
-	_child.push_back(child);
-}
+	RectI pos;
+	RectF temp;
 
-arc::VertexI arc::SFDraw::getPos() const
-{
-	if (!_parent)
-		return VertexI(
-			SFGraphic::initialize()->getSize().x() * _pos.x(),
-			SFGraphic::initialize()->getSize().y() * _pos.y());
-	return _parent->getPos() * _pos;
+	if (!_parent) {
+		temp = _geometry * arc::SFGraphic::initialize()->getSize();
+		pos = RectI(
+			(int)temp.pos().x(),
+			(int)temp.pos().y(),
+			(int)temp.size().x(),
+			(int)temp.size().y());
+	} else
+		pos = _parent->winPos() * getGeometry();
+	return pos;
 }

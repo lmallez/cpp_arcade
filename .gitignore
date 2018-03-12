@@ -36,4 +36,5 @@
 #*#
 cmake-*
 arcade
-*.vosges
+.*.vim
+build/

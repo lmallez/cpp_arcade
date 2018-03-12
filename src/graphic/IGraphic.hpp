@@ -8,7 +8,7 @@
 #ifndef CPP_ARCADE_IGRAPHIC_HPP
 #define CPP_ARCADE_IGRAPHIC_HPP
 
-#include <bits/unique_ptr.h>
+#include <memory>
 #include "src/exception/Exception.hpp"
 
 #define WNAME "Arcade"

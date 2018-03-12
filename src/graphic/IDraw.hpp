@@ -8,7 +8,8 @@
 #ifndef CPP_ARCADE_IDRAW_HPP
 #define CPP_ARCADE_IDRAW_HPP
 
-#include <bits/unique_ptr.h>
+#include <memory>
+#include <src/std/Rect.hpp>
 #include "src/std/Vertex.hpp"
 
 namespace arc {
@@ -16,12 +17,18 @@ namespace arc {
 	public:
 		virtual ~IDraw() = default;
 
-		virtual void draw() = 0;
-
-		virtual VertexI getPos() const = 0;
-		virtual std::unique_ptr<IDraw> getParent() const = 0;
-		virtual std::vector<std::unique_ptr<IDraw>> getChild() const = 0;
+		virtual const std::shared_ptr<IDraw> &getParent() const = 0;
+		virtual IDraw &getChild(size_t pos) = 0;
+		virtual size_t nbChild() const = 0;
 		virtual void addChild(std::unique_ptr<IDraw> child) = 0;
+		virtual RectF getGeometry() const = 0;
+		virtual RectF &getrGeometry() = 0;
+		virtual void setGeometry(const RectF &rect) = 0;
+
+		virtual RectI winPos() const = 0;
+
+		virtual void draw() const = 0;
+		virtual std::unique_ptr<IDraw> clone() = 0;
 	};
 }
 

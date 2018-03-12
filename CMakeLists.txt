@@ -15,7 +15,9 @@ set(
         src/graphic/IDraw.hpp
         src/exception/Exception.cpp
         src/exception/Exception.hpp
-        src/graphic/ADraw.cpp src/graphic/ADraw.hpp)
+        src/graphic/ADraw.cpp
+        src/graphic/ADraw.hpp
+)
 
 set(
         SHAPE
@@ -27,7 +29,8 @@ set(
         src/core/shape/AShape.cpp
         src/core/shape/AShape.hpp
         src/core/shape/ShapeText.cpp
-        src/core/shape/ShapeText.hpp)
+        src/core/shape/ShapeText.hpp
+)
 
 ### GRAPHICS LIBS ###
 
@@ -54,7 +57,7 @@ add_library(
         src/graphic/sfml/draw/SFDrawRect.hpp
 )
 
-target_link_libraries(SFArcade smfl-graphics smfl-window sfml-system)
+target_link_libraries(SFArcade sfml-graphics sfml-window sfml-system)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)

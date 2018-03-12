@@ -5,6 +5,7 @@
 // SFGraphic.cpp
 //
 
+#include <SFML/Graphics/Drawable.hpp>
 #include "SFGraphic.hpp"
 
 std::unique_ptr<arc::SFGraphic> &arc::SFGraphic::initialize()
@@ -23,7 +24,7 @@ arc::SFGraphic::~SFGraphic()
 
 arc::SFGraphic::SFGraphic(arc::VertexS size)
 {
-	_window = std::make_unique<sf::Window>();
+	_window = std::make_unique<sf::RenderWindow>();
 	_window->create(sf::VideoMode(size.x(), size.y()), WNAME);
 	if (!_window)
 		throw arc::Exception("SFWindow", "Can't creat Win");
@@ -32,4 +33,9 @@ arc::SFGraphic::SFGraphic(arc::VertexS size)
 arc::VertexI arc::SFGraphic::getSize() const
 {
 	return VertexI(_window->getSize().x, _window->getSize().y);
+}
+
+void arc::SFGraphic::draw(const sf::Drawable &toDraw)
+{
+	_window->draw(toDraw);
 }

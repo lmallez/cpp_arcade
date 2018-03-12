@@ -16,7 +16,7 @@ namespace arc {
 	public:
 		Rect<T>(const Rect <T> &rect);
 		Rect<T>(const Vertex <T> &pos, const Vertex <T> &size);
-		Rect<T>(T x, T y, T w, T h);
+		explicit Rect<T>(T x = 0, T y = 0, T w = 0, T h = 0);
 		~Rect<T>() = default;
 
 		Vertex<T> pos() const;
@@ -47,6 +47,7 @@ namespace arc {
 		Rect operator*(U other) const;
 		template <typename U>
 		Rect operator/(U other) const;
+
 
 	private:
 		Vertex<T> _pos;

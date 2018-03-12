@@ -33,7 +33,12 @@ arc::RectS &arc::SFDrawRect::getGeometry()
 	return _geometry;
 }
 
-void arc::SFDrawRect::draw()
+void arc::SFDrawRect::draw() const
 {
-	sf::RectangleShape drawRect;
+	sf::Rect geometry = ~winPos();
+	sf::RectangleShape rect;
+
+	rect.setPosition(sf::Vector2<float>(geometry.top, geometry.left));
+	rect.setSize(sf::Vector2<float>(geometry.width, geometry.height));
+	SFGraphic::initialize()->draw(rect);
 }

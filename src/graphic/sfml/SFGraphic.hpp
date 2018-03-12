@@ -8,7 +8,7 @@
 #ifndef CPP_ARCADE_GRAPHICSF_HPP
 #define CPP_ARCADE_GRAPHICSF_HPP
 
-#include <SFML/Window.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Vector2.hpp>
 #include "src/graphic/IGraphic.hpp"
 #include "src/std/Vertex.hpp"
@@ -20,9 +20,11 @@ namespace arc {
 		~SFGraphic();
 
 		VertexI getSize() const;
+		void draw(const sf::Drawable &toDraw);
+
 	private:
 		explicit SFGraphic(VertexS size = VertexS(100, 100));
-		std::unique_ptr<sf::Window> _window;
+		std::unique_ptr<sf::RenderWindow> _window;
 	};
 }
 

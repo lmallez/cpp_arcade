@@ -25,7 +25,7 @@ namespace arc {
 		void setGeometry(const VertexS &pos, const VertexS &size);
 		void setGeometry(const RectS &rect);
 		RectS &getGeometry();
-		virtual void draw() override;
+		virtual void draw() const override;
 
 	private:
 		RectS _geometry;

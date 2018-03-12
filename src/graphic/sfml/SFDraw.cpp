@@ -9,7 +9,17 @@
 
 arc::RectI arc::SFDraw::winPos() const
 {
-	if (!_parent)
-		return getGeometry() * SFGraphic::initialize()->getSize();
-	_parent->winPos() * getGeometry;
+	RectI pos;
+	RectF temp;
+
+	if (!_parent) {
+		temp = _geometry * arc::SFGraphic::initialize()->getSize();
+		pos = RectI(
+			(int)temp.pos().x(),
+			(int)temp.pos().y(),
+			(int)temp.size().x(),
+			(int)temp.size().y());
+	} else
+		pos = _parent->winPos() * getGeometry();
+	return pos;
 }

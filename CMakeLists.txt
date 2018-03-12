@@ -30,7 +30,8 @@ set(
         src/core/shape/AShape.hpp
         src/core/shape/ShapeText.cpp
         src/core/shape/ShapeText.hpp
-)
+        src/core/shape/ShapeLoader.cpp
+        src/core/shape/ShapeLoader.hpp)
 
 ### GRAPHICS LIBS ###
 

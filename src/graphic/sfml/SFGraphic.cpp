@@ -25,14 +25,19 @@ arc::SFGraphic::~SFGraphic()
 arc::SFGraphic::SFGraphic(arc::VertexS size)
 {
 	_window = std::make_unique<sf::RenderWindow>();
-	_window->create(sf::VideoMode(size.x(), size.y()), WNAME);
-	if (!_window)
-		throw arc::Exception("SFWindow", "Can't creat Win");
+	_window->create(sf::VideoMode((int)size.x(), (int)size.y()), WNAME);
+	if (!_window->isOpen())
+		throw arc::Exception("SFWindow", "Can't open Win");
 }
 
 arc::VertexF arc::SFGraphic::getSize() const
 {
 	return VertexF(_window->getSize().x, _window->getSize().y);
+}
+
+void arc::SFGraphic::display() const
+{
+	_window->display();
 }
 
 void arc::SFGraphic::draw(const sf::Drawable &toDraw)

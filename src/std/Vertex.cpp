@@ -6,6 +6,7 @@
 //
 
 #include "Vertex.hpp"
+#include "Rect.hpp"
 
 template <typename T>
 arc::Vertex<T>::Vertex() :

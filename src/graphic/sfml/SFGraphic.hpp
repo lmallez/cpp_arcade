@@ -20,6 +20,7 @@ namespace arc {
 		~SFGraphic();
 
 		VertexF getSize() const;
+		void display() const;
 		void draw(const sf::Drawable &toDraw);
 
 	private:

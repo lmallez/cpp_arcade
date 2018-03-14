@@ -21,7 +21,7 @@ namespace arc {
 			const VertexF &size = VertexF(0, 0),
 			std::shared_ptr<IDraw> parent = nullptr);
 		explicit SFDrawRect(const RectF &rect,
-			std::shared_ptr<IDraw> parent);
+			std::shared_ptr<IDraw> parent = nullptr);
 		SFDrawRect(const SFDrawRect &ex);
 		~SFDrawRect() = default;
 

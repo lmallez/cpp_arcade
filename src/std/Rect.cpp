@@ -63,7 +63,7 @@ arc::Rect<T> arc::Rect<T>::operator*(const arc::Rect<T> &other) const
 {
 	arc::Rect<T> res(*this);
 
-	res._pos = res._pos + other.pos();
+	res._pos = res._pos * other.pos();
 	res._size = res._size * other.size();
 	return res;
 }
@@ -73,7 +73,7 @@ arc::Rect<T> arc::Rect<T>::operator*(const arc::Vertex<T> &other) const
 {
 	arc::Rect res(*this);
 
-	res._pos = res._pos + other * res._size;
+	res._pos = res._pos * other;
 	res._size = res._size * other;
 	return res;
 }

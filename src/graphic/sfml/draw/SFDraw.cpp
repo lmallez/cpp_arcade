@@ -26,15 +26,29 @@ arc::SFDraw::SFDraw(const arc::ADraw &ex):
 arc::RectF arc::SFDraw::winPos() const
 {
 	RectF pos;
+	RectF parentPos;
 
 	if (!_parent) {
 		pos = _geometry * arc::SFGraphic::initialize()->getSize();
-	} else
-		pos = _parent->winPos() * getGeometry();
+	} else {
+		parentPos = _parent->winPos();
+		pos.rpos() = parentPos.pos() +
+			_geometry.pos() * parentPos.size();
+		pos.rsize() = _geometry.size() * parentPos.size();
+	}
 	return pos;
 }
 
-void arc::SFDraw::displayItem(const sf::Drawable &item) const
+
+sf::FloatRect arc::SFDraw::_winGeometry() const
+{
+	arc::RectF pos = winPos();
+	sf::FloatRect geometry(pos.pos().x(), pos.pos().y(), pos.size().x(), pos.size().y());
+
+	return geometry;
+}
+
+void arc::SFDraw::_displayItem(const sf::Drawable &item) const
 {
 	SFGraphic::initialize()->draw(item);
 }

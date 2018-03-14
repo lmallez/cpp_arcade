@@ -9,6 +9,7 @@
 #define CPP_ARCADE_SFDRAW_HPP
 
 #include <vector>
+#include <SFML/Graphics/Rect.hpp>
 #include "src/graphic/ADraw.hpp"
 #include "src/graphic/sfml/SFGraphic.hpp"
 #include "src/graphic/sfml/operator.hpp"
@@ -23,11 +24,11 @@ namespace arc {
 		explicit SFDraw(const VertexF &pos, const VertexF &size,
 			std::shared_ptr<IDraw> parent = nullptr);
 		explicit SFDraw(const ADraw &ex);
-
 		virtual RectF winPos() const override;
 
 	protected:
-		virtual void displayItem(const sf::Drawable &item) const;
+		sf::FloatRect _winGeometry() const;
+		virtual void _displayItem(const sf::Drawable &item) const;
 	};
 }
 

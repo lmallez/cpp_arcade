@@ -27,9 +27,6 @@ namespace arc {
 
 		virtual void draw() const override;
 		virtual std::unique_ptr<IDraw> clone() override;
-
-	private:
-		sf::Color _color;
 	};
 }
 

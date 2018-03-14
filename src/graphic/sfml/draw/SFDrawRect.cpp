@@ -27,17 +27,13 @@ arc::SFDrawRect::SFDrawRect(const arc::SFDrawRect &ex):
 
 void arc::SFDrawRect::draw() const
 {
-	arc::RectF pos = winPos();
-	sf::FloatRect geometry(pos.pos().x(), pos.pos().y(),
-		pos.size().x(), pos.size().y());
+	sf::FloatRect geometry = _winGeometry();
 	sf::RectangleShape rect;
 
-	std::cout << pos.pos().x() << " // " << pos.pos().y() << std::endl;
-	std::cout << pos.size().x() << " // " << pos.size().y() << std::endl;
-	rect.setPosition(sf::Vector2<float>(geometry.top, geometry.left));
-	rect.setSize(sf::Vector2<float>(geometry.width, geometry.height));
+	rect.setPosition(geometry.left, geometry.top);
+	rect.setSize(sf::Vector2f(geometry.width, geometry.height));
 	rect.setFillColor(sf::Color::White);
-	displayItem(rect);
+	_displayItem(rect);
 }
 
 std::unique_ptr<arc::IDraw> arc::SFDrawRect::clone()

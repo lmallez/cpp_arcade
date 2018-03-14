@@ -45,4 +45,5 @@ void arc::SFDrawCircle::draw() const
 
 std::unique_ptr<arc::IDraw> arc::SFDrawCircle::clone()
 {
+	return std::make_unique<arc::SFDrawCircle>(*this);
 }

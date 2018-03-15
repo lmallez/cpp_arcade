@@ -7,6 +7,16 @@
 
 #include "Color.hpp"
 
+const arc::Color arc::Color::Black(0, 0, 0);
+const arc::Color arc::Color::White(255, 255, 255);
+const arc::Color arc::Color::Red(255, 0, 0);
+const arc::Color arc::Color::Green(0, 255, 0);
+const arc::Color arc::Color::Blue(0, 0, 255);
+const arc::Color arc::Color::Yellow(255, 255, 0);
+const arc::Color arc::Color::Magenta(255, 0, 255);
+const arc::Color arc::Color::Cyan(0, 255, 255);
+const arc::Color arc::Color::Transparent(0, 0, 0, 0);
+
 arc::Color::Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha)
 {
 	_color._part[0] = red;

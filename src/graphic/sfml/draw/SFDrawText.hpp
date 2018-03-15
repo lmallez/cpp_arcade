@@ -18,11 +18,13 @@ namespace arc {
 	public:
 		explicit SFDrawText(
 			std::shared_ptr<IDraw> parent,
+			const arc::Texture &texture,
 			const VertexF &pos,
 			const VertexF &size,
 			const std::string &content);
 		explicit SFDrawText(
 			std::shared_ptr<IDraw> parent,
+			const arc::Texture &texture,
 			const RectF &rect,
 			const std::string &content);
 		SFDrawText(const SFDrawText &ex);

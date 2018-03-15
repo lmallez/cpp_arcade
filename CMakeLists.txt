@@ -20,7 +20,8 @@ set(
         src/std/Color.cpp
         src/std/Color.hpp
         src/std/Texture.cpp
-        src/std/Texture.hpp)
+        src/std/Texture.hpp
+)
 
 set(
         SHAPE
@@ -34,7 +35,8 @@ set(
         src/core/shape/ShapeText.cpp
         src/core/shape/ShapeText.hpp
         src/core/shape/ShapeLoader.cpp
-        src/core/shape/ShapeLoader.hpp)
+        src/core/shape/ShapeLoader.hpp
+)
 
 ### GRAPHICS LIBS ###
 

@@ -18,10 +18,11 @@ namespace arc {
 	public:
 		explicit SFDrawRect(
 			std::shared_ptr<IDraw> parent,
-			const VertexF &pos,
-			const VertexF &size);
+			const arc::Texture &texture,
+			const VertexF &pos, const VertexF &size);
 		explicit SFDrawRect(
 			std::shared_ptr<IDraw> parent,
+			const arc::Texture &texture,
 			const RectF &rect);
 		SFDrawRect(const SFDrawRect &ex);
 		~SFDrawRect() = default;

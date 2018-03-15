@@ -20,14 +20,25 @@ namespace arc {
 	class Color
 	{
 	public:
-		Color(uint8_t  = 0, uint8_t  = 0, uint8_t = 0, uint8_t = 255);
+		explicit Color(uint8_t = 0, uint8_t = 0, uint8_t = 0,
+			uint8_t = 255);
+		explicit Color(uint64_t);
 		Color(const Color &);
-		Color(uint64_t);
 		uint8_t red() const;
 		uint8_t green() const;
 		uint8_t blue() const;
 		uint8_t alpha() const;
 		uint64_t values() const;
+
+		static const Color Black;
+		static const Color White;
+		static const Color Red;
+		static const Color Green;
+		static const Color Blue;
+		static const Color Yellow;
+		static const Color Magenta;
+		static const Color Cyan;
+		static const Color Transparent;
 	private:
 		uintVal _color;
 	};

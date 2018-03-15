@@ -5,21 +5,17 @@
 // SFDraw.cpp
 //
 
+#include <SFML/Graphics/Shape.hpp>
 #include "SFDraw.hpp"
 
-arc::SFDraw::SFDraw(std::shared_ptr<IDraw> parent, const RectF &geometry) :
-	ADraw(parent, geometry)
-{
-}
-
-arc::SFDraw::SFDraw(std::shared_ptr<IDraw> parent, const VertexF &pos,
-		const VertexF &size) :
-	ADraw(parent, arc::RectF(pos, size))
+arc::SFDraw::SFDraw(std::shared_ptr<IDraw> parent, const Texture &texture,
+	const RectF &geometry) :
+	ADraw(parent, texture, geometry)
 {
 }
 
 arc::SFDraw::SFDraw(const arc::ADraw &ex):
-	ADraw(ex.getParent(), ex.getGeometry())
+	ADraw(ex.getParent(), ex.getTexture(), ex.getGeometry())
 {
 }
 
@@ -39,7 +35,6 @@ arc::RectF arc::SFDraw::winPos() const
 	return pos;
 }
 
-
 sf::FloatRect arc::SFDraw::_winGeometry() const
 {
 	arc::RectF pos = winPos();
@@ -51,4 +46,15 @@ sf::FloatRect arc::SFDraw::_winGeometry() const
 void arc::SFDraw::_displayItem(const sf::Drawable &item) const
 {
 	SFGraphic::initialize()->draw(item);
+}
+
+void arc::SFDraw::_colorItem(sf::Shape &item) const
+{
+	arc::Color fill = _texture.bgColor();
+	arc::Color line = _texture.lineColor();
+
+	item.setFillColor(sf::Color(fill.red(), fill.green(),
+		fill.blue(), fill.alpha()));
+	item.setOutlineColor(sf::Color(line.red(), line.green(),
+		line.blue(), line.alpha()));
 }

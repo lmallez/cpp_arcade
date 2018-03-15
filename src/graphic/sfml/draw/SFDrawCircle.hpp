@@ -18,14 +18,17 @@ namespace arc {
 	public:
 		explicit SFDrawCircle(
 			std::shared_ptr<IDraw> parent,
+			const Texture &texture,
 			const VertexF &pos,
 			const size_t &radius);
 		explicit SFDrawCircle(
 			std::shared_ptr<IDraw> parent,
+			const Texture &texture,
 			const VertexF &pos,
 			const VertexF &size);
 		explicit SFDrawCircle(
 			std::shared_ptr<IDraw> parent,
+			const Texture &texture,
 			const RectF &rect);
 		SFDrawCircle(const SFDrawCircle &ex);
 		~SFDrawCircle() = default;

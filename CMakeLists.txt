@@ -17,7 +17,10 @@ set(
         src/exception/Exception.hpp
         src/graphic/ADraw.cpp
         src/graphic/ADraw.hpp
-)
+        src/std/Color.cpp
+        src/std/Color.hpp
+        src/std/Texture.cpp
+        src/std/Texture.hpp)
 
 set(
         SHAPE

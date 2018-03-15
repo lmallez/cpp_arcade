@@ -9,6 +9,7 @@
 #define CPP_ARCADE_ISHAPE_HPP
 
 #include <memory>
+#include <src/std/Texture.hpp>
 #include "../../graphic/IDraw.hpp"
 
 namespace arc
@@ -28,8 +29,9 @@ namespace arc
 		virtual void operator<<(std::unique_ptr<IShape>) = 0;
 		virtual size_t getChildNbr() const = 0;
 		virtual bool operator!() const = 0;
+		virtual arc::Texture getTexture() const = 0;
+		virtual void setTexture(const arc::Texture &) = 0;
 	};
-
 }
 
 #endif //CPP_ARCADE_ISHAPE_HPP

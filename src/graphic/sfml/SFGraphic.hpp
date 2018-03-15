@@ -24,7 +24,7 @@ namespace arc {
 		void draw(const sf::Drawable &toDraw);
 
 	private:
-		explicit SFGraphic(VertexS size = VertexS(100, 100));
+		explicit SFGraphic(VertexS size = VertexS(400, 400));
 		std::unique_ptr<sf::RenderWindow> _window;
 	};
 }

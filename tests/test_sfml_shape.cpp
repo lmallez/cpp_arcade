@@ -9,6 +9,10 @@
 #include <src/graphic/sfml/SFGraphic.hpp>
 #include <src/graphic/sfml/draw/SFDrawRect.hpp>
 #include <src/graphic/sfml/draw/SFDrawCircle.hpp>
+#include <SFML/Graphics/Font.hpp>
+#include <src/graphic/sfml/draw/SFDrawText.hpp>
+
+extern sf::Font consolasFont;
 
 int main(int ac, char **av)
 {
@@ -19,7 +23,9 @@ int main(int ac, char **av)
 	std::shared_ptr<arc::IDraw> shape2 =
 		std::make_shared<arc::SFDrawRect>(shape1, center);
 	std::shared_ptr<arc::IDraw> shape3 =
-		std::make_shared<arc::SFDrawCircle>(shape2, center);
+		std::make_shared<arc::SFDrawText>(shape2, center, "Score = 0");
+
+	consolasFont.loadFromFile("../assets/Consolas.ttf");
 
 	shape1->draw();
 	shape2->draw();

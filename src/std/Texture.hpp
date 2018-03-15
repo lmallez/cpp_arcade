@@ -17,7 +17,8 @@ namespace arc
 	class Texture
 	{
 	public:
-		Texture(const std::string &);
+		explicit Texture() = default;
+		explicit Texture(const std::string &);
 		Texture(const arc::Color &, const arc::Color &);
 		Texture(const arc::Texture &);
 		arc::Texture &operator=(const arc::Texture &);

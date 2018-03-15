@@ -36,3 +36,13 @@ void arc::AShape::operator<<(std::unique_ptr<IShape> child)
 {
 	addChild(std::move(child));
 }
+
+arc::Texture arc::AShape::getTexture() const
+{
+	return _texture;
+}
+
+void arc::AShape::setTexture(const arc::Texture &texture)
+{
+	_texture = texture;
+}

@@ -22,11 +22,12 @@ namespace arc
 		arc::IShape &operator[](size_t id) override;
 		bool operator!() const;
 		size_t getChildNbr() const override;
-		void addChild(std::unique_ptr<IShape>);
-		void operator<<(std::unique_ptr<IShape>);
+		void addChild(std::unique_ptr<IShape>) override;
+		void operator<<(std::unique_ptr<IShape>) override;
+		arc::Texture getTexture() const override;
+		void setTexture(const arc::Texture &) override;
 	protected:
-		arc::Color _backgroundColor;
-		arc::Color _lineColor;
+		arc::Texture _texture;
 		std::vector<std::shared_ptr<arc::IShape>> _children;
 	};
 

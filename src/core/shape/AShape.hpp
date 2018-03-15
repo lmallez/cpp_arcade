@@ -9,6 +9,7 @@
 #define CPP_ARCADE_ASHAPE_HPP
 
 #include <vector>
+#include <src/std/Color.hpp>
 #include "IShape.hpp"
 
 namespace arc
@@ -24,6 +25,8 @@ namespace arc
 		void addChild(std::unique_ptr<IShape>);
 		void operator<<(std::unique_ptr<IShape>);
 	protected:
+		arc::Color _backgroundColor;
+		arc::Color _lineColor;
 		std::vector<std::shared_ptr<arc::IShape>> _children;
 	};
 

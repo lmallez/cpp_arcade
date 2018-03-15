@@ -29,7 +29,6 @@ namespace arc
 		virtual size_t getChildNbr() const = 0;
 		virtual bool operator!() const = 0;
 	};
-
 }
 
 #endif //CPP_ARCADE_ISHAPE_HPP

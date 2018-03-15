@@ -7,16 +7,15 @@
 
 #include "SFDrawRect.hpp"
 
-arc::SFDrawRect::SFDrawRect(const arc::VertexF &pos, const arc::VertexF &size,
-	std::shared_ptr<arc::IDraw> parent):
-	SFDraw(pos, size, parent)
+arc::SFDrawRect::SFDrawRect(std::shared_ptr<IDraw> parent, const VertexF &pos,
+		const VertexF &size) :
+	SFDraw(parent, pos, size)
 {
 
 }
 
-arc::SFDrawRect::SFDrawRect(const arc::RectF &rect,
-	std::shared_ptr<arc::IDraw> parent):
-	SFDraw(rect, parent)
+arc::SFDrawRect::SFDrawRect(std::shared_ptr<IDraw> parent, const RectF &rect) :
+	SFDraw(parent, rect)
 {
 }
 

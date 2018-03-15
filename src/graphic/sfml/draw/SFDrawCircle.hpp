@@ -17,15 +17,16 @@ namespace arc {
 	class SFDrawCircle : public SFDraw {
 	public:
 		explicit SFDrawCircle(
-			const VertexF &pos = VertexF(0, 0),
-			const size_t &radius = 0,
-			std::shared_ptr<IDraw> parent = nullptr);
+			std::shared_ptr<IDraw> parent,
+			const VertexF &pos,
+			const size_t &radius);
 		explicit SFDrawCircle(
-			const VertexF &pos = VertexF(0, 0),
-			const VertexF &size = VertexF(0, 0),
-			std::shared_ptr<IDraw> parent = nullptr);
-		explicit SFDrawCircle(const RectF &rect,
-			std::shared_ptr<IDraw> parent = nullptr);
+			std::shared_ptr<IDraw> parent,
+			const VertexF &pos,
+			const VertexF &size);
+		explicit SFDrawCircle(
+			std::shared_ptr<IDraw> parent,
+			const RectF &rect);
 		SFDrawCircle(const SFDrawCircle &ex);
 		~SFDrawCircle() = default;
 

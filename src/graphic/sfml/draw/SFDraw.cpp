@@ -7,19 +7,19 @@
 
 #include "SFDraw.hpp"
 
-arc::SFDraw::SFDraw(const RectF &geometry, std::shared_ptr<arc::IDraw> parent):
-	ADraw(geometry, parent)
+arc::SFDraw::SFDraw(std::shared_ptr<IDraw> parent, const RectF &geometry) :
+	ADraw(parent, geometry)
 {
 }
 
-arc::SFDraw::SFDraw(const VertexF &pos, const VertexF &size,
-	std::shared_ptr<arc::IDraw> parent):
-	ADraw(arc::RectF(pos, size), parent)
+arc::SFDraw::SFDraw(std::shared_ptr<IDraw> parent, const VertexF &pos,
+		const VertexF &size) :
+	ADraw(parent, arc::RectF(pos, size))
 {
 }
 
 arc::SFDraw::SFDraw(const arc::ADraw &ex):
-	ADraw(ex.getGeometry(), ex.getParent())
+	ADraw(ex.getParent(), ex.getGeometry())
 {
 }
 

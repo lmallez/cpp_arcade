@@ -13,18 +13,17 @@
 int main(int ac, char **av)
 {
 	std::unique_ptr<arc::SFGraphic> &aled = arc::SFGraphic::initialize();
-	arc::RectF oskour(0.25, 0.25, 0.5, 0.5);
-	arc::RectF aledz(0.5, 0.5, 0.5, 0.5);
-	arc::RectF bizou(0.5, 0.5, 0.5, 0.5);
-	arc::SFDrawCircle shape(oskour, nullptr);
-	std::shared_ptr<arc::IDraw> oksour = std::make_shared<arc::SFDrawCircle>(shape);
-	arc::SFDrawRect shape2(aledz, oksour);
-	std::shared_ptr<arc::IDraw> oksour2 = std::make_shared<arc::SFDrawRect>(shape2);
-	arc::SFDrawCircle shape3(bizou, oksour2);
+	arc::RectF center(0.25, 0.25, 0.5, 0.5);
+	std::shared_ptr<arc::IDraw> shape1 =
+		std::make_shared<arc::SFDrawCircle>(nullptr, center);
+	std::shared_ptr<arc::IDraw> shape2 =
+		std::make_shared<arc::SFDrawRect>(shape1, center);
+	std::shared_ptr<arc::IDraw> shape3 =
+		std::make_shared<arc::SFDrawCircle>(shape2, center);
 
-	shape.draw();
-	shape2.draw();
-	shape3.draw();
+	shape1->draw();
+	shape2->draw();
+	shape3->draw();
 	aled->display();
 	while (1);
 }

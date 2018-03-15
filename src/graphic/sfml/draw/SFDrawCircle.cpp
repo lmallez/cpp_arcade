@@ -7,22 +7,22 @@
 
 #include "SFDrawCircle.hpp"
 
-arc::SFDrawCircle::SFDrawCircle(const arc::VertexF &pos, const size_t &radius,
-	std::shared_ptr<arc::IDraw> parent):
-	SFDraw(arc::VertexF(pos.x() - radius / 2, pos.y() - radius / 2),
-		arc::VertexF(radius, radius), parent)
+arc::SFDrawCircle::SFDrawCircle(std::shared_ptr<IDraw> parent, const VertexF &pos,
+		const size_t &radius) :
+	SFDraw(parent, arc::VertexF(pos.x() - radius / 2, pos.y() - radius / 2),
+		arc::VertexF(radius, radius))
 {
 }
 
-arc::SFDrawCircle::SFDrawCircle(const arc::VertexF &pos,
-	const arc::VertexF &size, std::shared_ptr<arc::IDraw> parent):
-	SFDraw(pos, size, parent)
+arc::SFDrawCircle::SFDrawCircle(std::shared_ptr<IDraw> parent, const VertexF &pos,
+		const VertexF &size) :
+	SFDraw(parent, pos, size)
 {
 }
 
-arc::SFDrawCircle::SFDrawCircle(const arc::RectF &rect,
-	std::shared_ptr<arc::IDraw> parent):
-	SFDraw(rect, parent)
+arc::SFDrawCircle::SFDrawCircle(std::shared_ptr<IDraw> parent, const RectF &rect)
+	:
+	SFDraw(parent, rect)
 {
 }
 

@@ -8,7 +8,7 @@
 #include <src/exception/Exception.hpp>
 #include "ADraw.hpp"
 
-arc::ADraw::ADraw(const RectF &geometry, std::shared_ptr<arc::IDraw> parent)
+arc::ADraw::ADraw(std::shared_ptr<IDraw> parent, const RectF &geometry)
 {
 	_geometry = geometry;
 	_parent = parent;

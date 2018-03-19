@@ -11,7 +11,6 @@
 #include "src/graphic/sfml/draw/SFDrawRect.hpp"
 #include "src/graphic/sfml/draw/SFDrawCircle.hpp"
 #include "src/graphic/sfml/draw/SFDrawText.hpp"
-#include "src/std/Color.hpp"
 
 extern sf::Font consolasFont;
 
@@ -19,12 +18,10 @@ int main(int ac, char **av)
 {
 	std::unique_ptr<arc::SFGraphic> &aled = arc::SFGraphic::initialize();
 	arc::RectF center(0.25, 0.25, 0.5, 0.5);
-	std::shared_ptr<arc::IDraw> shape1 =
-		std::make_shared<arc::SFDrawCircle>(nullptr, arc::Texture(arc::Color::Blue, arc::Color::Red), center);
-	std::shared_ptr<arc::IDraw> shape2 =
-		std::make_shared<arc::SFDrawRect>(shape1, arc::Texture(arc::Color::Transparent, arc::Color::Yellow), center);
-	std::shared_ptr<arc::IDraw> shape3 =
-		std::make_shared<arc::SFDrawText>(shape2, arc::Texture(), center, "Score = 0");
+	arc::RectF full(0.1, 0.1, 0.8, 0.8);
+	std::shared_ptr<arc::IDraw> shape1(new arc::SFDrawCircle(nullptr, arc::Texture(arc::Color::Blue, arc::Color::Red), full));
+	std::shared_ptr<arc::IDraw> shape2(new arc::SFDrawCircle(shape1, arc::Texture(arc::Color::Magenta, arc::Color::Yellow), center));
+	std::shared_ptr<arc::IDraw> shape3(new arc::SFDrawText(shape2, arc::Texture(arc::Color::Green), center, "Score = 0"));
 
 	consolasFont.loadFromFile("../assets/Consolas.ttf");
 
@@ -32,5 +29,5 @@ int main(int ac, char **av)
 	shape2->draw();
 	shape3->draw();
 	aled->display();
-	while (1);
+	while (1) {}
 }

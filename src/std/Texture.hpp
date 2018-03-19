@@ -19,7 +19,8 @@ namespace arc
 	public:
 		explicit Texture() = default;
 		explicit Texture(const std::string &);
-		Texture(const arc::Color &fill, const arc::Color &line);
+		explicit Texture(const arc::Color &fill,
+			const arc::Color &line = arc::Color());
 		Texture(const arc::Texture &);
 		arc::Texture &operator=(const arc::Texture &);
 		std::string getFilePath() const;

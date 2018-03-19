@@ -24,9 +24,7 @@ namespace arc {
 		virtual RectF getGeometry() const = 0;
 		virtual RectF &getrGeometry() = 0;
 		virtual void setGeometry(const RectF &rect) = 0;
-
 		virtual RectF winPos() const = 0;
-
 		virtual void draw() const = 0;
 		virtual std::unique_ptr<IDraw> clone() = 0;
 	};

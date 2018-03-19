@@ -10,6 +10,7 @@
 
 #include <vector>
 #include <src/std/Texture.hpp>
+#include <src/core/shape/IShape.hpp>
 #include "IDraw.hpp"
 
 namespace arc {

@@ -38,7 +38,8 @@ arc::RectF arc::SFDraw::winPos() const
 sf::FloatRect arc::SFDraw::_winGeometry() const
 {
 	arc::RectF pos = winPos();
-	sf::FloatRect geometry(pos.pos().x(), pos.pos().y(), pos.size().x(), pos.size().y());
+	sf::FloatRect geometry(pos.pos().x(), pos.pos().y(),
+		pos.size().x(), pos.size().y());
 
 	return geometry;
 }

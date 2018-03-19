@@ -7,13 +7,14 @@
 
 #include "ShapeText.hpp"
 
-arc::ShapeText::ShapeText(const arc::Vertex<float> &pos, const std::string &txt)
-: 	_pos(pos), _text(txt)
+arc::ShapeText::ShapeText(const arc::Vertex<float> &pos,const
+	arc::Vertex<float> &size, const std::string &txt)
+: 	_type("text"), _pos(pos), _size(size), _text(txt)
 {
 }
 
 arc::ShapeText::ShapeText(const arc::ShapeText &cpy) :
-	_pos(cpy.getPos()), _text(cpy.getText())
+	_type("text"), _pos(cpy.getPos()), _text(cpy.getText())
 {
 }
 
@@ -36,4 +37,9 @@ std::unique_ptr<arc::IDraw> arc::ShapeText::convert(
 std::unique_ptr<arc::IShape> arc::ShapeText::clone() const
 {
 	return std::make_unique<arc::ShapeText>(*this);
+}
+
+arc::Vertex<float> arc::ShapeText::getSize() const
+{
+	return _size;
 }

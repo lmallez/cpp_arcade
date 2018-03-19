@@ -67,6 +67,9 @@ set(
         src/graphic/sfml/draw/SFDrawRect.hpp
         src/graphic/sfml/draw/SFDrawCircle.cpp
         src/graphic/sfml/draw/SFDrawCircle.hpp
+        src/graphic/IDrawLoader.hpp
+        src/graphic/sfml/draw/SFDrawLoader.cpp
+        src/graphic/sfml/draw/SFDrawLoader.hpp
         src/graphic/sfml/draw/SFDrawText.cpp
         src/graphic/sfml/draw/SFDrawText.hpp
 )

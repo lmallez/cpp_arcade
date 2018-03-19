@@ -44,7 +44,7 @@ set(
         NC_FILES
         ${STD_FILES}
         ${SHAPE}
-)
+        src/core/loader/LibLoader.cpp src/core/loader/LibLoader.hpp)
 
 add_library(
         NCArcade

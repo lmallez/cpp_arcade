@@ -8,14 +8,14 @@
 #include "SFDrawRect.hpp"
 
 arc::SFDrawRect::SFDrawRect(std::shared_ptr<IDraw> parent, const arc::Texture &texture,
-		const VertexF &pos, const VertexF &size) :
+	const VertexF &pos, const VertexF &size) :
 	SFDraw(parent, texture, RectF(pos, size))
 {
 
 }
 
 arc::SFDrawRect::SFDrawRect(std::shared_ptr<IDraw> parent, const arc::Texture &texture,
-		const RectF &rect) :
+	const RectF &rect) :
 	SFDraw(parent, texture, rect)
 {
 }
@@ -40,4 +40,12 @@ void arc::SFDrawRect::draw() const
 std::unique_ptr<arc::IDraw> arc::SFDrawRect::clone()
 {
 	return std::make_unique<arc::SFDrawRect>(*this);
+}
+
+const arc::IDraw &
+arc::SFDrawRect::load(const std::shared_ptr<arc::IShape> &model)
+{
+	//const std::shared_ptr<arc::ShapeRect> item;
+	//item.reset(static_cast<arc::ShapeRect>(*model));
+	return *this;
 }

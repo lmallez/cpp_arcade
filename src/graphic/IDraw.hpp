@@ -9,10 +9,13 @@
 #define CPP_ARCADE_IDRAW_HPP
 
 #include <memory>
-#include <src/std/Rect.hpp>
+#include <src/core/shape/IShape.hpp>
+#include "src/std/Rect.hpp"
 #include "src/std/Vertex.hpp"
 
 namespace arc {
+	class IShape;
+
 	class IDraw {
 	public:
 		virtual ~IDraw() = default;
@@ -24,9 +27,11 @@ namespace arc {
 		virtual RectF getGeometry() const = 0;
 		virtual RectF &getrGeometry() = 0;
 		virtual void setGeometry(const RectF &rect) = 0;
+		virtual void setTexture(const Texture &texture) = 0;
 		virtual RectF winPos() const = 0;
 		virtual void draw() const = 0;
 		virtual std::unique_ptr<IDraw> clone() = 0;
+		virtual const IDraw &load(const std::shared_ptr<IShape> &model) = 0;
 	};
 }
 

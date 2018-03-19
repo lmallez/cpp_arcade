@@ -10,18 +10,19 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Vector2.hpp>
+#include <src/graphic/AGraphic.hpp>
 #include "src/graphic/IGraphic.hpp"
 #include "src/std/Vertex.hpp"
 
 namespace arc {
-	class SFGraphic : public virtual IGraphic {
+	class SFGraphic : public AGraphic {
 	public:
 		static std::unique_ptr<SFGraphic> &initialize();
 		~SFGraphic();
 
 		VertexF getSize() const;
 		void display() const;
-		void draw(const sf::Drawable &toDraw);
+		void drawItem(const sf::Drawable &toDraw);
 
 	private:
 		explicit SFGraphic(VertexS size = VertexS(400, 400));

@@ -47,3 +47,9 @@ std::unique_ptr<arc::IDraw> arc::SFDrawText::clone()
 {
 	return std::make_unique<arc::SFDrawText>(*this);
 }
+
+const arc::IDraw &
+arc::SFDrawText::load(const std::shared_ptr<arc::IShape> &model)
+{
+	return *this;
+}

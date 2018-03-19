@@ -28,6 +28,7 @@ namespace arc {
 		virtual RectF getGeometry() const override;
 		virtual RectF &getrGeometry() override;
 		virtual void setGeometry(const RectF &rect) override;
+		virtual void setTexture(const Texture &texture) override;
 		virtual Texture getTexture() const;
 		virtual Texture &getrTexture();
 
@@ -35,6 +36,8 @@ namespace arc {
 		virtual RectF &operator *();
 
 	protected:
+
+
 		std::shared_ptr<IDraw> _parent;
 		RectF _geometry;
 		arc::Texture _texture;

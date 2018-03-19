@@ -5,6 +5,7 @@
 // SFDrawCircle.cpp
 //
 
+#include <src/core/shape/ShapeCircle.hpp>
 #include "SFDrawCircle.hpp"
 
 arc::SFDrawCircle::SFDrawCircle(std::shared_ptr<IDraw> parent, const Texture &texture,
@@ -48,4 +49,10 @@ void arc::SFDrawCircle::draw() const
 std::unique_ptr<arc::IDraw> arc::SFDrawCircle::clone()
 {
 	return std::make_unique<arc::SFDrawCircle>(*this);
+}
+
+const arc::IDraw &
+arc::SFDrawCircle::load(const std::shared_ptr<arc::IShape> &model)
+{
+	return *this;
 }

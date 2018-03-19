@@ -21,6 +21,8 @@ set(
         src/std/Color.hpp
         src/std/Texture.cpp
         src/std/Texture.hpp
+        src/graphic/AGraphic.cpp
+        src/graphic/AGraphic.hpp
 )
 
 set(
@@ -68,8 +70,8 @@ set(
         src/graphic/sfml/draw/SFDrawCircle.cpp
         src/graphic/sfml/draw/SFDrawCircle.hpp
         src/graphic/IDrawLoader.hpp
-        src/graphic/sfml/draw/SFDrawLoader.cpp
-        src/graphic/sfml/draw/SFDrawLoader.hpp
+        src/graphic/sfml/SFDrawLoader.cpp
+        src/graphic/sfml/SFDrawLoader.hpp
         src/graphic/sfml/draw/SFDrawText.cpp
         src/graphic/sfml/draw/SFDrawText.hpp
 )

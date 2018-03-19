@@ -46,7 +46,7 @@ sf::FloatRect arc::SFDraw::_winGeometry() const
 
 void arc::SFDraw::_displayItem(const sf::Drawable &item) const
 {
-	SFGraphic::initialize()->draw(item);
+	SFGraphic::initialize()->drawItem(item);
 }
 
 void arc::SFDraw::_colorItem(sf::Shape &item) const

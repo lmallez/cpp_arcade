@@ -15,7 +15,7 @@
 namespace arc {
 	class IDrawLoader {
 	public:
-		virtual std::unique_ptr<arc::IDraw> load(const arc::IShape &)
+		virtual const IDraw & load(const std::shared_ptr<IShape>)
 		const = 0;
 	};
 }

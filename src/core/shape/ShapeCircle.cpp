@@ -8,11 +8,11 @@
 #include "ShapeCircle.hpp"
 
 arc::ShapeCircle::ShapeCircle(const arc::Vertex<float> &ori, const float rad):
-	_origin(ori), _radius(rad)
+	_type("circle"), _origin(ori), _radius(rad)
 {}
 
 arc::ShapeCircle::ShapeCircle(const arc::ShapeCircle &cpy) :
-	_origin(cpy.getOrigin()), _radius(cpy.getRadius())
+	_type("circle"), _origin(cpy.getOrigin()), _radius(cpy.getRadius())
 {}
 
 arc::Vertex<float> arc::ShapeCircle::getOrigin() const

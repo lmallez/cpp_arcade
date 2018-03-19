@@ -6,3 +6,9 @@
 //
 
 #include "SFDrawLoader.hpp"
+
+std::unique_ptr<arc::IDraw> arc::SFDrawLoader::load(const arc::IShape &shape)
+const
+{
+	return _items[shape.getType()].load(shape);
+}

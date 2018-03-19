@@ -46,3 +46,8 @@ void arc::AShape::setTexture(const arc::Texture &texture)
 {
 	_texture = texture;
 }
+
+std::string arc::AShape::getType() const
+{
+	return _type;
+}

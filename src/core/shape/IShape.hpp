@@ -20,8 +20,6 @@ namespace arc
 	{
 	public:
 		virtual ~IShape() = default;
-		virtual std::unique_ptr<IDraw>
-		convert(std::unique_ptr<IShapeLoader> &) = 0;
 		virtual std::unique_ptr<IShape> clone() const = 0;
 		virtual IShape &getChild(size_t id) = 0;
 		virtual IShape &operator[](size_t id) = 0;
@@ -31,6 +29,7 @@ namespace arc
 		virtual bool operator!() const = 0;
 		virtual arc::Texture getTexture() const = 0;
 		virtual void setTexture(const arc::Texture &) = 0;
+		virtual std::string getType() const = 0;
 	};
 }
 

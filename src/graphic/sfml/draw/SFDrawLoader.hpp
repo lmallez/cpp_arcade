@@ -8,11 +8,19 @@
 #ifndef CPP_ARCADE_SFDRAWLOADER_HPP
 #define CPP_ARCADE_SFDRAWLOADER_HPP
 
+#include <src/graphic/IDrawLoader.hpp>
 
-class SFDrawLoader
-{
+namespace arc {
 
-};
+	class SFDrawLoader : public virtual arc::IDrawLoader
+	{
+	public:
+		std::unique_ptr<IDraw> load(const arc::IShape &t)
+		const override;
+	private:
+		std::unordered_map<std::string, arc::IDraw> _items;
+	};
+}
 
 
 #endif //CPP_ARCADE_SFDRAWLOADER_HPP

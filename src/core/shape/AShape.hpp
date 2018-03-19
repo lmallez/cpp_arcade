@@ -26,7 +26,9 @@ namespace arc
 		void operator<<(std::unique_ptr<IShape>) override;
 		arc::Texture getTexture() const override;
 		void setTexture(const arc::Texture &) override;
+		std::string getType() const override;
 	protected:
+		std::string _type;
 		arc::Texture _texture;
 		std::vector<std::shared_ptr<arc::IShape>> _children;
 	};

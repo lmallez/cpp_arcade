@@ -8,15 +8,15 @@
 #include "ShapeRect.hpp"
 
 arc::ShapeRect::ShapeRect()
-:_geometry(0, 0, 0, 0)
+: _type("rectangle"), _geometry(0, 0, 0, 0)
 {}
 
 arc::ShapeRect::ShapeRect(const arc::Rect<float> &geo) :
-_geometry(geo)
+	_type("rectangle"), _geometry(geo)
 {}
 
 arc::ShapeRect::ShapeRect(const arc::ShapeRect &copy) :
-_geometry(copy.getGeometry())
+	_type("rectangle"), _geometry(copy.getGeometry())
 {}
 
 arc::Rect<float> arc::ShapeRect::getGeometry() const

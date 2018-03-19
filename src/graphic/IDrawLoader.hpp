@@ -8,4 +8,16 @@
 #ifndef CPP_ARCADE_IDRAWLOADER_HPP
 #define CPP_ARCADE_IDRAWLOADER_HPP
 
+#include "IDraw.hpp"
+#include <unordered_map>
+#include <src/core/shape/IShape.hpp>
+
+namespace arc {
+	class IDrawLoader {
+	public:
+		virtual std::unique_ptr<arc::IDraw> load(const arc::IShape &)
+		const = 0;
+	};
+}
+
 #endif //CPP_ARCADE_IDRAWLOADER_HPP

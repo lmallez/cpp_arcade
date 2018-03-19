@@ -9,22 +9,23 @@
 #define CPP_ARCADE_IGRAPHIC_HPP
 
 #include <memory>
+#include <src/core/shape/IShape.hpp>
 #include "src/exception/Exception.hpp"
+#include "IDrawLoader.hpp"
 
 #define WNAME "Arcade"
 
 namespace arc {
 	class EventHandler;
 	class IDraw;
-	class IShapeLoader;
 
 	class IGraphic {
 	public:
 		virtual ~IGraphic() = default;
 
-		//virtual void catchEvent(EventHandler &event) = 0;
-		//virtual void display(std::unique_ptr<IDraw> elem) = 0;
-		//virtual IShapeLoader getLoader() = 0;
+		virtual const IDrawLoader &getDrawLoader() const = 0;
+		virtual void draw(const std::shared_ptr<IShape> &shape) const = 0;
+		virtual void display() const = 0;
 	};
 }
 

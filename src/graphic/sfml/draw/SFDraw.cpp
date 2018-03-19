@@ -38,14 +38,15 @@ arc::RectF arc::SFDraw::winPos() const
 sf::FloatRect arc::SFDraw::_winGeometry() const
 {
 	arc::RectF pos = winPos();
-	sf::FloatRect geometry(pos.pos().x(), pos.pos().y(), pos.size().x(), pos.size().y());
+	sf::FloatRect geometry(pos.pos().x(), pos.pos().y(),
+		pos.size().x(), pos.size().y());
 
 	return geometry;
 }
 
 void arc::SFDraw::_displayItem(const sf::Drawable &item) const
 {
-	SFGraphic::initialize()->draw(item);
+	SFGraphic::initialize()->drawItem(item);
 }
 
 void arc::SFDraw::_colorItem(sf::Shape &item) const

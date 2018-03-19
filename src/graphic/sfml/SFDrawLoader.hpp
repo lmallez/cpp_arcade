@@ -11,16 +11,16 @@
 #include <src/graphic/IDrawLoader.hpp>
 
 namespace arc {
-
 	class SFDrawLoader : public virtual arc::IDrawLoader
 	{
 	public:
-		std::unique_ptr<IDraw> load(const arc::IShape &t)
+		static const std::unique_ptr<IDrawLoader> & getInstance();
+		const IDraw & load(const std::shared_ptr<IShape> t)
 		const override;
 	private:
-		std::unordered_map<std::string, arc::IDraw> _items;
+		explicit SFDrawLoader();
+		std::unordered_map<std::string, std::unique_ptr<arc::IDraw>> _items;
 	};
 }
-
 
 #endif //CPP_ARCADE_SFDRAWLOADER_HPP

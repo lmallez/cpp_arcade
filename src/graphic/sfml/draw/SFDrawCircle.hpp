@@ -12,6 +12,7 @@
 #include "SFDraw.hpp"
 #include "src/std/Rect.hpp"
 #include "src/graphic/sfml/operator.hpp"
+#include "src/core/shape/ShapeCircle.hpp"
 
 namespace arc {
 	class SFDrawCircle : public SFDraw {
@@ -27,14 +28,17 @@ namespace arc {
 			const VertexF &pos,
 			const VertexF &size);
 		explicit SFDrawCircle(
-			std::shared_ptr<IDraw> parent,
-			const Texture &texture,
-			const RectF &rect);
+			std::shared_ptr<IDraw> parent = nullptr,
+			const Texture &texture = arc::Texture(),
+			const RectF &rect = RectF(0, 0, 0, 0));
 		SFDrawCircle(const SFDrawCircle &ex);
 		~SFDrawCircle() = default;
 
 		virtual void draw() const override;
 		virtual std::unique_ptr<IDraw> clone() override;
+
+		virtual const IDraw &
+		load(const std::shared_ptr<IShape> &model) override;
 	};
 }
 

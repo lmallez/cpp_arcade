@@ -23,14 +23,17 @@ namespace arc {
 			const VertexF &size,
 			const std::string &content);
 		explicit SFDrawText(
-			std::shared_ptr<IDraw> parent,
-			const arc::Texture &texture,
-			const RectF &rect,
-			const std::string &content);
+			std::shared_ptr<IDraw> parent = nullptr,
+			const arc::Texture &texture = arc::Texture(),
+			const RectF &rect = RectF(0, 0, 0, 0),
+			const std::string &content = "");
 		SFDrawText(const SFDrawText &ex);
 
 		virtual void draw() const override;
 		virtual std::unique_ptr<IDraw> clone() override;
+
+		virtual const IDraw &
+		load(const std::shared_ptr<IShape> &model) override;
 
 	private:
 		sf::Text _text;

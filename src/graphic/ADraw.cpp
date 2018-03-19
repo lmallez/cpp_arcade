@@ -59,6 +59,11 @@ arc::IDraw &arc::ADraw::operator[](size_t pos)
 	return getChild(pos);
 }
 
+void arc::ADraw::setTexture(const arc::Texture &texture)
+{
+	_texture = texture;
+}
+
 arc::Texture arc::ADraw::getTexture() const
 {
 	return _texture;

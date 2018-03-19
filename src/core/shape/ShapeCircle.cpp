@@ -30,15 +30,9 @@ void arc::ShapeCircle::setOrigin(const arc::Vertex<float> &val)
 	_origin = val;
 }
 
-void arc::ShapeCircle::setRadius(const float val)
+void arc::ShapeCircle::setRadius(float val)
 {
 	_radius = val;
-}
-
-std::unique_ptr<arc::IDraw> arc::ShapeCircle::convert(
-	std::unique_ptr<IShapeLoader> &loader)
-{
-	return nullptr;
 }
 
 std::unique_ptr<arc::IShape> arc::ShapeCircle::clone() const

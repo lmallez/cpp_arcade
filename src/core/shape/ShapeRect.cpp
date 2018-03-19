@@ -29,12 +29,6 @@ void arc::ShapeRect::setGeometry(const arc::Rect<float> &val)
 	_geometry = val;
 }
 
-std::unique_ptr<arc::IDraw> arc::ShapeRect::convert(
-	std::unique_ptr<IShapeLoader> &loader)
-{
-	return nullptr;
-}
-
 std::unique_ptr<arc::IShape> arc::ShapeRect::clone() const
 {
 	return std::make_unique<arc::ShapeRect>(*this);

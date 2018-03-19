@@ -28,12 +28,6 @@ std::string arc::ShapeText::getText() const
 	return _text;
 }
 
-std::unique_ptr<arc::IDraw> arc::ShapeText::convert(
-	std::unique_ptr<IShapeLoader> &)
-{
-	return nullptr;
-}
-
 std::unique_ptr<arc::IShape> arc::ShapeText::clone() const
 {
 	return std::make_unique<arc::ShapeText>(*this);

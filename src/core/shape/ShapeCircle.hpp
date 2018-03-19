@@ -17,16 +17,14 @@ namespace arc
 	class ShapeCircle : public virtual arc::AShape
 	{
 	public:
-		ShapeCircle(const arc::Vertex<float> & = {0, 0}, const float =
+		ShapeCircle(const arc::Vertex<float> & = {0, 0}, float =
 		0);
 		ShapeCircle(const arc::ShapeCircle &);
-		std::unique_ptr<IDraw>
-		convert(std::unique_ptr<IShapeLoader> &) override;
 		std::unique_ptr<arc::IShape> clone() const override;
 		arc::Vertex<float> getOrigin() const;
 		float getRadius() const;
 		void setOrigin(const arc::Vertex<float> &);
-		void setRadius(const float);
+		void setRadius(float);
 	private:
 		arc::Vertex<float> _origin;
 		float _radius;

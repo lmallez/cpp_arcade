@@ -20,8 +20,6 @@ namespace arc
 			  const arc::Vertex<float> &size = {0, 0},
 			  const std::string & = "");
 		ShapeText(const arc::ShapeText &);
-		std::unique_ptr<IDraw>
-		convert(std::unique_ptr<IShapeLoader> &) override;
 		std::unique_ptr<arc::IShape> clone() const override;
 		arc::Vertex<float> getPos() const;
 		std::string getText() const;

@@ -20,8 +20,6 @@ namespace arc
 		ShapeRect();
 		explicit ShapeRect(const arc::Rect<float> &);
 		ShapeRect(const arc::ShapeRect &);
-		std::unique_ptr<IDraw>
-		convert(std::unique_ptr<IShapeLoader> &) override;
 		std::unique_ptr<arc::IShape> clone() const override;
 		arc::Rect<float> getGeometry() const;
 		void setGeometry(const arc::Rect<float> &);

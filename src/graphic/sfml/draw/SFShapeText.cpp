@@ -26,7 +26,7 @@ void arc::SFShapeText::draw() const
 	sf::FloatRect geometry = winGeometry();
 	sf::Text text(getText(), consolasFont);
 	size_t len = text.getString().getSize();
-	arc::Color color = _texture.lineColor();
+	arc::Color color = _texture.bgColor();
 
 	if (len == 0)
 		return;
@@ -34,4 +34,5 @@ void arc::SFShapeText::draw() const
 	text.setCharacterSize((unsigned int)(geometry.width * SFML_TEXT_PADING / len));
 	text.setFillColor(sf::Color(color.r(), color.g(), color.b(), color.a()));
 	_displayItem(text);
+	AShape::draw();
 }

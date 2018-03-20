@@ -38,6 +38,7 @@ arc::VertexF arc::SFGraphic::getSize() const
 void arc::SFGraphic::display() const
 {
 	_window->display();
+	_window->clear(sf::Color::Black);
 }
 
 void arc::SFGraphic::drawItem(const sf::Drawable &toDraw)

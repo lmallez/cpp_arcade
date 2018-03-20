@@ -17,17 +17,23 @@ arc::SFShapeLoader::SFShapeLoader()
 std::unique_ptr<arc::IShape>
 arc::SFShapeLoader::load(const arc::ShapeRect &item) const
 {
-	return std::make_unique<arc::SFShapeRect>(item);
+	std::unique_ptr<arc::IShape> a = std::make_unique<arc::SFShapeRect>(item);
+	loadChild(item, a);
+	return a;
 }
 
 std::unique_ptr<arc::IShape>
 arc::SFShapeLoader::load(const arc::ShapeCircle &item) const
 {
-	return std::make_unique<arc::SFShapeCircle>(item);
+	std::unique_ptr<arc::IShape> a = std::make_unique<arc::SFShapeCircle>(item);
+	loadChild(item, a);
+	return a;
 }
 
 std::unique_ptr<arc::IShape>
 arc::SFShapeLoader::load(const arc::ShapeText &item) const
 {
-	return std::make_unique<arc::SFShapeText>(item);
+	std::unique_ptr<arc::IShape> a = std::make_unique<arc::SFShapeText>(item);
+	loadChild(item, a);
+	return a;
 }

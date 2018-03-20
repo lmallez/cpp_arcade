@@ -28,4 +28,5 @@ void arc::SFShapeRect::draw() const
 	rect.setOutlineThickness(SFML_BORDER_SIZE * geometry.width);
 	_colorItem(rect);
 	_displayItem(rect);
+	AShape::draw();
 }

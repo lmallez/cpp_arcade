@@ -20,9 +20,10 @@ namespace arc {
 		virtual ~IShape() = default;
 
 		virtual const std::shared_ptr<IShape> &getParent() const = 0;
-		virtual IShape &getChild(size_t pos) = 0;
+		virtual IShape &getChild(size_t pos) const = 0;
 		virtual size_t nbChild() const = 0;
 		virtual void addChild(std::unique_ptr<IShape> child) = 0;
+		virtual void addChild(std::shared_ptr<IShape> child) = 0;
 
 		virtual void setTexture(const Texture &texture) = 0;
 		virtual const Texture &getTexture() const = 0;
@@ -33,8 +34,12 @@ namespace arc {
 		virtual void draw() const = 0;
 		virtual std::unique_ptr<IShape> convert(const arc::IShapeLoader &loader) const = 0;
 
-		//virtual void draw() const = 0;
-		//virtual std::unique_ptr<IShape> clone() = 0;
+		virtual IShape &operator[](size_t pos) const = 0;
+		virtual void operator<<(std::unique_ptr<IShape> child) = 0;
+		virtual void operator<<(std::shared_ptr<IShape> child) = 0;
+
+	protected:
+		virtual void drawChild() const = 0;
 	};
 }
 

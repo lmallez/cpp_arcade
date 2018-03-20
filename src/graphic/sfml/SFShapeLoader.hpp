@@ -10,10 +10,11 @@
 
 #include <src/graphic/shape/ShapeCircle.hpp>
 #include <src/graphic/IShapeLoader.hpp>
+#include <src/graphic/AShapeLoader.hpp>
 #include "src/graphic/shape/ShapeRect.hpp"
 
 namespace arc {
-	class SFShapeLoader : virtual public IShapeLoader {
+	class SFShapeLoader : public AShapeLoader {
 	public:
 		SFShapeLoader();
 		virtual std::unique_ptr<IShape>

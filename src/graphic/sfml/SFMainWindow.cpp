@@ -42,7 +42,7 @@ void arc::SFMainWindow::close()
 	_window->close();
 }
 
-arc::VertexS arc::SFMainWindow::getSize() const
+arc::VertexF arc::SFMainWindow::getSize() const
 {
-	return VertexS(_window->getSize().x, _window->getSize().x);
+	return VertexF(_window->getSize().x, _window->getSize().x);
 }

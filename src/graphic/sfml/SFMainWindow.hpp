@@ -20,7 +20,7 @@ namespace arc
 		static SFMainWindow &getInstance();
 		void setWindowSize(size_t x, size_t y);
 		void draw(const sf::Drawable &);
-		VertexS getSize() const;
+		VertexF getSize() const;
 		void close();
 	private:
 		explicit SFMainWindow(VertexI = {400, 400});

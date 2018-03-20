@@ -22,7 +22,6 @@ namespace arc {
 	public:
 		virtual ~IGraphic() = default;
 		virtual void display() const = 0;
-		virtual arc::VertexF getSize() const = 0;
 	};
 }
 

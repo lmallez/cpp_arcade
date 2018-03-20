@@ -14,7 +14,7 @@ arc::SFShape::SFShape()
 
 sf::FloatRect arc::SFShape::winGeometry() const
 {
-	arc::RectF pos = winPos() * arc::SFGraphic::getInstance()->getSize();
+	arc::RectF pos = winPos() * arc::SFMainWindow::getInstance().getSize();
 
 	return sf::FloatRect(pos.pos().x(), pos.pos().y(),
 		pos.size().x(), pos.size().y());

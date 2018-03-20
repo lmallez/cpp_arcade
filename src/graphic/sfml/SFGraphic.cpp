@@ -8,9 +8,9 @@
 #include <SFML/Graphics/Drawable.hpp>
 #include "SFGraphic.hpp"
 
-std::unique_ptr<arc::SFGraphic> &arc::SFGraphic::getInstance()
+std::unique_ptr<arc::IGraphic> &arc::SFGraphic::getInstance()
 {
-	static std::unique_ptr<arc::SFGraphic> instance = nullptr;
+	static std::unique_ptr<arc::IGraphic> instance = nullptr;
 
 	if (!instance)
 		instance.reset(new SFGraphic());

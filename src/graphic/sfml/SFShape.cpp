@@ -6,6 +6,7 @@
 //
 
 #include "SFShape.hpp"
+#include "SFMainWindow.hpp"
 
 arc::SFShape::SFShape()
 {
@@ -31,5 +32,5 @@ void arc::SFShape::_colorItem(sf::Shape &item) const
 
 void arc::SFShape::_displayItem(const sf::Drawable &item) const
 {
-	SFGraphic::getInstance()->drawItem(item);
+	arc::SFMainWindow::getInstance().draw(item);
 }

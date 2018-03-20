@@ -23,7 +23,8 @@ set(
         src/std/Texture.hpp
         src/games/IGame.hpp
         src/events/EventHandler.cpp
-        src/events/EventHandler.hpp)
+        src/events/EventHandler.hpp
+)
 
 set(
         SHAPE
@@ -36,15 +37,18 @@ set(
         src/graphic/shape/ShapeCircle.hpp
         src/graphic/IShapeLoader.hpp
         src/graphic/shape/ShapeText.cpp
-        src/graphic/shape/ShapeText.hpp src/graphic/AShapeLoader.cpp src/graphic/AShapeLoader.hpp)
+        src/graphic/shape/ShapeText.hpp
+        src/graphic/AShapeLoader.cpp
+        src/graphic/AShapeLoader.hpp
+        src/graphic/shape/ShapeText.hpp
+)
 
 ### GRAPHICS LIBS ###
 
 set(
         NC_FILES
         ${STD_FILES}
-        ${SHAPE}
-)
+        ${SHAPE})
 
 add_library(
         NCArcade
@@ -68,11 +72,16 @@ set(
         src/graphic/sfml/SFShapeLoader.cpp
         src/graphic/sfml/SFShapeLoader.hpp
         src/graphic/sfml/draw/SFShapeText.cpp
-        src/graphic/sfml/draw/SFShapeText.hpp)
+        src/graphic/sfml/draw/SFShapeText.hpp
+        src/graphic/IMainWindow.hpp
+        src/graphic/sfml/SFMainWindow.cpp
+        src/graphic/sfml/SFMainWindow.hpp
+)
 
 add_library(
         SFArcade SHARED
         ${SF_FILES}
+        src/graphic/sfml/extern.cpp
 )
 
 target_link_libraries(SFArcade sfml-graphics sfml-window sfml-system)
@@ -102,13 +111,17 @@ target_link_libraries(QTArcade Qt5::Widgets)
 
 set(
         BASIC_GAME
-        src/games/BasicGame.cpp src/games/BasicGame.hpp)
+        src/games/BasicGame.cpp
+        src/games/BasicGame.hpp
+)
 
 ### CORE BUILD ###
 
 add_executable(
         arcade
         src/main.cpp
+        src/core/loader/LibLoader.cpp
+        src/core/loader/LibLoader.hpp
         ${STD_FILES}
         ${SHAPE}
 )
@@ -128,5 +141,6 @@ add_executable(
         test_basic_game
         ${BASIC_GAME}
         ${SF_FILES}
-        tests/test_basic_game.cpp)
+        tests/test_basic_game.cpp
+)
 target_link_libraries(test_basic_game sfml-graphics sfml-window sfml-system)

@@ -10,14 +10,13 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Vector2.hpp>
-#include <src/graphic/AGraphic.hpp>
 #include "src/graphic/IGraphic.hpp"
 #include "src/std/Vertex.hpp"
 
 namespace arc {
-	class SFGraphic : public AGraphic {
+	class SFGraphic : public virtual IGraphic {
 	public:
-		static std::unique_ptr<SFGraphic> &initialize();
+		static std::unique_ptr<SFGraphic> &getInstance();
 		~SFGraphic();
 
 		VertexF getSize() const;

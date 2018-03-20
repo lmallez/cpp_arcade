@@ -35,22 +35,22 @@ arc::Color::Color(uint64_t values)
 	_color._all = values;
 }
 
-uint8_t arc::Color::red() const
+uint8_t arc::Color::r() const
 {
 	return _color._part[0];
 }
 
-uint8_t arc::Color::green() const
+uint8_t arc::Color::g() const
 {
 	return _color._part[1];
 }
 
-uint8_t arc::Color::blue() const
+uint8_t arc::Color::b() const
 {
 	return _color._part[2];
 }
 
-uint8_t arc::Color::alpha() const
+uint8_t arc::Color::a() const
 {
 	return _color._part[3];
 }

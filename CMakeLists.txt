@@ -12,33 +12,27 @@ set(
         src/std/Rect.cpp
         src/std/Rect.hpp
         src/graphic/IGraphic.hpp
-        src/graphic/IDraw.hpp
+        src/graphic/IShape.hpp
         src/exception/Exception.cpp
         src/exception/Exception.hpp
-        src/graphic/ADraw.cpp
-        src/graphic/ADraw.hpp
+        src/graphic/shape/AShape.cpp
+        src/graphic/shape/AShape.hpp
         src/std/Color.cpp
         src/std/Color.hpp
         src/std/Texture.cpp
         src/std/Texture.hpp
-        src/graphic/AGraphic.cpp
-        src/graphic/AGraphic.hpp
 )
 
 set(
         SHAPE
-        src/core/shape/IShape.hpp
-        src/core/shape/ShapeRect.cpp
-        src/core/shape/ShapeRect.hpp
-        src/core/shape/ShapeCircle.cpp
-        src/core/shape/ShapeCircle.hpp
-        src/core/shape/AShape.cpp
-        src/core/shape/AShape.hpp
-        src/core/shape/ShapeText.cpp
-        src/core/shape/ShapeText.hpp
-        src/core/shape/ShapeLoader.cpp
-        src/core/shape/ShapeLoader.hpp
-)
+        src/graphic/IShape.hpp
+        src/graphic/shape/AShape.cpp
+        src/graphic/shape/AShape.hpp
+        src/graphic/shape/ShapeRect.cpp
+        src/graphic/shape/ShapeRect.hpp
+        src/graphic/shape/ShapeCircle.cpp
+        src/graphic/shape/ShapeCircle.hpp
+        src/graphic/IShapeLoader.hpp src/graphic/shape/ShapeText.cpp src/graphic/shape/ShapeText.hpp)
 
 ### GRAPHICS LIBS ###
 
@@ -58,23 +52,17 @@ target_link_libraries(NCArcade nurses)
 set(
         SF_FILES
         ${STD_FILES}
-        src/graphic/sfml/operator.cpp
-        src/graphic/sfml/operator.hpp
+        ${SHAPE}
         src/graphic/sfml/SFGraphic.cpp
         src/graphic/sfml/SFGraphic.hpp
-        src/graphic/sfml/draw/SFDraw.cpp
-        src/graphic/sfml/draw/SFDraw.hpp
-        src/graphic/sfml/draw/SFDrawRect.cpp
-        src/graphic/sfml/draw/SFDrawRect.hpp
-        src/graphic/sfml/draw/SFDrawRect.hpp
-        src/graphic/sfml/draw/SFDrawCircle.cpp
-        src/graphic/sfml/draw/SFDrawCircle.hpp
-        src/graphic/IDrawLoader.hpp
-        src/graphic/sfml/SFDrawLoader.cpp
-        src/graphic/sfml/SFDrawLoader.hpp
-        src/graphic/sfml/draw/SFDrawText.cpp
-        src/graphic/sfml/draw/SFDrawText.hpp
-)
+        src/graphic/sfml/draw/SFShapeRect.cpp
+        src/graphic/sfml/draw/SFShapeRect.hpp
+        src/graphic/sfml/SFShape.cpp
+        src/graphic/sfml/SFShape.hpp
+        src/graphic/sfml/draw/SFShapeCircle.cpp
+        src/graphic/sfml/draw/SFShapeCircle.hpp
+        src/graphic/sfml/SFShapeLoader.cpp
+        src/graphic/sfml/SFShapeLoader.hpp src/graphic/sfml/draw/SFShapeText.cpp src/graphic/sfml/draw/SFShapeText.hpp)
 
 add_library(
         SFArcade SHARED
@@ -125,3 +113,4 @@ add_executable(
         tests/test_sfml_shape.cpp
 )
 target_link_libraries(test_sfml_shape sfml-graphics sfml-window sfml-system)
+

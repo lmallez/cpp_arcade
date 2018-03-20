@@ -34,7 +34,8 @@ set(
         src/graphic/shape/ShapeCircle.hpp
         src/graphic/IShapeLoader.hpp
         src/graphic/shape/ShapeText.cpp
-        src/graphic/shape/ShapeText.hpp)
+        src/graphic/shape/ShapeText.hpp
+)
 
 ### GRAPHICS LIBS ###
 
@@ -68,7 +69,8 @@ set(
         src/graphic/sfml/draw/SFShapeText.hpp
         src/graphic/IMainWindow.hpp
         src/graphic/sfml/SFMainWindow.cpp
-        src/graphic/sfml/SFMainWindow.hpp)
+        src/graphic/sfml/SFMainWindow.hpp
+)
 
 add_library(
         SFArcade SHARED

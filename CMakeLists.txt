@@ -32,16 +32,16 @@ set(
         src/graphic/shape/ShapeRect.hpp
         src/graphic/shape/ShapeCircle.cpp
         src/graphic/shape/ShapeCircle.hpp
-        src/graphic/IShapeLoader.hpp src/graphic/shape/ShapeText.cpp src/graphic/shape/ShapeText.hpp)
+        src/graphic/IShapeLoader.hpp
+        src/graphic/shape/ShapeText.cpp
+        src/graphic/shape/ShapeText.hpp)
 
 ### GRAPHICS LIBS ###
 
 set(
         NC_FILES
         ${STD_FILES}
-        ${SHAPE}
-        src/core/loader/LibLoader.cpp
-        src/core/loader/LibLoader.hpp)
+        ${SHAPE})
 
 add_library(
         NCArcade
@@ -63,12 +63,17 @@ set(
         src/graphic/sfml/draw/SFShapeCircle.cpp
         src/graphic/sfml/draw/SFShapeCircle.hpp
         src/graphic/sfml/SFShapeLoader.cpp
-        src/graphic/sfml/SFShapeLoader.hpp src/graphic/sfml/draw/SFShapeText.cpp src/graphic/sfml/draw/SFShapeText.hpp)
+        src/graphic/sfml/SFShapeLoader.hpp
+        src/graphic/sfml/draw/SFShapeText.cpp
+        src/graphic/sfml/draw/SFShapeText.hpp
+        src/graphic/IMainWindow.hpp
+        src/graphic/sfml/SFMainWindow.cpp
+        src/graphic/sfml/SFMainWindow.hpp)
 
 add_library(
         SFArcade SHARED
         ${SF_FILES}
-)
+        src/graphic/sfml/extern.cpp)
 
 target_link_libraries(SFArcade sfml-graphics sfml-window sfml-system)
 
@@ -100,6 +105,8 @@ target_link_libraries(QTArcade Qt5::Widgets)
 add_executable(
         arcade
         src/main.cpp
+        src/core/loader/LibLoader.cpp
+        src/core/loader/LibLoader.hpp
         ${STD_FILES}
         ${SHAPE}
 )

@@ -16,13 +16,11 @@
 namespace arc {
 	class SFGraphic : public virtual IGraphic {
 	public:
-		static std::unique_ptr<SFGraphic> &getInstance();
+		static std::unique_ptr<IGraphic> &getInstance();
 		~SFGraphic();
-
 		VertexF getSize() const;
 		void display() const;
 		void drawItem(const sf::Drawable &toDraw);
-
 	private:
 		explicit SFGraphic(VertexS size = VertexS(400, 400));
 		std::unique_ptr<sf::RenderWindow> _window;

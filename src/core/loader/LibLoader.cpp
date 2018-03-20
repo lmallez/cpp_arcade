@@ -7,30 +7,30 @@
 
 #include "LibLoader.hpp"
 
-LibLoader::LibLoader(const std::string &libName) :
+arc::LibLoader::LibLoader(const std::string &libName) :
 	_libName(libName), _sym(nullptr)
 {
 	load(libName);
 }
 
-bool LibLoader::operator!() const
+bool arc::LibLoader::operator!() const
 {
 	return _sym == nullptr;
 }
 
-bool LibLoader::load(const std::string &libName)
+bool arc::LibLoader::load(const std::string &libName)
 {
 	_libName = libName;
 
 	_sym = dlopen(libName.c_str(), RTLD_LAZY);
-	std::string err_msg = dlerror();
-	if (err_msg.empty())
+	char *err_msg = dlerror();
+	if (err_msg == nullptr)
 		return true;
 	std::cerr << err_msg << std::endl;
 	return false;
 }
 
-bool LibLoader::unload()
+bool arc::LibLoader::unload()
 {
 	if (_sym == nullptr)
 		return false;
@@ -40,10 +40,11 @@ bool LibLoader::unload()
 	return true;
 }
 
-const std::unique_ptr<arc::IGraphic> LibLoader::getIGraphic()
+std::unique_ptr<arc::IGraphic> &arc::LibLoader::getIGraphic()
 {
-	std::unique_ptr<arc::IGraphic> _lol;
+	std::unique_ptr<arc::IGraphic> graph = nullptr;
 
-
-	return std::unique_ptr<arc::IGraphic>();
+	_getIGraphic = (std::unique_ptr<arc::IGraphic> &(*)())
+		dlsym(_sym, "getIGraphic");
+	return _getIGraphic();
 }

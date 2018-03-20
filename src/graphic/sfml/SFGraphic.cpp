@@ -6,10 +6,9 @@
 //
 
 #include <SFML/Graphics/Drawable.hpp>
-#include <src/graphic/sfml/SFDrawLoader.hpp>
 #include "SFGraphic.hpp"
 
-std::unique_ptr<arc::SFGraphic> &arc::SFGraphic::initialize()
+std::unique_ptr<arc::SFGraphic> &arc::SFGraphic::getInstance()
 {
 	static std::unique_ptr<arc::SFGraphic> instance = nullptr;
 
@@ -23,8 +22,7 @@ arc::SFGraphic::~SFGraphic()
 	_window->close();
 }
 
-arc::SFGraphic::SFGraphic(arc::VertexS size):
-	AGraphic(SFDrawLoader::getInstance())
+arc::SFGraphic::SFGraphic(arc::VertexS size)
 {
 	_window = std::make_unique<sf::RenderWindow>();
 	_window->create(sf::VideoMode((int)size.x(), (int)size.y()), WNAME);
@@ -46,4 +44,3 @@ void arc::SFGraphic::drawItem(const sf::Drawable &toDraw)
 {
 	_window->draw(toDraw);
 }
-

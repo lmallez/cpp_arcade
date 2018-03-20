@@ -31,9 +31,10 @@ int main()
 	auto s22 = s2->convert(jpp);
 	auto s32 = s3->convert(jpp);
 
-	s12->draw();
-	s22->draw();
-	s32->draw();
-	aled->display();
-	while (1) {}
+	while (1) {
+		s12->draw();
+		s22->draw();
+		s32->draw();
+		aled->display();
+	}
 }

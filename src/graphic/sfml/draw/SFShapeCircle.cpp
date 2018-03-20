@@ -36,4 +36,5 @@ void arc::SFShapeCircle::draw() const
 	circle.setOutlineThickness(SFML_BORDER_SIZE);
 	_colorItem(circle);
 	_displayItem(circle);
+	AShape::draw();
 }

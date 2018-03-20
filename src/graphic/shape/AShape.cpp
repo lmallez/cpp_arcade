@@ -27,7 +27,7 @@ const std::shared_ptr<arc::IShape> &arc::AShape::getParent() const
 	return _parent;
 }
 
-arc::IShape &arc::AShape::getChild(size_t pos)
+arc::IShape &arc::AShape::getChild(size_t pos) const
 {
 	if (pos >= _children.size())
 		throw arc::Exception("IShape", "Invalid pos Child");
@@ -39,14 +39,14 @@ void arc::AShape::addChild(std::unique_ptr<arc::IShape> child)
 	_children.push_back(std::move(child));
 }
 
+void arc::AShape::addChild(std::shared_ptr<arc::IShape> child)
+{
+	_children.push_back(std::move(child));
+}
+
 size_t arc::AShape::nbChild() const
 {
 	return _children.size();
-}
-
-arc::IShape &arc::AShape::operator[](size_t pos)
-{
-	return getChild(pos);
 }
 
 const arc::Texture &arc::AShape::getTexture() const
@@ -69,6 +69,21 @@ void arc::AShape::setGeometry(const arc::RectF &geometry)
 	_geometry = geometry;
 }
 
+arc::IShape &arc::AShape::operator[](size_t pos) const
+{
+	return getChild(pos);
+}
+
+void arc::AShape::operator<<(std::unique_ptr<arc::IShape> child)
+{
+	addChild(std::move(child));
+}
+
+void arc::AShape::operator<<(std::shared_ptr<arc::IShape> child)
+{
+	addChild(child);
+}
+
 arc::RectF arc::AShape::winPos() const
 {
 	arc::RectF geo = getGeometry();
@@ -85,7 +100,13 @@ arc::RectF arc::AShape::winPos() const
 	return geo;
 }
 
+void arc::AShape::drawChild() const
+{
+	for (size_t i = 0; i < _children.size(); i++)
+		_children[i]->draw();
+}
+
 void arc::AShape::draw() const
 {
-	throw arc::Exception("draw", "No draw for this Shape");
+	drawChild();
 }

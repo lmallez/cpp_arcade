@@ -9,18 +9,18 @@
 
 arc::SFMainWindow &arc::SFMainWindow::getInstance()
 {
-	std::unique_ptr<SFMainWindow> instance = nullptr;
+	static std::unique_ptr<SFMainWindow> instance = nullptr;
 
 	if (instance == nullptr)
-		instance.reset(new SFMainWindow());
+		instance.reset(new SFMainWindow(arc::VertexI(400, 400)));
 	return *instance;
 }
 
-arc::SFMainWindow::SFMainWindow(arc::VertexI size) :
-	_window(
-		std::make_unique<sf::RenderWindow>
-			(sf::VideoMode((int)size.x(), (int)size.y()), WNAME))
+arc::SFMainWindow::SFMainWindow(arc::VertexI size)
 {
+	_window = std::make_unique<sf::RenderWindow>();
+
+	_window->create(sf::VideoMode(size.x(), size.y()), WNAME);
 	if (!_window->isOpen())
 		throw arc::Exception("SF Graphic", "Can't open the Main "
 			"Window");
@@ -44,5 +44,7 @@ void arc::SFMainWindow::close()
 
 arc::VertexF arc::SFMainWindow::getSize() const
 {
-	return VertexF(_window->getSize().x, _window->getSize().x);
+	if (_window->isOpen())
+		return VertexF(_window->getSize().x, _window->getSize().x);
+	return {0, 0};
 }

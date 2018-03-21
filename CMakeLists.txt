@@ -27,7 +27,7 @@ set(
 )
 
 set(
-        SHAPE
+        SHAPE_FILES
         src/graphic/IShape.hpp
         src/graphic/shape/AShape.cpp
         src/graphic/shape/AShape.hpp
@@ -47,7 +47,7 @@ set(
 set(
         NC_FILES
         ${STD_FILES}
-        ${SHAPE})
+        ${SHAPE_FILES})
 
 add_library(
         NCArcade
@@ -58,8 +58,6 @@ target_link_libraries(NCArcade nurses)
 
 set(
         SF_FILES
-        ${STD_FILES}
-        ${SHAPE}
         src/graphic/sfml/SFGraphic.cpp
         src/graphic/sfml/SFGraphic.hpp
         src/graphic/sfml/draw/SFShapeRect.cpp
@@ -72,7 +70,6 @@ set(
         src/graphic/sfml/SFShapeLoader.hpp
         src/graphic/sfml/draw/SFShapeText.cpp
         src/graphic/sfml/draw/SFShapeText.hpp
-        src/graphic/IMainWindow.hpp
         src/graphic/sfml/SFMainWindow.cpp
         src/graphic/sfml/SFMainWindow.hpp
 )
@@ -93,7 +90,7 @@ find_package(Qt5Widgets)
 set(
         QT_FILES
         ${STD_FILES}
-        ${SHAPE}
+        ${SHAPE_FILES}
 )
 
 add_library(
@@ -116,13 +113,17 @@ set(
 
 ### CORE BUILD ###
 
+set(
+        CORE
+        src/core/loader/LibLoader.cpp
+        src/core/loader/LibLoader.hpp
+)
+
 add_executable(
         arcade
         src/main.cpp
-        src/core/loader/LibLoader.cpp
-        src/core/loader/LibLoader.hpp
         ${STD_FILES}
-        ${SHAPE}
+        ${SHAPE_FILES}
 )
 
 target_link_libraries(arcade dl)
@@ -132,14 +133,28 @@ target_link_libraries(arcade dl)
 add_executable(
         test_sfml_shape
         ${SF_FILES}
+        ${SHAPE_FILES}
+        ${STD_FILES}
         tests/test_sfml_shape.cpp
 )
 target_link_libraries(test_sfml_shape sfml-graphics sfml-window sfml-system)
 
 add_executable(
         test_basic_game
+        ${STD_FILES}
+        ${SHAPE_FILES}
         ${BASIC_GAME}
         ${SF_FILES}
         tests/test_basic_game.cpp
 )
 target_link_libraries(test_basic_game sfml-graphics sfml-window sfml-system)
+
+add_executable(
+        test_basic_loader
+        ${STD_FILES}
+        ${SHAPE_FILES}
+        ${BASIC_GAME}
+        ${CORE}
+        tests/test_basic_loader.cpp)
+
+target_link_libraries(test_basic_loader dl)

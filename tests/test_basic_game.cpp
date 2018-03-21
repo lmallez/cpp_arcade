@@ -19,8 +19,8 @@ int main()
 	consolasFont.loadFromFile("../assets/Consolas.ttf");
 
 	arc::BasicGame game;
-	std::unique_ptr<arc::SFGraphic> &aled = arc::SFGraphic::getInstance();
-	auto jpp = arc::SFShapeLoader();
+	std::unique_ptr<arc::IGraphic> &aled = arc::SFGraphic::getInstance();
+	const arc::IShapeLoader &jpp = aled->getShapeLoader();
 	auto oskour = arc::EventHandler();
 
 	game.start()->convert(jpp)->draw();

@@ -11,6 +11,7 @@
 #include <memory>
 #include <src/std/Vertex.hpp>
 #include "src/exception/Exception.hpp"
+#include "IShapeLoader.hpp"
 
 #define WNAME "Arcade"
 
@@ -22,6 +23,7 @@ namespace arc {
 	public:
 		virtual ~IGraphic() = default;
 		virtual void display() const = 0;
+		virtual const IShapeLoader &getShapeLoader() const = 0;
 	};
 }
 

@@ -52,4 +52,5 @@ arc::VertexF arc::SFMainWindow::getSize() const
 void arc::SFMainWindow::display()
 {
 	_window->display();
+	_window->clear(sf::Color::Black);
 }

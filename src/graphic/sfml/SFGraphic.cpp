@@ -22,3 +22,8 @@ void arc::SFGraphic::display() const
 {
 	arc::SFMainWindow::getInstance().display();
 }
+
+const arc::IShapeLoader &arc::SFGraphic::getShapeLoader() const
+{
+	return _loader;
+}

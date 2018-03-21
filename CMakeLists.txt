@@ -12,11 +12,8 @@ set(
         src/std/Rect.cpp
         src/std/Rect.hpp
         src/graphic/IGraphic.hpp
-        src/graphic/IShape.hpp
         src/exception/Exception.cpp
         src/exception/Exception.hpp
-        src/graphic/shape/AShape.cpp
-        src/graphic/shape/AShape.hpp
         src/std/Color.cpp
         src/std/Color.hpp
         src/std/Texture.cpp
@@ -58,6 +55,8 @@ target_link_libraries(NCArcade nurses)
 
 set(
         SF_FILES
+        ${SHAPE_FILES}
+        ${STD_FILES}
         src/graphic/sfml/SFGraphic.cpp
         src/graphic/sfml/SFGraphic.hpp
         src/graphic/sfml/draw/SFShapeRect.cpp

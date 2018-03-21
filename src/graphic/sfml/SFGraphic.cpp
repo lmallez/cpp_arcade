@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics/Drawable.hpp>
 #include "SFGraphic.hpp"
+#include "SFMainWindow.hpp"
 
 std::unique_ptr<arc::IGraphic> &arc::SFGraphic::getInstance()
 {
@@ -19,5 +20,5 @@ std::unique_ptr<arc::IGraphic> &arc::SFGraphic::getInstance()
 
 void arc::SFGraphic::display() const
 {
-	std::cout << "Now we update the screen" << std::endl;
+	arc::SFMainWindow::getInstance().display();
 }

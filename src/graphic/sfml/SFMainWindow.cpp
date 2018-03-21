@@ -48,3 +48,8 @@ arc::VertexF arc::SFMainWindow::getSize() const
 		return VertexF(_window->getSize().x, _window->getSize().x);
 	return {0, 0};
 }
+
+void arc::SFMainWindow::display()
+{
+	_window->display();
+}

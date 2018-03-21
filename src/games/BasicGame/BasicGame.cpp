@@ -7,6 +7,15 @@
 
 #include "BasicGame.hpp"
 
+std::unique_ptr<arc::IGame> &arc::BasicGame::getInstance()
+{
+	static std::unique_ptr<arc::IGame> instance = nullptr;
+
+	if (instance == nullptr)
+		instance.reset(new BasicGame());
+	return instance;
+}
+
 arc::BasicGame::BasicGame():
 	playerPos(RectF(0, 0, 0.1, 0.1))
 {

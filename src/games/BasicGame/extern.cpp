@@ -12,6 +12,5 @@
 
 extern "C" std::unique_ptr<arc::IGame> &getIGame()
 {
-	std::unique_ptr<arc::IGame> a = std::make_unique<arc::BasicGame>();
-	return a;
+	return arc::BasicGame::getInstance();
 }

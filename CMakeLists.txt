@@ -55,8 +55,8 @@ target_link_libraries(NCArcade nurses)
 
 set(
         SF_FILES
-        ${SHAPE_FILES}
         ${STD_FILES}
+        ${SHAPE_FILES}
         src/graphic/sfml/SFGraphic.cpp
         src/graphic/sfml/SFGraphic.hpp
         src/graphic/sfml/draw/SFShapeRect.cpp

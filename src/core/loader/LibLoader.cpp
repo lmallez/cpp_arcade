@@ -37,6 +37,7 @@ bool arc::LibLoader::unload()
 	dlclose(_sym);
 	_sym = nullptr;
 	_libName = "";
+	_getIGraphic = nullptr;
 	return true;
 }
 
@@ -44,7 +45,8 @@ std::unique_ptr<arc::IGraphic> &arc::LibLoader::getIGraphic()
 {
 	std::unique_ptr<arc::IGraphic> graph = nullptr;
 
-	_getIGraphic = (std::unique_ptr<arc::IGraphic> &(*)())
-		dlsym(_sym, "getIGraphic");
+	if (_getIGraphic == nullptr)
+		_getIGraphic = (std::unique_ptr<arc::IGraphic> &(*)())
+			dlsym(_sym, "getIGraphic");
 	return _getIGraphic();
 }

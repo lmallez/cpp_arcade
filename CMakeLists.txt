@@ -116,6 +116,8 @@ set(
         CORE
         src/core/loader/LibLoader.cpp
         src/core/loader/LibLoader.hpp
+        src/core/loader/GameLoader.cpp
+        src/core/loader/GameLoader.hpp
 )
 
 add_executable(

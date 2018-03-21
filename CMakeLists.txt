@@ -63,6 +63,7 @@ set(
 
 add_library(GRAPHIC_SFML SHARED ${GRAPHIC_SFML} ${STD_FILES} ${SHAPE_FILES}
         src/graphic/sfml/extern.cpp)
+target_link_libraries(GRAPHIC_SFML sfml-graphics sfml-window sfml-system)
 
 ### GAMES LIBS ###
 

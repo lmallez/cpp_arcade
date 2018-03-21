@@ -10,7 +10,7 @@
 #include "../IGame.hpp"
 #include "BasicGame.hpp"
 
-extern "C" std::unique_ptr<arc::IGame> &getIGraphic()
+extern "C" std::unique_ptr<arc::IGame> &getIGame()
 {
 	std::unique_ptr<arc::IGame> a = std::make_unique<arc::BasicGame>();
 	return a;

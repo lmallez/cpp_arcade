@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2018
 ** cpp_arcade
 ** File description:
-** test_basic_game.cpp
+** test_basic_loader.cpp
 */
 
 #include <memory>
@@ -10,20 +10,24 @@
 #include "src/graphic/IShape.hpp"
 #include "src/games/BasicGame/BasicGame.hpp"
 #include "src/graphic/sfml/SFGraphic.hpp"
+#include "src/core/loader/LibLoader.hpp"
 
-int main()
+int main(int ac, char **av)
 {
-	std::unique_ptr<arc::IGraphic> &graphicLib = arc::SFGraphic::getInstance();
+	std::cout << "Load Graphic Library: " << av[1] << std::endl;
+	arc::LibLoader GraphicLoader(av[1]);
+	std::unique_ptr<arc::IGraphic> &graphicLib = GraphicLoader.getIGraphic();
 	const arc::IShapeLoader &shapeLoader = graphicLib->getShapeLoader();
+	std::cout << "Done" << std::endl;
 
 	std::unique_ptr<arc::IGame> game = std::make_unique<arc::BasicGame>();
 
-	auto tempEvt = arc::EventHandler();
+	auto oskour = arc::EventHandler();
 
 	game->start()->convert(shapeLoader)->draw();
 	graphicLib->display();
 	while (1) {
-		game->update(tempEvt)->convert(shapeLoader)->draw();
+		game->update(oskour)->convert(shapeLoader)->draw();
 		graphicLib->display();
 	}
 }

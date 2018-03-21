@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.9)
 project(cpp_arcade)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -Wall -Wextra -std=c++17")
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOMOC ON)
 
 ### STD CLASS ###
 
@@ -42,21 +44,7 @@ set(
 ### GRAPHICS LIBS ###
 
 set(
-        NC_FILES
-        ${STD_FILES}
-        ${SHAPE_FILES})
-
-add_library(
-        NCArcade
-        ${NC_FILES}
-)
-
-target_link_libraries(NCArcade nurses)
-
-set(
-        SF_FILES
-        ${STD_FILES}
-        ${SHAPE_FILES}
+        GRAPHIC_SFML
         src/graphic/sfml/SFGraphic.cpp
         src/graphic/sfml/SFGraphic.hpp
         src/graphic/sfml/draw/SFShapeRect.cpp
@@ -73,42 +61,19 @@ set(
         src/graphic/sfml/SFMainWindow.hpp
 )
 
-add_library(
-        SFArcade SHARED
-        ${SF_FILES}
-        src/graphic/sfml/extern.cpp
-)
-
-target_link_libraries(SFArcade sfml-graphics sfml-window sfml-system)
-
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_AUTOMOC ON)
-
-find_package(Qt5Widgets)
-
-set(
-        QT_FILES
-        ${STD_FILES}
-        ${SHAPE_FILES}
-)
-
-add_library(
-        QTArcade
-        ${QTFILE}
-)
-
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_AUTOMOC ON)
-
-target_link_libraries(QTArcade Qt5::Widgets)
+add_library(GRAPHIC_SFML SHARED ${GRAPHIC_SFML} ${STD_FILES} ${SHAPE_FILES}
+        src/graphic/sfml/extern.cpp)
 
 ### GAMES LIBS ###
 
 set(
-        BASIC_GAME
-        src/games/BasicGame.cpp
-        src/games/BasicGame.hpp
+        GAME_BASICGAME
+        src/games/BasicGame/BasicGame.cpp
+        src/games/BasicGame/BasicGame.hpp
 )
+
+add_library(GAME_BasicGame SHARED ${GAME_BASICGAME} ${STD_FILES} ${SHAPE_FILES}
+        src/games/BasicGame/extern.cpp)
 
 ### CORE BUILD ###
 
@@ -133,7 +98,7 @@ target_link_libraries(arcade dl)
 
 add_executable(
         test_sfml_shape
-        ${SF_FILES}
+        ${GRAPHIC_SFML}
         ${SHAPE_FILES}
         ${STD_FILES}
         tests/test_sfml_shape.cpp
@@ -141,21 +106,19 @@ add_executable(
 target_link_libraries(test_sfml_shape sfml-graphics sfml-window sfml-system)
 
 add_executable(
-        test_basic_game
-        ${STD_FILES}
-        ${SHAPE_FILES}
-        ${BASIC_GAME}
-        ${SF_FILES}
+        test_basic_game ${STD_FILES} ${SHAPE_FILES} ${GAME_BASICGAME} ${GRAPHIC_SFML}
         tests/test_basic_game.cpp
 )
 target_link_libraries(test_basic_game sfml-graphics sfml-window sfml-system)
 
 add_executable(
-        test_basic_loader
-        ${STD_FILES}
-        ${SHAPE_FILES}
-        ${BASIC_GAME}
-        ${CORE}
-        tests/test_basic_loader.cpp)
+        test_basic_loader_graphic ${STD_FILES} ${SHAPE_FILES} ${GAME_BASICGAME} ${CORE}
+        tests/test_basic_loader_graphic.cpp
+)
+target_link_libraries(test_basic_loader_graphic dl)
 
-target_link_libraries(test_basic_loader dl)
+add_executable(
+        test_basic_loader_game ${STD_FILES} ${SHAPE_FILES} ${CORE} ${GRAPHIC_SFML}
+        tests/tests_basic_loader_game.cpp
+)
+target_link_libraries(test_basic_loader_game dl sfml-graphics sfml-window sfml-system)

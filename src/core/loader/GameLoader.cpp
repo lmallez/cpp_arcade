@@ -8,7 +8,7 @@
 #include "GameLoader.hpp"
 
 arc::GameLoader::GameLoader(const std::string &libName) :
-	_libName(libName), _sym(nullptr)
+	_libName(libName), _sym(nullptr), _getIGame(nullptr)
 {
 	load(libName);
 }

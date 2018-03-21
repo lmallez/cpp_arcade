@@ -11,7 +11,7 @@
 #include "src/graphic/shape/ShapeCircle.hpp"
 #include "src/graphic/shape/ShapeText.hpp"
 #include "src/graphic/shape/ShapeRect.hpp"
-#include "IGame.hpp"
+#include "../IGame.hpp"
 
 namespace arc {
 	class BasicGame : public virtual IGame {

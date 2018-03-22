@@ -84,7 +84,10 @@ set(
         src/core/loader/LibLoader.hpp
         src/core/loader/GameLoader.cpp
         src/core/loader/GameLoader.hpp
-)
+        src/events/MouseEvent.cpp
+        src/events/MouseEvent.hpp
+        src/events/KeyEvent.cpp
+        src/events/KeyEvent.hpp)
 
 add_executable(
         arcade

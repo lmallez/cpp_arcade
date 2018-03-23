@@ -12,6 +12,8 @@ namespace arc {
 	class EventHandler {
 	public:
 		EventHandler() = default;
+
+	private:
 	};
 }
 

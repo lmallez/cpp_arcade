@@ -1,0 +1,34 @@
+//
+// EPITECH PROJECT, 2018
+// cpp_arcade
+// File description:
+// CoreLoader.hpp
+//
+
+#ifndef CPP_ARCADE_CORELOADER_HPP
+#define CPP_ARCADE_CORELOADER_HPP
+
+#include <memory>
+#include <src/core/loader/GameLoader.hpp>
+#include <src/core/loader/LibLoader.hpp>
+
+namespace arc {
+	class CoreBuild {
+	public:
+		CoreBuild(const std::string &lib = "",
+			const std::string &game = "");
+		bool setGraphic(const std::string &name);
+		bool setGame(const std::string &name);
+
+		void start();
+		void update();
+		void run();
+
+	private:
+		GameLoader _loaderGame;
+		LibLoader _loaderGraphic;
+		EventHandler _event;
+	};
+}
+
+#endif /* CPP_ARCADE_CORELOADER_HPP */

@@ -6,15 +6,20 @@
 //
 
 #include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/Font.hpp>
 #include "SFGraphic.hpp"
 #include "SFMainWindow.hpp"
+
+extern sf::Font consolasFont;
 
 std::unique_ptr<arc::IGraphic> &arc::SFGraphic::getInstance()
 {
 	static std::unique_ptr<arc::IGraphic> instance = nullptr;
 
-	if (!instance)
+	if (!instance) {
+		consolasFont.loadFromFile("../assets/Consolas.ttf");
 		instance.reset(new SFGraphic());
+	}
 	return instance;
 }
 

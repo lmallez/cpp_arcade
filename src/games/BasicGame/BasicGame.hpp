@@ -24,6 +24,7 @@ namespace arc {
 	private:
 		BasicGame();
 		RectF playerPos;
+		size_t frame = 0;
 	};
 }
 

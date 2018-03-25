@@ -10,7 +10,8 @@
 arc::LibLoader::LibLoader(const std::string &libName) :
 	_libName(libName), _sym(nullptr)
 {
-	load(libName);
+	if (!libName.empty())
+		load(libName);
 }
 
 bool arc::LibLoader::operator!() const

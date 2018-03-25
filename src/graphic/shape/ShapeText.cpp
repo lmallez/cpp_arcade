@@ -12,7 +12,6 @@ arc::ShapeText::ShapeText(const std::shared_ptr<arc::IShape> &parent,
 	const std::string &text):
 	AShape(parent, texture, geometry), _text(text)
 {
-
 }
 
 arc::ShapeText::ShapeText(const arc::ShapeText &ex):

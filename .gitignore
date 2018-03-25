@@ -38,3 +38,4 @@ cmake-*
 arcade
 .*.vim
 build/
+doc/latex

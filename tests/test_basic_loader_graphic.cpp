@@ -20,7 +20,7 @@ int main(int ac, char **av)
 	const arc::IShapeLoader &shapeLoader = graphicLib->getShapeLoader();
 	std::cout << "Done" << std::endl;
 
-	std::unique_ptr<arc::IGame> game = std::make_unique<arc::BasicGame>();
+	const std::unique_ptr<arc::IGame> &game = arc::BasicGame::getInstance();
 
 	auto oskour = arc::EventHandler();
 

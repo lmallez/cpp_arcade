@@ -23,7 +23,7 @@ set(
         src/games/IGame.hpp
         src/events/EventHandler.cpp
         src/events/EventHandler.hpp
-)
+        src/core/corebuild/CoreBuild.cpp src/core/corebuild/CoreBuild.hpp)
 
 set(
         SHAPE_FILES
@@ -88,6 +88,7 @@ set(
         src/events/MouseEvent.hpp
         src/events/KeyEvent.cpp
         src/events/KeyEvent.hpp)
+
 
 add_executable(
         arcade

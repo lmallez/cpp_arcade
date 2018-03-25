@@ -24,6 +24,7 @@ namespace arc {
 		virtual ~IGraphic() = default;
 		virtual void display() const = 0;
 		virtual const IShapeLoader &getShapeLoader() const = 0;
+		virtual void catchEvent(arc::EventHandler &) = 0;
 	};
 }
 

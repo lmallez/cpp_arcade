@@ -14,13 +14,13 @@ namespace arc
 {
 	class MouseEvent
 	{
+	public:
 		enum MouseButton {
 			NONE,
 			LEFT_BUTTON,
 			MIDDLE_BUTTON,
 			RIGHT_BUTTON
 		};
-	public:
 		MouseEvent();
 		Vertex<float> getPos() const;
 		void setPos(Vertex<float>);

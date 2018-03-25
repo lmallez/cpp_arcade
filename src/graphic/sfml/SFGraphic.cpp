@@ -27,3 +27,11 @@ const arc::IShapeLoader &arc::SFGraphic::getShapeLoader() const
 {
 	return _loader;
 }
+
+void arc::SFGraphic::catchEvent(arc::EventHandler &handler)
+{
+	while ()
+		switch () {
+			
+		}
+}

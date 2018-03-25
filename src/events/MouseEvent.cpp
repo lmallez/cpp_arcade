@@ -8,7 +8,7 @@
 #include "MouseEvent.hpp"
 
 arc::MouseEvent::MouseEvent() :
-	_buttonClicked(arc::MouseEvent::NONE), _pos(0, 0)
+	_pos(0, 0), _buttonClicked(arc::MouseEvent::NONE)
 {
 }
 

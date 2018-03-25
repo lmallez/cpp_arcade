@@ -23,6 +23,8 @@ namespace arc {
 
 		virtual const IShapeLoader & getShapeLoader() const override;
 
+		virtual void catchEvent(arc::EventHandler &handler) override;
+
 	private:
 		arc::SFShapeLoader _loader;
 	};

@@ -92,6 +92,7 @@ set(
 add_executable(
         arcade
         src/main.cpp
+        ${CORE}
         ${STD_FILES}
         ${SHAPE_FILES}
 )

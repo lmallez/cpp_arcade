@@ -14,7 +14,7 @@ GAMES_DIR	= games/
 RM		= rm -f
 MKDIR		= mkdir -p
 
-all:	$(CORE_NAME) graphicals
+all:	$(CORE_NAME) graphicals games
 
 cmake:	$(BUILD_DIR)
 	(cd $(BUILD_DIR) && cmake ..)
@@ -31,7 +31,7 @@ games:	cmake | $(GAMES_DIR)
 
 graphicals: cmake | $(LIB_DIR)
 	make -C $(BUILD_DIR) GRAPHIC_SFML
-	cp build/ligGRAPHIC_SFML.so lib/
+	cp build/libGRAPHIC_SFML.so lib/
 
 $(LIB_DIR):
 	$(MKDIR) $@

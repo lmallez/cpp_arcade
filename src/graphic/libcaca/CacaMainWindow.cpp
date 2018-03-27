@@ -56,6 +56,8 @@ arc::VertexF arc::CacaMainWindow::getSize() const
 void arc::CacaMainWindow::display()
 {
 	caca_refresh_display(_window.get());
+	caca_set_color_argb(_canvas.get(),
+			    0xFFFF, 0xF000);
 	caca_clear_canvas(_canvas.get());
 }
 

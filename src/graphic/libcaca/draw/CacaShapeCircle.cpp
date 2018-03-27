@@ -28,11 +28,19 @@ arc::CacaShapeCircle::CacaShapeCircle(const arc::ShapeCircle &shape):
 void arc::CacaShapeCircle::draw() const
 {
 	arc::RectF geo = winGeometry();
+	arc::Texture texture = getTexture();
 
+	setColor(texture.lineColor(), arc::Color::Black);
 	caca_draw_thin_ellipse(arc::CacaMainWindow::getInstance().getCanvas().get(),
 				geo.pos().x() + geo.size().x(),
 				geo.pos().y() + geo.size().y(),
 				geo.size().x(),
 				geo.size().y());
+	setColor(texture.bgColor(), arc::Color::Black);
+	caca_fill_ellipse(arc::CacaMainWindow::getInstance().getCanvas().get(),
+				geo.pos().x() + geo.size().x(),
+				geo.pos().y() + geo.size().y(),
+				geo.size().x() - 1,
+				geo.size().y() - 1, '#');
 	AShape::draw();
 }

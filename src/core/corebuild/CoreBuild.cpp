@@ -7,7 +7,8 @@
 
 #include "CoreBuild.hpp"
 
-arc::CoreBuild::CoreBuild(const std::string &lib, const std::string &game)
+arc::CoreBuild::CoreBuild(const std::string &lib, const std::string &game):
+	_clock(CLOCK_TIME)
 {
 	if (!lib.empty())
 		setGraphic(lib);
@@ -48,6 +49,8 @@ void arc::CoreBuild::run()
 	start();
 	while (1) {/* Condition d'arret ?? */
 		update();
+		std::cout << "????" << std::endl;
+		//_clock.waitTime();
 	}
 }
 

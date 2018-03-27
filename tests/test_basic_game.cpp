@@ -16,7 +16,7 @@ int main()
 	std::unique_ptr<arc::IGraphic> &graphicLib = arc::SFGraphic::getInstance();
 	const arc::IShapeLoader &shapeLoader = graphicLib->getShapeLoader();
 
-	std::unique_ptr<arc::IGame> game = std::make_unique<arc::BasicGame>();
+	std::unique_ptr<arc::IGame> &game = arc::BasicGame::getInstance();
 
 	auto tempEvt = arc::EventHandler();
 

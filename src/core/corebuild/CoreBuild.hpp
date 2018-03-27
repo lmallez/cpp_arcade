@@ -11,6 +11,9 @@
 #include <memory>
 #include <src/core/loader/GameLoader.hpp>
 #include <src/core/loader/LibLoader.hpp>
+#include "CoreClock.hpp"
+
+#define CLOCK_TIME 100000
 
 namespace arc {
 	class CoreBuild {
@@ -28,6 +31,7 @@ namespace arc {
 		GameLoader _loaderGame;
 		LibLoader _loaderGraphic;
 		EventHandler _event;
+		CoreClock _clock;
 	};
 }
 

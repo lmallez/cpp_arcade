@@ -31,7 +31,8 @@ games:	cmake | $(GAMES_DIR)
 
 graphicals: cmake | $(LIB_DIR)
 	make -C $(BUILD_DIR) GRAPHIC_SFML
-	cp build/libGRAPHIC_SFML.so lib/
+	make -C $(BUILD_DIR) GRAPHIC_Caca
+	cp build/libGRAPHIC_SFML.so build/libGRAPHIC_Caca.so lib/
 
 $(LIB_DIR):
 	$(MKDIR) $@

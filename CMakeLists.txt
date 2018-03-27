@@ -65,6 +65,28 @@ add_library(GRAPHIC_SFML SHARED ${GRAPHIC_SFML} ${STD_FILES} ${SHAPE_FILES}
         src/graphic/sfml/extern.cpp)
 target_link_libraries(GRAPHIC_SFML sfml-graphics sfml-window sfml-system)
 
+set(
+	GRAPHIC_Caca
+	src/graphic/libcaca/CacaGraphic.cpp
+        src/graphic/libcaca/CacaGraphic.hpp
+	src/graphic/libcaca/CacaShape.cpp
+        src/graphic/libcaca/CacaShape.hpp
+	src/graphic/libcaca/CacaShapeLoader.cpp
+        src/graphic/libcaca/CacaShapeLoader.hpp
+	src/graphic/libcaca/draw/CacaShapeCircle.cpp
+        src/graphic/libcaca/draw/CacaShapeCircle.hpp
+	src/graphic/libcaca/draw/CacaShapeRect.cpp
+        src/graphic/libcaca/draw/CacaShapeRect.hpp
+	src/graphic/libcaca/draw/CacaShapeText.cpp
+        src/graphic/libcaca/draw/CacaShapeText.hpp
+        src/graphic/libcaca/CacaMainWindow.cpp
+        src/graphic/libcaca/CacaMainWindow.hpp
+)
+
+add_library(GRAPHIC_Caca SHARED ${GRAPHIC_Caca} ${STD_FILES} ${SHAPE_FILES}
+)
+target_link_libraries(GRAPHIC_Caca caca)
+
 ### GAMES LIBS ###
 
 set(

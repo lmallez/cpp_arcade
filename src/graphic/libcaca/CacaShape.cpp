@@ -14,11 +14,11 @@ arc::CacaShape::CacaShape()
 
 arc::RectF arc::CacaShape::winGeometry() const
 {
-	arc::RectF pos = winPos()
-		* arc::CacaMainWindow::getInstance().getSize();
+	arc::RectF aled = winPos();
+	arc::RectF pos = winPos() * arc::CacaMainWindow::getInstance().getSize();
 
-	return arc::RectF(pos.pos().x(), pos.pos().y(),
-		pos.size().x(), pos.size().y());
+	return arc::RectF(pos.pos().x() / 10, pos.pos().y() / 20,
+		pos.size().x() / 10, pos.size().y() / 20);
 }
 
 //void arc::CacaShape::_colorItem(sf::Shape &item) const

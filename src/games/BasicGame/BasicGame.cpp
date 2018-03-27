@@ -34,7 +34,7 @@ std::shared_ptr<arc::IShape> arc::BasicGame::start()
 std::shared_ptr<arc::IShape> arc::BasicGame::update(EventHandler &event)
 {
 	arc::Texture basic(arc::Color::Blue, arc::Color::Red);
-	playerPos.rsize() = playerPos.size() + playerPos.size() * 0.0001;
+	playerPos.rsize() = playerPos.size() + playerPos.size() * 0.001;
 	frame++;
 
 	std::shared_ptr s1 = std::make_shared<arc::ShapeCircle>(nullptr, basic, playerPos);

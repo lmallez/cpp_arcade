@@ -5,24 +5,27 @@
 // CoreClock.cpp
 //
 
-#include <ctime>
 #include <iostream>
 #include "CoreClock.hpp"
 
-arc::CoreClock::CoreClock(unsigned int waitTime):
+arc::CoreClock::CoreClock(const std::chrono::duration<double> &waitTime):
 	_waitTime(waitTime), _timescamp(0)
 {
-	std::cout << "ALED" << std::endl;
 }
 
-bool arc::CoreClock::compare(unsigned long time) const
+arc::CoreClock::CoreClock(double waitTime):
+	_waitTime(waitTime), _timescamp(0)
 {
-	return (time - _timescamp > _waitTime);
+}
+
+bool arc::CoreClock::compare(const std::chrono::duration<double> &time)
+{
+	return (time.count() - _timescamp.count() > _waitTime.count());
 }
 
 bool arc::CoreClock::updateTime()
 {
-	const unsigned long &tempTime = (unsigned long)time(NULL);
+	auto tempTime = std::chrono::system_clock::now().time_since_epoch();
 
 	if (!compare(tempTime))
 		return false;
@@ -32,5 +35,5 @@ bool arc::CoreClock::updateTime()
 
 void arc::CoreClock::waitTime()
 {
-	while (updateTime());
+	while (!updateTime());
 }

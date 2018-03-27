@@ -49,8 +49,7 @@ void arc::CoreBuild::run()
 	start();
 	while (1) {/* Condition d'arret ?? */
 		update();
-		std::cout << "????" << std::endl;
-		//_clock.waitTime();
+		_clock.waitTime();
 	}
 }
 

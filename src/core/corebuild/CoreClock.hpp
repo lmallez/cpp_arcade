@@ -8,17 +8,20 @@
 #ifndef CPP_ARCADE_CORECLOCK_HPP
 #define CPP_ARCADE_CORECLOCK_HPP
 
+#include <chrono>
+
 namespace arc {
 	class CoreClock {
 	public:
-		explicit CoreClock(unsigned int waitTime);
+		explicit CoreClock(const std::chrono::duration<double> &waitTime);
+		explicit CoreClock(double waitTime);
 
-		bool compare(unsigned long time) const;
+		bool compare(const std::chrono::duration<double> &time);
 		bool updateTime();
 		void waitTime();
 	private:
-		unsigned long _timescamp;
-		unsigned int _waitTime;
+		std::chrono::duration<double> _waitTime;
+		std::chrono::duration<double> _timescamp;
 	};
 }
 

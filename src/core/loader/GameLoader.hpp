@@ -18,13 +18,9 @@ namespace arc
 	{
 	public:
 		explicit GameLoader(const std::string & = "");
-
 		bool operator!() const;
-
 		bool load(const std::string &);
-
 		bool unload();
-
 		std::unique_ptr<arc::IGame> &getIGame();
 
 	private:

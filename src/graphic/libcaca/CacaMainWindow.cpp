@@ -20,7 +20,7 @@ arc::CacaMainWindow::CacaMainWindow(arc::VertexI size) :
 	_canvas(NULL, caca_free_canvas),
 	_window(NULL, caca_free_display)
 {
-	_canvas.reset(caca_create_canvas(400, 400));
+	_canvas.reset(caca_create_canvas(size.x(), size.y()));
 	_window.reset(caca_create_display(_canvas.get()));
 
 	if (_window == nullptr)

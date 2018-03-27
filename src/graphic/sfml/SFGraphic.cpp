@@ -35,8 +35,8 @@ const arc::IShapeLoader &arc::SFGraphic::getShapeLoader() const
 
 void arc::SFGraphic::catchEvent(arc::EventHandler &handler)
 {
-	while ()
+	/*while ()
 		switch () {
 			
-		}
+		}*/
 }

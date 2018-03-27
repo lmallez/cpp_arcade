@@ -23,7 +23,7 @@ set(
         src/games/IGame.hpp
         src/events/EventHandler.cpp
         src/events/EventHandler.hpp
-        src/core/corebuild/CoreBuild.cpp src/core/corebuild/CoreBuild.hpp)
+)
 
 set(
         SHAPE_FILES
@@ -84,8 +84,14 @@ set(
 )
 
 add_library(GRAPHIC_Caca SHARED ${GRAPHIC_Caca} ${STD_FILES} ${SHAPE_FILES}
-)
+	src/graphic/libcaca/extern.cpp)
 target_link_libraries(GRAPHIC_Caca caca)
+
+set(
+        GRAPHIC_GLU)
+
+add_library(GRAPHIC_GLU SHARED ${GRAPHIC_GLU} ${STD_FILES} ${SHAPE_FILES})
+target_link_libraries(GRAPHIC_GLU GLU GL)
 
 ### GAMES LIBS ###
 
@@ -109,7 +115,11 @@ set(
         src/events/MouseEvent.cpp
         src/events/MouseEvent.hpp
         src/events/KeyEvent.cpp
-        src/events/KeyEvent.hpp)
+        src/events/KeyEvent.hpp
+        src/core/corebuild/CoreBuild.cpp
+        src/core/corebuild/CoreBuild.hpp
+        src/core/corebuild/CoreClock.cpp
+        src/core/corebuild/CoreClock.hpp)
 
 
 add_executable(

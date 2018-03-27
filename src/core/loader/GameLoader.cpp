@@ -44,7 +44,6 @@ bool arc::GameLoader::unload()
 
 std::unique_ptr<arc::IGame> &arc::GameLoader::getIGame()
 {
-
 	if (_getIGame == nullptr)
 		_getIGame = (std::unique_ptr<arc::IGame> &(*)())
 			dlsym(_sym, "getIGame");

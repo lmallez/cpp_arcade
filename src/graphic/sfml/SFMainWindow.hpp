@@ -9,20 +9,20 @@
 #define CPP_ARCADE_SFMAINWINDOW_HPP
 
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <src/graphic/IGraphic.hpp>
-#include <src/std/Vertex.hpp>
+#include "src/graphic/IGraphic.hpp"
+#include "src/std/Vertex.hpp"
 
 namespace arc
 {
-
 	class SFMainWindow {
 	public:
 		static SFMainWindow &getInstance();
 		void setWindowSize(size_t x, size_t y);
-		void draw(const sf::Drawable &);
 		void display();
 		VertexF getSize() const;
 		void close();
+
+		void draw(const sf::Drawable &toDraw);
 	private:
 		explicit SFMainWindow(VertexI = {400, 400});
 		std::unique_ptr<sf::RenderWindow> _window;

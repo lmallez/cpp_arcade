@@ -12,7 +12,7 @@ arc::CacaMainWindow &arc::CacaMainWindow::getInstance()
 	static std::unique_ptr<arc::CacaMainWindow> instance = nullptr;
 
 	if (instance == nullptr)
-		instance.reset(new CacaMainWindow(arc::VertexI(400, 400)));
+		instance.reset(new CacaMainWindow(arc::VertexI(700 / 10, 700 / 20)));
 	return *instance;
 }
 

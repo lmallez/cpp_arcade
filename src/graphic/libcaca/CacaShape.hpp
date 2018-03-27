@@ -11,8 +11,6 @@
 #include "src/graphic/shape/AShape.hpp"
 #include "src/graphic/libcaca/CacaGraphic.hpp"
 
-#define Caca_BORDER_SIZE 0.01
-
 namespace arc {
 	class CacaShape : virtual public IShape {
 	public:

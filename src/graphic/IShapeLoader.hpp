@@ -8,6 +8,8 @@
 #ifndef CPP_ARCADE_SHAPELOADER_HPP
 #define CPP_ARCADE_SHAPELOADER_HPP
 
+#include <memory>
+
 namespace arc {
 	class IShape;
 	class ShapeRect;

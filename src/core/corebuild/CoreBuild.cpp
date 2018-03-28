@@ -62,7 +62,6 @@ void arc::CoreBuild::menu()
 		arc::MainMenu::getInstance()->update(_event)->convert(_loaderGraphic.getIGraphic()->getShapeLoader())->draw();
 		_loaderGraphic.getIGraphic()->display();
 		_loaderGraphic.getIGraphic()->catchEvent(_event);
-		std::cout << _event.keyEvent().isKeyPressed(arc::KeyEvent::A) << std::endl;
 		_clock.waitTime();
 	}
 }

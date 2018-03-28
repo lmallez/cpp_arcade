@@ -7,10 +7,12 @@
 
 #include "EventHandler.hpp"
 
-arc::KeyEvent &arc::EventHandler::keyEvent() {
+arc::KeyEvent &arc::EventHandler::keyEvent()
+{
 	return _keyEvent;
 }
 
-arc::MouseEvent &arc::EventHandler::mouseEvent() {
+arc::MouseEvent &arc::EventHandler::mouseEvent()
+{
 	return _mouseEvent;
 }

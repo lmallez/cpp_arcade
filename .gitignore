@@ -39,3 +39,5 @@ arcade
 .*.vim
 build/
 doc/latex
+*.gcna
+*.gcno

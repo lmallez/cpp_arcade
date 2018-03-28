@@ -55,6 +55,9 @@ TESTS_OBJS	= $(patsubst %.cpp, %.test.o, $(TESTS_SRCS))
 tests_run: $(TESTS_OBJS) $(TESTED_OBJS)
 	g++ $(TESTED_OBJS) $(TESTS_OBJS) -lcriterion --coverage -o $@
 	./$@
+	lcov -d src/ -c -o arcade.lcov
+	genhtml arcade.lcov -o www
+	surf www/index.html &
 
 $(LIB_DIR):
 	$(MKDIR) $@
@@ -66,7 +69,8 @@ $(BUILD_DIR):
 clean:
 	$(RM) -r $(BUILD_DIR)
 	$(RM) $(TESTS_OBJS) $(TESTED_OBJS) $(TESTED_GCNO) $(TESTED_GCDA)
-	$(RM) *.gcov
+	$(RM) *.gcov arcade.lcov
+	$(RM) -r www
 
 fclean:	clean
 	$(RM) $(CORE_NAME) tests_run

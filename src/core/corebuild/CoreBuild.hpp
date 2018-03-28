@@ -26,6 +26,7 @@ namespace arc {
 		void start();
 		void update();
 		void run();
+		void menu();
 
 	private:
 		GameLoader _loaderGame;

@@ -10,11 +10,9 @@
 
 arc::AShape::AShape(std::shared_ptr<IShape> parent,
 	const arc::Texture &texture,
-	const RectF &geometry)
+	const RectF &geometry):
+	_parent(parent), _geometry(geometry), _texture(texture)
 {
-	_geometry = geometry;
-	_parent = parent;
-	_texture = texture;
 }
 
 arc::AShape::AShape(const arc::IShape &ex):

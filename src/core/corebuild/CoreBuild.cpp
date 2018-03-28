@@ -5,6 +5,7 @@
 // CoreLoader.cpp
 //
 
+#include <src/games/Menu/MainMenu.hpp>
 #include "CoreBuild.hpp"
 
 arc::CoreBuild::CoreBuild(const std::string &lib, const std::string &game):
@@ -53,4 +54,12 @@ void arc::CoreBuild::run()
 	}
 }
 
-
+void arc::CoreBuild::menu()
+{
+	arc::MainMenu::getInstance()->start();
+	while (1) {
+		arc::MainMenu::getInstance()->update(_event)->convert(_loaderGraphic.getIGraphic()->getShapeLoader())->draw();
+		_loaderGraphic.getIGraphic()->display();
+		_clock.waitTime();
+	}
+}

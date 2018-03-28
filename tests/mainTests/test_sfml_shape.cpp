@@ -21,7 +21,7 @@ int main()
 
 	arc::RectF center(0.25, 0.25, 0.5, 0.5);
 	arc::RectF full(0.1, 0.1, 0.8, 0.8);
-	arc::Texture basic(arc::Color::Blue, arc::Color::Red);
+	arc::Texture basic(arc::Color::Red, arc::Color::Blue);
 
 	consolasFont.loadFromFile("../assets/Consolas.ttf");
 

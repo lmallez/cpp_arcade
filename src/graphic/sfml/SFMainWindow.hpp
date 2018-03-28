@@ -9,6 +9,9 @@
 #define CPP_ARCADE_SFMAINWINDOW_HPP
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include <SFML/Window/Event.hpp>
+#include <unordered_map>
 #include "src/graphic/IGraphic.hpp"
 #include "src/std/Vertex.hpp"
 
@@ -21,11 +24,14 @@ namespace arc
 		void display();
 		VertexF getSize() const;
 		void close();
-
 		void draw(const sf::Drawable &toDraw);
+		void pollEvent(arc::EventHandler &);
 	private:
 		explicit SFMainWindow(VertexI = {400, 400});
 		std::unique_ptr<sf::RenderWindow> _window;
+		std::unordered_map<sf::Keyboard::Key, arc::KeyEvent::Key>
+			_keyMap;
+		void _setKeyMap();
 	};
 
 }

@@ -35,8 +35,5 @@ const arc::IShapeLoader &arc::SFGraphic::getShapeLoader() const
 
 void arc::SFGraphic::catchEvent(arc::EventHandler &handler)
 {
-	/*while ()
-		switch () {
-			
-		}*/
+	arc::SFMainWindow::getInstance().pollEvent(handler);
 }

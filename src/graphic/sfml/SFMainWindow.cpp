@@ -120,12 +120,17 @@ void arc::SFMainWindow::pollEvent(EventHandler &evtHandler)
 			evtHandler.keyEvent().setKeyPressed(_keyMap[evt.key.code]);
 			break;
 		case sf::Event::KeyReleased:
-			evtHandler.keyEvent().setKeyReleased(_keyMap[evt.key.code]);
+			evtHandler.keyEvent().setKeyReleased
+				(_keyMap[evt.key
+					 .code]);
 			break;
 		case sf::Event::MouseMoved:
-			evtHandler.mouseEvent().setPos(_tranformMousePos(sf::Mouse::getPosition()));
+			evtHandler.mouseEvent()
+				.setPos(_tranformMousePos(sf::Mouse::
+							  getPosition()));
 		case sf::Event::MouseButtonPressed:
-			evtHandler.mouseEvent().setButtonPressed(_mouseMap[evt.mouseButton.button]);
+			evtHandler.mouseEvent().setButtonPressed
+				(_mouseMap[evt.mouseButton.button]);
 			break;
 		default:
 			break;

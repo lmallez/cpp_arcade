@@ -14,9 +14,9 @@ arc::KeyEvent::KeyEvent()
 	std::memset(_btns, false, 38);
 }
 
-bool arc::KeyEvent::isKeyPressed(arc::KeyEvent::Key)
+bool arc::KeyEvent::isKeyPressed(arc::KeyEvent::Key key)
 {
-	return false;
+	return _btns[key];
 }
 
 void arc::KeyEvent::setKeyPressed(arc::KeyEvent::Key key)

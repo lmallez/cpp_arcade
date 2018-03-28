@@ -23,6 +23,10 @@ set(
         src/games/IGame.hpp
         src/events/EventHandler.cpp
         src/events/EventHandler.hpp
+        src/events/KeyEvent.cpp
+        src/events/KeyEvent.hpp
+        src/events/MouseEvent.cpp
+        src/events/MouseEvent.hpp
 )
 
 set(

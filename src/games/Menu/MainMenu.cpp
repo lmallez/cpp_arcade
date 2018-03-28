@@ -43,7 +43,9 @@ std::shared_ptr<arc::IShape> arc::MainMenu::_displayListGraphic(const arc::RectF
 
 	for (std::string fileName : _listGraphic) {
 		std::shared_ptr file = std::make_shared<arc::ShapeText>(m,
-			Texture(arc::Color::White), RectF(0.1, text, 0.9, 0.2), fileName);
+			Texture(arc::Color::White),
+			RectF(0.1, text, 0.9, 0.2),
+			fileName);
 		m->addChild(file);
 		text += 0.2;
 	}
@@ -58,7 +60,9 @@ std::shared_ptr<arc::IShape> arc::MainMenu::_displayListGame(const arc::RectF &p
 
 	for (std::string fileName : _listGame) {
 		std::shared_ptr file = std::make_shared<arc::ShapeText>(m,
-			Texture(arc::Color::White), RectF(0.1, text, 0.9, 0.2), fileName);
+			Texture(arc::Color::White),
+			RectF(0.1, text, 0.9, 0.2),
+			fileName);
 		m->addChild(file);
 		text += 0.2;
 	}

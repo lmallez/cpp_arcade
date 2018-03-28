@@ -42,6 +42,7 @@ void arc::CoreBuild::update()
 		throw arc::Exception("run", "Invalid Game or Graphic");
 	_loaderGame.getIGame()->update(_event)->convert(_loaderGraphic.getIGraphic()->getShapeLoader())->draw();
 	_loaderGraphic.getIGraphic()->display();
+	_loaderGraphic.getIGraphic()->catchEvent(_event);
 	/* Update _event */
 }
 
@@ -60,6 +61,8 @@ void arc::CoreBuild::menu()
 	while (1) {
 		arc::MainMenu::getInstance()->update(_event)->convert(_loaderGraphic.getIGraphic()->getShapeLoader())->draw();
 		_loaderGraphic.getIGraphic()->display();
+		_loaderGraphic.getIGraphic()->catchEvent(_event);
+		std::cout << _event.keyEvent().isKeyPressed(arc::KeyEvent::A) << std::endl;
 		_clock.waitTime();
 	}
 }

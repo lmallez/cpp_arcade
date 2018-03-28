@@ -31,6 +31,8 @@ namespace arc
 		std::unique_ptr<sf::RenderWindow> _window;
 		std::unordered_map<sf::Keyboard::Key, arc::KeyEvent::Key>
 			_keyMap;
+		arc::Vertex<float > _tranformMousePos(const sf::Vector2i &)
+		const;
 		void _setKeyMap();
 	};
 

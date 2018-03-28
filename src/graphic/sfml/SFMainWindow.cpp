@@ -95,14 +95,33 @@ void arc::SFMainWindow::display()
 	_window->clear(sf::Color::Black);
 }
 
+arc::Vertex<float>
+arc::SFMainWindow::_tranformMousePos(const sf::Vector2i &mPos) const
+{
+	arc::Vertex<float> res;
+
+	res.rx() = mPos.x / _window->getSize().x;
+	res.ry() = mPos.y / _window->getSize().y;
+	return res;
+}
+
 void arc::SFMainWindow::pollEvent(EventHandler &evtHandler)
 {
     sf::Event evt;
-
 	while (_window->pollEvent(evt)) {
 		switch (evt.type) {
 			case sf::Event::KeyPressed:
 				evtHandler.keyEvent().setKeyPressed(_keyMap[evt.key.code]);
+				break;
+			case sf::Event::KeyReleased:
+				evtHandler.keyEvent().setKeyReleased(_keyMap[evt.key
+					.code]);
+				break;
+			case sf::Event::MouseMoved:
+				evtHandler.mouseEvent()
+					.setPos(_tranformMousePos(sf::Mouse::
+							 getPosition()));
+			case sf::Event::MouseButtonPressed:
 				break;
 			default:
 				break;

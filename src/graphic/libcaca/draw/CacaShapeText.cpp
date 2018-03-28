@@ -24,10 +24,12 @@ void arc::CacaShapeText::draw() const
 	arc::RectF geo = winGeometry();
 	std::string text = getText();
 	size_t len = text.length();
+	arc::Texture texture = getTexture();
 
 	if (len == 0)
 		return;
+	setColor(texture.bgColor(), arc::Color::Black);
 	caca_printf(arc::CacaMainWindow::getInstance().getCanvas().get(),
-		    geo.pos().x(), geo.pos().y(), "%s\n", text.c_str());
+		    geo.pos().x(), geo.pos().y(), "%s", text.c_str());
 	AShape::draw();
 }

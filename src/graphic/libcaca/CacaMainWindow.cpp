@@ -12,7 +12,7 @@ arc::CacaMainWindow &arc::CacaMainWindow::getInstance()
 	static std::unique_ptr<arc::CacaMainWindow> instance = nullptr;
 
 	if (instance == nullptr)
-		instance.reset(new CacaMainWindow(arc::VertexI(400, 400)));
+		instance.reset(new CacaMainWindow(arc::VertexI(700 / 10, 700 / 20)));
 	return *instance;
 }
 
@@ -56,6 +56,8 @@ arc::VertexF arc::CacaMainWindow::getSize() const
 void arc::CacaMainWindow::display()
 {
 	caca_refresh_display(_window.get());
+	caca_set_color_argb(_canvas.get(),
+			    0xFFFF, 0xF000);
 	caca_clear_canvas(_canvas.get());
 }
 

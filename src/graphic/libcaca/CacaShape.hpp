@@ -11,8 +11,6 @@
 #include "src/graphic/shape/AShape.hpp"
 #include "src/graphic/libcaca/CacaGraphic.hpp"
 
-#define Caca_BORDER_SIZE 0.01
-
 namespace arc {
 	class CacaShape : virtual public IShape {
 	public:
@@ -20,6 +18,7 @@ namespace arc {
 
 	protected:
 		arc::RectF winGeometry() const;
+		void setColor(const arc::Color &c1, const arc::Color &c2) const;
 //		void _colorItem(sf::Shape &item) const;
 //		void _displayItem(const sf::Drawable &item) const;
 	};

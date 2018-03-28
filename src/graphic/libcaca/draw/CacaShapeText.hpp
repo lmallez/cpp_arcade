@@ -10,6 +10,7 @@
 
 #include <caca.h>
 #include "src/std/Rect.hpp"
+#include "src/std/Texture.hpp"
 #include "src/graphic/shape/ShapeText.hpp"
 #include "src/graphic/libcaca/CacaShape.hpp"
 #include "src/graphic/libcaca/CacaMainWindow.hpp"

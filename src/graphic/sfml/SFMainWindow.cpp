@@ -12,7 +12,7 @@ arc::SFMainWindow &arc::SFMainWindow::getInstance()
 	static std::unique_ptr<SFMainWindow> instance = nullptr;
 
 	if (instance == nullptr)
-		instance.reset(new SFMainWindow(arc::VertexI(400, 400)));
+		instance.reset(new SFMainWindow(arc::VertexI(700, 700)));
 	return *instance;
 }
 

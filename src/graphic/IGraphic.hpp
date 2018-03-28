@@ -11,7 +11,9 @@
 #include <memory>
 #include <src/std/Vertex.hpp>
 #include "src/exception/Exception.hpp"
+#include "src/events/EventHandler.hpp"
 #include "IShapeLoader.hpp"
+
 
 #define WNAME "Arcade"
 

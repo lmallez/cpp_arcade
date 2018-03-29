@@ -18,7 +18,8 @@ namespace arc {
 		typedef void (SystemGame::*systemGame_t)(EventHandler &event);
 	public:
 		SystemGame();
-		void assignKey(KeyEvent::Key, systemGame_t);
+		void assignKey(arc::KeyEvent::Key, arc::KeyEvent::Status status,
+			arc::SystemGame::systemGame_t);
 		void execKey(EventHandler &event);
 		void execKey(EventHandler &event, KeyEvent::Key key);
 

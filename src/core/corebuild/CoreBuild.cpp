@@ -57,11 +57,11 @@ void arc::CoreBuild::run()
 
 void arc::CoreBuild::menu()
 {
-	arc::MainMenu::getInstance()->start();
+	/*arc::MainMenu::getInstance()->start();
 	while (1) {
 		arc::MainMenu::getInstance()->update(_event)->convert(_loaderGraphic.getIGraphic()->getShapeLoader())->draw();
 		_loaderGraphic.getIGraphic()->display();
 		_loaderGraphic.getIGraphic()->catchEvent(_event);
 		_clock.waitTime();
-	}
+	}*/
 }

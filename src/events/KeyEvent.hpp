@@ -22,6 +22,8 @@ namespace arc
 		enum Status {
 			PRESSED,
 			RELEASED,
+			JUSTPRESSED,
+			JUSTRELEASED
 		};
 		enum Key {
 			UNKNOWN = -1,

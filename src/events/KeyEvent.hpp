@@ -33,9 +33,9 @@ namespace arc
 			ESCAPE, SPACE,
 			LSHIFT, RSHIFT,
 			TAB, MAJ, RETURN,
-			NUM1, NUM2, NUM3,
+			NUM0, NUM1, NUM2, NUM3,
 			NUM4, NUM5, NUM6,
-			NUM7, NUM8, NUM9, NUM10
+			NUM7, NUM8, NUM9
 		};
 		KeyEvent();
 		bool isKeyPressed(Key);

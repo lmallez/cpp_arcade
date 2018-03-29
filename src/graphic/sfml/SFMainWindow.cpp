@@ -21,8 +21,7 @@ arc::SFMainWindow::SFMainWindow(arc::VertexI size)
 	_window = std::make_unique<sf::RenderWindow>();
 	_window->create(sf::VideoMode(size.x(), size.y()), WNAME);
 	if (!_window->isOpen())
-		throw arc::Exception("SF Graphic", "Can't open the Main "
-			"Window");
+		throw arc::Exception("SF Graphic", "Can't open the Window");
 	_keyMap[sf::Keyboard::A] = arc::KeyEvent::Key::A;
 	_keyMap[sf::Keyboard::B] = arc::KeyEvent::Key::B;
 	_keyMap[sf::Keyboard::C] = arc::KeyEvent::Key::C;
@@ -39,6 +38,14 @@ arc::SFMainWindow::SFMainWindow(arc::VertexI size)
 	_keyMap[sf::Keyboard::N] = arc::KeyEvent::Key::N;
 	_keyMap[sf::Keyboard::O] = arc::KeyEvent::Key::O;
 	_setKeyMap();
+	_setMouseMap();
+}
+
+void arc::SFMainWindow::_setMouseMap()
+{
+	_mouseMap[sf::Mouse::Button::Right] = arc::MouseEvent::RIGHT_BUTTON;
+	_mouseMap[sf::Mouse::Button::Left] = arc::MouseEvent::LEFT_BUTTON;
+	_mouseMap[sf::Mouse::Button::Middle] = arc::MouseEvent::MIDDLE_BUTTON;
 }
 
 void arc::SFMainWindow::_setKeyMap()
@@ -65,7 +72,6 @@ void arc::SFMainWindow::_setKeyMap()
 	_keyMap[sf::Keyboard::Tab] = arc::KeyEvent::Key::TAB;
 	_keyMap[sf::Keyboard::Return] = arc::KeyEvent::Key::RETURN;
 }
-
 
 void arc::SFMainWindow::setWindowSize(size_t x, size_t y)
 {
@@ -114,7 +120,8 @@ void arc::SFMainWindow::pollEvent(EventHandler &evtHandler)
 				evtHandler.keyEvent().setKeyPressed(_keyMap[evt.key.code]);
 				break;
 			case sf::Event::KeyReleased:
-				evtHandler.keyEvent().setKeyReleased(_keyMap[evt.key
+				evtHandler.keyEvent().setKeyReleased
+					(_keyMap[evt.key
 					.code]);
 				break;
 			case sf::Event::MouseMoved:
@@ -122,6 +129,8 @@ void arc::SFMainWindow::pollEvent(EventHandler &evtHandler)
 					.setPos(_tranformMousePos(sf::Mouse::
 							 getPosition()));
 			case sf::Event::MouseButtonPressed:
+				evtHandler.mouseEvent().setButtonPressed
+					(_mouseMap[evt.mouseButton.button]);
 				break;
 			default:
 				break;

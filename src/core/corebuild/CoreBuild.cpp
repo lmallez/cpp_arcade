@@ -41,6 +41,7 @@ void arc::CoreBuild::update()
 		throw arc::Exception("run", "Invalid Game or Graphic");
 	_loaderGame.getIGame()->update(_event)->convert(_loaderGraphic.getIGraphic()->getShapeLoader())->draw();
 	_loaderGraphic.getIGraphic()->display();
+	_loaderGraphic.getIGraphic()->catchEvent(_event);
 	/* Update _event */
 }
 

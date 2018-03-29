@@ -16,3 +16,8 @@ arc::MouseEvent &arc::EventHandler::mouseEvent()
 {
 	return _mouseEvent;
 }
+
+arc::GameEvent &arc::EventHandler::gameEvent()
+{
+	return _gameEvent;
+}

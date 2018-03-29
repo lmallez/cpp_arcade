@@ -10,6 +10,7 @@
 
 #include "KeyEvent.hpp"
 #include "MouseEvent.hpp"
+#include "GameEvent.hpp"
 
 namespace arc {
 	class EventHandler {
@@ -17,9 +18,11 @@ namespace arc {
 		EventHandler() = default;
 		KeyEvent &keyEvent();
 		MouseEvent &mouseEvent();
+		GameEvent &gameEvent();
 	private:
 		KeyEvent _keyEvent;
 		MouseEvent _mouseEvent;
+		GameEvent _gameEvent;
 	};
 }
 

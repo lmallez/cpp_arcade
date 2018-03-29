@@ -15,6 +15,10 @@ namespace arc
 	class KeyEvent
 	{
 	public:
+		enum Status {
+			PRESSED,
+			RELEASED,
+		};
 		enum Key {
 			UNKNOWN = -1,
 			A = 0,

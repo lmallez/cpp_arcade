@@ -29,7 +29,11 @@ set(
         src/events/KeyEvent.hpp
         src/events/MouseEvent.cpp
         src/events/MouseEvent.hpp
-)
+        src/events/GameEvent.cpp
+        src/events/GameEvent.cpp
+        src/events/GameEvent.hpp
+        src/games/SystemGame.cpp
+        src/games/SystemGame.hpp)
 
 set(
         SHAPE_FILES
@@ -52,7 +56,8 @@ set(
 
 set(
         MENU
-        src/games/Menu/MainMenu.cpp src/games/Menu/MainMenu.hpp)
+        src/games/Menu/MainMenu.cpp
+        src/games/Menu/MainMenu.hpp)
 
 ### GRAPHICS LIBS ###
 
@@ -119,7 +124,8 @@ add_library(GAME_BasicGame SHARED ${GAME_BASICGAME} ${STD_FILES} ${SHAPE_FILES}
 
 set(
         GAME_SNAKE
-        src/games/Snake/SnakeGame.cpp src/games/Snake/SnakeGame.hpp)
+        src/games/Snake/SnakeGame.cpp
+        src/games/Snake/SnakeGame.hpp)
 
 add_library(GAME_SNAKE SHARED ${GAME_SNAKE} ${STD_FILES} ${SHAPE_FILES}
         src/games/Snake/extern.cpp)

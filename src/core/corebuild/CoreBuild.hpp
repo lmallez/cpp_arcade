@@ -13,7 +13,7 @@
 #include <src/core/loader/LibLoader.hpp>
 #include "CoreClock.hpp"
 
-#define CLOCK_TIME 0.5
+#define CLOCK_TIME 0.0016
 
 namespace arc {
 	class CoreBuild {

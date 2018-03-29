@@ -30,7 +30,7 @@ arc::Color::Color(const arc::Color &cpy)
 	_color._all = cpy.values();
 }
 
-arc::Color::Color(uint64_t values)
+arc::Color::Color(uint32_t values)
 {
 	_color._all = values;
 }

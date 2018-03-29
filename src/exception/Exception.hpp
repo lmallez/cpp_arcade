@@ -8,7 +8,7 @@
 #ifndef CPP_ARCADE_ARCEXECPTION_HPP
 #define CPP_ARCADE_ARCEXECPTION_HPP
 
-#include <bits/exception.h>
+#include <stdexcept>
 #include <string>
 
 namespace arc {

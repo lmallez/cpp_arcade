@@ -36,14 +36,31 @@ graphicals: cmake | $(LIB_DIR)
 
 TESTED_SRCS	= \
 		  src/exception/Exception.cpp \
+		  src/graphic/shape/AShape.cpp \
+		  src/graphic/shape/ShapeCircle.cpp \
+		  src/std/Color.cpp \
+		  src/std/Rect.cpp \
+		  src/std/Texture.cpp \
+		  src/std/Vertex.cpp \
 
 TESTS_SRCS	= \
 		  tests/exception.cpp \
+		  tests/graphics/shape/circle.cpp \
+		  tests/std/color.cpp \
+		  tests/std/rectd.cpp \
+		  tests/std/rectf.cpp \
+		  tests/std/recti.cpp \
+		  tests/std/rects.cpp \
+		  tests/std/texture.cpp \
+		  tests/std/vertd.cpp \
+		  tests/std/vertf.cpp \
+		  tests/std/verti.cpp \
+		  tests/std/verts.cpp \
 
 CTESTEDFLAGS	= -Wall -Wextra -fprofile-arcs -ftest-coverage
 
 %.o: %.cpp
-	$(CC) $(CTESTEDFLAGS) -c $< -o $@
+	$(CC) -I. $(CTESTEDFLAGS) -c $< -o $@
 %.test.o: %.cpp
 	$(CC) -I. -c $< -o $@
 
@@ -55,6 +72,9 @@ TESTS_OBJS	= $(patsubst %.cpp, %.test.o, $(TESTS_SRCS))
 tests_run: $(TESTS_OBJS) $(TESTED_OBJS)
 	g++ $(TESTED_OBJS) $(TESTS_OBJS) -lcriterion --coverage -o $@
 	./$@
+
+tests:	tests_run
+	./tests_run
 	lcov -d src/ -c -o arcade.lcov
 	genhtml arcade.lcov -o www
 	surf www/index.html &

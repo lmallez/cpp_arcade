@@ -9,6 +9,10 @@
 #define CPP_ARCADE_KEYEVENT_HPP
 
 #include <cstring>
+#include <unordered_map>
+#include <vector>
+
+#define KEY_NUMBER 48
 
 namespace arc
 {
@@ -28,15 +32,22 @@ namespace arc
 			UP, DOWN,
 			ESCAPE, SPACE,
 			LSHIFT, RSHIFT,
-			TAB, MAJ, RETURN
+			TAB, MAJ, RETURN,
+			NUM1, NUM2, NUM3,
+			NUM4, NUM5, NUM6,
+			NUM7, NUM8, NUM9, NUM10
 		};
 		KeyEvent();
 		bool isKeyPressed(Key);
 		void setKeyPressed(Key);
 		void setKeyState(Key, bool isPressed);
 		void setKeyReleased(Key);
+		void listenKey(Key);
+		bool isKeyjustPressed(Key);
+		bool isKeyjustReleased(Key);
 	private:
-		bool _btns[38];
+		bool _btns[KEY_NUMBER];
+		bool _oldSts[KEY_NUMBER];
 	};
 }
 #endif //CPP_ARCADE_KEYEVENT_HPP

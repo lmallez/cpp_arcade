@@ -37,3 +37,8 @@ void arc::SFGraphic::catchEvent(arc::EventHandler &handler)
 {
 	arc::SFMainWindow::getInstance().pollEvent(handler);
 }
+
+void arc::SFGraphic::close()
+{
+	arc::SFMainWindow::getInstance().close();
+}

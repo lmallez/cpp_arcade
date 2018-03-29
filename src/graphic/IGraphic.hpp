@@ -27,6 +27,7 @@ namespace arc {
 		virtual void display() const = 0;
 		virtual const IShapeLoader &getShapeLoader() const = 0;
 		virtual void catchEvent(arc::EventHandler &) = 0;
+		virtual void close() = 0;
 	};
 }
 

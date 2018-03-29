@@ -71,6 +71,17 @@ void arc::SFMainWindow::_setKeyMap()
 	_keyMap[sf::Keyboard::RShift] = arc::KeyEvent::Key::RSHIFT;
 	_keyMap[sf::Keyboard::Tab] = arc::KeyEvent::Key::TAB;
 	_keyMap[sf::Keyboard::Return] = arc::KeyEvent::Key::RETURN;
+	_keyMap[sf::Keyboard::Num0] = arc::KeyEvent::Key::NUM0;
+	_keyMap[sf::Keyboard::Num1] = arc::KeyEvent::Key::NUM1;
+	_keyMap[sf::Keyboard::Num2] = arc::KeyEvent::Key::NUM2;
+	_keyMap[sf::Keyboard::Num3] = arc::KeyEvent::Key::NUM3;
+	_keyMap[sf::Keyboard::Num4] = arc::KeyEvent::Key::NUM4;
+	_keyMap[sf::Keyboard::Num5] = arc::KeyEvent::Key::NUM5;
+	_keyMap[sf::Keyboard::Num6] = arc::KeyEvent::Key::NUM6;
+	_keyMap[sf::Keyboard::Num7] = arc::KeyEvent::Key::NUM7;
+	_keyMap[sf::Keyboard::Num8] = arc::KeyEvent::Key::NUM8;
+	_keyMap[sf::Keyboard::Num9] = arc::KeyEvent::Key::NUM9;
+
 }
 
 void arc::SFMainWindow::setWindowSize(size_t x, size_t y)

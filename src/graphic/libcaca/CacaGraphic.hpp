@@ -24,6 +24,7 @@ namespace arc {
 
 		virtual void catchEvent(arc::EventHandler &handler) override;
 
+		virtual void close() override;
 	private:
 		arc::CacaShapeLoader _loader;
 	};

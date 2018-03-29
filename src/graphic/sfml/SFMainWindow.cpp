@@ -122,7 +122,7 @@ void arc::SFMainWindow::pollEvent(EventHandler &evtHandler)
 		case sf::Event::KeyReleased:
 			evtHandler.keyEvent().setKeyReleased
 				(_keyMap[evt.key
-					 .code]);
+					.code]);
 			break;
 		case sf::Event::MouseMoved:
 			evtHandler.mouseEvent()

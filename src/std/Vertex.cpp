@@ -21,7 +21,7 @@ arc::Vertex<T>::Vertex(T x, T y) :
 }
 
 template <typename T>
-arc::Vertex<T>::Vertex(const Vertex &cpy) :
+arc::Vertex<T>::Vertex(const Vertex<T> &cpy) :
 	_x(cpy.x()), _y(cpy.y())
 {
 }
@@ -61,7 +61,7 @@ arc::Vertex<T>& arc::Vertex<T>::operator=(const Vertex<T> &other)
 template <typename T>
 arc::Vertex<T> arc::Vertex<T>::operator+(const Vertex<T> &other) const
 {
-	arc::Vertex res(*this);
+	arc::Vertex<T> res(*this);
 
 	res._x += other.x();
 	res._y += other.y();
@@ -71,7 +71,7 @@ arc::Vertex<T> arc::Vertex<T>::operator+(const Vertex<T> &other) const
 template <typename T>
 arc::Vertex<T> arc::Vertex<T>::operator-(const Vertex<T> &other) const
 {
-	arc::Vertex res(*this);
+	arc::Vertex<T> res(*this);
 
 	res._x -= other.x();
 	res._y -= other.y();
@@ -81,7 +81,7 @@ arc::Vertex<T> arc::Vertex<T>::operator-(const Vertex<T> &other) const
 template <typename T>
 arc::Vertex<T> arc::Vertex<T>::operator/(const Vertex<T> &other) const
 {
-	arc::Vertex res(*this);
+	arc::Vertex<T> res(*this);
 
 	res._x /= other.x();
 	res._y /= other.y();
@@ -91,7 +91,7 @@ arc::Vertex<T> arc::Vertex<T>::operator/(const Vertex<T> &other) const
 template <typename T>
 arc::Vertex<T> arc::Vertex<T>::operator*(const Vertex<T> &other) const
 {
-	arc::Vertex res(*this);
+	arc::Vertex<T> res(*this);
 
 	res._x *= other.x();
 	res._y *= other.y();
@@ -101,7 +101,7 @@ arc::Vertex<T> arc::Vertex<T>::operator*(const Vertex<T> &other) const
 template <typename T>
 arc::Vertex<T> arc::Vertex<T>::operator+(T other) const
 {
-	arc::Vertex res(*this);
+	arc::Vertex<T> res(*this);
 
 	res._x += other;
 	res._y += other;
@@ -111,7 +111,7 @@ arc::Vertex<T> arc::Vertex<T>::operator+(T other) const
 template <typename T>
 arc::Vertex<T> arc::Vertex<T>::operator-(T other) const
 {
-	arc::Vertex res(*this);
+	arc::Vertex<T> res(*this);
 
 	res._x -= other;
 	res._y -= other;
@@ -121,7 +121,7 @@ arc::Vertex<T> arc::Vertex<T>::operator-(T other) const
 template <typename T>
 arc::Vertex<T> arc::Vertex<T>::operator*(T other) const
 {
-	arc::Vertex res(*this);
+	arc::Vertex<T> res(*this);
 
 	res._x *= other;
 	res._y *= other;
@@ -131,7 +131,7 @@ arc::Vertex<T> arc::Vertex<T>::operator*(T other) const
 template <typename T>
 arc::Vertex<T> arc::Vertex<T>::operator/(T other) const
 {
-	arc::Vertex res(*this);
+	arc::Vertex<T> res(*this);
 
 	res._x /= other;
 	res._y /= other;

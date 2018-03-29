@@ -8,15 +8,19 @@
 #include <criterion/criterion.h>
 #include "src/exception/Exception.hpp"
 
-void raise_exc(void)
-{
-	throw arc::Exception("aled", "oskour");
-}
-
-Test(exception, raise_std)
+Test(exception, raise_default)
 {
 	try {
-		raise_exc();
+		throw arc::Exception();
+	} catch (arc::Exception e) {
+		cr_assert_str_eq(e.what(), "Undefined: Unknown Error");
+	}
+}
+
+Test(exception, raise_custom)
+{
+	try {
+		throw arc::Exception("aled", "oskour");
 	} catch (arc::Exception e) {
 		cr_assert_str_eq(e.what(), "aled: oskour");
 	}

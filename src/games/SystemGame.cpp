@@ -10,7 +10,7 @@
 
 arc::SystemGame::SystemGame()
 {
-	assignKey(arc::KeyEvent::Key::NUM1, arc::KeyEvent::JUSTPRESSED, &arc::SystemGame::_prevGame);
+	assignKey(arc::KeyEvent::Key::NUM4, arc::KeyEvent::JUSTPRESSED, &arc::SystemGame::_prevGame);
 	assignKey(arc::KeyEvent::Key::NUM2, arc::KeyEvent::JUSTPRESSED, &arc::SystemGame::_restartGame);
 	assignKey(arc::KeyEvent::Key::NUM3, arc::KeyEvent::JUSTPRESSED, &arc::SystemGame::_nextGame);
 	assignKey(arc::KeyEvent::Key::NUM4, arc::KeyEvent::JUSTPRESSED, &arc::SystemGame::_prevGraphic);
@@ -59,58 +59,41 @@ void arc::SystemGame::execKey(arc::EventHandler &event, arc::KeyEvent::Key key)
 void arc::SystemGame::_prevGame(arc::EventHandler &event)
 {
 	std::cout << "prevGame" << std::endl;
-	std::pair reloadGame = event.gameEvent().getReloadGame();
-	std::vector listGames = event.gameEvent().getListGames();
-	auto b = std::find(listGames.begin(), listGames.end(), reloadGame.first);
-	long a = std::distance(listGames.begin(), b);
-
-	a = ((unsigned long)a == 0) ? (listGames.size() - 1) : (a - 1);
-	event.gameEvent().setReloadGame(listGames[a], true);
+	event.gameEvent().prevGame();
 }
 
 void arc::SystemGame::_restartGame(arc::EventHandler &event)
 {
-	std::pair reloadGame = event.gameEvent().getReloadGame();
-
-	event.gameEvent().setReloadGame(reloadGame.first, true);
+	std::cout << "restartGame" << std::endl;
+	event.gameEvent().setGame();
 }
 
 void arc::SystemGame::_nextGame(arc::EventHandler &event)
 {
-	std::pair reloadGame = event.gameEvent().getReloadGame();
-	std::vector listGames = event.gameEvent().getListGames();
-	long a = std::distance(listGames.begin(), std::find(listGames.begin(), listGames.end(), reloadGame.first));
-
-	a = ((unsigned long)a == listGames.size() - 1) ? 0 : (a + 1);
-	event.gameEvent().setReloadGame(listGames[a], true);
+	std::cout << "nextGame" << std::endl;
+	event.gameEvent().nextGame();
 }
 
 void arc::SystemGame::_prevGraphic(arc::EventHandler &event)
 {
-	std::pair reloadGraphic = event.gameEvent().getReloadGraphic();
-	std::vector listGraphics = event.gameEvent().getListGraphics();
-	long a = std::distance(listGraphics.begin(), std::find(listGraphics.begin(), listGraphics.end(), reloadGraphic.first));
-
-	a = ((unsigned long)a == 0) ? (listGraphics.size() - 1) : (a - 1);
-	event.gameEvent().setReloadGame(listGraphics[a], true);
+	std::cout << "prevGraphic" << std::endl;
+	event.gameEvent().prevGraphic();
 }
 
 void arc::SystemGame::_nextGraphic(arc::EventHandler &event)
 {
-	std::pair reloadGraphic = event.gameEvent().getReloadGraphic();
-	std::vector listGraphics = event.gameEvent().getListGraphics();
-	long a = std::distance(listGraphics.begin(), std::find(listGraphics.begin(), listGraphics.end(), reloadGraphic.first));
-
-	a = ((unsigned long)a == listGraphics.size() - 1) ? 0 : (a + 1);
-	event.gameEvent().setReloadGame(listGraphics[a], true);
+	std::cout << "nextGraphic" << std::endl;
+	event.gameEvent().nextGraphic();
 }
 
 void arc::SystemGame::_backMenu(arc::EventHandler &event)
 {
+	std::cout << "backMenu" << std::endl;
 	event.gameEvent().setMenu(true);
 }
 
 void arc::SystemGame::_exit(arc::EventHandler &event)
 {
+	std::cout << "_exit" << std::endl;
 	event.gameEvent().setExit(true);
 }

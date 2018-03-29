@@ -30,6 +30,7 @@ namespace arc {
 			EventHandler &event) override;
 
 	private:
+		MainMenu();
 		typedef void (arc::MainMenu::*aled_t)(arc::EventHandler &);
 		std::map<arc::KeyEvent::Key, aled_t> _keyEvent;
 		void assignKey(arc::KeyEvent::Key, aled_t);

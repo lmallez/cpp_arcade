@@ -125,6 +125,7 @@ arc::SFMainWindow::_tranformMousePos(const sf::Vector2i &mPos) const
 void arc::SFMainWindow::pollEvent(EventHandler &evtHandler)
 {
 	sf::Event evt;
+	evtHandler.keyEvent().makeOld();
 	while (_window->pollEvent(evt)) {
 		switch (evt.type) {
 		case sf::Event::KeyPressed:

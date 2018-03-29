@@ -44,10 +44,18 @@ void arc::KeyEvent::setKeyReleased(arc::KeyEvent::Key key)
 	_btns[key] = false;
 }
 
-bool arc::KeyEvent::isKeyjustPressed(arc::KeyEvent::Key key) {
+bool arc::KeyEvent::isKeyjustPressed(arc::KeyEvent::Key key)
+{
 	return _btns[key] && !_oldSts[key];
 }
 
-bool arc::KeyEvent::isKeyjustReleased(arc::KeyEvent::Key key) {
+bool arc::KeyEvent::isKeyjustReleased(arc::KeyEvent::Key key)
+{
 	return !_btns[key] && _oldSts[key];
+}
+
+void arc::KeyEvent::makeOld()
+{
+	for (int i = 0; i < KEY_NUMBER; i++)
+		_oldSts[i] = _btns[i];
 }

@@ -24,26 +24,34 @@ namespace arc {
 		const std::vector<std::string> &getListGames() const;
 		const std::vector<std::string> &getListGraphics() const;
 
-		const std::pair<std::string, bool> &getReloadGame() const;
-		void
-		setReloadGame(const std::pair<std::string, bool> &reloadGame);
-		void setReloadGame(const std::string &first, bool second);
-		const std::pair<std::string, bool> &getReloadGraphic() const;
-		void setReloadGraphic(
-			const std::pair<std::string, bool> &newReloadGraphic);
-		void setReloadGraphic(const std::string &first, bool second);
 		bool isMenu() const;
 		void setMenu(bool menu);
 		bool isExit() const;
 		void setExit(bool exit);
 
+		void prevGame();
+		void nextGame();
+		void setGame();
+		void setGame(size_t pos);
+
+		void prevGraphic();
+		void nextGraphic();
+		void setGraphic();
+		void setGraphic(size_t pos);
+
+		std::pair<std::string, bool> & getReloadGame();
+		std::pair<std::string, bool> & getReloadGraphic();
+
 	private:
+		size_t _posGame = 0;
+		size_t _posGraphic = 0;
+
 		std::vector<std::string> _listGames;
 		std::vector<std::string> _listGraphics;
 		std::pair<std::string, bool> _reloadGame;
 		std::pair<std::string, bool> _reloadGraphic;
-		bool menu;
-		bool exit;
+		bool _menu;
+		bool _exit;
 	};
 }
 

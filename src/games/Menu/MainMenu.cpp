@@ -18,6 +18,10 @@ std::unique_ptr<arc::IGame> &arc::MainMenu::getInstance()
 	return instance;
 }
 
+arc::MainMenu::MainMenu()
+{
+	assignKey(arc::KeyEvent::LEFT, &arc::MainMenu::_moveCol);
+}
 
 void arc::MainMenu::assignKey(arc::KeyEvent::Key key, void (arc::MainMenu::*func)(arc::EventHandler &))
 {
@@ -110,8 +114,8 @@ std::vector<std::string> arc::MainMenu::_initListGame()
 
 void arc::MainMenu::_moveCol(arc::EventHandler &event)
 {
-	_userPos.rx() = (_userPos.x() == 0) ? 1 : 0;
-	_userPos.ry() = 0;
+	std::cout << "Ur mom boom !!" << std::endl;
+	event.gameEvent().setMenu(false);
 }
 
 void arc::MainMenu::_moveLineUp(arc::EventHandler &event)

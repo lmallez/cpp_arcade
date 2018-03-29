@@ -21,14 +21,19 @@ namespace arc {
 		CoreBuild(const std::string &lib = "",
 			const std::string &game = "");
 		bool setGraphic(const std::string &name);
+		void setGraphic();
 		bool setGame(const std::string &name);
+		void setGame();
 
 		void start();
 		void update();
-		void run();
 		void menu();
+		void run();
 
 	private:
+		bool _checkEvent(GameEvent &event);
+		bool _menu = true;
+
 		GameLoader _loaderGame;
 		LibLoader _loaderGraphic;
 		EventHandler _event;

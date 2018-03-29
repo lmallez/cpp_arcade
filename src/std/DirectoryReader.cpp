@@ -5,6 +5,7 @@
 // DirectoryReader.cpp
 //
 
+#include <iostream>
 #include "DirectoryReader.hpp"
 
 arc::DirectoryReader::DirectoryReader(const std::string &directory):

@@ -5,13 +5,19 @@
 // GameEvent.cpp
 //
 
+#include <iostream>
 #include "src/std/DirectoryReader.hpp"
 #include "GameEvent.hpp"
 
 arc::GameEvent::GameEvent()
 {
-	loadListGames();
 	loadListGraphics();
+	loadListGames();
+	setGraphic();
+	setGame();
+	_reloadGraphic.second = false;
+	_menu = true;
+	_exit = false;
 }
 
 std::vector<std::string> arc::GameEvent::loadListGames()
@@ -28,6 +34,70 @@ std::vector<std::string> arc::GameEvent::loadListGraphics()
 	return _listGraphics;
 }
 
+void arc::GameEvent::prevGame()
+{
+	if (_posGame == 0)
+		_posGame = _listGames.size() - 1;
+	else
+		_posGame--;
+	setGame();
+}
+
+void arc::GameEvent::nextGame()
+{
+	if (_posGame == _listGames.size() - 1)
+		_posGame = 0;
+	else
+		_posGame++;
+	setGame();
+}
+
+void arc::GameEvent::setGame()
+{
+	_reloadGame.first = _listGames[_posGame];
+	_reloadGame.second = true;
+}
+
+void arc::GameEvent::setGame(size_t pos)
+{
+	if (_listGames.size() > pos)
+		throw arc::Exception("setGame", "Invalid index for lib");
+	_posGame = pos;
+	setGame();
+}
+
+void arc::GameEvent::prevGraphic()
+{
+	if (_posGraphic == 0)
+		_posGraphic = _listGraphics.size() - 1;
+	else
+		_posGraphic--;
+	setGraphic();
+}
+
+void arc::GameEvent::nextGraphic()
+{
+	if (_posGraphic == _listGraphics.size() - 1)
+		_posGraphic = 0;
+	else
+		_posGraphic++;
+	setGraphic();
+}
+
+void arc::GameEvent::setGraphic()
+{
+	_reloadGraphic.first = _listGraphics[_posGraphic];
+	_reloadGraphic.second = true;
+}
+
+void arc::GameEvent::setGraphic(size_t pos)
+{
+	if (_listGraphics.size() > pos)
+		throw arc::Exception("setGraphic", "Invalid index for lib");
+	_posGraphic = pos;
+	setGraphic();
+}
+
 const std::vector <std::string> &arc::GameEvent::getListGames() const
 {
 	return _listGames;
@@ -38,58 +108,32 @@ const std::vector <std::string> &arc::GameEvent::getListGraphics() const
 	return _listGraphics;
 }
 
-const std::pair<std::string, bool> &arc::GameEvent::getReloadGame() const
-{
-	return _reloadGame;
-}
-
-void
-arc::GameEvent::setReloadGame(const std::pair<std::string, bool> &reloadGame)
-{
-	_reloadGame.first = reloadGame.first;
-	_reloadGame.second = reloadGame.second;
-}
-
-void arc::GameEvent::setReloadGame(const std::string &first, bool second)
-{
-	_reloadGame.first = first;
-	_reloadGame.second = second;
-}
-
-const std::pair<std::string, bool> &arc::GameEvent::getReloadGraphic() const
-{
-	return _reloadGraphic;
-}
-
-void arc::GameEvent::setReloadGraphic(
-	const std::pair<std::string, bool> &reloadGraphic)
-{
-	_reloadGraphic.first = reloadGraphic.first;
-	_reloadGraphic.second = reloadGraphic.second;
-}
-
-void arc::GameEvent::setReloadGraphic(const std::string &first, bool second)
-{
-	_reloadGraphic.first = first;
-	_reloadGraphic.second = second;
-}
-
 bool arc::GameEvent::isMenu() const
 {
-	return menu;
+	return _menu;
 }
 
 void arc::GameEvent::setMenu(bool menu)
 {
-	GameEvent::menu = menu;
+	GameEvent::_menu = menu;
 }
 
 bool arc::GameEvent::isExit() const
 {
-	return exit;
+	return _exit;
 }
 
 void arc::GameEvent::setExit(bool exit)
 {
-	GameEvent::exit = exit;
+	GameEvent::_exit = exit;
+}
+
+std::pair<std::string, bool> &arc::GameEvent::getReloadGame()
+{
+	return _reloadGame;
+}
+
+std::pair<std::string, bool> &arc::GameEvent::getReloadGraphic()
+{
+	return _reloadGraphic;
 }

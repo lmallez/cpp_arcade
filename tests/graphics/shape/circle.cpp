@@ -10,7 +10,7 @@
 #include "src/exception/Exception.hpp"
 #include "src/graphic/shape/ShapeCircle.hpp"
 
-Test(ShapeCircle_and_AShape, base_values)
+Test(ShapeCircle, base_values)
 {
 	arc::Texture t(arc::Color::White, arc::Color::Black);
 	arc::Texture t1(arc::Color::Black, arc::Color::White);

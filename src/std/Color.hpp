@@ -13,7 +13,7 @@
 namespace arc {
 
 	union uintVal {
-		uint64_t _all;
+		uint32_t _all;
 		uint8_t _part[4];
 	};
 
@@ -22,7 +22,7 @@ namespace arc {
 	public:
 		explicit Color(uint8_t = 0, uint8_t = 0, uint8_t = 0,
 			uint8_t = 255);
-		explicit Color(uint64_t);
+		explicit Color(uint32_t);
 		Color(const Color &);
 		uint8_t r() const;
 		uint8_t g() const;

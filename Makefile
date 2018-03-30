@@ -35,9 +35,33 @@ graphicals: cmake | $(LIB_DIR)
 	cp build/libGRAPHIC_SFML.so build/libGRAPHIC_Caca.so lib/
 
 TESTED_SRCS	= \
+		  src/core/corebuild/CoreBuild.cpp \
+		  src/core/corebuild/CoreClock.cpp \
+		  src/core/loader/GameLoader.cpp \
+		  src/core/loader/LibLoader.cpp \
+		  src/events/EventHandler.cpp \
+		  src/events/KeyEvent.cpp \
+		  src/events/MouseEvent.cpp \
 		  src/exception/Exception.cpp \
+		  src/graphic/AShapeLoader.cpp \
+		  src/graphic/libcaca/CacaGraphic.cpp \
+		  src/graphic/libcaca/CacaMainWindow.cpp \
+		  src/graphic/libcaca/CacaShape.cpp \
+		  src/graphic/libcaca/CacaShapeLoader.cpp \
+		  src/graphic/libcaca/draw/CacaShapeCircle.cpp \
+		  src/graphic/libcaca/draw/CacaShapeRect.cpp \
+		  src/graphic/libcaca/draw/CacaShapeText.cpp \
+		  src/graphic/sfml/SFGraphic.cpp \
+		  src/graphic/sfml/SFMainWindow.cpp \
+		  src/graphic/sfml/SFShape.cpp \
+		  src/graphic/sfml/SFShapeLoader.cpp \
+		  src/graphic/sfml/draw/SFShapeCircle.cpp \
+		  src/graphic/sfml/draw/SFShapeRect.cpp \
+		  src/graphic/sfml/draw/SFShapeText.cpp \
 		  src/graphic/shape/AShape.cpp \
 		  src/graphic/shape/ShapeCircle.cpp \
+		  src/graphic/shape/ShapeRect.cpp \
+		  src/graphic/shape/ShapeText.cpp \
 		  src/std/Color.cpp \
 		  src/std/Rect.cpp \
 		  src/std/Texture.cpp \
@@ -46,6 +70,8 @@ TESTED_SRCS	= \
 TESTS_SRCS	= \
 		  tests/exception.cpp \
 		  tests/graphics/shape/circle.cpp \
+		  tests/graphics/shape/rect.cpp \
+		  tests/graphics/shape/text.cpp \
 		  tests/std/color.cpp \
 		  tests/std/rectd.cpp \
 		  tests/std/rectf.cpp \
@@ -70,12 +96,13 @@ TESTED_GCDA	= $(patsubst %.cpp, %.gcda, $(TESTED_SRCS))
 TESTS_OBJS	= $(patsubst %.cpp, %.test.o, $(TESTS_SRCS))
 
 tests_run: $(TESTS_OBJS) $(TESTED_OBJS)
-	g++ $(TESTED_OBJS) $(TESTS_OBJS) -lcriterion --coverage -o $@
+	g++ $(TESTED_OBJS) $(TESTS_OBJS) -ldl -lcaca -lsfml-graphics -lsfml-window -lsfml-system -lcriterion --coverage -o $@
 	./$@
 
 tests:	tests_run
-	./tests_run
+	./$<
 	lcov -d src/ -c -o arcade.lcov
+	lcov -r arcade.lcov '/usr/include/*' -o arcade.lcov
 	genhtml arcade.lcov -o www
 	surf www/index.html &
 

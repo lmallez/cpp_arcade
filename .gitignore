@@ -39,3 +39,11 @@ arcade
 .*.vim
 build/
 doc/latex
+
+# tests
+tests_run
+www/
+*.lcov
+*.gcda
+*.gcno
+

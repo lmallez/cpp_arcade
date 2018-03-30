@@ -30,6 +30,7 @@ const arc::IShapeLoader &arc::CacaGraphic::getShapeLoader() const
 
 void arc::CacaGraphic::catchEvent(arc::EventHandler &handler)
 {
+	arc::CacaMainWindow::getInstance();
 }
 
 void arc::CacaGraphic::close()

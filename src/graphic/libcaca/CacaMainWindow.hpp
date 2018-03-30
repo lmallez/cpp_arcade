@@ -24,6 +24,7 @@ namespace arc
 		void close();
 	private:
 		explicit CacaMainWindow(VertexI = {400, 400});
+		void pollEvent(arc::EventHandler &);
 		std::unique_ptr<caca_canvas_t,
 			int (*)(caca_canvas_t*)> _canvas;
 		std::unique_ptr<caca_display_t,

@@ -61,3 +61,21 @@ void arc::CacaMainWindow::display()
 	caca_clear_canvas(_canvas.get());
 }
 
+void arc::CacaMainWindow::pollEvent(arc::EventHandler &eventHandler)
+{
+	caca_event_type evtType;
+	caca_event_t evt;
+
+	while (caca_get_event(_window.get(), CACA_EVENT_ANY, &evt, 14000)) {
+		evtType = caca_get_event_type(&evt);
+		switch (evtType) {
+		case CACA_EVENT_KEY_PRESS:
+			caca_get_event_key_ch(&evt);
+			break;
+		case CACA_EVENT_KEY_RELEASE:
+			break;
+		default:
+			break;
+		}
+	}
+}

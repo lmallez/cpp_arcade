@@ -7,13 +7,12 @@
 
 #include "SnakeGame.hpp"
 
-std::unique_ptr<arc::IGame> &arc::SnakeGame::getInstance()
+arc::IGame & arc::SnakeGame::getInstance()
 {
-	static std::unique_ptr<arc::IGame> instance = nullptr;
-
+	static arc::IGame *instance = nullptr;
 	if (instance == nullptr)
-		instance.reset(new SnakeGame());
-	return instance;
+		instance = new SnakeGame();
+	return *instance;
 }
 
 std::shared_ptr<arc::IShape> arc::SnakeGame::start()

@@ -9,11 +9,14 @@
 
 arc::IGame &arc::BasicGame::getInstance()
 {
-	static arc::IGame *instance = nullptr;
+	if (!_instance)
+		_instance = (new BasicGame());
+	return *_instance;
+}
 
-	if (!instance)
-		instance = (new BasicGame());
-	return *instance;
+void arc::BasicGame::freeInstance()
+{
+	_instance = nullptr;
 }
 
 arc::BasicGame::BasicGame():
@@ -54,3 +57,4 @@ std::shared_ptr<arc::IShape> arc::BasicGame::update(EventHandler &event)
 	s1->addChild(s5);
 	return s1;
 }
+arc::IGame *arc::BasicGame::_instance = nullptr;

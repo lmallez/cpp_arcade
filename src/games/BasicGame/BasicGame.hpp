@@ -17,11 +17,12 @@
 namespace arc {
 	class BasicGame : public virtual IGame, protected SystemGame {
 	public:
-		static IGame & getInstance();
+		static IGame &getInstance();
+		static void freeInstance();
 		std::shared_ptr<IShape> start() override;
 		std::shared_ptr<IShape> update(EventHandler &event) override;
-
 	private:
+		static arc::IGame *_instance;
 		BasicGame();
 		RectF playerPos;
 		size_t frame = 0;

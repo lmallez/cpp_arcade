@@ -26,13 +26,13 @@ namespace arc {
 	class MainMenu : virtual public IGame, public SystemGame {
 		typedef void (arc::MainMenu::*MainMenuEvent_t)(arc::EventHandler &event);
 	public:
-		static IGame & getInstance();
+		static IGame &getInstance();
+		~MainMenu() = default;
 		std::shared_ptr<IShape> start() override;
 		std::shared_ptr<IShape> update(EventHandler &event) override;
 
 	private:
 		MainMenu();
-		~MainMenu() = default;
 		std::unordered_map<KeyEvent::Key, std::pair<KeyEvent::Status, MainMenuEvent_t>> _keyEvent;
 		void assignKey(arc::KeyEvent::Key, arc::KeyEvent::Status status, MainMenuEvent_t);
 		void execKey(arc::EventHandler &event);

@@ -10,7 +10,7 @@
 #include "../IGame.hpp"
 #include "SnakeGame.hpp"
 
-extern "C" arc::IGame & getIGame()
+extern "C" arc::IGame &getIGame()
 {
 	return arc::SnakeGame::getInstance();
 }

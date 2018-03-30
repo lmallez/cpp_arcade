@@ -34,7 +34,6 @@ bool arc::GameLoader::load(const std::string &libName)
 
 bool arc::GameLoader::unload()
 {
-	std::cout << "Closing: " << _libName << std::endl;
 	if (_sym == nullptr)
 		return false;
 	dlclose(_sym);
@@ -44,7 +43,7 @@ bool arc::GameLoader::unload()
 	return true;
 }
 
-arc::IGame & arc::GameLoader::getIGame()
+arc::IGame &arc::GameLoader::getIGame()
 {
 	if (_getIGame == nullptr)
 		_getIGame = (arc::IGame &(*)())

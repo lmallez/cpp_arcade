@@ -124,7 +124,8 @@ arc::SFMainWindow::_tranformMousePos(const sf::Vector2i &mPos) const
 
 void arc::SFMainWindow::pollEvent(EventHandler &evtHandler)
 {
-    sf::Event evt;
+	sf::Event evt;
+	evtHandler.keyEvent().makeOld();
 	while (_window->pollEvent(evt)) {
 		switch (evt.type) {
 		case sf::Event::KeyPressed:
@@ -132,13 +133,12 @@ void arc::SFMainWindow::pollEvent(EventHandler &evtHandler)
 			break;
 		case sf::Event::KeyReleased:
 			evtHandler.keyEvent().setKeyReleased
-				(_keyMap[evt.key
-					.code]);
+				(_keyMap[evt.key.code]);
 			break;
 		case sf::Event::MouseMoved:
 			evtHandler.mouseEvent()
 				.setPos(_tranformMousePos(sf::Mouse::
-							  getPosition()));
+				getPosition()));
 		case sf::Event::MouseButtonPressed:
 			evtHandler.mouseEvent().setButtonPressed
 				(_mouseMap[evt.mouseButton.button]);

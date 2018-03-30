@@ -21,6 +21,7 @@ bool arc::GameLoader::operator!() const
 
 bool arc::GameLoader::load(const std::string &libName)
 {
+	std::cout << "LOADING: " << libName << std::endl;
 	_libName = libName;
 
 	_sym = dlopen(libName.c_str(), RTLD_LAZY);
@@ -33,6 +34,7 @@ bool arc::GameLoader::load(const std::string &libName)
 
 bool arc::GameLoader::unload()
 {
+	std::cout << "Closing: " << _libName << std::endl;
 	if (_sym == nullptr)
 		return false;
 	dlclose(_sym);
@@ -42,10 +44,12 @@ bool arc::GameLoader::unload()
 	return true;
 }
 
-std::unique_ptr<arc::IGame> &arc::GameLoader::getIGame()
+arc::IGame & arc::GameLoader::getIGame()
 {
 	if (_getIGame == nullptr)
-		_getIGame = (std::unique_ptr<arc::IGame> &(*)())
+		_getIGame = (arc::IGame &(*)())
 			dlsym(_sym, "getIGame");
+	if (_getIGame == nullptr)
+		throw arc::Exception("run", "Invalid Game library");
 	return _getIGame();
 }

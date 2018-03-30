@@ -17,10 +17,11 @@ namespace arc
 	class Texture
 	{
 	public:
-		explicit Texture() = default;
 		explicit Texture(const std::string &);
-		explicit Texture(const arc::Color &fill,
-			const arc::Color &line = arc::Color());
+		explicit Texture(
+			const arc::Color &line = arc::Color::Transparent,
+			const arc::Color &fill = arc::Color::Transparent
+		);
 		Texture(const arc::Texture &);
 		arc::Texture &operator=(const arc::Texture &);
 		std::string getFilePath() const;

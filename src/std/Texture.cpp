@@ -12,7 +12,7 @@ arc::Texture::Texture(const std::string &filePath) :
 {
 }
 
-arc::Texture::Texture(const arc::Color &bg, const arc::Color &line):
+arc::Texture::Texture(const arc::Color &line, const arc::Color &bg) :
 	_backgroundColor(bg), _lineColor(line), _filePath("")
 {
 }

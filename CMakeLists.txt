@@ -23,11 +23,17 @@ set(
         src/games/IGame.hpp
         src/events/EventHandler.cpp
         src/events/EventHandler.hpp
+        src/std/DirectoryReader.cpp
+        src/std/DirectoryReader.hpp
         src/events/KeyEvent.cpp
         src/events/KeyEvent.hpp
         src/events/MouseEvent.cpp
         src/events/MouseEvent.hpp
-)
+        src/events/GameEvent.cpp
+        src/events/GameEvent.cpp
+        src/events/GameEvent.hpp
+        src/games/SystemGame.cpp
+        src/games/SystemGame.hpp)
 
 set(
         SHAPE_FILES
@@ -43,7 +49,15 @@ set(
         src/graphic/shape/ShapeText.hpp
         src/graphic/AShapeLoader.cpp
         src/graphic/AShapeLoader.hpp
-)
+        src/graphic/shape/ShapeContainer.cpp
+        src/graphic/shape/ShapeContainer.hpp)
+
+### MENU ###
+
+set(
+        MENU
+        src/games/Menu/MainMenu.cpp
+        src/games/Menu/MainMenu.hpp)
 
 ### GRAPHICS LIBS ###
 
@@ -91,11 +105,11 @@ add_library(GRAPHIC_Caca SHARED ${GRAPHIC_Caca} ${STD_FILES} ${SHAPE_FILES}
         src/graphic/libcaca/extern.cpp)
 target_link_libraries(GRAPHIC_Caca caca)
 
-set(
-        GRAPHIC_GLU)
-
-add_library(GRAPHIC_GLU SHARED ${GRAPHIC_GLU} ${STD_FILES} ${SHAPE_FILES})
-target_link_libraries(GRAPHIC_GLU GLU GL)
+#set(
+#        GRAPHIC_GLU)
+#
+#add_library(GRAPHIC_GLU SHARED ${GRAPHIC_GLU} ${STD_FILES} ${SHAPE_FILES})
+#target_link_libraries(GRAPHIC_GLU GLU GL)
 
 ### GAMES LIBS ###
 
@@ -105,8 +119,16 @@ set(
         src/games/BasicGame/BasicGame.hpp
 )
 
-add_library(GAME_BasicGame SHARED ${GAME_BASICGAME} ${STD_FILES} ${SHAPE_FILES}
+add_library(GAME_BasicGame SHARED ${GAME_BASICGAME} ${GAME_MODULE} ${STD_FILES} ${SHAPE_FILES}
         src/games/BasicGame/extern.cpp)
+
+set(
+        GAME_SNAKE
+        src/games/Snake/SnakeGame.cpp
+        src/games/Snake/SnakeGame.hpp)
+
+add_library(GAME_SNAKE SHARED ${GAME_SNAKE} ${GAME_MODULE} ${STD_FILES} ${SHAPE_FILES}
+        src/games/Snake/extern.cpp)
 
 ### CORE BUILD ###
 
@@ -132,6 +154,7 @@ add_executable(
         ${CORE}
         ${STD_FILES}
         ${SHAPE_FILES}
+        ${MENU}
 )
 
 target_link_libraries(arcade dl)
@@ -143,24 +166,24 @@ add_executable(
         ${GRAPHIC_SFML}
         ${SHAPE_FILES}
         ${STD_FILES}
-        tests/test_sfml_shape.cpp
+        tests/mainTests/test_sfml_shape.cpp
 )
 target_link_libraries(test_sfml_shape sfml-graphics sfml-window sfml-system)
 
 add_executable(
         test_basic_game ${STD_FILES} ${SHAPE_FILES} ${GAME_BASICGAME} ${GRAPHIC_SFML}
-        tests/test_basic_game.cpp
+        tests/mainTests/test_basic_game.cpp
 )
 target_link_libraries(test_basic_game sfml-graphics sfml-window sfml-system)
 
 add_executable(
         test_basic_loader_graphic ${STD_FILES} ${SHAPE_FILES} ${GAME_BASICGAME} ${CORE}
-        tests/test_basic_loader_graphic.cpp
+        tests/mainTests/test_basic_loader_graphic.cpp
 )
 target_link_libraries(test_basic_loader_graphic dl)
 
 add_executable(
         test_basic_loader_game ${STD_FILES} ${SHAPE_FILES} ${CORE} ${GRAPHIC_SFML}
-        tests/tests_basic_loader_game.cpp
+        tests/mainTests/tests_basic_loader_game.cpp
 )
 target_link_libraries(test_basic_loader_game dl sfml-graphics sfml-window sfml-system)

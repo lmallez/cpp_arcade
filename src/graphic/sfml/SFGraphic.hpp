@@ -18,7 +18,7 @@
 namespace arc {
 	class SFGraphic : public virtual IGraphic {
 	public:
-		static std::unique_ptr<IGraphic> &getInstance();
+		static IGraphic & getInstance();
 		void display() const;
 
 		virtual const IShapeLoader & getShapeLoader() const override;

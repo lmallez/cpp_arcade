@@ -12,7 +12,7 @@
 
 extern sf::Font consolasFont;
 
-std::unique_ptr<arc::IGraphic> &arc::SFGraphic::getInstance()
+arc::IGraphic & arc::SFGraphic::getInstance()
 {
 	static std::unique_ptr<arc::IGraphic> instance = nullptr;
 
@@ -20,7 +20,7 @@ std::unique_ptr<arc::IGraphic> &arc::SFGraphic::getInstance()
 		consolasFont.loadFromFile("../assets/Consolas.ttf");
 		instance.reset(new SFGraphic());
 	}
-	return instance;
+	return *instance;
 }
 
 void arc::SFGraphic::display() const

@@ -8,9 +8,9 @@
 #include <dlfcn.h>
 #include <memory>
 #include "../IGame.hpp"
-#include "BasicGame.hpp"
+#include "SnakeGame.hpp"
 
 extern "C" arc::IGame & getIGame()
 {
-	return arc::BasicGame::getInstance();
+	return arc::SnakeGame::getInstance();
 }

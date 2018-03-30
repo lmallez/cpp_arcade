@@ -10,16 +10,21 @@
 
 #include "KeyEvent.hpp"
 #include "MouseEvent.hpp"
+#include "GameEvent.hpp"
 
 namespace arc {
 	class EventHandler {
 	public:
-		EventHandler() = default;
+		explicit EventHandler(
+			const std::string &graphic = "",
+			const std::string &game = "");
 		KeyEvent &keyEvent();
 		MouseEvent &mouseEvent();
+		GameEvent &gameEvent();
 	private:
 		KeyEvent _keyEvent;
 		MouseEvent _mouseEvent;
+		GameEvent _gameEvent;
 	};
 }
 

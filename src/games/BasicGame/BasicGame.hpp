@@ -8,18 +8,18 @@
 #ifndef CPP_ARCADE_BASICGAME_HPP
 #define CPP_ARCADE_BASICGAME_HPP
 
+#include "src/games/SystemGame.hpp"
 #include "src/graphic/shape/ShapeCircle.hpp"
 #include "src/graphic/shape/ShapeText.hpp"
 #include "src/graphic/shape/ShapeRect.hpp"
 #include "../IGame.hpp"
 
 namespace arc {
-	class BasicGame : public virtual IGame {
+	class BasicGame : public virtual IGame, protected SystemGame {
 	public:
-		static std::unique_ptr<IGame> &getInstance();
-		virtual std::shared_ptr<IShape> start() override;
-		virtual std::shared_ptr<IShape> update(
-			EventHandler &event) override;
+		static IGame & getInstance();
+		std::shared_ptr<IShape> start() override;
+		std::shared_ptr<IShape> update(EventHandler &event) override;
 
 	private:
 		BasicGame();

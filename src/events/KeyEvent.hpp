@@ -19,6 +19,12 @@ namespace arc
 	class KeyEvent
 	{
 	public:
+		enum Status {
+			PRESSED,
+			RELEASED,
+			JUSTPRESSED,
+			JUSTRELEASED
+		};
 		enum Key {
 			UNKNOWN = -1,
 			A = 0,
@@ -42,9 +48,10 @@ namespace arc
 		void setKeyPressed(Key);
 		void setKeyState(Key, bool isPressed);
 		void setKeyReleased(Key);
-		void listenKey(Key);
+
 		bool isKeyjustPressed(Key);
 		bool isKeyjustReleased(Key);
+		void makeOld();
 	private:
 		bool _btns[KEY_NUMBER];
 		bool _oldSts[KEY_NUMBER];

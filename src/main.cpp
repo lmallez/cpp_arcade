@@ -9,10 +9,9 @@
 
 int main(int ac, char **av)
 {
-	if (ac < 3)
+	if (ac < 2)
 		return 84;
-	arc::CoreBuild core(av[1], av[2]);
-
+	arc::CoreBuild core(av[1], ac > 2 ? av[2] : "");
 	try {
 		core.run();
 	}  catch (arc::Exception &e) {

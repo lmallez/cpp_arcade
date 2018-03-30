@@ -10,10 +10,10 @@
 
 arc::IGraphic & arc::CacaGraphic::getInstance()
 {
-	static std::unique_ptr<arc::IGraphic> instance = nullptr;
+	static arc::IGraphic *instance = nullptr;
 
 	if (!instance) {
-		instance.reset(new CacaGraphic());
+		instance = new CacaGraphic();
 	}
 	return *instance;
 }

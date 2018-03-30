@@ -159,6 +159,7 @@ void arc::CacaMainWindow::pollEvent(arc::EventHandler &evtHandler)
 			break;
 		case CACA_EVENT_KEY_RELEASE:
 			evtHandler.keyEvent().setKeyReleased(_keyMapUTF[caca_get_event_key_utf32(&evt)]);
+			evtHandler.keyEvent().setKeyReleased(_keyMapCH[caca_get_event_key_ch(&evt)]);
 			break;
 		default:
 			break;

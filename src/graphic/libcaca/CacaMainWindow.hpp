@@ -26,14 +26,11 @@ namespace arc
 
 	private:
 		explicit CacaMainWindow(VertexI = {400, 400});
-		std::unique_ptr<caca_canvas_t,
-			int (*)(caca_canvas_t*)> _canvas;
-		std::unique_ptr<caca_display_t,
-			int (*)(caca_display_t*)> _window;
+		std::unique_ptr<caca_canvas_t, int (*)(caca_canvas_t*)> _canvas;
+		std::unique_ptr<caca_display_t, int (*)(caca_display_t*)> _window;
 		static std::unordered_map<char, arc::KeyEvent::Key> _keyMapUTF;
 		static std::unordered_map<char, arc::KeyEvent::Key> _keyMapCH;
 	};
 }
 
-#endif //CPP_ARCADE_CACAMAINWINDOW_HPP
-
+#endif //CPP_ARCADE_CACAMAINWINDOW_HPP(

@@ -16,7 +16,7 @@
 namespace arc {
 	class SnakeGame : public virtual IGame {
 	public:
-		static std::unique_ptr<IGame> &getInstance();
+		static IGame & getInstance();
 		virtual std::shared_ptr<IShape> start() override;
 		virtual std::shared_ptr<IShape> update(
 			EventHandler &event) override;

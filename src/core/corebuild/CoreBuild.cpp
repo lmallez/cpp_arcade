@@ -74,7 +74,6 @@ bool arc::CoreBuild::_checkEvent(arc::GameEvent &event)
 
 void arc::CoreBuild::start()
 {
-	std::cout << "caca" <<std::endl;
 	_loaderGame.getIGame().start()->convert(_loaderGraphic.getIGraphic().getShapeLoader())->draw();
 	_loaderGraphic.getIGraphic().display();
 }

@@ -11,10 +11,9 @@
 
 arc::IGame &arc::MainMenu::getInstance()
 {
-	static std::unique_ptr<arc::IGame> instance = nullptr;
-
+	static arc::IGame *instance = nullptr;
 	if (instance == nullptr)
-		instance.reset(new MainMenu());
+		instance = new MainMenu();
 	return *instance;
 }
 

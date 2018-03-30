@@ -52,6 +52,7 @@ namespace arc
 		bool isKeyjustPressed(Key);
 		bool isKeyjustReleased(Key);
 		void makeOld();
+
 	private:
 		bool _btns[KEY_NUMBER];
 		bool _oldSts[KEY_NUMBER];

@@ -44,10 +44,12 @@ bool arc::GameLoader::unload()
 	return true;
 }
 
-std::unique_ptr<arc::IGame> &arc::GameLoader::getIGame()
+arc::IGame & arc::GameLoader::getIGame()
 {
 	if (_getIGame == nullptr)
-		_getIGame = (std::unique_ptr<arc::IGame> &(*)())
+		_getIGame = (arc::IGame &(*)())
 			dlsym(_sym, "getIGame");
+	if (_getIGame == nullptr)
+		throw arc::Exception("run", "Invalid Game library");
 	return _getIGame();
 }

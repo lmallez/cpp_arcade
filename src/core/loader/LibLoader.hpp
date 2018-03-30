@@ -23,12 +23,12 @@ namespace arc
 		bool operator!() const;
 		bool load(const std::string &);
 		bool unload();
-		std::unique_ptr<arc::IGraphic> &getIGraphic();
+		IGraphic & getIGraphic();
 
 	private:
 		std::string _libName;
 		void *_sym;
-		std::unique_ptr<arc::IGraphic> &(*_getIGraphic)();
+		arc::IGraphic &(*_getIGraphic)();
 	};
 
 }

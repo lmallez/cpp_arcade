@@ -23,7 +23,7 @@ arc::CoreBuild::~CoreBuild()
 bool arc::CoreBuild::setGraphic(const std::string &name)
 {
 	if (!!_loaderGraphic) {
-		_loaderGraphic.getIGraphic()->close();
+		_loaderGraphic.getIGraphic().close();
 		_loaderGraphic.unload();
 	}
 	return _loaderGraphic.load(name);
@@ -74,26 +74,23 @@ bool arc::CoreBuild::_checkEvent(arc::GameEvent &event)
 
 void arc::CoreBuild::start()
 {
-	if (!_loaderGame.getIGame() || !_loaderGraphic.getIGraphic())
-		throw arc::Exception("run", "Invalid Game or Graphic");
-	_loaderGame.getIGame()->start()->convert(_loaderGraphic.getIGraphic()->getShapeLoader())->draw();
-	_loaderGraphic.getIGraphic()->display();
+	std::cout << "caca" <<std::endl;
+	_loaderGame.getIGame().start()->convert(_loaderGraphic.getIGraphic().getShapeLoader())->draw();
+	_loaderGraphic.getIGraphic().display();
 }
 
 void arc::CoreBuild::update()
 {
-	if (!_loaderGame.getIGame() || !_loaderGraphic.getIGraphic())
-		throw arc::Exception("run", "Invalid Game or Graphic");
-	_loaderGame.getIGame()->update(_event)->convert(_loaderGraphic.getIGraphic()->getShapeLoader())->draw();
-	_loaderGraphic.getIGraphic()->display();
-	_loaderGraphic.getIGraphic()->catchEvent(_event);
+	_loaderGame.getIGame().update(_event)->convert(_loaderGraphic.getIGraphic().getShapeLoader())->draw();
+	_loaderGraphic.getIGraphic().display();
+	_loaderGraphic.getIGraphic().catchEvent(_event);
 }
 
 void arc::CoreBuild::menu()
 {
-	arc::MainMenu::getInstance()->update(_event)->convert(_loaderGraphic.getIGraphic()->getShapeLoader())->draw();
-	_loaderGraphic.getIGraphic()->display();
-	_loaderGraphic.getIGraphic()->catchEvent(_event);
+	arc::MainMenu::getInstance().update(_event)->convert(_loaderGraphic.getIGraphic().getShapeLoader())->draw();
+	_loaderGraphic.getIGraphic().display();
+	_loaderGraphic.getIGraphic().catchEvent(_event);
 }
 
 void arc::CoreBuild::run()
@@ -103,4 +100,6 @@ void arc::CoreBuild::run()
 		_menu ? menu() : update();
 		_clock.waitTime();
 	}
+	_loaderGame.unload();
+	_loaderGraphic.unload();
 }

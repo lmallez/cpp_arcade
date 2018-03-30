@@ -26,7 +26,7 @@ namespace arc {
 	class MainMenu : virtual public IGame, public SystemGame {
 		typedef void (arc::MainMenu::*MainMenuEvent_t)(arc::EventHandler &event);
 	public:
-		static std::unique_ptr<IGame> &getInstance();
+		static IGame & getInstance();
 		std::shared_ptr<IShape> start() override;
 		std::shared_ptr<IShape> update(EventHandler &event) override;
 

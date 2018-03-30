@@ -8,14 +8,14 @@
 #include "CacaGraphic.hpp"
 #include "CacaMainWindow.hpp"
 
-std::unique_ptr<arc::IGraphic> &arc::CacaGraphic::getInstance()
+arc::IGraphic & arc::CacaGraphic::getInstance()
 {
 	static std::unique_ptr<arc::IGraphic> instance = nullptr;
 
 	if (!instance) {
 		instance.reset(new CacaGraphic());
 	}
-	return instance;
+	return *instance;
 }
 
 void arc::CacaGraphic::display() const

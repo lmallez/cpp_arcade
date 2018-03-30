@@ -9,13 +9,13 @@
 #include <src/graphic/shape/ShapeContainer.hpp>
 #include "MainMenu.hpp"
 
-std::unique_ptr<arc::IGame> &arc::MainMenu::getInstance()
+arc::IGame &arc::MainMenu::getInstance()
 {
 	static std::unique_ptr<arc::IGame> instance = nullptr;
 
 	if (instance == nullptr)
 		instance.reset(new MainMenu());
-	return instance;
+	return *instance;
 }
 
 arc::MainMenu::MainMenu():

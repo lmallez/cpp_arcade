@@ -9,7 +9,7 @@
 #include "CacaGraphic.hpp"
 #include "../IGraphic.hpp"
 
-extern "C" std::unique_ptr<arc::IGraphic> &getIGraphic()
+extern "C" arc::IGraphic &getIGraphic()
 {
 	return arc::CacaGraphic::getInstance();
 }

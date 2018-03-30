@@ -44,12 +44,12 @@ bool arc::LibLoader::unload()
 	return true;
 }
 
-std::unique_ptr<arc::IGraphic> &arc::LibLoader::getIGraphic()
+arc::IGraphic & arc::LibLoader::getIGraphic()
 {
-	std::unique_ptr<arc::IGraphic> graph = nullptr;
-
 	if (_getIGraphic == nullptr)
-		_getIGraphic = (std::unique_ptr<arc::IGraphic> &(*)())
+		_getIGraphic = (arc::IGraphic &(*)())
 			dlsym(_sym, "getIGraphic");
+	if (_getIGraphic == nullptr)
+		throw arc::Exception("run", "Invalid Graphic library");
 	return _getIGraphic();
 }

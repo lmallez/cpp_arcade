@@ -7,13 +7,13 @@
 
 #include "BasicGame.hpp"
 
-std::unique_ptr<arc::IGame> &arc::BasicGame::getInstance()
+arc::IGame &arc::BasicGame::getInstance()
 {
-	static std::unique_ptr<arc::IGame> instance = nullptr;
+	static arc::IGame *instance = nullptr;
 
 	if (!instance)
-		instance.reset(new BasicGame());
-	return instance;
+		instance = (new BasicGame());
+	return *instance;
 }
 
 arc::BasicGame::BasicGame():
@@ -26,8 +26,8 @@ std::shared_ptr<arc::IShape> arc::BasicGame::start()
 	arc::Texture basic(arc::Color::Red, arc::Color::Blue);
 
 	std::shared_ptr s1 = std::make_shared<arc::ShapeCircle>(nullptr, basic, playerPos);
-	std::shared_ptr s2 = std::make_shared<arc::ShapeCircle>(s1, basic, playerPos);
-	s1->addChild(s2);
+	/*std::shared_ptr s2 = std::make_shared<arc::ShapeCircle>(s1, basic, playerPos);
+	s1->addChild(s2);*/
 	frame = 0;
 	return s1;
 }

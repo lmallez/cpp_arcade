@@ -10,7 +10,7 @@
 #include "../IGame.hpp"
 #include "BasicGame.hpp"
 
-extern "C" std::unique_ptr<arc::IGame> &getIGame()
+extern "C" arc::IGame & getIGame()
 {
 	return arc::BasicGame::getInstance();
 }

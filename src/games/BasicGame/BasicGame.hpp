@@ -18,9 +18,8 @@ namespace arc {
 	class BasicGame : public virtual IGame, protected SystemGame {
 	public:
 		static std::unique_ptr<IGame> &getInstance();
-		virtual std::shared_ptr<IShape> start() override;
-		virtual std::shared_ptr<IShape> update(
-			EventHandler &event) override;
+		std::shared_ptr<IShape> start() override;
+		std::shared_ptr<IShape> update(EventHandler &event) override;
 
 	private:
 		BasicGame();

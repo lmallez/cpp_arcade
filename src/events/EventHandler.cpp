@@ -7,6 +7,13 @@
 
 #include "EventHandler.hpp"
 
+arc::EventHandler::EventHandler(
+	const std::string &graphic,
+	const std::string &game):
+	_gameEvent(graphic, game)
+{
+}
+
 arc::KeyEvent &arc::EventHandler::keyEvent()
 {
 	return _keyEvent;

@@ -9,15 +9,20 @@
 #include "src/std/DirectoryReader.hpp"
 #include "GameEvent.hpp"
 
-arc::GameEvent::GameEvent()
+arc::GameEvent::GameEvent(const std::string &graphic, const std::string &game)
 {
 	loadListGraphics();
 	loadListGames();
 	setGraphic();
 	setGame();
-	_reloadGraphic.second = false;
-	_menu = true;
-	_exit = false;
+
+	_posGraphic = graphic.empty() ? 0 : _listGraphics.size();
+	_reloadGraphic.second = graphic.empty();
+	_exit = graphic.empty();
+
+	_posGraphic = game.empty() ? 0 : _listGames.size();
+	_reloadGame.second = game.empty();
+	_menu = game.empty();
 }
 
 std::vector<std::string> arc::GameEvent::loadListGames()
@@ -60,8 +65,10 @@ void arc::GameEvent::setGame()
 
 void arc::GameEvent::setGame(size_t pos)
 {
-	if (_listGames.size() > pos)
+	std::cout << "load game : " << pos << std::endl;
+	if (_listGames.size() <= pos)
 		throw arc::Exception("setGame", "Invalid index for lib");
+	std::cout << "load game : " << pos << " <=> " << _listGames[pos] << std::endl;
 	_posGame = pos;
 	setGame();
 }
@@ -92,8 +99,9 @@ void arc::GameEvent::setGraphic()
 
 void arc::GameEvent::setGraphic(size_t pos)
 {
-	if (_listGraphics.size() > pos)
+	if (_listGraphics.size() <= pos)
 		throw arc::Exception("setGraphic", "Invalid index for lib");
+	std::cout << "load graphic : " << pos << " <=> " << _listGraphics[pos] << std::endl;
 	_posGraphic = pos;
 	setGraphic();
 }
@@ -136,4 +144,14 @@ std::pair<std::string, bool> &arc::GameEvent::getReloadGame()
 std::pair<std::string, bool> &arc::GameEvent::getReloadGraphic()
 {
 	return _reloadGraphic;
+}
+
+size_t arc::GameEvent::getPosGame() const
+{
+	return _posGame;
+}
+
+size_t arc::GameEvent::getPosGraphic() const
+{
+	return _posGraphic;
 }

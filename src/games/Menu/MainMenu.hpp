@@ -11,6 +11,7 @@
 #include <vector>
 #include <dirent.h>
 #include <map>
+#include "src/games/SystemGame.hpp"
 #include "src/games/IGame.hpp"
 #include "src/graphic/shape/ShapeCircle.hpp"
 #include "src/graphic/shape/ShapeText.hpp"
@@ -22,37 +23,32 @@
 #define TEXT_PADDING 0.2
 
 namespace arc {
-	class MainMenu : virtual public IGame {
+	class MainMenu : virtual public IGame, public SystemGame {
+		typedef void (arc::MainMenu::*MainMenuEvent_t)(arc::EventHandler &event);
 	public:
 		static std::unique_ptr<IGame> &getInstance();
-		virtual std::shared_ptr<IShape> start() override;
-		virtual std::shared_ptr<IShape> update(
-			EventHandler &event) override;
+		std::shared_ptr<IShape> start() override;
+		std::shared_ptr<IShape> update(EventHandler &event) override;
 
 	private:
 		MainMenu();
-		typedef void (arc::MainMenu::*aled_t)(arc::EventHandler &);
-		std::map<arc::KeyEvent::Key, aled_t> _keyEvent;
-		void assignKey(arc::KeyEvent::Key, aled_t);
+		~MainMenu() = default;
+		std::unordered_map<KeyEvent::Key, std::pair<KeyEvent::Status, MainMenuEvent_t>> _keyEvent;
+		void assignKey(arc::KeyEvent::Key, arc::KeyEvent::Status status, MainMenuEvent_t);
 		void execKey(arc::EventHandler &event);
-		void execKey(arc::EventHandler &event, arc::KeyEvent::Key);
+		void execKey(arc::EventHandler &event, arc::KeyEvent::Key key);
 
-		std::shared_ptr<IShape> _displayListGraphic(const arc::RectF &pos);
-		std::shared_ptr<IShape> _displayListGame(const arc::RectF &pos);
+		std::shared_ptr<arc::IShape> _startButton;
+		std::shared_ptr<arc::IShape> _displayStartButton(EventHandler &event);
+		std::shared_ptr<arc::IShape> _displayListGraphic(EventHandler &event, const arc::RectF &pos);
+		std::shared_ptr<arc::IShape> _displayListGame(EventHandler &event, const arc::RectF &pos);
+		arc::Texture _getListTexture(size_t pos, size_t selected, size_t col);
 
 		arc::VertexS _userPos = arc::VertexS(0, 0);
-
-		size_t _selectGraphic = 1;
-		size_t _selectGame = 1;
-		std::vector<std::string> _initListGraphic();
-		std::vector<std::string> _initListGame();
-		std::vector<std::string> _listGraphic;
-		std::vector<std::string> _listGame;
-
-		void _moveCol(arc::EventHandler &event);
-		void _moveLineUp(arc::EventHandler &event);
-		void _moveLineDown(arc::EventHandler &event);
-		void _selectWord(arc::EventHandler &event);
+		void _pressedStart(EventHandler &event);
+		void _moveCol(EventHandler &event);
+		void _moveUp(EventHandler &event);
+		void _moveDown(EventHandler &event);
 	};
 }
 

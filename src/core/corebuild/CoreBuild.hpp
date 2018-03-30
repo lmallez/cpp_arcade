@@ -18,8 +18,9 @@
 namespace arc {
 	class CoreBuild {
 	public:
-		CoreBuild(const std::string &lib = "",
+		explicit CoreBuild(const std::string &lib,
 			const std::string &game = "");
+		~CoreBuild();
 		bool setGraphic(const std::string &name);
 		void setGraphic();
 		bool setGame(const std::string &name);

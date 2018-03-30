@@ -22,7 +22,7 @@ int main(int ac, char **av)
 
 	const std::unique_ptr<arc::IGame> &game = arc::BasicGame::getInstance();
 
-	auto oskour = arc::EventHandler();
+	auto oskour = arc::EventHandler(<#initializer#>, <#initializer#>);
 
 	game->start()->convert(shapeLoader)->draw();
 	graphicLib->display();

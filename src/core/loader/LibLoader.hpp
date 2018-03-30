@@ -21,11 +21,8 @@ namespace arc
 		explicit LibLoader(const std::string & = "");
 
 		bool operator!() const;
-
 		bool load(const std::string &);
-
 		bool unload();
-
 		std::unique_ptr<arc::IGraphic> &getIGraphic();
 
 	private:

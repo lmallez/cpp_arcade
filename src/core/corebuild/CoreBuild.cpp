@@ -5,18 +5,27 @@
 // CoreLoader.cpp
 //
 
-#include <src/games/Menu/MainMenu.hpp>
+#include "src/games/Menu/MainMenu.hpp"
 #include "CoreBuild.hpp"
 
 arc::CoreBuild::CoreBuild(const std::string &lib, const std::string &game):
-	_clock(CLOCK_TIME), _menu(true)
+	_menu(true), _event(lib, game), _clock(CLOCK_TIME)
 {
 	setGraphic(lib);
+	if (!game.empty())
+		setGame(game);
+}
+
+arc::CoreBuild::~CoreBuild()
+{
 }
 
 bool arc::CoreBuild::setGraphic(const std::string &name)
 {
-	_loaderGraphic.unload();
+	if (!!_loaderGraphic) {
+		_loaderGraphic.getIGraphic()->close();
+		_loaderGraphic.unload();
+	}
 	return _loaderGraphic.load(name);
 }
 
@@ -24,7 +33,9 @@ bool arc::CoreBuild::setGame(const std::string &name)
 {
 	bool status;
 
-	_loaderGame.unload();
+	if (!!_loaderGame) {
+		_loaderGame.unload();
+	}
 	status = _loaderGame.load(name);
 	if (status)
 		start();
@@ -34,6 +45,7 @@ bool arc::CoreBuild::setGame(const std::string &name)
 void arc::CoreBuild::setGraphic()
 {
 	std::pair<std::string, bool> &reloadGraphic = _event.gameEvent().getReloadGraphic();
+
 	if (reloadGraphic.second) {
 		setGraphic(std::string(DIR_GRAPHIC) + "/" + reloadGraphic.first);
 		reloadGraphic.second = false;
@@ -43,6 +55,7 @@ void arc::CoreBuild::setGraphic()
 void arc::CoreBuild::setGame()
 {
 	std::pair<std::string, bool> &reloadGame = _event.gameEvent().getReloadGame();
+
 	if (reloadGame.second) {
 		setGame(std::string(DIR_GAME) + "/" + reloadGame.first);
 		reloadGame.second = false;
@@ -51,9 +64,11 @@ void arc::CoreBuild::setGame()
 
 bool arc::CoreBuild::_checkEvent(arc::GameEvent &event)
 {
-	setGraphic();
-	setGame();
 	_menu = event.isMenu();
+	if (!_menu) {
+		setGraphic();
+		setGame();
+	}
 	return event.isExit();
 }
 
@@ -83,6 +98,7 @@ void arc::CoreBuild::menu()
 
 void arc::CoreBuild::run()
 {
+	arc::MainMenu::getInstance();
 	while (!_checkEvent(_event.gameEvent())) {
 		_menu ? menu() : update();
 		_clock.waitTime();

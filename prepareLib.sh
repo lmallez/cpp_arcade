@@ -5,5 +5,6 @@ make GRAPHIC_Caca
 make GRAPHIC_SFML
 make GAME_BasicGame
 cd ..
-cp cmake-build-debug/libGRAPHIC_*.so ./graphics
-cp cmake-build-debug/libGAME_*.so ./games
+cp cmake-build-debug/libGRAPHIC_SFML.so ./graphics
+cp cmake-build-debug/libGRAPHIC_Caca.so ./graphics
+cp cmake-build-debug/libGAME_BasicGame.so ./games

@@ -105,11 +105,11 @@ add_library(GRAPHIC_Caca SHARED ${GRAPHIC_Caca} ${STD_FILES} ${SHAPE_FILES}
         src/graphic/libcaca/extern.cpp)
 target_link_libraries(GRAPHIC_Caca caca)
 
-set(
-        GRAPHIC_GLU)
-
-add_library(GRAPHIC_GLU SHARED ${GRAPHIC_GLU} ${STD_FILES} ${SHAPE_FILES})
-target_link_libraries(GRAPHIC_GLU GLU GL)
+#set(
+#        GRAPHIC_GLU)
+#
+#add_library(GRAPHIC_GLU SHARED ${GRAPHIC_GLU} ${STD_FILES} ${SHAPE_FILES})
+#target_link_libraries(GRAPHIC_GLU GLU GL)
 
 ### GAMES LIBS ###
 
@@ -119,7 +119,7 @@ set(
         src/games/BasicGame/BasicGame.hpp
 )
 
-add_library(GAME_BasicGame SHARED ${GAME_BASICGAME} ${STD_FILES} ${SHAPE_FILES}
+add_library(GAME_BasicGame SHARED ${GAME_BASICGAME} ${GAME_MODULE} ${STD_FILES} ${SHAPE_FILES}
         src/games/BasicGame/extern.cpp)
 
 set(
@@ -127,7 +127,7 @@ set(
         src/games/Snake/SnakeGame.cpp
         src/games/Snake/SnakeGame.hpp)
 
-add_library(GAME_SNAKE SHARED ${GAME_SNAKE} ${STD_FILES} ${SHAPE_FILES}
+add_library(GAME_SNAKE SHARED ${GAME_SNAKE} ${GAME_MODULE} ${STD_FILES} ${SHAPE_FILES}
         src/games/Snake/extern.cpp)
 
 ### CORE BUILD ###

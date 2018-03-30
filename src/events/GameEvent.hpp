@@ -17,7 +17,10 @@
 namespace arc {
 	class GameEvent {
 	public:
-		GameEvent();
+		GameEvent(
+			const std::string &graphic,
+			const std::string &game
+		);
 
 		std::vector<std::string> loadListGames();
 		std::vector<std::string> loadListGraphics();
@@ -41,6 +44,11 @@ namespace arc {
 
 		std::pair<std::string, bool> & getReloadGame();
 		std::pair<std::string, bool> & getReloadGraphic();
+
+		size_t getPosGame() const;
+
+		size_t getPosGraphic() const;
+
 
 	private:
 		size_t _posGame = 0;

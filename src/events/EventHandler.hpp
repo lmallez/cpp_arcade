@@ -15,7 +15,9 @@
 namespace arc {
 	class EventHandler {
 	public:
-		EventHandler() = default;
+		explicit EventHandler(
+			const std::string &graphic = "",
+			const std::string &game = "");
 		KeyEvent &keyEvent();
 		MouseEvent &mouseEvent();
 		GameEvent &gameEvent();

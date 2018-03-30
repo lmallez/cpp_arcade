@@ -21,6 +21,7 @@ bool arc::LibLoader::operator!() const
 
 bool arc::LibLoader::load(const std::string &libName)
 {
+	std::cout << "LOADING: " << libName << std::endl;
 	_libName = libName;
 
 	_sym = dlopen(libName.c_str(), RTLD_LAZY);
@@ -33,6 +34,7 @@ bool arc::LibLoader::load(const std::string &libName)
 
 bool arc::LibLoader::unload()
 {
+	std::cout << "Closing: " << _libName << std::endl;
 	if (_sym == nullptr)
 		return false;
 	dlclose(_sym);

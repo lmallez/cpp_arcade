@@ -22,7 +22,7 @@ int main(int ac, char **av)
 	std::unique_ptr<arc::IGame> &game = gameLoader.getIGame();
 	std::cout << "Done" << std::endl;
 
-	auto tempEvt = arc::EventHandler();
+	auto tempEvt = arc::EventHandler(<#initializer#>, <#initializer#>);
 
 	game->start()->convert(shapeLoader)->draw();
 	graphicLib->display();

@@ -11,7 +11,7 @@ std::unique_ptr<arc::IGame> &arc::BasicGame::getInstance()
 {
 	static std::unique_ptr<arc::IGame> instance = nullptr;
 
-	if (instance == nullptr)
+	if (!instance)
 		instance.reset(new BasicGame());
 	return instance;
 }
@@ -28,13 +28,14 @@ std::shared_ptr<arc::IShape> arc::BasicGame::start()
 	std::shared_ptr s1 = std::make_shared<arc::ShapeCircle>(nullptr, basic, playerPos);
 	std::shared_ptr s2 = std::make_shared<arc::ShapeCircle>(s1, basic, playerPos);
 	s1->addChild(s2);
+	frame = 0;
 	return s1;
 }
 
 std::shared_ptr<arc::IShape> arc::BasicGame::update(EventHandler &event)
 {
 	arc::Texture basic(arc::Color::Red, arc::Color::Blue);
-	playerPos.rsize() = playerPos.size() + playerPos.size() * 0.01;
+	playerPos.rsize() = playerPos.size() + playerPos.size() * 0.001;
 	frame++;
 
 	execKey(event);

@@ -15,13 +15,12 @@ arc::SystemGame::SystemGame()
 	assignKey(arc::KeyEvent::Key::NUM3, arc::KeyEvent::JUSTPRESSED, &arc::SystemGame::_nextGame);
 	assignKey(arc::KeyEvent::Key::NUM4, arc::KeyEvent::JUSTPRESSED, &arc::SystemGame::_prevGraphic);
 	assignKey(arc::KeyEvent::Key::NUM5, arc::KeyEvent::JUSTPRESSED, &arc::SystemGame::_nextGraphic);
-	assignKey(arc::KeyEvent::Key::NUM6, arc::KeyEvent::JUSTPRESSED, &arc::SystemGame::_backMenu);
-	assignKey(arc::KeyEvent::Key::NUM7, arc::KeyEvent::JUSTPRESSED, &arc::SystemGame::_exit);
+	assignKey(arc::KeyEvent::Key::NUM9, arc::KeyEvent::JUSTPRESSED, &arc::SystemGame::_backMenu);
+	assignKey(arc::KeyEvent::Key::NUM0, arc::KeyEvent::JUSTPRESSED, &arc::SystemGame::_exit);
 }
 
 void
-arc::SystemGame::assignKey(arc::KeyEvent::Key key, arc::KeyEvent::Status status,
-	arc::SystemGame::systemGame_t func)
+arc::SystemGame::assignKey(arc::KeyEvent::Key key, arc::KeyEvent::Status status, arc::SystemGame::systemGame_t func)
 {
 	auto a = std::make_pair(key, std::make_pair(status, func));
 	_systemKey.insert(a);
@@ -30,7 +29,7 @@ arc::SystemGame::assignKey(arc::KeyEvent::Key key, arc::KeyEvent::Status status,
 void arc::SystemGame::execKey(arc::EventHandler &event)
 {
 	for (auto pair : _systemKey) {
-		execKey(event, pair.first);
+		arc::SystemGame::execKey(event, pair.first);
 	}
 }
 
@@ -92,8 +91,14 @@ void arc::SystemGame::_backMenu(arc::EventHandler &event)
 	event.gameEvent().setMenu(true);
 }
 
+void arc::SystemGame::_startGame(arc::EventHandler &event)
+{
+	std::cout << "startGame" << std::endl;
+	event.gameEvent().setMenu(false);
+}
+
 void arc::SystemGame::_exit(arc::EventHandler &event)
 {
-	std::cout << "_exit" << std::endl;
+	std::cout << "exit" << std::endl;
 	event.gameEvent().setExit(true);
 }

@@ -18,7 +18,7 @@ int main()
 
 	std::unique_ptr<arc::IGame> &game = arc::BasicGame::getInstance();
 
-	auto tempEvt = arc::EventHandler();
+	auto tempEvt = arc::EventHandler(<#initializer#>, <#initializer#>);
 
 	game->start()->convert(shapeLoader)->draw();
 	graphicLib->display();

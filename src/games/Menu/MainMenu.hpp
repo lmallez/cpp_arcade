@@ -11,7 +11,7 @@
 #include <vector>
 #include <dirent.h>
 #include <map>
-#include "src/games/SystemGame.hpp"
+#include "src/games/Controller/SystemController.hpp"
 #include "src/games/IGame.hpp"
 #include "src/graphic/shape/ShapeCircle.hpp"
 #include "src/graphic/shape/ShapeText.hpp"
@@ -23,7 +23,7 @@
 #define TEXT_PADDING 0.2
 
 namespace arc {
-	class MainMenu : virtual public IGame, public SystemGame {
+	class MainMenu : virtual public IGame, public SystemController {
 		typedef void (arc::MainMenu::*MainMenuEvent_t)(arc::EventHandler &event);
 	public:
 		static IGame &getInstance();

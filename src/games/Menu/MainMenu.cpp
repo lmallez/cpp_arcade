@@ -18,7 +18,7 @@ arc::IGame &arc::MainMenu::getInstance()
 }
 
 arc::MainMenu::MainMenu():
-	SystemGame()
+	SystemController()
 {
 	assignKey(arc::KeyEvent::RETURN, arc::KeyEvent::JUSTPRESSED, &arc::MainMenu::_pressedStart);
 	assignKey(arc::KeyEvent::LEFT, arc::KeyEvent::JUSTPRESSED, &arc::MainMenu::_moveCol);
@@ -39,7 +39,7 @@ void arc::MainMenu::assignKey(arc::KeyEvent::Key key, arc::KeyEvent::Status stat
 
 void arc::MainMenu::execKey(arc::EventHandler &event)
 {
-	arc::SystemGame::execKey(event);
+	arc::SystemController::execKey(event);
 	for (auto key : _keyEvent) {
 		arc::MainMenu::execKey(event, key.first);
 	}

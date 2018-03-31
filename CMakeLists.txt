@@ -32,8 +32,9 @@ set(
         src/events/GameEvent.cpp
         src/events/GameEvent.cpp
         src/events/GameEvent.hpp
-        src/games/SystemGame.cpp
-        src/games/SystemGame.hpp)
+        src/games/Controller/SystemController.cpp
+        src/games/Controller/SystemController.hpp src/games/Controller/IController.hpp
+)
 
 set(
         SHAPE_FILES
@@ -50,14 +51,16 @@ set(
         src/graphic/AShapeLoader.cpp
         src/graphic/AShapeLoader.hpp
         src/graphic/shape/ShapeContainer.cpp
-        src/graphic/shape/ShapeContainer.hpp)
+        src/graphic/shape/ShapeContainer.hpp
+)
 
 ### MENU ###
 
 set(
         MENU
         src/games/Menu/MainMenu.cpp
-        src/games/Menu/MainMenu.hpp)
+        src/games/Menu/MainMenu.hpp
+)
 
 ### GRAPHICS LIBS ###
 
@@ -80,7 +83,8 @@ set(
 )
 
 add_library(GRAPHIC_SFML SHARED ${GRAPHIC_SFML} ${STD_FILES} ${SHAPE_FILES}
-        src/graphic/sfml/extern.cpp)
+        src/graphic/sfml/extern.cpp
+        )
 target_link_libraries(GRAPHIC_SFML sfml-graphics sfml-window sfml-system)
 
 set(
@@ -102,7 +106,8 @@ set(
 )
 
 add_library(GRAPHIC_Caca SHARED ${GRAPHIC_Caca} ${STD_FILES} ${SHAPE_FILES}
-        src/graphic/libcaca/extern.cpp)
+        src/graphic/libcaca/extern.cpp
+        )
 target_link_libraries(GRAPHIC_Caca caca)
 
 #set(
@@ -117,18 +122,23 @@ set(
         GAME_BASICGAME
         src/games/BasicGame/BasicGame.cpp
         src/games/BasicGame/BasicGame.hpp
+        src/games/Controller/PlayerController.cpp
+        src/games/Controller/PlayerController.hpp
 )
 
 add_library(GAME_BasicGame SHARED ${GAME_BASICGAME} ${GAME_MODULE} ${STD_FILES} ${SHAPE_FILES}
-        src/games/BasicGame/extern.cpp)
+        src/games/BasicGame/extern.cpp
+        )
 
 set(
         GAME_SNAKE
         src/games/Snake/SnakeGame.cpp
-        src/games/Snake/SnakeGame.hpp)
+        src/games/Snake/SnakeGame.hpp src/games/Controller/PlayerController.cpp src/games/Controller/PlayerController.hpp
+)
 
 add_library(GAME_SNAKE SHARED ${GAME_SNAKE} ${GAME_MODULE} ${STD_FILES} ${SHAPE_FILES}
-        src/games/Snake/extern.cpp)
+        src/games/Snake/extern.cpp
+        )
 
 ### CORE BUILD ###
 
@@ -145,7 +155,8 @@ set(
         src/core/corebuild/CoreBuild.cpp
         src/core/corebuild/CoreBuild.hpp
         src/core/corebuild/CoreClock.cpp
-        src/core/corebuild/CoreClock.hpp)
+        src/core/corebuild/CoreClock.hpp
+)
 
 
 add_executable(

@@ -7,7 +7,7 @@
 
 #include "CacaMainWindow.hpp"
 
-std::unordered_map<char, arc::KeyEvent::Key> arc::CacaMainWindow::_keyMapUTF = {
+std::unordered_map<char, arc::KeyEvent::Key> arc::CacaMainWindow::_keyMap = {
 	{'a', arc::KeyEvent::A},
 	{'A', arc::KeyEvent::A},
 	{'b', arc::KeyEvent::B},
@@ -63,7 +63,7 @@ std::unordered_map<char, arc::KeyEvent::Key> arc::CacaMainWindow::_keyMapUTF = {
 	{'1', arc::KeyEvent::NUM1},
 	{'&', arc::KeyEvent::NUM1},
 	{'2', arc::KeyEvent::NUM2},
-	{233, arc::KeyEvent::NUM2},
+	{(char)233, arc::KeyEvent::NUM2},
 	{'3', arc::KeyEvent::NUM3},
 	{34, arc::KeyEvent::NUM3},
 	{'4', arc::KeyEvent::NUM4},
@@ -73,21 +73,19 @@ std::unordered_map<char, arc::KeyEvent::Key> arc::CacaMainWindow::_keyMapUTF = {
 	{'6', arc::KeyEvent::NUM6},
 	{45, arc::KeyEvent::NUM6},
 	{'7', arc::KeyEvent::NUM7},
-	{232, arc::KeyEvent::NUM7},
+	{(char)232, arc::KeyEvent::NUM7},
 	{'8', arc::KeyEvent::NUM8},
 	{95, arc::KeyEvent::NUM8},
 	{'9', arc::KeyEvent::NUM9},
-	{231, arc::KeyEvent::NUM9},
+	{(char)231, arc::KeyEvent::NUM9},
 	{'0', arc::KeyEvent::NUM0},
-	{224, arc::KeyEvent::NUM0},
+	{(char)224, arc::KeyEvent::NUM0},
 	{13, arc::KeyEvent::RETURN},
-};
-
-std::unordered_map<char, arc::KeyEvent::Key> arc::CacaMainWindow::_keyMapCH = {
 	{CACA_KEY_UP, arc::KeyEvent::UP},
 	{CACA_KEY_DOWN, arc::KeyEvent::DOWN},
 	{CACA_KEY_LEFT, arc::KeyEvent::LEFT},
-	{CACA_KEY_RIGHT, arc::KeyEvent::RIGHT}
+	{CACA_KEY_RIGHT, arc::KeyEvent::RIGHT},
+	{' ', arc::KeyEvent::ESCAPE}
 };
 
 arc::CacaMainWindow &arc::CacaMainWindow::getInstance()
@@ -154,12 +152,10 @@ void arc::CacaMainWindow::pollEvent(arc::EventHandler &evtHandler)
 		evtType = caca_get_event_type(&evt);
 		switch (evtType) {
 		case CACA_EVENT_KEY_PRESS:
-			evtHandler.keyEvent().setKeyPressed(_keyMapUTF[caca_get_event_key_utf32(&evt)]);
-			evtHandler.keyEvent().setKeyPressed(_keyMapCH[caca_get_event_key_ch(&evt)]);
+			evtHandler.keyEvent().setKeyPressed(_keyMap[caca_get_event_key_ch(&evt)]);
 			break;
 		case CACA_EVENT_KEY_RELEASE:
-			evtHandler.keyEvent().setKeyReleased(_keyMapUTF[caca_get_event_key_utf32(&evt)]);
-			evtHandler.keyEvent().setKeyReleased(_keyMapCH[caca_get_event_key_ch(&evt)]);
+			evtHandler.keyEvent().setKeyReleased(_keyMap[caca_get_event_key_ch(&evt)]);
 			break;
 		default:
 			break;

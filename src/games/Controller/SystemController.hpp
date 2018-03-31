@@ -2,7 +2,7 @@
 // EPITECH PROJECT, 2018
 // cpp_arcade
 // File description:
-// SystemGame.hpp
+// SystemController.hpp
 //
 
 #ifndef CPP_ARCADE_SYSTEMGAME_HPP
@@ -10,16 +10,16 @@
 
 #include <unordered_map>
 #include <algorithm>
-#include "IGame.hpp"
+#include "src/games/IGame.hpp"
 
 
 namespace arc {
-	class SystemGame {
-		typedef void (SystemGame::*systemGame_t)(EventHandler &event);
+	class SystemController {
+		typedef void (SystemController::*systemController_t)(EventHandler &event);
 	public:
-		SystemGame();
+		SystemController();
 		virtual void assignKey(arc::KeyEvent::Key, arc::KeyEvent::Status status,
-			arc::SystemGame::systemGame_t);
+			arc::SystemController::systemController_t);
 		virtual void execKey(EventHandler &event);
 		virtual void execKey(EventHandler &event, KeyEvent::Key key);
 
@@ -32,7 +32,7 @@ namespace arc {
 		void _startGame(EventHandler &event);
 		void _exit(EventHandler &event);
 	private:
-		std::unordered_map<KeyEvent::Key, std::pair<KeyEvent::Status, systemGame_t>> _systemKey;
+		std::unordered_map<KeyEvent::Key, std::pair<KeyEvent::Status, systemController_t>> _systemKey;
 	};
 }
 

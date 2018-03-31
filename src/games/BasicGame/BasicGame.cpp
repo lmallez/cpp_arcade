@@ -26,10 +26,6 @@ arc::BasicGame::BasicGame():
 	PlayerController({0.01, 0.01}, arc::KeyEvent::PRESSED, {0, 0}, {true, arc::RectF(0, 0, 1, 1)}),
 	_playerPos(arc::RectF(0, 0, 0.01, 0.01))
 {
-//	assignKey(arc::KeyEvent::Z, arc::KeyEvent::PRESSED, &arc::BasicGame::_moveUp);
-//	assignKey(arc::KeyEvent::Q, arc::KeyEvent::PRESSED, &arc::BasicGame::_moveLeft);
-//	assignKey(arc::KeyEvent::S, arc::KeyEvent::PRESSED, &arc::BasicGame::_moveDown);
-//	assignKey(arc::KeyEvent::D, arc::KeyEvent::PRESSED, &arc::BasicGame::_moveRight);
 	assignKey(arc::KeyEvent::P, arc::KeyEvent::JUSTPRESSED, &arc::BasicGame::_startGrown);
 	assignKey(arc::KeyEvent::O, arc::KeyEvent::JUSTPRESSED, &arc::BasicGame::_stopGrown);
 	assignKey(arc::KeyEvent::I, arc::KeyEvent::JUSTPRESSED, &arc::BasicGame::_unGrown);

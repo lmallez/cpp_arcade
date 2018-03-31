@@ -13,9 +13,9 @@
 #include <algorithm>
 #include "src/games/IGame.hpp"
 
-#define KEY_ZQSD {arc::KeyEvent::Z, arc::KeyEvent::Q, arc::KeyEvent::S, arc::KeyEvent::D}
-#define KEY_WASD {arc::KeyEvent::W, arc::KeyEvent::A, arc::KeyEvent::S, arc::KeyEvent::D}
-#define KEY_ARROW {arc::KeyEvent::UP, arc::KeyEvent::LEFT, arc::KeyEvent::RIGHT, arc::KeyEvent::DOWN}
+#define KEY_ZQSD {KeyEvent::Z, KeyEvent::Q, KeyEvent::S, KeyEvent::D}
+#define KEY_WASD {KeyEvent::W, KeyEvent::A, KeyEvent::S, KeyEvent::D}
+#define KEY_ARROW {KeyEvent::UP, KeyEvent::LEFT, KeyEvent::RIGHT, KeyEvent::DOWN}
 
 namespace arc {
 	class PlayerController {
@@ -29,24 +29,30 @@ namespace arc {
 			RIGHT
 		};
 
+	protected:
+
 		explicit PlayerController(
-			const VertexF &speed = arc::VertexF(1, 1),
-			arc::KeyEvent::Status execStatus = arc::KeyEvent::JUSTPRESSED,
+			const VertexF &speed = VertexF(1, 1),
+			KeyEvent::Status execStatus = KeyEvent::JUSTPRESSED,
 			const VertexF &initialPos = VertexF(0, 0),
 			const std::pair<bool, RectF> &limit = {false, RectF(0, 0, 0, 0)},
 			std::array<KeyEvent::Key, 4> key = KEY_ZQSD);
 
-		virtual void assignKey(arc::KeyEvent::Key key,
-			arc::KeyEvent::Status status,
-			arc::PlayerController::playerController_t func);
+		virtual void assignKey(KeyEvent::Key key,
+			KeyEvent::Status status,
+			PlayerController::playerController_t func);
 		virtual void execKey(EventHandler &event);
 		virtual void execKey(EventHandler &event, KeyEvent::Key key);
 
-		arc::VertexF _pCtrlSpeed;
-		arc::VertexF _pCtrlPos;
+		VertexF _pCtrlSpeed;
+		VertexF _pCtrlPos;
 		std::pair<bool, RectF> _pCtrlLimit;
 		Direction _pCtrlDir = NONE;
 		bool _pCtrlHaveMove = false;
+
+		void _moveDir(EventHandler &event,
+			std::pair<bool, PlayerController::Direction> dir = {false, NONE},
+			std::pair<bool, VertexF> speed = {false, {0, 0}});
 
 		void _moveUp(EventHandler &event);
 		void _moveLeft(EventHandler &event);

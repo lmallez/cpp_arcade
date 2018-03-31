@@ -17,7 +17,6 @@ arc::PlayerController::PlayerController(
 	std::array<KeyEvent::Key, 4> key) :
 	_pCtrlSpeed(speed), _pCtrlPos(initialPos), _pCtrlLimit(limit)
 {
-	std::cout << "c moi" << std::endl;
 	assignKey(key[0], execStatus, &arc::PlayerController::_moveUp);
 	assignKey(key[1], execStatus, &arc::PlayerController::_moveLeft);
 	assignKey(key[2], execStatus, &arc::PlayerController::_moveDown);
@@ -64,8 +63,7 @@ void arc::PlayerController::execKey(EventHandler &event, KeyEvent::Key key)
 
 void arc::PlayerController::_moveUp(arc::EventHandler &event[[maybe_unused]])
 {
-	std::cout << "_moveUp" << std::endl;
-	_pCtrlHaveMove = (!_pCtrlLimit.first || _pCtrlPos.y() - _pCtrlSpeed.y() > _pCtrlLimit.second.pos().y());
+	_pCtrlHaveMove = (!_pCtrlLimit.first || _pCtrlPos.y() - _pCtrlSpeed.y() >= _pCtrlLimit.second.pos().y());
 	if (_pCtrlHaveMove)
 		_pCtrlPos.ry() -= _pCtrlSpeed.y();
 	_pCtrlDir = UP;
@@ -73,8 +71,7 @@ void arc::PlayerController::_moveUp(arc::EventHandler &event[[maybe_unused]])
 
 void arc::PlayerController::_moveLeft(arc::EventHandler &event[[maybe_unused]])
 {
-	std::cout << "_moveLeft" << std::endl;
-	_pCtrlHaveMove = (!_pCtrlLimit.first || _pCtrlPos.x() - _pCtrlSpeed.x() > _pCtrlLimit.second.pos().x());
+	_pCtrlHaveMove = (!_pCtrlLimit.first || _pCtrlPos.x() - _pCtrlSpeed.x() >= _pCtrlLimit.second.pos().x());
 	if (_pCtrlHaveMove)
 		_pCtrlPos.rx() -= _pCtrlSpeed.x();
 	_pCtrlDir = LEFT;
@@ -82,8 +79,7 @@ void arc::PlayerController::_moveLeft(arc::EventHandler &event[[maybe_unused]])
 
 void arc::PlayerController::_moveDown(arc::EventHandler &event[[maybe_unused]])
 {
-	std::cout << "_moveDown" << std::endl;
-	_pCtrlHaveMove = (!_pCtrlLimit.first || _pCtrlPos.y() + _pCtrlSpeed.y() < _pCtrlLimit.second.size().y());
+	_pCtrlHaveMove = (!_pCtrlLimit.first || _pCtrlPos.y() + _pCtrlSpeed.y() <= _pCtrlLimit.second.size().y());
 	if (_pCtrlHaveMove)
 		_pCtrlPos.ry() += _pCtrlSpeed.y();
 	_pCtrlDir = DOWN;
@@ -91,9 +87,37 @@ void arc::PlayerController::_moveDown(arc::EventHandler &event[[maybe_unused]])
 
 void arc::PlayerController::_moveRigth(arc::EventHandler &event[[maybe_unused]])
 {
-	std::cout << "_moveRigth" << std::endl;
-	_pCtrlHaveMove = (!_pCtrlLimit.first || _pCtrlPos.x() + _pCtrlSpeed.x() < _pCtrlLimit.second.size().x());
+	_pCtrlHaveMove = (!_pCtrlLimit.first || _pCtrlPos.x() + _pCtrlSpeed.x() <= _pCtrlLimit.second.size().x());
 	if (_pCtrlHaveMove)
 		_pCtrlPos.rx() += _pCtrlSpeed.x();
 	_pCtrlDir = RIGHT;
+}
+
+void arc::PlayerController::_moveDir(arc::EventHandler &event,
+	std::pair<bool, arc::PlayerController::Direction> dir,
+	std::pair<bool, arc::VertexF> speed)
+{
+	auto tmpSpeed = _pCtrlSpeed;
+
+	if (!dir.first)
+		dir.second = _pCtrlDir;
+	if (speed.first)
+		_pCtrlSpeed = speed.second;
+	switch (dir.second) {
+	case UP:
+		_moveUp(event);
+		break;
+	case LEFT:
+		_moveLeft(event);
+		break;
+	case RIGHT:
+		_moveRigth(event);
+		break;
+	case DOWN:
+		_moveDown(event);
+		break;
+	default:
+		break;
+	}
+	_pCtrlSpeed = tmpSpeed;
 }

@@ -33,7 +33,8 @@ set(
         src/events/GameEvent.cpp
         src/events/GameEvent.hpp
         src/games/Controller/SystemController.cpp
-        src/games/Controller/SystemController.hpp src/games/Controller/IController.hpp
+        src/games/Controller/SystemController.hpp
+        src/games/Controller/IController.hpp
 )
 
 set(
@@ -133,8 +134,13 @@ add_library(GAME_BasicGame SHARED ${GAME_BASICGAME} ${GAME_MODULE} ${STD_FILES} 
 set(
         GAME_SNAKE
         src/games/Snake/SnakeGame.cpp
-        src/games/Snake/SnakeGame.hpp src/games/Controller/PlayerController.cpp src/games/Controller/PlayerController.hpp
-)
+        src/games/Snake/SnakeGame.hpp
+        src/games/Controller/PlayerController.cpp
+        src/games/Controller/PlayerController.hpp
+        src/games/Snake/Snake.cpp
+        src/games/Snake/Snake.hpp
+        src/core/corebuild/CoreClock.cpp
+        src/core/corebuild/CoreClock.hpp)
 
 add_library(GAME_SNAKE SHARED ${GAME_SNAKE} ${GAME_MODULE} ${STD_FILES} ${SHAPE_FILES}
         src/games/Snake/extern.cpp

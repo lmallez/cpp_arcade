@@ -42,7 +42,6 @@ namespace arc {
 
 		RectF _map;
 		snake::Snake _snake;
-		std::shared_ptr<IShape> _drawSnake() const;
 
 		VertexS _flowerPos;
 		void _genFlower();
@@ -51,6 +50,14 @@ namespace arc {
 		CoreClock _clock;
 		long _score = 0;
 		void _move(EventHandler &event);
+
+		bool _isOver;
+
+
+		std::shared_ptr<arc::IShape> _game(EventHandler &event);
+		std::shared_ptr<IShape> _drawSnake() const;
+
+		std::shared_ptr<IShape> _gameOver(EventHandler &event);
 	};
 }
 

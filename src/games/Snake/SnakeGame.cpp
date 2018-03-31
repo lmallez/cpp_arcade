@@ -58,12 +58,39 @@ void arc::SnakeGame::execKey(arc::EventHandler &event, arc::KeyEvent::Key key)
 	}
 }
 
+arc::SnakeGame::SnakeGame():
+	PlayerController({0, 0}, arc::KeyEvent::JUSTPRESSED, {0, 0}, {true, arc::RectF(0, 0, MAP_SIZE, MAP_SIZE)}),
+	_map(arc::RectF(0.1, 0.1, 0.8, 0.8)),
+	_snake(arc::VertexS(0, 0)),
+	_clock(0.1)
+{
+	srandom(time(nullptr));
+	_genFlower();
+}
+
 std::shared_ptr<arc::IShape> arc::SnakeGame::start()
 {
+	_isOver = false;
 	return _drawSnake();
 }
 
 std::shared_ptr<arc::IShape> arc::SnakeGame::update(arc::EventHandler &event)
+{
+	return _isOver ? _gameOver(event) : _game(event);
+}
+
+
+std::shared_ptr<arc::IShape> arc::SnakeGame::_gameOver(EventHandler &event)
+{
+	arc::SystemController::execKey(event);
+	std::shared_ptr all = std::make_shared<arc::ShapeContainer>();
+
+	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.4, 0.4, 0.2, 0.4), "Game Over"));
+	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.4, 0.6, 0.1, 0.4), "Score: " + std::to_string(_score)));
+	return all;
+}
+
+std::shared_ptr<arc::IShape> arc::SnakeGame::_game(EventHandler &event)
 {
 	execKey(event);
 	if (_clock.updateTime()) {
@@ -75,22 +102,12 @@ std::shared_ptr<arc::IShape> arc::SnakeGame::update(arc::EventHandler &event)
 	return all;
 }
 
-arc::SnakeGame::SnakeGame():
-	PlayerController({0, 0}, arc::KeyEvent::JUSTPRESSED, {0, 0}, {true, arc::RectF(0, 0, MAP_SIZE, MAP_SIZE)}),
-	_map(arc::RectF(0.1, 0.1, 0.8, 0.8)),
-	_snake(arc::VertexS(0, 0)),
-	_clock(0.1)
-{
-	srandom(time(nullptr));
-	_genFlower();
-}
-
 std::shared_ptr<arc::IShape> arc::SnakeGame::_drawSnake() const
 {
 	arc::Texture texture = Texture(arc::Color::Red);
 	std::shared_ptr s = std::make_shared<arc::ShapeRect>(nullptr, texture, _map);
 	auto body = _snake.getBody();
-	arc::VertexF partSize(_map.size().x() / MAP_SIZE, _map.size().y() / MAP_SIZE);
+	arc::VertexF partSize(1.0 / (MAP_SIZE + 1), 1.0 / (MAP_SIZE + 1));
 	texture = Texture(arc::Color::Blue, arc::Color::Blue);
 
 	for (const arc::VertexS &bodyPart : body) {
@@ -99,7 +116,7 @@ std::shared_ptr<arc::IShape> arc::SnakeGame::_drawSnake() const
 	}
 	const arc::VertexS &bodyPart = _snake.getHead();
 	RectF size(bodyPart.x() * partSize.x(), bodyPart.y() * partSize.y(), partSize.x(), partSize.y());
-	s->addChild(std::make_shared<arc::ShapeRect>(s, texture, size));
+	s->addChild(std::make_shared<arc::ShapeRect>(s, arc::Texture(arc::Color::Blue, arc::Color::Cyan), size));
 	RectF flowerSize(_flowerPos.x() * partSize.x(), _flowerPos.y() * partSize.y(), partSize.x(), partSize.y());
 	s->addChild(std::make_shared<arc::ShapeCircle>(s, texture, flowerSize));
 	return s;
@@ -128,8 +145,8 @@ void arc::SnakeGame::_move(arc::EventHandler &event)
 	_moveDir(event, {false, NONE}, {true, {1, 1}});
 	if (_pCtrlHaveMove) {
 		if (!_snake.move({(size_t)_pCtrlPos.x(), (size_t)_pCtrlPos.y()}, _eatFlower()))
-			_score -= 2;
-	} else
-		_score -= 1;
+			_isOver = true;
+	} else if (_pCtrlDir != NONE)
+		_isOver = true;
 	_clock.updateTime();
 }

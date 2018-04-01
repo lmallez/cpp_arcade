@@ -8,9 +8,12 @@
 #include <src/std/Vertex.hpp>
 #include "Snake.hpp"
 
-arc::snake::Snake::Snake(const VertexS &pos)
+arc::snake::Snake::Snake(const VertexS &mapSize)
 {
-	_head = pos;
+	_head = mapSize / 2;
+	for (size_t i = START_SIZE; i > 0; i--) {
+		_body.push_back(arc::VertexS(_head.x() - i, _head.y()));
+	}
 }
 
 bool arc::snake::Snake::move(const VertexS &head, bool increase)

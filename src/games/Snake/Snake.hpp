@@ -10,11 +10,13 @@
 
 #include <vector>
 
+#define START_SIZE 4
+
 namespace arc {
 	namespace snake {
 		class Snake {
 		public:
-			Snake(const VertexS &pos);
+			Snake(const VertexS &mapSize);
 
 			bool move(const VertexS &head, bool increase);
 			const std::vector<VertexS> &getBody() const;

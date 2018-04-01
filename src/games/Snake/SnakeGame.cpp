@@ -59,7 +59,7 @@ void arc::SnakeGame::execKey(arc::EventHandler &event, arc::KeyEvent::Key key)
 }
 
 arc::SnakeGame::SnakeGame():
-	PlayerController({0, 0}, arc::KeyEvent::JUSTPRESSED, {0, 0}, {true, arc::RectF(0, 0, MAP_SIZE, MAP_SIZE)}),
+	PlayerController({0, 0}, arc::KeyEvent::JUSTPRESSED, false, {0, 0}, {true, arc::RectF(0, 0, MAP_SIZE, MAP_SIZE)}),
 	_map(arc::RectF(0.1, 0.1, 0.8, 0.8)),
 	_snake(arc::VertexS(0, 0)),
 	_clock(0.1)

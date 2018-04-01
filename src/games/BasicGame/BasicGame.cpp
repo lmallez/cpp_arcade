@@ -23,7 +23,7 @@ void arc::BasicGame::freeInstance()
 }
 
 arc::BasicGame::BasicGame():
-	PlayerController({0.01, 0.01}, arc::KeyEvent::PRESSED, {0, 0}, {true, arc::RectF(0, 0, 1, 1)}),
+	PlayerController({0.01, 0.01}, arc::KeyEvent::PRESSED, true, {0, 0}, {true, arc::RectF(0, 0, 1, 1)}),
 	_playerPos(arc::RectF(0, 0, 0.01, 0.01))
 {
 	assignKey(arc::KeyEvent::P, arc::KeyEvent::JUSTPRESSED, &arc::BasicGame::_startGrown);

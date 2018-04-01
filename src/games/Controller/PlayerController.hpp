@@ -34,15 +34,19 @@ namespace arc {
 		explicit PlayerController(
 			const VertexF &speed = VertexF(1, 1),
 			KeyEvent::Status execStatus = KeyEvent::JUSTPRESSED,
+			bool canGoBack = false,
 			const VertexF &initialPos = VertexF(0, 0),
 			const std::pair<bool, RectF> &limit = {false, RectF(0, 0, 0, 0)},
-			std::array<KeyEvent::Key, 4> key = KEY_ZQSD);
+			std::array<KeyEvent::Key, 4> key = KEY_ZQSD
+		);
 
 		virtual void assignKey(KeyEvent::Key key,
 			KeyEvent::Status status,
 			PlayerController::playerController_t func);
 		virtual void execKey(EventHandler &event);
 		virtual void execKey(EventHandler &event, KeyEvent::Key key);
+
+		bool _pCtrlCanGoBack = true;
 
 		VertexF _pCtrlSpeed;
 		VertexF _pCtrlPos;

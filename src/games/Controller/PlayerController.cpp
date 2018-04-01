@@ -12,10 +12,12 @@
 arc::PlayerController::PlayerController(
 	const VertexF &speed,
 	arc::KeyEvent::Status execStatus,
+	bool canGoBack,
 	const VertexF &initialPos,
 	const std::pair<bool, RectF> &limit,
 	std::array<KeyEvent::Key, 4> key) :
-	_pCtrlSpeed(speed), _pCtrlPos(initialPos), _pCtrlLimit(limit)
+	_pCtrlCanGoBack(canGoBack), _pCtrlSpeed(speed),
+	_pCtrlPos(initialPos), _pCtrlLimit(limit)
 {
 	assignKey(key[0], execStatus, &arc::PlayerController::_moveUp);
 	assignKey(key[1], execStatus, &arc::PlayerController::_moveLeft);
@@ -63,6 +65,8 @@ void arc::PlayerController::execKey(EventHandler &event, KeyEvent::Key key)
 
 void arc::PlayerController::_moveUp(arc::EventHandler &event[[maybe_unused]])
 {
+	if (!_pCtrlCanGoBack && _pCtrlDir == DOWN)
+		return;
 	_pCtrlHaveMove = (!_pCtrlLimit.first || _pCtrlPos.y() - _pCtrlSpeed.y() >= _pCtrlLimit.second.pos().y());
 	if (_pCtrlHaveMove)
 		_pCtrlPos.ry() -= _pCtrlSpeed.y();
@@ -71,6 +75,8 @@ void arc::PlayerController::_moveUp(arc::EventHandler &event[[maybe_unused]])
 
 void arc::PlayerController::_moveLeft(arc::EventHandler &event[[maybe_unused]])
 {
+	if (!_pCtrlCanGoBack && _pCtrlDir == RIGHT)
+		return;
 	_pCtrlHaveMove = (!_pCtrlLimit.first || _pCtrlPos.x() - _pCtrlSpeed.x() >= _pCtrlLimit.second.pos().x());
 	if (_pCtrlHaveMove)
 		_pCtrlPos.rx() -= _pCtrlSpeed.x();
@@ -79,6 +85,8 @@ void arc::PlayerController::_moveLeft(arc::EventHandler &event[[maybe_unused]])
 
 void arc::PlayerController::_moveDown(arc::EventHandler &event[[maybe_unused]])
 {
+	if (!_pCtrlCanGoBack && _pCtrlDir == UP)
+		return;
 	_pCtrlHaveMove = (!_pCtrlLimit.first || _pCtrlPos.y() + _pCtrlSpeed.y() <= _pCtrlLimit.second.size().y());
 	if (_pCtrlHaveMove)
 		_pCtrlPos.ry() += _pCtrlSpeed.y();
@@ -87,6 +95,8 @@ void arc::PlayerController::_moveDown(arc::EventHandler &event[[maybe_unused]])
 
 void arc::PlayerController::_moveRigth(arc::EventHandler &event[[maybe_unused]])
 {
+	if (!_pCtrlCanGoBack && _pCtrlDir == LEFT)
+		return;
 	_pCtrlHaveMove = (!_pCtrlLimit.first || _pCtrlPos.x() + _pCtrlSpeed.x() <= _pCtrlLimit.second.size().x());
 	if (_pCtrlHaveMove)
 		_pCtrlPos.rx() += _pCtrlSpeed.x();

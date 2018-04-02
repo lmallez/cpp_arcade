@@ -24,8 +24,6 @@ namespace arc {
 			const arc::ShapeCircle &item) const = 0;
 		virtual std::unique_ptr<arc::IShape> load(
 			const arc::ShapeText &item) const = 0;
-
-	protected:
 		virtual void loadChild(const arc::IShape &from,
 			std::unique_ptr<IShape> &dest) const = 0;
 	};

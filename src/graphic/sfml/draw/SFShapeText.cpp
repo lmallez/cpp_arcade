@@ -26,13 +26,19 @@ void arc::SFShapeText::draw() const
 	sf::FloatRect geometry = winGeometry();
 	sf::Text text(getText(), consolasFont);
 	size_t len = text.getString().getSize();
-	arc::Color color = _texture.bgColor();
+	arc::Color color = _texture.lineColor();
+	sf::RectangleShape rect;
 
+	rect.setPosition(geometry.left, geometry.top);
+	rect.setSize(sf::Vector2f(geometry.width, geometry.height));
+	_colorItem(rect);
 	if (len == 0)
 		return;
 	text.setPosition(geometry.left, geometry.top);
-	text.setCharacterSize((unsigned int)(geometry.width * SFML_TEXT_PADING / len));
+	//text.setCharacterSize((unsigned int)((_geometry.width > _geometry.height ? _geometry.height : _geometry.width) * SFML_TEXT_PADING / len));
 	text.setFillColor(sf::Color(color.r(), color.g(), color.b(), color.a()));
+
+	_displayItem(rect);
 	_displayItem(text);
 	AShape::draw();
 }

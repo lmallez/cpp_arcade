@@ -17,8 +17,7 @@ arc::RectF arc::CacaShape::winGeometry() const
 	arc::RectF aled = winPos();
 	arc::RectF pos = winPos() * arc::CacaMainWindow::getInstance().getSize();
 
-	return arc::RectF(pos.pos().x() / 10, pos.pos().y() / 20,
-		pos.size().x() / 10, pos.size().y() / 20);
+	return arc::RectF(pos.pos().x(), pos.pos().y(), pos.size().x(), pos.size().y());
 }
 
 void arc::CacaShape::setColor(const arc::Color &c1, const arc::Color &c2) const

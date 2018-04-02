@@ -9,6 +9,7 @@
 #define CPP_ARCADE_GAMELOADER_HPP
 
 #include <dlfcn.h>
+#include "src/exception/Exception.hpp"
 #include "src/games/IGame.hpp"
 
 namespace arc
@@ -21,12 +22,12 @@ namespace arc
 		bool operator!() const;
 		bool load(const std::string &);
 		bool unload();
-		std::unique_ptr<arc::IGame> &getIGame();
+		IGame & getIGame();
 
 	private:
 		std::string _libName;
 		void *_sym;
-		std::unique_ptr<arc::IGame> &(*_getIGame)();
+		arc::IGame &(*_getIGame)();
 	};
 
 }

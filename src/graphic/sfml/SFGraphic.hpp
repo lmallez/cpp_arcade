@@ -18,12 +18,13 @@
 namespace arc {
 	class SFGraphic : public virtual IGraphic {
 	public:
-		static std::unique_ptr<IGraphic> &getInstance();
+		static IGraphic & getInstance();
 		void display() const;
 
 		virtual const IShapeLoader & getShapeLoader() const override;
 
 		virtual void catchEvent(arc::EventHandler &handler) override;
+		virtual void close() override;
 
 	private:
 		arc::SFShapeLoader _loader;

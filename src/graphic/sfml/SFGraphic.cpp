@@ -12,15 +12,15 @@
 
 extern sf::Font consolasFont;
 
-std::unique_ptr<arc::IGraphic> &arc::SFGraphic::getInstance()
+arc::IGraphic & arc::SFGraphic::getInstance()
 {
-	static std::unique_ptr<arc::IGraphic> instance = nullptr;
+	static arc::IGraphic *instance = nullptr;
 
 	if (!instance) {
 		consolasFont.loadFromFile("../assets/Consolas.ttf");
-		instance.reset(new SFGraphic());
+		instance = new SFGraphic();
 	}
-	return instance;
+	return *instance;
 }
 
 void arc::SFGraphic::display() const
@@ -36,4 +36,9 @@ const arc::IShapeLoader &arc::SFGraphic::getShapeLoader() const
 void arc::SFGraphic::catchEvent(arc::EventHandler &handler)
 {
 	arc::SFMainWindow::getInstance().pollEvent(handler);
+}
+
+void arc::SFGraphic::close()
+{
+	arc::SFMainWindow::getInstance().close();
 }

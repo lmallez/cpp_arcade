@@ -21,6 +21,7 @@ bool arc::LibLoader::operator!() const
 
 bool arc::LibLoader::load(const std::string &libName)
 {
+	std::cout << "LOADING: " << libName << std::endl;
 	_libName = libName;
 
 	_sym = dlopen(libName.c_str(), RTLD_LAZY);
@@ -33,6 +34,7 @@ bool arc::LibLoader::load(const std::string &libName)
 
 bool arc::LibLoader::unload()
 {
+	std::cout << "Closing: " << _libName << std::endl;
 	if (_sym == nullptr)
 		return false;
 	dlclose(_sym);
@@ -42,12 +44,12 @@ bool arc::LibLoader::unload()
 	return true;
 }
 
-std::unique_ptr<arc::IGraphic> &arc::LibLoader::getIGraphic()
+arc::IGraphic & arc::LibLoader::getIGraphic()
 {
-	std::unique_ptr<arc::IGraphic> graph = nullptr;
-
 	if (_getIGraphic == nullptr)
-		_getIGraphic = (std::unique_ptr<arc::IGraphic> &(*)())
+		_getIGraphic = (arc::IGraphic &(*)())
 			dlsym(_sym, "getIGraphic");
+	if (_getIGraphic == nullptr)
+		throw arc::Exception("run", "Invalid Graphic library");
 	return _getIGraphic();
 }

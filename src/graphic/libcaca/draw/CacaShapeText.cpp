@@ -28,7 +28,7 @@ void arc::CacaShapeText::draw() const
 
 	if (len == 0)
 		return;
-	setColor(texture.bgColor(), arc::Color::Black);
+	setColor(texture.lineColor(), texture.bgColor());
 	caca_printf(arc::CacaMainWindow::getInstance().getCanvas().get(),
 		    geo.pos().x(), geo.pos().y(), "%s", text.c_str());
 	AShape::draw();

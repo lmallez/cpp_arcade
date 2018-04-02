@@ -29,14 +29,10 @@ namespace arc
 	private:
 		explicit SFMainWindow(VertexI = {400, 400});
 		std::unique_ptr<sf::RenderWindow> _window;
-		std::unordered_map<sf::Keyboard::Key, arc::KeyEvent::Key>
-			_keyMap;
-		std::unordered_map<sf::Mouse::Button,
-			arc::MouseEvent::MouseButton> _mouseMap;
+		static std::unordered_map<sf::Keyboard::Key, arc::KeyEvent::Key> _keyMap;
+		static std::unordered_map<sf::Mouse::Button, arc::MouseEvent::MouseButton> _mouseMap;
 		arc::Vertex<float > _tranformMousePos(const sf::Vector2i &)
 		const;
-		void _setMouseMap();
-		void _setKeyMap();
 	};
 
 }

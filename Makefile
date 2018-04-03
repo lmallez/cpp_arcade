@@ -27,7 +27,8 @@ core:	$(CORE_NAME)
 
 games:	cmake | $(GAMES_DIR)
 	make -C $(BUILD_DIR) GAME_BasicGame
-	cp build/libGAME_BasicGame.so games/
+	make -C $(BUILD_DIR) GAME_SNAKE
+	cp build/libGAME_BasicGame.so build/libGAME_SNAKE.so games/
 
 graphicals: cmake | $(LIB_DIR)
 	make -C $(BUILD_DIR) GRAPHIC_SFML
@@ -35,15 +36,19 @@ graphicals: cmake | $(LIB_DIR)
 	cp build/libGRAPHIC_SFML.so build/libGRAPHIC_Caca.so lib/
 
 TESTED_SRCS	= \
-		  src/core/corebuild/CoreBuild.cpp \
 		  src/core/corebuild/CoreClock.cpp \
 		  src/core/loader/GameLoader.cpp \
 		  src/core/loader/LibLoader.cpp \
 		  src/events/EventHandler.cpp \
+		  src/events/GameEvent.cpp \
 		  src/events/KeyEvent.cpp \
 		  src/events/MouseEvent.cpp \
 		  src/exception/Exception.cpp \
+		  src/games/Controller/PlayerController.cpp \
+		  src/games/Controller/SystemController.cpp \
+		  src/games/Snake/Snake.cpp \
 		  src/graphic/AShapeLoader.cpp \
+		  src/graphic/glu/GLMainWindow.cpp \
 		  src/graphic/libcaca/CacaGraphic.cpp \
 		  src/graphic/libcaca/CacaMainWindow.cpp \
 		  src/graphic/libcaca/CacaShape.cpp \
@@ -60,19 +65,30 @@ TESTED_SRCS	= \
 		  src/graphic/sfml/draw/SFShapeText.cpp \
 		  src/graphic/shape/AShape.cpp \
 		  src/graphic/shape/ShapeCircle.cpp \
+		  src/graphic/shape/ShapeContainer.cpp \
 		  src/graphic/shape/ShapeRect.cpp \
 		  src/graphic/shape/ShapeText.cpp \
 		  src/std/Color.cpp \
+		  src/std/DirectoryReader.cpp \
 		  src/std/Rect.cpp \
 		  src/std/Texture.cpp \
 		  src/std/Vertex.cpp \
+		  #src/core/corebuild/CoreBuild.cpp \
+		  #src/games/Menu/MainMenu.cpp \
+		  #src/games/Snake/SnakeGame.cpp \
 
 TESTS_SRCS	= \
+		  tests/core/corebuild/coreclock.cpp \
+		  tests/core/loader/gameloader.cpp \
+		  tests/core/loader/libloader.cpp \
+		  tests/events/keyevent.cpp \
+		  tests/events/mouseevent.cpp \
 		  tests/exception.cpp \
 		  tests/graphics/shape/circle.cpp \
 		  tests/graphics/shape/rect.cpp \
 		  tests/graphics/shape/text.cpp \
 		  tests/std/color.cpp \
+		  tests/std/directoryreader.cpp \
 		  tests/std/rectd.cpp \
 		  tests/std/rectf.cpp \
 		  tests/std/recti.cpp \

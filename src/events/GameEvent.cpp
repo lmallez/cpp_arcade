@@ -91,7 +91,7 @@ void arc::GameEvent::nextGraphic()
 
 void arc::GameEvent::setGraphic()
 {
-	_reloadGraphic.first = _listGraphics[0];
+	_reloadGraphic.first = _listGraphics[_posGraphic];
 	_reloadGraphic.second = true;
 }
 

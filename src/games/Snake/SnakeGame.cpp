@@ -64,6 +64,7 @@ arc::SnakeGame::SnakeGame():
 	_clock(0.1),
 	_score(0)
 {
+	assignKey(arc::KeyEvent::SPACE, arc::KeyEvent::JUSTPRESSED, &arc::SnakeGame::_move);
 	srandom(time(nullptr));
 	_genFlower();
 }
@@ -96,6 +97,10 @@ std::shared_ptr<arc::IShape> arc::SnakeGame::_game(EventHandler &event)
 	execKey(event);
 	if (_clock.updateTime()) {
 		_move(event);
+		if (_specialFlower.second != 0)
+			_specialFlower.second--;
+		else if (random() % 100 <= SPECIAL_FLOWER_RATE)
+			_genSpecialFlower();
 	}
 	std::shared_ptr all = std::make_shared<arc::ShapeContainer>();
 	all->addChild(_drawSnake());
@@ -120,6 +125,10 @@ std::shared_ptr<arc::IShape> arc::SnakeGame::_drawSnake() const
 	s->addChild(std::make_shared<arc::ShapeRect>(s, arc::Texture(arc::Color::Blue, arc::Color::Cyan), size));
 	RectF flowerSize(_flowerPos.x() * partSize.x(), _flowerPos.y() * partSize.y(), partSize.x(), partSize.y());
 	s->addChild(std::make_shared<arc::ShapeCircle>(s, texture, flowerSize));
+	if (_specialFlower.second > 0) {
+		RectF flowerSpecialSize(_specialFlower.first.x() * partSize.x(), _specialFlower.first.y() * partSize.y(), partSize.x(), partSize.y());
+		s->addChild(std::make_shared<arc::ShapeCircle>(s, arc::Texture(arc::Color::Yellow, arc::Color::Yellow), flowerSpecialSize));
+	}
 	return s;
 }
 
@@ -131,12 +140,23 @@ void arc::SnakeGame::_genFlower()
 	} while (_snake.inSnake(_flowerPos));
 }
 
+void arc::SnakeGame::_genSpecialFlower()
+{
+	do {
+		_specialFlower.first.rx() = (size_t)(random() % MAP_SIZE);
+		_specialFlower.first.ry() = (size_t)(random() % MAP_SIZE);
+	} while (_snake.inSnake(_specialFlower.first));
+	_specialFlower.second = SPECIAL_FLOWER_DURATION;
+}
+
 void arc::SnakeGame::_move(arc::EventHandler &event, arc::snake::Snake &snake)
 {
 	if (!snake.move(event))
 		_isOver = true;
-	else if (snake.eatFlower(_flowerPos))
+	else if (snake.eatFlower(_flowerPos, 1))
 		_genFlower();
+	else if (snake.eatFlower(_specialFlower.first, 3))
+		_genSpecialFlower();
 	else
 		snake.deleteTail();
 	_score = snake.getScore();

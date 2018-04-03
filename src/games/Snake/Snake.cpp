@@ -72,10 +72,10 @@ bool arc::snake::Snake::move(arc::EventHandler &event)
 	return (_pCtrlHaveMove || _pCtrlDir == NONE);
 }
 
-bool arc::snake::Snake::eatFlower(const arc::VertexS &flowerPos)
+bool arc::snake::Snake::eatFlower(const arc::VertexS &flowerPos, size_t value)
 {
 	if (_pCtrlPos.x() == flowerPos.x() && _pCtrlPos.y() == flowerPos.y()) {
-		_score += 1;
+		_score += value;
 		return true;
 	}
 	return false;

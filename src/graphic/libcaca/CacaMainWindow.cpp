@@ -122,8 +122,6 @@ std::unique_ptr<caca_canvas, int (*)(caca_canvas_t*)>
 
 void arc::CacaMainWindow::close()
 {
-	caca_free_display(_window.get());
-	caca_free_canvas(_canvas.get());
 }
 
 arc::VertexF arc::CacaMainWindow::getSize() const

@@ -111,7 +111,7 @@ TESTED_GCNO	= $(patsubst %.cpp, %.gcno, $(TESTED_SRCS))
 TESTED_GCDA	= $(patsubst %.cpp, %.gcda, $(TESTED_SRCS))
 TESTS_OBJS	= $(patsubst %.cpp, %.test.o, $(TESTS_SRCS))
 
-tests_run: $(TESTS_OBJS) $(TESTED_OBJS)
+tests_run: $(TESTS_OBJS) $(TESTED_OBJS) games graphicals
 	g++ $(TESTED_OBJS) $(TESTS_OBJS) -ldl -lcaca -lsfml-graphics -lsfml-window -lsfml-system -lcriterion --coverage -o $@
 	./$@
 

@@ -34,7 +34,7 @@ bool arc::LibLoader::load(const std::string &libName)
 
 bool arc::LibLoader::unload()
 {
-	std::cout << "Closing: " << _libName << std::endl;
+	std::cout << "UNLOADING: " << _libName << std::endl;
 	if (_sym == nullptr)
 		return false;
 	dlclose(_sym);

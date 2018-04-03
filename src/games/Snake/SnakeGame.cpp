@@ -29,7 +29,7 @@ void arc::SnakeGame::assignKey(arc::KeyEvent::Key key, arc::KeyEvent::Status sta
 
 void arc::SnakeGame::execKey(arc::EventHandler &event)
 {
-	PlayerController::execKey(event);
+	_snake.execKey(event);
 	SystemController::execKey(event);
 	for (auto key : _snakeEvent) {
 		execKey(event, key.first);
@@ -59,18 +59,18 @@ void arc::SnakeGame::execKey(arc::EventHandler &event, arc::KeyEvent::Key key)
 }
 
 arc::SnakeGame::SnakeGame():
-	PlayerController({0, 0}, arc::KeyEvent::JUSTPRESSED, false, {0, 0}, {true, arc::RectF(0, 0, MAP_SIZE, MAP_SIZE)}),
 	_map(arc::RectF(0.1, 0.1, 0.8, 0.8)),
 	_snake(arc::VertexS(MAP_SIZE, MAP_SIZE)),
-	_clock(0.1)
+	_clock(0.1),
+	_score(0)
 {
-	_pCtrlPos = {(float)_snake.getHead().x(), (float)_snake.getHead().y()};
 	srandom(time(nullptr));
 	_genFlower();
 }
 
 std::shared_ptr<arc::IShape> arc::SnakeGame::start()
 {
+	_score = 0;
 	_isOver = false;
 	return _drawSnake();
 }
@@ -123,31 +123,27 @@ std::shared_ptr<arc::IShape> arc::SnakeGame::_drawSnake() const
 	return s;
 }
 
-bool arc::SnakeGame::_eatFlower()
-{
-	if (_pCtrlPos.x() == _flowerPos.x() && _pCtrlPos.y() == _flowerPos.y()) {
-		_genFlower();
-		_score += 1;
-		return true;
-	}
-	return false;
-}
-
 void arc::SnakeGame::_genFlower()
 {
 	do {
 		_flowerPos.rx() = (size_t)(random() % MAP_SIZE);
 		_flowerPos.ry() = (size_t)(random() % MAP_SIZE);
-	} while (!_snake.inSnake(_flowerPos));
+	} while (_snake.inSnake(_flowerPos));
+}
+
+void arc::SnakeGame::_move(arc::EventHandler &event, arc::snake::Snake &snake)
+{
+	if (!snake.move(event))
+		_isOver = true;
+	else if (snake.eatFlower(_flowerPos))
+		_genFlower();
+	else
+		snake.deleteTail();
+	_score = snake.getScore();
 }
 
 void arc::SnakeGame::_move(arc::EventHandler &event)
 {
-	_moveDir(event, {false, NONE}, {true, {1, 1}});
-	if (_pCtrlHaveMove) {
-		if (!_snake.move({(size_t)_pCtrlPos.x(), (size_t)_pCtrlPos.y()}, _eatFlower()))
-			_isOver = true;
-	} else if (_pCtrlDir != NONE)
-		_isOver = true;
+	_move(event, _snake);
 	_clock.updateTime();
 }

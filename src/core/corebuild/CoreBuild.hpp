@@ -22,9 +22,9 @@ namespace arc {
 			const std::string &game = "");
 		~CoreBuild();
 		bool setGraphic(const std::string &name);
-		void setGraphic();
+		void updateGraphic();
 		bool setGame(const std::string &name);
-		void setGame();
+		void updateGame();
 
 		void start();
 		void update();

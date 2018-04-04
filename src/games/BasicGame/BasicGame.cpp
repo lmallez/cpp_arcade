@@ -75,6 +75,7 @@ std::shared_ptr<arc::IShape> arc::BasicGame::start()
 	arc::Texture basic(arc::Color::Red, arc::Color::Blue);
 
 	std::shared_ptr s1 = std::make_shared<arc::ShapeCircle>(nullptr, basic, _playerPos);
+
 	/*std::shared_ptr s2 = std::make_shared<arc::ShapeCircle>(s1, basic, _playerPos);
 	s1->addChild(s2);*/
 	_frame = 0;

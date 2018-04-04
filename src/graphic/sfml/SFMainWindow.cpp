@@ -143,3 +143,22 @@ void arc::SFMainWindow::pollEvent(EventHandler &evtHandler)
 		}
 	}
 }
+
+bool arc::SFMainWindow::TextureInCache(const std::string &str) const
+{
+	return _textureCache.find(str) != _textureCache.end();
+}
+
+std::shared_ptr<sf::Texture> arc::SFMainWindow::getTextureCache(
+	const std::string &str)
+const
+{
+	return _textureCache.at(str);
+}
+
+void arc::SFMainWindow::addTexture(const std::string &filePath)
+{
+	_textureCache[filePath] = std::make_unique<sf::Texture>();
+	auto tc = _textureCache[filePath];
+	tc->loadFromFile(filePath);
+}

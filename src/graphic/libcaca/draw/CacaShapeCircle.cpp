@@ -37,11 +37,12 @@ void arc::CacaShapeCircle::draw() const
 				geo.size().x() / 2,
 				geo.size().y() / 2);
 	setColor(texture.bgColor(), arc::Color::Black);
-	caca_fill_ellipse(arc::CacaMainWindow::getInstance().getCanvas().get(),
-				geo.pos().x() + geo.size().x() / 2,
-				geo.pos().y() + geo.size().y() / 2,
-				geo.size().x() / 2 - 1,
-				geo.size().y() / 2 - 1,
-				'#');
+	if (geo.size().x() > 1 || geo.size().y() > 1)
+		caca_fill_ellipse(arc::CacaMainWindow::getInstance().getCanvas().get(),
+					geo.pos().x() + geo.size().x() / 2,
+					geo.pos().y() + geo.size().y() / 2,
+					geo.size().x() / 2 - 1,
+					geo.size().y() / 2 - 1,
+					'#');
 	AShape::draw();
 }

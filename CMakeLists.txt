@@ -9,6 +9,8 @@ set(CMAKE_AUTOMOC ON)
 
 set(
         STD_FILES
+        src/games/ScoreHandler.cpp
+        src/games/ScoreHandler.hpp
         src/std/Vertex.cpp
         src/std/Vertex.hpp
         src/std/Rect.cpp

@@ -46,6 +46,7 @@ TESTED_SRCS	= \
 		  src/exception/Exception.cpp \
 		  src/games/Controller/PlayerController.cpp \
 		  src/games/Controller/SystemController.cpp \
+		  src/games/ScoreHandler.cpp \
 		  src/games/Snake/Snake.cpp \
 		  src/graphic/AShapeLoader.cpp \
 		  src/graphic/glu/GLMainWindow.cpp \
@@ -84,6 +85,7 @@ TESTS_SRCS	= \
 		  tests/events/keyevent.cpp \
 		  tests/events/mouseevent.cpp \
 		  tests/exception.cpp \
+		  tests/games/scorehandler.cpp \
 		  tests/graphics/shape/circle.cpp \
 		  tests/graphics/shape/rect.cpp \
 		  tests/graphics/shape/text.cpp \
@@ -121,6 +123,7 @@ tests:	tests_run
 	lcov -r arcade.lcov '/usr/include/*' -o arcade.lcov
 	genhtml arcade.lcov -o www
 	surf www/index.html &
+	$(RM) ./.scores.arcade/tests*
 
 $(LIB_DIR):
 	$(MKDIR) $@

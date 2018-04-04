@@ -19,8 +19,11 @@
 
 #define MAP_SIZE 20
 
+#define SPECIAL_FLOWER_RATE 5
+#define SPECIAL_FLOWER_DURATION 20
+
 namespace arc {
-	class SnakeGame : public virtual IGame, protected SystemController, protected PlayerController{
+	class SnakeGame : public virtual IGame, protected SystemController {
 	public:
 		static IGame &getInstance();
 		static void freeInstance();
@@ -45,18 +48,18 @@ namespace arc {
 
 		VertexS _flowerPos;
 		void _genFlower();
-		bool _eatFlower();
+
+		std::pair<VertexS, size_t> _specialFlower;
+		void _genSpecialFlower();
 
 		CoreClock _clock;
 		long _score = 0;
 		void _move(EventHandler &event);
+		void _move(EventHandler &event, snake::Snake &snake);
 
 		bool _isOver;
-
-
 		std::shared_ptr<arc::IShape> _game(EventHandler &event);
 		std::shared_ptr<IShape> _drawSnake() const;
-
 		std::shared_ptr<IShape> _gameOver(EventHandler &event);
 	};
 }

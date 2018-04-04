@@ -16,7 +16,7 @@ arc::GameEvent::GameEvent(const std::string &graphic, const std::string &game)
 	setGraphic();
 	setGame();
 
-	_posGraphic = graphic.empty() ? 0 : _listGraphics.size();
+	_posGraphic = 0;
 	_reloadGraphic.second = graphic.empty();
 	_exit = graphic.empty();
 
@@ -65,10 +65,8 @@ void arc::GameEvent::setGame()
 
 void arc::GameEvent::setGame(size_t pos)
 {
-	std::cout << "load game : " << pos << std::endl;
 	if (_listGames.size() <= pos)
 		throw arc::Exception("setGame", "Invalid index for lib");
-	std::cout << "load game : " << pos << " <=> " << _listGames[pos] << std::endl;
 	_posGame = pos;
 	setGame();
 }
@@ -84,7 +82,7 @@ void arc::GameEvent::prevGraphic()
 
 void arc::GameEvent::nextGraphic()
 {
-	if (_posGraphic == _listGraphics.size() - 1)
+	if (_posGraphic >= _listGraphics.size() - 1)
 		_posGraphic = 0;
 	else
 		_posGraphic++;
@@ -101,7 +99,6 @@ void arc::GameEvent::setGraphic(size_t pos)
 {
 	if (_listGraphics.size() <= pos)
 		throw arc::Exception("setGraphic", "Invalid index for lib");
-	std::cout << "load graphic : " << pos << " <=> " << _listGraphics[pos] << std::endl;
 	_posGraphic = pos;
 	setGraphic();
 }

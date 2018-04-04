@@ -42,7 +42,7 @@ bool arc::CoreBuild::setGame(const std::string &name)
 	return status;
 }
 
-void arc::CoreBuild::setGraphic()
+void arc::CoreBuild::updateGraphic()
 {
 	std::pair<std::string, bool> &reloadGraphic = _event.gameEvent().getReloadGraphic();
 
@@ -52,7 +52,7 @@ void arc::CoreBuild::setGraphic()
 	}
 }
 
-void arc::CoreBuild::setGame()
+void arc::CoreBuild::updateGame()
 {
 	std::pair<std::string, bool> &reloadGame = _event.gameEvent().getReloadGame();
 
@@ -66,8 +66,8 @@ bool arc::CoreBuild::_checkEvent(arc::GameEvent &event)
 {
 	_menu = event.isMenu();
 	if (!_menu) {
-		setGraphic();
-		setGame();
+		updateGraphic();
+		updateGame();
 	}
 	return event.isExit();
 }

@@ -34,6 +34,7 @@ bool arc::GameLoader::load(const std::string &libName)
 
 bool arc::GameLoader::unload()
 {
+	std::cout << "UNLOADING: " << _libName << std::endl;
 	if (_sym == nullptr)
 		return false;
 	dlclose(_sym);

@@ -180,29 +180,29 @@ target_link_libraries(arcade dl)
 
 ### TESTING ###
 
-add_executable(
-        test_sfml_shape
-        ${GRAPHIC_SFML}
-        ${SHAPE_FILES}
-        ${STD_FILES}
-        tests/mainTests/test_sfml_shape.cpp
-)
-target_link_libraries(test_sfml_shape sfml-graphics sfml-window sfml-system)
-
-add_executable(
-        test_basic_game ${STD_FILES} ${SHAPE_FILES} ${GAME_BASICGAME} ${GRAPHIC_SFML}
-        tests/mainTests/test_basic_game.cpp
-)
-target_link_libraries(test_basic_game sfml-graphics sfml-window sfml-system)
-
-add_executable(
-        test_basic_loader_graphic ${STD_FILES} ${SHAPE_FILES} ${GAME_BASICGAME} ${CORE}
-        tests/mainTests/test_basic_loader_graphic.cpp
-)
-target_link_libraries(test_basic_loader_graphic dl)
-
-add_executable(
-        test_basic_loader_game ${STD_FILES} ${SHAPE_FILES} ${CORE} ${GRAPHIC_SFML}
-        tests/mainTests/tests_basic_loader_game.cpp
-)
-target_link_libraries(test_basic_loader_game dl sfml-graphics sfml-window sfml-system)
+#add_executable(
+#        test_sfml_shape
+#        ${GRAPHIC_SFML}
+#        ${SHAPE_FILES}
+#        ${STD_FILES}
+#        tests/mainTests/test_sfml_shape.cpp
+#)
+#target_link_libraries(test_sfml_shape sfml-graphics sfml-window sfml-system)
+#
+#add_executable(
+#        test_basic_game ${STD_FILES} ${SHAPE_FILES} ${GAME_BASICGAME} ${GRAPHIC_SFML}
+#        tests/mainTests/test_basic_game.cpp
+#)
+#target_link_libraries(test_basic_game sfml-graphics sfml-window sfml-system)
+#
+#add_executable(
+#        test_basic_loader_graphic ${STD_FILES} ${SHAPE_FILES} ${GAME_BASICGAME} ${CORE}
+#        tests/mainTests/test_basic_loader_graphic.cpp
+#)
+#target_link_libraries(test_basic_loader_graphic dl)
+#
+#add_executable(
+#        test_basic_loader_game ${STD_FILES} ${SHAPE_FILES} ${CORE} ${GRAPHIC_SFML}
+#        tests/mainTests/tests_basic_loader_game.cpp
+#)
+#target_link_libraries(test_basic_loader_game dl sfml-graphics sfml-window sfml-system)

@@ -24,11 +24,12 @@ void arc::CacaShapeRect::draw() const
 	arc::Texture texture = getTexture();
 
 	setColor(texture.bgColor(), arc::Color::Black);
-	caca_fill_box(arc::CacaMainWindow::getInstance().getCanvas().get(),
-				geo.pos().x() + 1,
-				geo.pos().y() + 1,
-				geo.size().x() - 2,
-				geo.size().y() - 2, '#');
+	if (geo.size().x() > 2 || geo.size().y() > 2)
+		caca_fill_box(arc::CacaMainWindow::getInstance().getCanvas().get(),
+					geo.pos().x() + 1,
+					geo.pos().y() + 1,
+					geo.size().x() - 2,
+					geo.size().y() - 2, '#');
 	setColor(texture.lineColor(), arc::Color::Black);
 	caca_draw_thin_box(arc::CacaMainWindow::getInstance().getCanvas().get(),
 				geo.pos().x(),

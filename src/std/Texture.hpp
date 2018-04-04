@@ -22,6 +22,7 @@ namespace arc
 			const arc::Color &line = arc::Color::Transparent,
 			const arc::Color &fill = arc::Color::Transparent
 		);
+		~Texture() {};
 		Texture(const arc::Texture &);
 		arc::Texture &operator=(const arc::Texture &);
 		std::string getFilePath() const;

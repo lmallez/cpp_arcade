@@ -21,7 +21,18 @@ void arc::SnakeGame::freeInstance()
 {
 }
 
-void arc::SnakeGame::assignKey(arc::KeyEvent::Key key, arc::KeyEvent::Status status, arc::SnakeGame::SnakeGame_t func)
+arc::SnakeGame::SnakeGame():
+	_map(arc::RectF(0.1, 0.1, 0.8, 0.8)),
+	_snake(arc::VertexS(MAP_SIZE, MAP_SIZE)),
+	_clock(0.1),
+	_score(0)
+{
+	assignKey(arc::KeyEvent::SPACE, arc::KeyEvent::JUSTPRESSED, &arc::SnakeGame::_move);
+	srandom(time(nullptr));
+	_genFlower();
+}
+
+void arc::SnakeGame::assignKey(arc::KeyEvent::Key key, arc::KeyEvent::Status status, arc::SnakeGame::SnakeEvt_t func)
 {
 	auto a = std::make_pair(key, std::make_pair(status, func));
 	_snakeEvent.insert(a);
@@ -58,17 +69,6 @@ void arc::SnakeGame::execKey(arc::EventHandler &event, arc::KeyEvent::Key key)
 	}
 }
 
-arc::SnakeGame::SnakeGame():
-	_map(arc::RectF(0.1, 0.1, 0.8, 0.8)),
-	_snake(arc::VertexS(MAP_SIZE, MAP_SIZE)),
-	_clock(0.1),
-	_score(0)
-{
-	assignKey(arc::KeyEvent::SPACE, arc::KeyEvent::JUSTPRESSED, &arc::SnakeGame::_move);
-	srandom(time(nullptr));
-	_genFlower();
-}
-
 std::shared_ptr<arc::IShape> arc::SnakeGame::start()
 {
 	_score = 0;
@@ -80,7 +80,6 @@ std::shared_ptr<arc::IShape> arc::SnakeGame::update(arc::EventHandler &event)
 {
 	return _isOver ? _gameOver(event) : _game(event);
 }
-
 
 std::shared_ptr<arc::IShape> arc::SnakeGame::_gameOver(EventHandler &event)
 {

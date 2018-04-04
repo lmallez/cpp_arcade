@@ -34,7 +34,6 @@ set(
         src/events/GameEvent.hpp
         src/games/Controller/SystemController.cpp
         src/games/Controller/SystemController.hpp
-        src/games/Controller/IController.hpp
 )
 
 set(
@@ -127,7 +126,7 @@ set(
         src/games/Controller/PlayerController.hpp
 )
 
-add_library(GAME_BasicGame SHARED ${GAME_BASICGAME} ${GAME_MODULE} ${STD_FILES} ${SHAPE_FILES}
+add_library(GAME_BasicGame SHARED ${GAME_BASICGAME} ${STD_FILES} ${SHAPE_FILES}
         src/games/BasicGame/extern.cpp
         )
 
@@ -142,8 +141,25 @@ set(
         src/core/corebuild/CoreClock.cpp
         src/core/corebuild/CoreClock.hpp)
 
-add_library(GAME_SNAKE SHARED ${GAME_SNAKE} ${GAME_MODULE} ${STD_FILES} ${SHAPE_FILES}
+add_library(GAME_SNAKE SHARED ${GAME_SNAKE} ${STD_FILES} ${SHAPE_FILES}
         src/games/Snake/extern.cpp
+        )
+
+set(
+        GAME_SOLAR_FOX
+        src/games/Controller/PlayerController.cpp
+        src/games/Controller/PlayerController.hpp
+        src/games/SolarFox/SolarFoxGame.cpp
+        src/games/SolarFox/SolarFoxGame.hpp
+        src/games/SolarFox/Ship.cpp
+        src/games/SolarFox/Ship.hpp
+        src/games/SolarFox/Monster.cpp
+        src/games/SolarFox/Monster.hpp
+        src/core/corebuild/CoreClock.cpp
+        src/core/corebuild/CoreClock.hpp)
+
+add_library(GAME_SOLAR_FOX SHARED ${GAME_SOLAR_FOX} ${STD_FILES} ${SHAPE_FILES}
+        src/games/SolarFox/extern.cpp
         )
 
 ### CORE BUILD ###

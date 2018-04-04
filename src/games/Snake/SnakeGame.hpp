@@ -33,30 +33,25 @@ namespace arc {
 
 	protected:
 
-		typedef void (SnakeGame::*SnakeGame_t)(EventHandler &event);
-		std::unordered_map<KeyEvent::Key, std::pair<KeyEvent::Status, SnakeGame_t>> _snakeEvent;
-		void assignKey(KeyEvent::Key, KeyEvent::Status status, SnakeGame_t);
+		typedef void (SnakeGame::*SnakeEvt_t)(EventHandler &event);
+		std::unordered_map<KeyEvent::Key, std::pair<KeyEvent::Status, SnakeEvt_t>> _snakeEvent;
+		void assignKey(KeyEvent::Key, KeyEvent::Status status, SnakeEvt_t);
 		void execKey(EventHandler &event) override;
-		void execKey(EventHandler &event, KeyEvent::Key) override;
+		void execKey(EventHandler &event, KeyEvent::Key key) override;
 
 	private:
-		static SnakeGame *_instance;
 		SnakeGame();
 
 		RectF _map;
 		snake::Snake _snake;
-
 		VertexS _flowerPos;
 		void _genFlower();
-
 		std::pair<VertexS, size_t> _specialFlower;
 		void _genSpecialFlower();
-
 		CoreClock _clock;
 		long _score = 0;
 		void _move(EventHandler &event);
 		void _move(EventHandler &event, snake::Snake &snake);
-
 		bool _isOver;
 		std::shared_ptr<arc::IShape> _game(EventHandler &event);
 		std::shared_ptr<IShape> _drawSnake() const;

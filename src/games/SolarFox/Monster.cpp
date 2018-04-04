@@ -5,12 +5,16 @@
 // Monster.cpp
 //
 
+#include <random>
+#include <memory>
 #include "Monster.hpp"
+#include "MonsterMissile.hpp"
 
 arc::solarfox::Monster::Monster(arc::Direction dir, arc::VertexF size):
 	_dir(dir), _size(size), _upDown(true)
 {
-	_pos = (float)(random() % 10) / 10.0;
+	_pos = (float)(random() % 10) / (float)10;
+	_upDown = (bool)(random());
 }
 
 std::shared_ptr<arc::IShape>
@@ -26,14 +30,16 @@ void arc::solarfox::Monster::move(float speed)
 	_pos = !_upDown ? (_pos + speed) : (_pos - speed);
 }
 
-void arc::solarfox::Monster::_shot()
+std::shared_ptr<arc::solarfox::AMissile> arc::solarfox::Monster::shot() const
 {
+	std::shared_ptr<arc::solarfox::AMissile> a = std::make_unique<arc::solarfox::MonsterMissile>(_getPos().pos(), arc::VertexF(0.02, 0.02), _dir);
+	return a;
 }
 
 arc::RectF arc::solarfox::Monster::_getPos() const
 {
 	arc::RectF monsterPos;
-	float pos = _pos - _size.x() / 2;
+	float pos = _pos * (1 - _size.x());
 
 	switch (_dir) {
 	case UP:

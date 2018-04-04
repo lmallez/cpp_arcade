@@ -18,14 +18,6 @@
 #define KEY_ARROW {KeyEvent::UP, KeyEvent::LEFT, KeyEvent::RIGHT, KeyEvent::DOWN}
 
 namespace arc {
-	enum Direction {
-		NONE,
-		UP,
-		DOWN,
-		LEFT,
-		RIGHT
-	};
-
 	class PlayerController {
 		typedef void (PlayerController::*playerController_t)(EventHandler &event);
 	protected:

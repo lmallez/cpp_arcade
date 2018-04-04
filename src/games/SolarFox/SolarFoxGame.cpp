@@ -81,9 +81,18 @@ std::shared_ptr <arc::IShape> arc::SolarFoxGame::update(EventHandler &event)
 std::shared_ptr<arc::IShape> arc::SolarFoxGame::_game(arc::EventHandler &event)
 {
 	execKey(event);
-	if (_clock.updateTime())
-		for (auto &monster : _monster)
+	if (_clock.updateTime()) {
+		for (auto &monster : _monster) {
 			monster.move(0.01);
+			_missile.push_back(monster.shot());
+		}
+		for (size_t i = 0; i < _missile.size(); i++) {
+			if (!_missile[i]->move(0.01)) {
+				_missile.erase(_missile.begin() + i);
+				i--;
+			}
+		}
+	}
 	return _drawGame();
 }
 
@@ -99,5 +108,7 @@ std::shared_ptr<arc::IShape> arc::SolarFoxGame::_drawGame() const
 	map->addChild(_ship.draw(map));
 	for (auto &monster : _monster)
 		map->addChild(monster.draw(map));
+	for (auto &missile : _missile)
+		map->addChild(missile->draw(map));
 	return map;
 }

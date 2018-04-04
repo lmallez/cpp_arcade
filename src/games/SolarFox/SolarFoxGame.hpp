@@ -36,6 +36,7 @@ namespace arc {
 		CoreClock _clock;
 		solarfox::Ship _ship;
 		std::vector<solarfox::Monster> _monster;
+		std::vector<std::shared_ptr<solarfox::AMissile>> _missile;
 
 		bool _isOver = false;
 		std::shared_ptr<IShape> _game(EventHandler &event);

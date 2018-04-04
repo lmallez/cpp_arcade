@@ -7,6 +7,7 @@
 
 #include <src/graphic/shape/ShapeContainer.hpp>
 #include <variant>
+#include <stdlib.h>
 #include "SnakeGame.hpp"
 
 arc::IGame & arc::SnakeGame::getInstance()

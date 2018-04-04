@@ -12,6 +12,14 @@
 
 namespace arc
 {
+	enum Direction {
+		NONE,
+		UP,
+		DOWN,
+		LEFT,
+		RIGHT
+	};
+
 	template <class T>
 	class Vertex
 	{
@@ -34,6 +42,7 @@ namespace arc
 		Vertex operator-(T) const;
 		Vertex operator*(T) const;
 		Vertex operator/(T) const;
+		Vertex moveDir(Direction, T dist);
 
 	private:
 		T _x;

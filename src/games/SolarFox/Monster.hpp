@@ -10,6 +10,7 @@
 
 #include "src/games/Controller/PlayerController.hpp"
 #include "src/graphic/shape/ShapeRect.hpp"
+#include "MonsterMissile.hpp"
 
 namespace arc {
 	namespace solarfox {
@@ -19,7 +20,7 @@ namespace arc {
 
 			std::shared_ptr<IShape> draw(const std::shared_ptr<IShape> &parent) const;
 			void move(float speed);
-			void _shot();
+			std::shared_ptr<AMissile> shot() const;
 
 		private:
 			Direction _dir;

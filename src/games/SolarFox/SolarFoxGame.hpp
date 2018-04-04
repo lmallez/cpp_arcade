@@ -14,6 +14,8 @@
 #include "Ship.hpp"
 #include "Monster.hpp"
 
+#define SHOT_PROBA 20
+
 namespace arc {
 	class SolarFoxGame : virtual public IGame, protected SystemController {
 	public:

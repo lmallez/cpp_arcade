@@ -52,11 +52,10 @@ bool arc::solarfox::AMissile::move(float speed)
 {
 	_dist += speed;
 	_pos.rpos().moveDir(_dir, speed);
-	std::cout << _dist << " " << _range << std::endl;
 	return _dist < _range;
 }
 
 bool arc::solarfox::AMissile::collision(const arc::RectF &obj)
 {
-	return false;
+	return getPos().isCollide(obj);
 }

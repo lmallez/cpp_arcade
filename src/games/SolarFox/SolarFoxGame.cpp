@@ -84,12 +84,15 @@ std::shared_ptr<arc::IShape> arc::SolarFoxGame::_game(arc::EventHandler &event)
 	if (_clock.updateTime()) {
 		for (auto &monster : _monster) {
 			monster.move(0.01);
-			_missile.push_back(monster.shot());
+			if (random() % 1000 < SHOT_PROBA)
+				_missile.push_back(monster.shot());
 		}
 		for (size_t i = 0; i < _missile.size(); i++) {
 			if (!_missile[i]->move(0.01)) {
 				_missile.erase(_missile.begin() + i);
 				i--;
+			} else if (_missile[i]->collision(_ship.getPos())) {
+				std::cout << "COLLIDE" << std::endl;
 			}
 		}
 	}
@@ -99,6 +102,12 @@ std::shared_ptr<arc::IShape> arc::SolarFoxGame::_game(arc::EventHandler &event)
 std::shared_ptr<arc::IShape> arc::SolarFoxGame::_gameOver(
 	arc::EventHandler &event)
 {
+	arc::SystemController::execKey(event);
+	std::shared_ptr all = std::make_shared<arc::ShapeContainer>();
+
+	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.4, 0.4, 0.2, 0.4), "Game Over"));
+	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.4, 0.6, 0.1, 0.4), "Score: 0"));
+	return all;
 }
 
 std::shared_ptr<arc::IShape> arc::SolarFoxGame::_drawGame() const

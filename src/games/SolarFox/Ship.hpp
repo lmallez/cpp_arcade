@@ -24,7 +24,7 @@ namespace arc {
 			void execKey(EventHandler &event) override;
 			std::shared_ptr<IShape>
 			draw(std::shared_ptr<arc::IShape> map) const;
-
+			RectF getPos() const;
 		private:
 			RectF _getCanonSize() const;
 		};

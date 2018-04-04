@@ -38,6 +38,15 @@ namespace arc {
 		Rect<T> operator*(T other) const;
 		Rect<T> operator/(T other) const;
 
+		Vertex<T> topLeft() const;
+		Vertex<T> topRight() const;
+		Vertex<T> botLeft() const;
+		Vertex<T> botRight() const;
+
+		bool isInside(const Vertex <T> &other);
+		bool isInside(const Rect <T> &other);
+		bool isCollide(const Rect <T> &other);
+
 	private:
 		Vertex<T> _pos;
 		Vertex<T> _size;

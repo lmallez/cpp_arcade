@@ -68,6 +68,8 @@ arc::SFMainWindow &arc::SFMainWindow::getInstance()
 
 	if (instance == nullptr)
 		instance.reset(new SFMainWindow(arc::VertexI(700, 700)));
+	else if (!instance->_window->isOpen())
+		instance->_window->create(sf::VideoMode(700, 700), WNAME);
 	return *instance;
 }
 

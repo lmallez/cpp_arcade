@@ -94,6 +94,8 @@ arc::CacaMainWindow &arc::CacaMainWindow::getInstance()
 
 	if (instance == nullptr)
 		instance.reset(new CacaMainWindow(arc::VertexI(100, 50)));
+	else if (instance->_window == nullptr)
+		instance->_window.reset(caca_create_display(instance->_canvas.get()));
 	return *instance;
 }
 
@@ -122,6 +124,8 @@ std::unique_ptr<caca_canvas, int (*)(caca_canvas_t*)>
 
 void arc::CacaMainWindow::close()
 {
+	caca_free_display(_window.get());
+	_window.release();
 }
 
 arc::VertexF arc::CacaMainWindow::getSize() const

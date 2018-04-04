@@ -49,7 +49,7 @@ std::vector<std::pair<std::string, int>> ScoreHandler::getScores() const
 				"file for " + _game);
 	while(std::getline(f, line)) {
 		size_t pos = line.find_last_of(";");
-		pair.first = line.substr(0, pos - 1);
+		pair.first = line.substr(0, pos);
 		pair.second = std::stoi(line.substr(pos + 1));
 		ret.push_back(pair);
 	}

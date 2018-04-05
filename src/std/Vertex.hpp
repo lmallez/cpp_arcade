@@ -20,6 +20,8 @@ namespace arc
 		RIGHT
 	};
 
+	Direction operator!(Direction);
+
 	template <class T>
 	class Vertex
 	{

@@ -8,9 +8,9 @@
 #ifndef CPP_ARCADE_SNAKEGAME_HPP
 #define CPP_ARCADE_SNAKEGAME_HPP
 
-#include "src/games/Controller/SystemController.hpp"
-#include "src/games/Controller/PlayerController.hpp"
-#include "src/games/ScoreHandler.hpp"
+#include "src/games/utils/Controller/SystemController.hpp"
+#include "src/games/utils/Controller/PlayerController.hpp"
+#include "src/games/utils/ScoreHandler.hpp"
 #include "src/graphic/shape/ShapeCircle.hpp"
 #include "src/graphic/shape/ShapeText.hpp"
 #include "src/graphic/shape/ShapeRect.hpp"

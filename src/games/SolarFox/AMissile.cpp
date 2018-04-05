@@ -9,7 +9,7 @@
 
 arc::solarfox::AMissile::AMissile(arc::VertexF pos, arc::VertexF size,
 	arc::Direction dir, float speed, float range):
-	AMissile(arc::RectF(pos, size), dir, range, speed)
+	AMissile(arc::RectF(pos, size), dir, speed, range)
 {
 }
 
@@ -17,7 +17,6 @@ arc::solarfox::AMissile::AMissile(arc::RectF rect, arc::Direction dir,
 	float speed, float range):
 	_pos(rect), _dir(dir), _range(range), _speed(speed)
 {
-	_range = 1;
 }
 
 arc::RectF arc::solarfox::AMissile::getPos() const

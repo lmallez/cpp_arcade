@@ -7,6 +7,7 @@
 
 #include "src/graphic/shape/ShapeContainer.hpp"
 #include "Ship.hpp"
+#include "ShipMissile.hpp"
 
 arc::solarfox::Ship::Ship(const arc::VertexS &mapSize,
 	const arc::VertexF &shipSize, int life) :
@@ -92,4 +93,10 @@ bool arc::solarfox::Ship::moveLife(int nb)
 {
 	setLife(_life + nb);
 	return (_life + nb <= 0);
+}
+
+std::shared_ptr<arc::solarfox::AMissile> arc::solarfox::Ship::shot() const
+{
+	std::shared_ptr<arc::solarfox::AMissile> a = std::make_unique<arc::solarfox::ShipMissile>(_pCtrlPos, arc::VertexF(0.02, 0.02), _pCtrlDir);
+	return a;
 }

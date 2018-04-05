@@ -9,7 +9,7 @@
 #define CPP_ARCADE_SNAKE_HPP
 
 #include <vector>
-#include "src/games/Controller/PlayerController.hpp"
+#include "src/games/utils/Controller/PlayerController.hpp"
 
 #define START_SIZE 4
 

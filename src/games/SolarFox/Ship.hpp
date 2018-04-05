@@ -8,11 +8,12 @@
 #ifndef CPP_ARCADE_SHIP_HPP
 #define CPP_ARCADE_SHIP_HPP
 
-#include "src/games/Controller/PlayerController.hpp"
+#include "src/games/utils/Controller/PlayerController.hpp"
 #include "src/graphic/shape/ShapeContainer.hpp"
 #include "src/graphic/shape/ShapeRect.hpp"
 #include "src/graphic/shape/ShapeCircle.hpp"
 #include "src/graphic/shape/ShapeText.hpp"
+#include "AMissile.hpp"
 
 namespace arc {
 	namespace solarfox {
@@ -31,6 +32,8 @@ namespace arc {
 			int getLife() const;
 			void setLife(int life);
 			bool moveLife(int nb);
+
+			std::shared_ptr<AMissile>  shot() const;
 
 		private:
 			arc::RectF _getCanonSize(Direction dir) const;

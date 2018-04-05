@@ -93,6 +93,8 @@ set(
         GRAPHIC_Caca
         src/graphic/libcaca/CacaGraphic.cpp
         src/graphic/libcaca/CacaGraphic.hpp
+        src/graphic/libcaca/CacaImage.cpp
+        src/graphic/libcaca/CacaImage.hpp
         src/graphic/libcaca/CacaShape.cpp
         src/graphic/libcaca/CacaShape.hpp
         src/graphic/libcaca/CacaShapeLoader.cpp
@@ -110,7 +112,7 @@ set(
 add_library(GRAPHIC_Caca SHARED ${GRAPHIC_Caca} ${STD_FILES} ${SHAPE_FILES}
         src/graphic/libcaca/extern.cpp
         )
-target_link_libraries(GRAPHIC_Caca caca)
+target_link_libraries(GRAPHIC_Caca caca Imlib2)
 
 #set(
 #        GRAPHIC_GLU)

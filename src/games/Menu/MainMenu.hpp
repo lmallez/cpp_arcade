@@ -11,7 +11,7 @@
 #include <vector>
 #include <dirent.h>
 #include <map>
-#include "src/games/Controller/SystemController.hpp"
+#include "src/games/utils/Controller/SystemController.hpp"
 #include "src/games/IGame.hpp"
 #include "src/graphic/shape/ShapeCircle.hpp"
 #include "src/graphic/shape/ShapeText.hpp"

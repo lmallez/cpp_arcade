@@ -8,6 +8,22 @@
 #include "Vertex.hpp"
 #include "Rect.hpp"
 
+arc::Direction arc::operator!(arc::Direction dir)
+{
+	switch (dir) {
+	case UP:
+		return DOWN;
+	case LEFT:
+		return RIGHT;
+	case DOWN:
+		return UP;
+	case RIGHT:
+		return LEFT;
+	default:
+		return NONE;
+	}
+}
+
 template <typename T>
 arc::Vertex<T>::Vertex() :
 	_x(0), _y(0)
@@ -143,16 +159,16 @@ arc::Vertex<T> arc::Vertex<T>::moveDir(arc::Direction dir, T dist)
 {
 	switch (dir) {
 	case UP:
-		_y += dist;
-		break;
-	case LEFT:
-		_x += dist;
-		break;
-	case DOWN:
 		_y -= dist;
 		break;
-	case RIGHT:
+	case LEFT:
 		_x -= dist;
+		break;
+	case DOWN:
+		_y += dist;
+		break;
+	case RIGHT:
+		_x += dist;
 		break;
 	default:
 		break;

@@ -21,7 +21,8 @@ namespace arc {
 			RectF getPos() const;
 			bool move();
 			bool move(float speed);
-			bool collision(const arc::RectF &obj);
+
+			virtual bool collision(const arc::RectF &obj);
 			virtual std::shared_ptr<arc::IShape> draw(std::shared_ptr<arc::IShape>) const = 0;
 
 		protected:

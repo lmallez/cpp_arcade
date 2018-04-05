@@ -7,7 +7,7 @@
 
 #include <variant>
 #include <src/events/EventHandler.hpp>
-#include <src/games/Controller/SystemController.hpp>
+#include <src/games/utils/Controller/SystemController.hpp>
 #include "BasicGame.hpp"
 
 arc::IGame &arc::BasicGame::getInstance()

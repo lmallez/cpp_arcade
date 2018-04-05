@@ -9,10 +9,12 @@
 #define CPP_ARCADE_SOLARFOXGAME_HPP
 
 #include "src/core/corebuild/CoreClock.hpp"
-#include "src/games/Controller/SystemController.hpp"
+#include "src/games/utils/Controller/SystemController.hpp"
 #include "src/games/IGame.hpp"
 #include "Ship.hpp"
 #include "Monster.hpp"
+#include "AObject.hpp"
+#include "MapManager.hpp"
 
 #define SHOT_PROBA 20
 
@@ -44,6 +46,11 @@ namespace arc {
 		std::shared_ptr<IShape> _game(EventHandler &event);
 		std::shared_ptr<IShape> _gameOver(EventHandler &event);
 		std::shared_ptr<IShape> _drawGame() const;
+
+		void _playerShot(EventHandler &event);
+
+		solarfox::MapManager _mapManager;
+		std::vector<std::shared_ptr<solarfox::AObject>> _object;
 	};
 }
 

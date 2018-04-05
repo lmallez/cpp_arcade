@@ -23,7 +23,7 @@ void arc::SnakeGame::freeInstance()
 }
 
 arc::SnakeGame::SnakeGame():
-	_scoreboard("snake"),
+	_scoreboard("libGAME_SNAKE.so"),
 	_map(arc::RectF(0.1, 0.1, 0.8, 0.8)),
 	_snake(arc::VertexS(MAP_SIZE, MAP_SIZE)),
 	_clock(0.1),
@@ -89,8 +89,8 @@ std::shared_ptr<arc::IShape> arc::SnakeGame::_gameOver(EventHandler &event)
 	arc::SystemController::execKey(event);
 	std::shared_ptr all = std::make_shared<arc::ShapeContainer>();
 
-	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.4, 0.4, 0.2, 0.4), "Game Over"));
-	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.4, 0.6, 0.1, 0.4), "Score: " + std::to_string(_score)));
+	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.4, 0.4, 0.3, 0.4), "Game Over"));
+	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.4, 0.6, 0.3, 0.4), "Score: " + std::to_string(_score)));
 	return all;
 }
 
@@ -106,8 +106,8 @@ std::shared_ptr<arc::IShape> arc::SnakeGame::_game(EventHandler &event)
 	}
 	std::shared_ptr all = std::make_shared<arc::ShapeContainer>();
 	all->addChild(_drawSnake());
-	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.1, 0, 0.1, 0.4), "Score: " + std::to_string(_score)));
-	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.5, 0, 0.1, 0.4), ("HightScore: " + std::to_string(_scoreboard.getHightScore().second)) + " " + _scoreboard.getHightScore().first));
+	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.1, 0, 0.2, 0.4), "Score: " + std::to_string(_score)));
+	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.5, 0, 0.5, 0.4), ("HighScore: " + std::to_string(_scoreboard.getHighScore().second)) + " " + _scoreboard.getHighScore().first));
 	return all;
 }
 

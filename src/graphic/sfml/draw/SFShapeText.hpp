@@ -14,7 +14,7 @@
 #include "src/graphic/shape/ShapeText.hpp"
 #include "src/graphic/sfml/SFShape.hpp"
 
-#define SFML_TEXT_PADING 1.5
+#define SFML_TEXT_PADING 1.1
 
 namespace arc {
 	class SFShapeText : public ShapeText, public SFShape {

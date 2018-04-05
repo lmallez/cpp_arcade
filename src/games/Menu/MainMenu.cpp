@@ -7,6 +7,7 @@
 
 #include <src/std/DirectoryReader.hpp>
 #include <src/graphic/shape/ShapeContainer.hpp>
+#include <src/games/ScoreHandler.hpp>
 #include "MainMenu.hpp"
 
 arc::IGame &arc::MainMenu::getInstance()
@@ -89,7 +90,7 @@ std::shared_ptr<arc::IShape> arc::MainMenu::_displayStartButton(EventHandler &ev
 {
 	size_t maxLine = std::max(event.gameEvent().getListGraphics().size(), event.gameEvent().getListGames().size());
 
-	arc::Texture texture(arc::Color::Red, _userPos.y() >= maxLine ? arc::Color::White : arc::Color::Magenta);
+	arc::Texture texture(arc::Color::Red, _userPos.y() >= maxLine ? arc::Color::White : arc::Color::Cyan);
 	_startButton->setTexture(texture);
 	return _startButton;
 }
@@ -98,7 +99,7 @@ arc::Texture
 arc::MainMenu::_getListTexture(size_t pos, size_t selected, size_t col)
 {
 	return arc::Texture (
-		selected == pos ? arc::Color::Yellow : arc::Color::White,
+		selected == pos ? arc::Color::Green : arc::Color::Red,
 		_userPos.x() == col && _userPos.y() == pos ? arc::Color::White : arc::Color::Transparent
 	);
 }
@@ -111,7 +112,7 @@ std::shared_ptr<arc::IShape> arc::MainMenu::_displayListGraphic(EventHandler &ev
 
 	for (std::string fileName : list) {
 		arc::Texture texture = _getListTexture(text, event.gameEvent().getPosGraphic(), 0);
-		auto file = std::make_shared<arc::ShapeText>(m, texture, RectF(0.1, (float)(text * 0.2 + 0.1), 0.8, 0.2), fileName);
+		auto file = std::make_shared<arc::ShapeText>(m, texture, RectF(0.05, (float)(text * 0.1 + 0.05), 0.9, 0.11), fileName);
 		m->addChild(file);
 		text++;
 	}
@@ -126,8 +127,27 @@ std::shared_ptr<arc::IShape> arc::MainMenu::_displayListGame(EventHandler &event
 
 	for (std::string fileName : list) {
 		arc::Texture texture = _getListTexture(text, event.gameEvent().getPosGame(), 1);
-		auto file = std::make_shared<arc::ShapeText>(m, texture, RectF(0.1, (float)(text * 0.2 + 0.1), 0.8, 0.2), fileName);
+		auto file = std::make_shared<arc::ShapeText>(m, texture, RectF(0.05, (float)(text * 0.20 + 0.05), 0.9, 0.10), fileName);
 		m->addChild(file);
+		auto scores = std::make_shared<arc::ShapeText>(m, texture, RectF(0.05, (float)(text * 0.20 + 0.12), 0.9, 0.05),
+						"Best scores:");
+		m->addChild(scores);
+		ScoreHandler s(fileName);
+		std::vector<std::pair<std::string, int>> sc;
+		try {
+			s.initScores();
+			sc = s.getScores();
+		} catch (arc::Exception e) {}
+		if (sc.size() < 3) {
+			sc.push_back(std::pair<std::string, int>("None", 0));
+			sc.push_back(std::pair<std::string, int>("None", 0));
+			sc.push_back(std::pair<std::string, int>("None", 0));
+		}
+		auto scores2 = std::make_shared<arc::ShapeText>(m, texture, RectF(0.05, (float)(text * 0.20 + 0.17), 0.9, 0.10),
+						sc[0].first + " " + std::to_string(sc[0].second) + "  " +
+						sc[1].first + " " + std::to_string(sc[1].second) + "  " +
+						sc[2].first + " " + std::to_string(sc[2].second));
+		m->addChild(scores2);
 		text++;
 	}
 	return m;

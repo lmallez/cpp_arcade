@@ -30,7 +30,7 @@ namespace arc {
 		void sortScores();
 
 		std::vector<std::pair<std::string, int>> getScores() const;
-		std::pair<std::string, int> getHightScore() const;
+		std::pair<std::string, int> getHighScore() const;
 
 
 	private:

@@ -141,7 +141,8 @@ set(
         src/games/Snake/Snake.cpp
         src/games/Snake/Snake.hpp
         src/core/corebuild/CoreClock.cpp
-        src/core/corebuild/CoreClock.hpp)
+        src/core/corebuild/CoreClock.hpp
+)
 
 add_library(GAME_SNAKE SHARED ${GAME_SNAKE} ${STD_FILES} ${SHAPE_FILES}
         src/games/Snake/extern.cpp
@@ -158,7 +159,12 @@ set(
         src/games/SolarFox/Monster.cpp
         src/games/SolarFox/Monster.hpp
         src/core/corebuild/CoreClock.cpp
-        src/core/corebuild/CoreClock.hpp src/games/SolarFox/AMissile.cpp src/games/SolarFox/AMissile.hpp src/games/SolarFox/MonsterMissile.cpp src/games/SolarFox/MonsterMissile.hpp)
+        src/core/corebuild/CoreClock.hpp
+        src/games/SolarFox/AMissile.cpp
+        src/games/SolarFox/AMissile.hpp
+        src/games/SolarFox/MonsterMissile.cpp
+        src/games/SolarFox/MonsterMissile.hpp
+)
 
 add_library(GAME_SOLAR_FOX SHARED ${GAME_SOLAR_FOX} ${STD_FILES} ${SHAPE_FILES}
         src/games/SolarFox/extern.cpp

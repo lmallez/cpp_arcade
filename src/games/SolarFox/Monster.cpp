@@ -32,7 +32,7 @@ void arc::solarfox::Monster::move(float speed)
 
 std::shared_ptr<arc::solarfox::AMissile> arc::solarfox::Monster::shot() const
 {
-	std::shared_ptr<arc::solarfox::AMissile> a = std::make_unique<arc::solarfox::MonsterMissile>(_getPos().pos(), arc::VertexF(0.02, 0.02), _dir);
+	std::shared_ptr<arc::solarfox::AMissile> a = std::make_unique<arc::solarfox::MonsterMissile>(_getPos().pos(), arc::VertexF(0.05, 0.05), _dir);
 	return a;
 }
 

@@ -10,6 +10,7 @@
 
 #include "src/games/Controller/SystemController.hpp"
 #include "src/games/Controller/PlayerController.hpp"
+#include "src/games/ScoreHandler.hpp"
 #include "src/graphic/shape/ShapeCircle.hpp"
 #include "src/graphic/shape/ShapeText.hpp"
 #include "src/graphic/shape/ShapeRect.hpp"
@@ -42,6 +43,7 @@ namespace arc {
 	private:
 		SnakeGame();
 
+		ScoreHandler _scoreboard;
 		RectF _map;
 		snake::Snake _snake;
 		VertexS _flowerPos;

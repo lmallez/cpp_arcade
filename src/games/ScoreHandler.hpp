@@ -15,21 +15,28 @@
 	#include <sys/stat.h>
 	#include "src/exception/Exception.hpp"
 
-	#define SCORES_DIR	".scores.arcade"
+	#define SCORES_DIR	"scores.arcade"
 
-class ScoreHandler {
-public:
-	ScoreHandler(const std::string &game = "");
-	~ScoreHandler();
+namespace arc {
+	class ScoreHandler {
+	public:
+		explicit ScoreHandler(const std::string &game = "");
+		~ScoreHandler();
 
-	void setGame(const std::string &game);
-	void addScore(const std::pair<const std::string &, int> &entry);
-	std::vector<std::pair<std::string, int>> getScores() const;
+		void setGame(const std::string &game);
+		void addScore(const std::pair<const std::string &, int> &entry);
+		void addScore(const std::string &player, int score);
+		std::vector<std::pair<std::string, int>> initScores();
+		void sortScores();
 
-protected:
+		std::vector<std::pair<std::string, int>> getScores() const;
+		std::pair<std::string, int> getHightScore() const;
 
-private:
-	std::string _game;
-};
+
+	private:
+		std::string _game;
+		std::vector<std::pair<std::string, int>> _leaderBoard;
+	};
+}
 
 #endif /* !SCOREHANDLER_HPP_ */

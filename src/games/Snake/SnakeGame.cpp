@@ -23,6 +23,7 @@ void arc::SnakeGame::freeInstance()
 }
 
 arc::SnakeGame::SnakeGame():
+	_scoreboard("snake"),
 	_map(arc::RectF(0.1, 0.1, 0.8, 0.8)),
 	_snake(arc::VertexS(MAP_SIZE, MAP_SIZE)),
 	_clock(0.1),
@@ -74,6 +75,7 @@ std::shared_ptr<arc::IShape> arc::SnakeGame::start()
 {
 	_score = 0;
 	_isOver = false;
+	_scoreboard.initScores();
 	return _drawSnake();
 }
 
@@ -104,7 +106,8 @@ std::shared_ptr<arc::IShape> arc::SnakeGame::_game(EventHandler &event)
 	}
 	std::shared_ptr all = std::make_shared<arc::ShapeContainer>();
 	all->addChild(_drawSnake());
-	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.4, 0, 0.1, 0.4), "Score: " + std::to_string(_score)));
+	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.1, 0, 0.1, 0.4), "Score: " + std::to_string(_score)));
+	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.5, 0, 0.1, 0.4), ("HightScore: " + std::to_string(_scoreboard.getHightScore().second)) + " " + _scoreboard.getHightScore().first));
 	return all;
 }
 
@@ -160,6 +163,8 @@ void arc::SnakeGame::_move(arc::EventHandler &event, arc::snake::Snake &snake)
 	else
 		snake.deleteTail();
 	_score = snake.getScore();
+	if (_isOver)
+		_scoreboard.addScore(event.gameEvent().playerName(), (int)_score);
 }
 
 void arc::SnakeGame::_move(arc::EventHandler &event)

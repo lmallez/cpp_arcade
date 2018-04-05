@@ -19,14 +19,23 @@ namespace arc {
 		class Ship : protected PlayerController {
 		public:
 			Ship(const arc::VertexS &mapSize,
-					const arc::VertexF &shipSize);
+				const arc::VertexF &shipSize,
+				int life = 5);
 
 			void execKey(EventHandler &event) override;
-			std::shared_ptr<IShape>
-			draw(std::shared_ptr<arc::IShape> map) const;
+			std::shared_ptr<IShape> drawShip(const std::shared_ptr<arc::IShape> &parent) const;
+			std::shared_ptr<IShape> drawShip(const std::shared_ptr<arc::IShape> &parent, RectF pos, Direction dir) const;
 			RectF getPos() const;
+
+			std::shared_ptr<IShape> drawLife(const std::shared_ptr<arc::IShape> &zone, arc::RectF pos) const;
+			int getLife() const;
+			void setLife(int life);
+			bool moveLife(int nb);
+
 		private:
-			RectF _getCanonSize() const;
+			arc::RectF _getCanonSize(Direction dir) const;
+			int _life = 10;
+			int _maxLife = 10;
 		};
 	}
 }

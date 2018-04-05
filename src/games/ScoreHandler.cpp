@@ -5,37 +5,48 @@
 ** aaaah
 */
 
+#include <iostream>
+#include <algorithm>
 #include "ScoreHandler.hpp"
 
-ScoreHandler::ScoreHandler(const std::string &game)
+arc::ScoreHandler::ScoreHandler(const std::string &game)
 {
 	_game = game;
 }
 
-ScoreHandler::~ScoreHandler()
+arc::ScoreHandler::~ScoreHandler()
 {
 }
 
-void ScoreHandler::setGame(const std::string &game)
+void arc::ScoreHandler::setGame(const std::string &game)
 {
 	_game = game;
 }
 
-void ScoreHandler::addScore(const std::pair<const std::string &, int> &entry)
+void arc::ScoreHandler::addScore(const std::pair<const std::string &, int> &entry)
 {
 	mkdir(SCORES_DIR, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 	if (_game.empty())
 		throw arc::Exception("ScoreHandler", "game name not set");
 	std::ofstream f(std::string(SCORES_DIR) + "/" + _game,
 			std::ofstream::app);
-
+	std::cout << (std::string(SCORES_DIR) + "/" + _game) << std::endl;
 	if (!f)
 		throw arc::Exception("ScoreHandler", "could not load score"
 				"file for " + _game);
+	_leaderBoard.push_back(entry);
+	sortScores();
 	f << entry.first << ";" << entry.second << std::endl;
 }
 
-std::vector<std::pair<std::string, int>> ScoreHandler::getScores() const
+void arc::ScoreHandler::addScore(const std::string &player, int score)
+{
+	const std::pair<const std::string &, int> &entry = std::make_pair(player, score);
+
+	addScore(entry);
+}
+
+std::vector<std::pair<std::string, int>> arc::ScoreHandler::initScores()
 {
 	std::string line;
 	std::pair<std::string, int> pair;
@@ -53,5 +64,25 @@ std::vector<std::pair<std::string, int>> ScoreHandler::getScores() const
 		pair.second = std::stoi(line.substr(pos + 1));
 		ret.push_back(pair);
 	}
-	return (ret);
+	_leaderBoard = ret;
+	sortScores();
+	return (_leaderBoard);
+}
+
+void arc::ScoreHandler::sortScores()
+{
+	auto a = [](const auto &a, const auto &b) {return a.second > b.second;};
+	std::sort(_leaderBoard.begin(), _leaderBoard.end(), a);
+}
+
+std::vector<std::pair<std::string, int>> arc::ScoreHandler::getScores() const
+{
+	return _leaderBoard;
+}
+
+std::pair<std::string, int> arc::ScoreHandler::getHightScore() const
+{
+	if (_leaderBoard.size() == 0)
+		return std::make_pair("Undefined", 0);
+	return _leaderBoard[0];
 }

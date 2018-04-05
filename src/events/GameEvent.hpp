@@ -46,9 +46,9 @@ namespace arc {
 		std::pair<std::string, bool> & getReloadGraphic();
 
 		size_t getPosGame() const;
-
 		size_t getPosGraphic() const;
 
+		const std::string &playerName() const;
 
 	private:
 		size_t _posGame = 0;
@@ -60,6 +60,8 @@ namespace arc {
 		std::pair<std::string, bool> _reloadGraphic;
 		bool _menu;
 		bool _exit;
+
+		std::string _playerName = "Undefined";
 	};
 }
 

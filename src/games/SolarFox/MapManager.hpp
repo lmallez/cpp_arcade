@@ -23,6 +23,7 @@ namespace arc {
 
 			std::vector<std::shared_ptr<AObject>> initMap(size_t lvl);
 			std::vector<std::shared_ptr<AObject>> nextMap();
+			bool lastLvl() const;
 
 		private:
 			size_t _lvl = 0;

@@ -9,19 +9,10 @@
 #define CPP_ARCADE_VERTEX_HPP
 
 #include <iostream>
+#include "Direction.hpp"
 
 namespace arc
 {
-	enum Direction {
-		NONE,
-		UP,
-		DOWN,
-		LEFT,
-		RIGHT
-	};
-
-	Direction operator!(Direction);
-
 	template <class T>
 	class Vertex
 	{

@@ -10,7 +10,6 @@
 arc::solarfox::AObject::AObject(const arc::RectF &pos, int health):
 	_pos(pos), _health(health)
 {
-	std::cout << _pos.pos().x() << " " << _pos.pos().y() << std::endl;
 }
 
 arc::RectF arc::solarfox::AObject::getPos() const

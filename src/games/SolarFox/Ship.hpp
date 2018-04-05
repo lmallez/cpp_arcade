@@ -15,6 +15,8 @@
 #include "src/graphic/shape/ShapeText.hpp"
 #include "AMissile.hpp"
 
+#define BULLET_SIZE 0.02
+
 namespace arc {
 	namespace solarfox {
 		class Ship : protected PlayerController {

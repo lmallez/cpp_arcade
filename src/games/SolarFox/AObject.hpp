@@ -19,15 +19,17 @@ namespace arc {
 		public:
 			AObject(const RectF &pos, int health);
 
-			virtual bool collision(arc::VertexF obj) = 0;
+			virtual bool collision(const RectF &obj) = 0;
 			virtual std::shared_ptr<arc::IShape>
 			draw(std::shared_ptr<arc::IShape> parent) const = 0;
 			arc::RectF getPos() const;
 			int getHealth() const;
 
+		protected:
+			int _health;
+
 		private:
 			arc::RectF _pos;
-			int _health;
 		};
 	}
 }

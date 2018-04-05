@@ -28,7 +28,6 @@ arc::MapReader::readMap(const std::string &path)
 	while (!f.eof()) {
 		f >> line;
 		std::stringstream ss(line);
-		std::cout << line << std::endl;
 		while(ss.good())
 		{
 			std::string substr;

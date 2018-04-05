@@ -28,10 +28,10 @@ arc::RectF arc::solarfox::AMissile::getPos() const
 		pos = arc::RectF(_pos.pos(), {_pos.size().x(), _pos.size().y()});
 		break;
 	case LEFT:
-		pos = arc::RectF(_pos.pos(), {-_pos.size().y(), _pos.size().x()});
+		pos = arc::RectF(_pos.pos(), {_pos.size().y(), _pos.size().x()});
 		break;
 	case DOWN:
-		pos = arc::RectF(_pos.pos(), {-_pos.size().x(), _pos.size().y()});
+		pos = arc::RectF(_pos.pos(), {_pos.size().x(), _pos.size().y()});
 		break;
 	case RIGHT:
 		pos = arc::RectF(_pos.pos(), {_pos.size().y(), _pos.size().x()});

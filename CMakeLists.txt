@@ -36,7 +36,7 @@ set(
         src/events/GameEvent.hpp
         src/games/utils/Controller/SystemController.cpp
         src/games/utils/Controller/SystemController.hpp
-)
+        src/std/Direction.cpp src/std/Direction.hpp)
 
 set(
         SHAPE_FILES

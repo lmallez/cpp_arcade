@@ -5,7 +5,9 @@
 // Created by Faudil Puttilli
 //
 
+#include <src/std/Color.hpp>
 #include "SDLMainWindow.hpp"
+#include <SDL2/SDL2_gfxPrimitives.h>
 
 arc::SDLMainWindow &arc::SDLMainWindow::getInstance()
 {
@@ -23,7 +25,7 @@ _render(nullptr, SDL_DestroyRenderer)
 	SDL_Init(SDL_INIT_EVERYTHING);
 	_window.reset(SDL_CreateWindow(WNAME, SDL_WINDOWPOS_UNDEFINED,
 				       SDL_WINDOWPOS_UNDEFINED, size.x(),
-				       size.y(), SDL_WINDOW_OPENGL));
+				       size.y(), 0));
 	if (!_window)
 		throw arc::Exception("SDL Graphic", "Can't open the Window");
 	_render.reset(SDL_CreateRenderer(_window.get(), -1, SDL_RENDERER_ACCELERATED));
@@ -52,9 +54,10 @@ arc::VertexF arc::SDLMainWindow::getSize() const
 
 void arc::SDLMainWindow::display()
 {
-	std::cout << "zzzz" << std::endl;
-//	SDL_RenderClear(_render.get());
+//	std::cout << "zzzz" << std::endl;
 	SDL_RenderPresent(_render.get());
+	SDL_SetRenderDrawColor(_render.get(), 0, 0, 0, 0xFF);
+	SDL_RenderClear(_render.get());
 }
 
 void arc::SDLMainWindow::pollEvent(EventHandler &evtHandler)

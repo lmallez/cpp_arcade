@@ -10,19 +10,19 @@
 
 arc::SDLShapeCircle::SDLShapeCircle(std::shared_ptr<arc::IShape> parent,
 	const arc::Texture &texture, const arc::VertexF &pos, float radius):
-	ShapeCircle(parent, texture, pos, radius)
+	ShapeCircle(parent, texture, pos, radius), SDLShape()
 {
 
 }
 
 arc::SDLShapeCircle::SDLShapeCircle(std::shared_ptr<arc::IShape> parent,
 	const arc::Texture &texture, const arc::RectF &rect):
-	ShapeCircle(parent, texture, rect)
+	ShapeCircle(parent, texture, rect), SDLShape()
 {
 }
 
 arc::SDLShapeCircle::SDLShapeCircle(const arc::ShapeCircle &shape):
-	ShapeCircle(shape)
+	ShapeCircle(shape), SDLShape()
 {
 }
 
@@ -32,6 +32,12 @@ void arc::SDLShapeCircle::draw() const
 
 	aaellipseColor(arc::SDLMainWindow::getInstance().getRenderer().get(),
 		       (Sint16) geo.pos().x(), (Sint16) geo.pos().y(),
-		       (Sint16) geo.size().x(), (Sint16) geo.size().y(),
-		       _texture.bgColor().values());
+		       (Sint16) geo.size().x() / 2,
+		       (Sint16) geo.size().y() / 2,
+		       _texture.lineColor().values());
+	filledEllipseColor(arc::SDLMainWindow::getInstance().getRenderer().get(),
+			   (Sint16) geo.pos().x(), (Sint16) geo.pos().y(),
+			   (Sint16) geo.size().x(), (Sint16) geo.size().y(),
+			   _texture.bgColor().values());
+	AShape::draw();
 }

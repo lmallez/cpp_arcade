@@ -25,5 +25,6 @@ void arc::SDLShapeText::draw() const
 	gfxPrimitivesSetFont(nullptr, 42, 42);
 	stringColor(arc::SDLMainWindow::getInstance().getRenderer().get(),
 		    (Sint16) geo.pos().x(), (Sint16) geo.pos().y(),
-		getText().c_str(), _texture.bgColor().values());
+		getText().c_str(), _texture.lineColor().values());
+	AShape::draw();
 }

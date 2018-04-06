@@ -20,7 +20,6 @@ arc::IGraphic & arc::SDLGraphic::getInstance()
 
 void arc::SDLGraphic::display() const
 {
-	std::cout << " In SDL Display "<< std::endl;
 	arc::SDLMainWindow::getInstance().display();
 }
 

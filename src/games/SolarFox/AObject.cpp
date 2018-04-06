@@ -21,3 +21,17 @@ int arc::solarfox::AObject::getHealth() const
 {
 	return _health;
 }
+
+bool arc::solarfox::AObject::collision(const arc::RectF &obj) const
+{
+	return (getPos().isCollide(obj));
+}
+
+bool arc::solarfox::AObject::tryCollision(const arc::RectF &obj)
+{
+	if (collision(obj)) {
+		_health--;
+		return true;
+	}
+	return false;
+}

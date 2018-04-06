@@ -36,7 +36,9 @@ set(
         src/events/GameEvent.hpp
         src/games/utils/Controller/SystemController.cpp
         src/games/utils/Controller/SystemController.hpp
-        src/std/Direction.cpp src/std/Direction.hpp)
+        src/std/Direction.cpp
+        src/std/Direction.hpp
+)
 
 set(
         SHAPE_FILES
@@ -84,10 +86,10 @@ set(
         src/graphic/sfml/SFMainWindow.hpp
 )
 
-add_library(GRAPHIC_SFML SHARED ${GRAPHIC_SFML} ${STD_FILES} ${SHAPE_FILES}
+add_library(_arcade_sfml SHARED ${GRAPHIC_SFML} ${STD_FILES} ${SHAPE_FILES}
         src/graphic/sfml/extern.cpp
         )
-target_link_libraries(GRAPHIC_SFML sfml-graphics sfml-window sfml-system)
+target_link_libraries(_arcade_sfml sfml-graphics sfml-window sfml-system)
 
 set(
         GRAPHIC_Caca
@@ -109,10 +111,10 @@ set(
         src/graphic/libcaca/CacaMainWindow.hpp
 )
 
-add_library(GRAPHIC_Caca SHARED ${GRAPHIC_Caca} ${STD_FILES} ${SHAPE_FILES}
+add_library(_arcade_caca SHARED ${GRAPHIC_Caca} ${STD_FILES} ${SHAPE_FILES}
         src/graphic/libcaca/extern.cpp
         )
-target_link_libraries(GRAPHIC_Caca caca Imlib2)
+target_link_libraries(_arcade_caca caca Imlib2)
 
 #set(
 #        GRAPHIC_GLU)
@@ -123,14 +125,25 @@ target_link_libraries(GRAPHIC_Caca caca Imlib2)
 ### GAMES LIBS ###
 
 set(
+        STD_GAME
+        src/games/utils/IObject.hpp
+        src/games/utils/Animated/AnimatedContainer.cpp
+        src/games/utils/Animated/AnimatedContainer.hpp
+)
+
+set(
         GAME_BASICGAME
         src/games/BasicGame/BasicGame.cpp
         src/games/BasicGame/BasicGame.hpp
         src/games/utils/Controller/PlayerController.cpp
         src/games/utils/Controller/PlayerController.hpp
+        src/games/utils/Animated/AnimatedShape.cpp
+        src/games/utils/Animated/AnimatedShape.hpp
+        src/games/utils/Animated/AnimatedObject.cpp
+        src/games/utils/Animated/AnimatedObject.hpp
 )
 
-add_library(GAME_BasicGame SHARED ${GAME_BASICGAME} ${STD_FILES} ${SHAPE_FILES}
+add_library(_arcade_basic_game SHARED ${STD_GAME} ${GAME_BASICGAME} ${STD_FILES} ${SHAPE_FILES}
         src/games/BasicGame/extern.cpp
         )
 
@@ -144,9 +157,12 @@ set(
         src/games/Snake/Snake.hpp
         src/core/corebuild/CoreClock.cpp
         src/core/corebuild/CoreClock.hpp
-        src/games/utils/mapReader/MapReader.cpp src/games/utils/mapReader/MapReader.hpp src/games/utils/IGameObject.hpp)
+        src/games/utils/mapReader/MapReader.cpp
+        src/games/utils/mapReader/MapReader.hpp
+        src/games/utils/IGameObject.hpp
+)
 
-add_library(GAME_SNAKE SHARED ${GAME_SNAKE} ${STD_FILES} ${SHAPE_FILES}
+add_library(_arcade_nibbler SHARED ${STD_GAME} ${GAME_SNAKE} ${STD_FILES} ${SHAPE_FILES}
         src/games/Snake/extern.cpp
         )
 
@@ -168,9 +184,18 @@ set(
         src/games/SolarFox/MonsterMissile.hpp
         src/games/SolarFox/ShipMissile.cpp
         src/games/SolarFox/ShipMissile.hpp
-        src/games/utils/mapReader/MapReader.cpp src/games/utils/mapReader/MapReader.hpp src/games/utils/IGameObject.hpp src/games/SolarFox/MapManager.cpp src/games/SolarFox/MapManager.hpp src/games/SolarFox/AObject.cpp src/games/SolarFox/AObject.hpp src/games/SolarFox/BasicMob.cpp src/games/SolarFox/BasicMob.hpp)
+        src/games/utils/mapReader/MapReader.cpp
+        src/games/utils/mapReader/MapReader.hpp
+        src/games/utils/IGameObject.hpp
+        src/games/SolarFox/MapManager.cpp
+        src/games/SolarFox/MapManager.hpp
+        src/games/SolarFox/AObject.cpp
+        src/games/SolarFox/AObject.hpp
+        src/games/SolarFox/BasicMob.cpp
+        src/games/SolarFox/BasicMob.hpp
+)
 
-add_library(GAME_SOLAR_FOX SHARED ${GAME_SOLAR_FOX} ${STD_FILES} ${SHAPE_FILES}
+add_library(_arcade_solarfox SHARED ${STD_GAME} ${GAME_SOLAR_FOX} ${STD_FILES} ${SHAPE_FILES}
         src/games/SolarFox/extern.cpp
         )
 
@@ -216,13 +241,13 @@ target_link_libraries(arcade dl)
 #target_link_libraries(test_sfml_shape sfml-graphics sfml-window sfml-system)
 #
 #add_executable(
-#        test_basic_game ${STD_FILES} ${SHAPE_FILES} ${GAME_BASICGAME} ${GRAPHIC_SFML}
+#        test_basic_game ${STD_FILES} ${SHAPE_FILES} ${STD_GAME} ${GAME_BASICGAME} ${GRAPHIC_SFML}
 #        tests/mainTests/test_basic_game.cpp
 #)
 #target_link_libraries(test_basic_game sfml-graphics sfml-window sfml-system)
 #
 #add_executable(
-#        test_basic_loader_graphic ${STD_FILES} ${SHAPE_FILES} ${GAME_BASICGAME} ${CORE}
+#        test_basic_loader_graphic ${STD_FILES} ${SHAPE_FILES} ${STD_GAME} ${GAME_BASICGAME} ${CORE}
 #        tests/mainTests/test_basic_loader_graphic.cpp
 #)
 #target_link_libraries(test_basic_loader_graphic dl)

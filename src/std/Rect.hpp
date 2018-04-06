@@ -43,9 +43,9 @@ namespace arc {
 		Vertex<T> botLeft() const;
 		Vertex<T> botRight() const;
 
-		bool isInside(const Vertex <T> &other);
-		bool isInside(const Rect <T> &other);
-		bool isCollide(const Rect <T> &other);
+		bool isInside(const Vertex <T> &other) const;
+		bool isInside(const Rect <T> &other) const;
+		bool isCollide(const Rect <T> &other) const;
 
 	private:
 		Vertex<T> _pos;

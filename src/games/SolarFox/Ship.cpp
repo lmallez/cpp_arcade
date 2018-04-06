@@ -40,7 +40,7 @@ arc::solarfox::Ship::drawShip(const std::shared_ptr<arc::IShape> &parent,
 }
 
 std::shared_ptr<arc::IShape>
-arc::solarfox::Ship::drawShip(const std::shared_ptr<arc::IShape> &parent) const
+arc::solarfox::Ship::draw(const std::shared_ptr<arc::IShape> &parent) const
 {
 	return drawShip(parent, getPos(), _pCtrlDir);
 }

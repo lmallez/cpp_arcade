@@ -18,8 +18,7 @@ namespace arc {
 		public:
 			ShipMissile(arc::VertexF pos, arc::VertexF size, Direction dir);
 
-			std::shared_ptr<IShape> draw(std::shared_ptr<IShape> ptr) const override;
-			bool collision(const arc::RectF &obj) override;
+			std::shared_ptr<IShape> draw(const std::shared_ptr<IShape> &ptr) const override;
 		};
 	}
 }

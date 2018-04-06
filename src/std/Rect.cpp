@@ -172,20 +172,20 @@ arc::Vertex<T> arc::Rect<T>::botRight() const
 }
 
 template <typename T>
-bool arc::Rect<T>::isInside(const Vertex<T> &other)
+bool arc::Rect<T>::isInside(const Vertex<T> &other) const
 {
 	return  (_pos.x() <= other.x() && other.x() <= _pos.x() + _size.x()
 		&& _pos.y() <= other.y() && other.y() <= _pos.y() + _size.y());
 }
 
 template <typename T>
-bool arc::Rect<T>::isInside(const Rect<T> &other)
+bool arc::Rect<T>::isInside(const Rect<T> &other) const
 {
 	return (isInside(other.pos()) && isInside(other.pos() + other.size()));
 }
 
 template <typename T>
-bool arc::Rect<T>::isCollide(const Rect<T> &other)
+bool arc::Rect<T>::isCollide(const Rect<T> &other) const
 {
 	return (isInside(other.topRight())
 		|| isInside(other.topLeft())

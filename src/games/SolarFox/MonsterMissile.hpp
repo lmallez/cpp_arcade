@@ -18,7 +18,7 @@ namespace arc {
 		public:
 			MonsterMissile(arc::VertexF pos, arc::VertexF size, Direction dir);
 
-			std::shared_ptr<IShape> draw(std::shared_ptr<IShape> ptr) const override;
+			std::shared_ptr<IShape> draw(const std::shared_ptr<IShape> &ptr) const override;
 		};
 	}
 }

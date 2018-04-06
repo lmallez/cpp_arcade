@@ -10,9 +10,7 @@
 
 #include <vector>
 #include <string>
-
-#define DIR_GAME "../games"
-#define DIR_GRAPHIC "../graphics"
+#include "src/main.hpp"
 
 namespace arc {
 	class GameEvent {

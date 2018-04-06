@@ -5,7 +5,7 @@
 // SnakeGame.cpp
 //
 
-#include <src/graphic/shape/ShapeContainer.hpp>
+#include "src/graphic/shape/ShapeContainer.hpp"
 #include <variant>
 #include <stdlib.h>
 #include "SnakeGame.hpp"
@@ -28,7 +28,7 @@ arc::SnakeGame::SnakeGame():
 	_snake(arc::VertexS(MAP_SIZE, MAP_SIZE)),
 	_clock(0.1),
 	_score(0),
-	_mapManager("../assets/nibbler")
+	_mapManager(std::string(NIBBLER_ASSETS_DIR) + "/map")
 {
 	assignKey(arc::KeyEvent::SPACE, arc::KeyEvent::JUSTPRESSED, &arc::SnakeGame::_move);
 	srandom(time(nullptr));
@@ -128,7 +128,7 @@ std::shared_ptr<arc::IShape> arc::SnakeGame::_drawSnake() const
 	}
 	const arc::VertexS &bodyPart = _snake.getHead();
 	RectF size(bodyPart.x() * partSize.x(), bodyPart.y() * partSize.y(), partSize.x(), partSize.y());
-	s->addChild(std::make_shared<arc::ShapeRect>(s, arc::Texture(arc::Color::Blue, arc::Color::Cyan), size));
+	s->addChild(std::make_shared<arc::ShapeRect>(s, arc::Texture(arc::Color::Cyan, arc::Color::Cyan), size));
 	RectF flowerSize(_flowerPos.x() * partSize.x(), _flowerPos.y() * partSize.y(), partSize.x(), partSize.y());
 	s->addChild(std::make_shared<arc::ShapeCircle>(s, texture, flowerSize));
 	if (_specialFlower.second > 0) {

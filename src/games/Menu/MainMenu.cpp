@@ -5,9 +5,9 @@
 // Menu.cpp
 //
 
-#include <src/std/DirectoryReader.hpp>
-#include <src/graphic/shape/ShapeContainer.hpp>
-#include <src/games/utils/ScoreHandler.hpp>
+#include "src/std/DirectoryReader.hpp"
+#include "src/graphic/shape/ShapeContainer.hpp"
+#include "src/games/utils/ScoreHandler.hpp"
 #include "MainMenu.hpp"
 
 arc::IGame &arc::MainMenu::getInstance()

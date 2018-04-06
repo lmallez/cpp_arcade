@@ -8,9 +8,9 @@
 #ifndef CPP_ARCADE_SFDRAWLOADER_HPP
 #define CPP_ARCADE_SFDRAWLOADER_HPP
 
-#include <src/graphic/shape/ShapeCircle.hpp>
-#include <src/graphic/IShapeLoader.hpp>
-#include <src/graphic/AShapeLoader.hpp>
+#include "src/graphic/shape/ShapeCircle.hpp"
+#include "src/graphic/IShapeLoader.hpp"
+#include "src/graphic/AShapeLoader.hpp"
 #include "src/graphic/shape/ShapeRect.hpp"
 
 namespace arc {

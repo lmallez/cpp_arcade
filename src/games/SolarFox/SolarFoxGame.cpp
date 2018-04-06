@@ -22,7 +22,7 @@ void arc::SolarFoxGame::freeInstance()
 arc::SolarFoxGame::SolarFoxGame():
 	_clock(0.02),
 	_ship({1, 1}, {0.05, 0.05}, 10),
-	_mapManager("../assets/solarfox"),
+	_mapManager(ASSETS_DIR + "/solarfox/map"),
 	_scoreboard("solarfox")
 {
 	assignKey(arc::KeyEvent::SPACE, arc::KeyEvent::JUSTPRESSED, &arc::SolarFoxGame::_shot);

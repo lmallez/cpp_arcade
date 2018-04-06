@@ -17,7 +17,7 @@ arc::IGraphic & arc::SFGraphic::getInstance()
 	static arc::IGraphic *instance = nullptr;
 
 	if (!instance) {
-		consolasFont.loadFromFile("../assets/Consolas.ttf");
+		consolasFont.loadFromFile(ASSETS_DIR + "/Consolas.ttf");
 		instance = new SFGraphic();
 	}
 	return *instance;

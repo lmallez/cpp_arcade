@@ -9,7 +9,7 @@
 #define CPP_ARCADE_IGRAPHIC_HPP
 
 #include <memory>
-#include <src/std/Vertex.hpp>
+#include "src/std/Vertex.hpp"
 #include "src/exception/Exception.hpp"
 #include "src/events/EventHandler.hpp"
 #include "IShapeLoader.hpp"

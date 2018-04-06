@@ -8,7 +8,7 @@
 #ifndef CPP_ARCADE_SOLARFOXGAME_HPP
 #define CPP_ARCADE_SOLARFOXGAME_HPP
 
-#include <src/games/utils/ScoreHandler.hpp>
+#include "src/games/utils/ScoreHandler.hpp"
 #include "src/core/corebuild/CoreClock.hpp"
 #include "src/games/utils/Controller/SystemController.hpp"
 #include "src/games/IGame.hpp"

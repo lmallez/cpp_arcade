@@ -14,7 +14,7 @@ int main(int ac, char **av)
 	arc::CoreBuild core(av[1], ac > 2 ? av[2] : "");
 	try {
 		core.run();
-	}  catch (arc::Exception &e) {
+	}  catch (std::exception &e) {
 		std::cerr << av[0] << ": " << e.what() << std::endl;
 		return 84;
 	}

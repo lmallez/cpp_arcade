@@ -5,7 +5,7 @@
 // SystemController.cpp
 //
 
-#include <src/games/Menu/MainMenu.hpp>
+#include "src/games/Menu/MainMenu.hpp"
 #include "SystemController.hpp"
 
 arc::SystemController::SystemController()

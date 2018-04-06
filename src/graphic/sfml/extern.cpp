@@ -7,7 +7,7 @@
 
 #include <dlfcn.h>
 #include "SFGraphic.hpp"
-#include "../IGraphic.hpp"
+#include "src/graphic/IGraphic.hpp"
 
 extern "C" arc::IGraphic & getIGraphic()
 {

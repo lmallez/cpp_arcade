@@ -17,9 +17,6 @@
 #include "src/graphic/shape/ShapeText.hpp"
 #include "src/graphic/shape/ShapeRect.hpp"
 
-#define DIR_GAME "../games"
-#define DIR_GRAPHIC "../graphics"
-
 #define TEXT_PADDING 0.2
 
 namespace arc {

@@ -9,6 +9,7 @@
 #define CPP_ARCADE_VERTEX_HPP
 
 #include <iostream>
+#include "src/main.hpp"
 #include "Direction.hpp"
 
 namespace arc

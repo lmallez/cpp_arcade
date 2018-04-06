@@ -21,6 +21,7 @@
 #include "MapManager.hpp"
 
 #define MAP_SIZE 20
+#define NIBBLER_ASSETS_DIR std::string(ASSETS_DIR) + "/nibbler"
 
 #define SPECIAL_FLOWER_RATE 5
 #define SPECIAL_FLOWER_DURATION 20

@@ -8,8 +8,8 @@
 #define CPP_ARCADE_CACAMAINWINDOW_HPP
 
 #include <caca.h>
-#include <src/graphic/IGraphic.hpp>
-#include <src/std/Vertex.hpp>
+#include "src/graphic/IGraphic.hpp"
+#include "src/std/Vertex.hpp"
 
 namespace arc
 {

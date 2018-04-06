@@ -38,7 +38,7 @@ set(
         src/games/utils/Controller/SystemController.hpp
         src/std/Direction.cpp
         src/std/Direction.hpp
-)
+        src/main.hpp)
 
 set(
         SHAPE_FILES

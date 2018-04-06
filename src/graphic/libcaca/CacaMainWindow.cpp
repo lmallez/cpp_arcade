@@ -85,7 +85,7 @@ std::unordered_map<char, arc::KeyEvent::Key> arc::CacaMainWindow::_keyMap = {
 	{CACA_KEY_DOWN, arc::KeyEvent::DOWN},
 	{CACA_KEY_LEFT, arc::KeyEvent::LEFT},
 	{CACA_KEY_RIGHT, arc::KeyEvent::RIGHT},
-	{' ', arc::KeyEvent::ESCAPE}
+	{' ', arc::KeyEvent::SPACE}
 };
 
 arc::CacaMainWindow &arc::CacaMainWindow::getInstance()

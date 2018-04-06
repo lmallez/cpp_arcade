@@ -5,27 +5,48 @@
 ** aaaah
 */
 
+#include <string.h>
 #include <iostream>
 #include <algorithm>
 #include "ScoreHandler.hpp"
 
 arc::ScoreHandler::ScoreHandler(const std::string &game)
 {
-	_game = game;
+	setGame(game);
 }
 
 arc::ScoreHandler::~ScoreHandler()
 {
 }
 
+std::string arc::ScoreHandler::getLinkedLib(const std::string &path)
+{
+	if (path.empty())
+		return "";
+	std::ifstream f(SCORES_LINK_FILE);
+	if (!f)
+		throw arc::Exception("ScoreHandler", "could not load lib-score linking file");
+	std::string line;
+	while(std::getline(f, line)) {
+		size_t pos = line.find(";");
+		if (line.substr(0, pos) == path)
+			return line.substr(pos + 1);
+	}
+	return path;
+}
+
 void arc::ScoreHandler::setGame(const std::string &game)
 {
 	_game = game;
+	if (!_game.empty()) {
+		std::ofstream f(std::string(SCORES_DIR) + "/" + _game, std::ofstream::app);
+		if (!f && mkdir(("./" + std::string(SCORES_DIR)).c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) != 0)
+			throw arc::Exception("ScoreHandler", strerror(errno));
+	}
 }
 
 void arc::ScoreHandler::addScore(const std::pair<const std::string &, int> &entry)
 {
-	mkdir(SCORES_DIR, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 	if (_game.empty())
 		throw arc::Exception("ScoreHandler", "game name not set");
 	std::ofstream f(std::string(SCORES_DIR) + "/" + _game,
@@ -54,7 +75,7 @@ std::vector<std::pair<std::string, int>> arc::ScoreHandler::initScores()
 		throw arc::Exception("ScoreHandler", "game name not set");
 	std::ifstream f(std::string(SCORES_DIR) + "/" + _game);
 
-	if (!f)
+	if (f.fail())
 		throw arc::Exception("ScoreHandler", "could not load score"
 				"file for " + _game);
 	while(std::getline(f, line)) {
@@ -79,7 +100,7 @@ std::vector<std::pair<std::string, int>> arc::ScoreHandler::getScores() const
 	return _leaderBoard;
 }
 
-std::pair<std::string, int> arc::ScoreHandler::getHightScore() const
+std::pair<std::string, int> arc::ScoreHandler::getHighScore() const
 {
 	if (_leaderBoard.size() == 0)
 		return std::make_pair("Undefined", 0);

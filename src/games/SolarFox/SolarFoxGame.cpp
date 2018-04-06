@@ -105,7 +105,7 @@ std::shared_ptr<arc::IShape> arc::SolarFoxGame::_game(arc::EventHandler &event)
 	}
 	all->addChild(_drawGame());
 	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.1, 0, 0.1, 0.4), "Score: " + std::to_string(_score)));
-	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.5, 0, 0.1, 0.4), ("HightScore: " + std::to_string(_scoreboard.getHightScore().second)) + " " + _scoreboard.getHightScore().first));
+	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.5, 0, 0.1, 0.4), ("HighScore: " + std::to_string(_scoreboard.getHighScore().second)) + " " + _scoreboard.getHighScore().first));
 	if (_isOver)
 		_scoreboard.addScore(event.gameEvent().playerName(), (int)_score);
 	return all;

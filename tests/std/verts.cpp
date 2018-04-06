@@ -101,10 +101,10 @@ Test(VertexS, get_values_from_vert_add)
 Test(VertexS, get_values_from_float_sub)
 {
 	arc::VertexS r(1, 2);
-	r = r - 2;
+	r = r - 1;
 
-	cr_assert(r.x() == 1 - 2);
-	cr_assert(r.y() == 2 - 2);
+	cr_assert(r.x() == 1 - 1);
+	cr_assert(r.y() == 2 - 1);
 }
 
 Test(VertexS, get_values_from_vert_sub)

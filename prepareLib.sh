@@ -2,6 +2,7 @@
 
 cd cmake-build-debug
 make _arcade_sfml -j4
+make _arcade_sdl -j4
 make _arcade_caca -j4
 make _arcade_basic_game -j4
 make _arcade_nibbler -j4

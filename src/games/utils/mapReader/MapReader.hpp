@@ -15,8 +15,6 @@
 #include "src/std/Vertex.hpp"
 #include "src/games/utils/IGameObject.hpp"
 
-#define ASSETS_DIR "../assets"
-
 namespace arc {
 	class MapReader {
 	public:

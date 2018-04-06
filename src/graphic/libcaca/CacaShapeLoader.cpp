@@ -14,26 +14,26 @@ arc::CacaShapeLoader::CacaShapeLoader()
 {
 }
 
-std::unique_ptr<arc::IShape>
+std::UPTR<arc::IShape>
 arc::CacaShapeLoader::load(const arc::ShapeRect &item) const
 {
-	std::unique_ptr<arc::IShape> a = std::make_unique<arc::CacaShapeRect>(item);
+	std::UPTR<arc::IShape> a = std::MKU<arc::CacaShapeRect>(item);
 	loadChild(item, a);
 	return a;
 }
 
-std::unique_ptr<arc::IShape>
+std::UPTR<arc::IShape>
 arc::CacaShapeLoader::load(const arc::ShapeCircle &item) const
 {
-	std::unique_ptr<arc::IShape> a = std::make_unique<arc::CacaShapeCircle>(item);
+	std::UPTR<arc::IShape> a = std::MKU<arc::CacaShapeCircle>(item);
 	loadChild(item, a);
 	return a;
 }
 
-std::unique_ptr<arc::IShape>
+std::UPTR<arc::IShape>
 arc::CacaShapeLoader::load(const arc::ShapeText &item) const
 {
-	std::unique_ptr<arc::IShape> a = std::make_unique<arc::CacaShapeText>(item);
+	std::UPTR<arc::IShape> a = std::MKU<arc::CacaShapeText>(item);
 	loadChild(item, a);
 	return a;
 }

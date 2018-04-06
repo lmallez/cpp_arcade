@@ -7,7 +7,7 @@
 
 #include "ShapeText.hpp"
 
-arc::ShapeText::ShapeText(const std::shared_ptr<arc::IShape> &parent,
+arc::ShapeText::ShapeText(const std::SPTR<arc::IShape> &parent,
 	const arc::Texture &texture, arc::RectF geometry,
 	const std::string &text):
 	AShape(parent, texture, geometry), _text(text)
@@ -24,7 +24,7 @@ const std::string &arc::ShapeText::getText() const
 	return _text;
 }
 
-std::unique_ptr<arc::IShape>
+std::UPTR<arc::IShape>
 arc::ShapeText::convert(const arc::IShapeLoader &loader) const
 {
 	return loader.load(*this);

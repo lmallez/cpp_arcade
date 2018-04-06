@@ -23,7 +23,7 @@ int main()
 	arc::RectF full(0.1, 0.1, 0.8, 0.8);
 	arc::Texture basic(arc::Color::Red, arc::Color::Blue);
 
-	consolasFont.loadFromFile("../assets/Consolas.ttf");
+	consolasFont.loadFromFile(ASSETS_DIR + "/Consolas.ttf");
 
 	std::shared_ptr s1 = std::make_shared<arc::ShapeCircle>(nullptr, basic, center);
 	std::shared_ptr s2 = std::make_shared<arc::ShapeRect>(s1, basic, full);

@@ -7,7 +7,7 @@
 
 #include <dlfcn.h>
 #include <memory>
-#include "../IGame.hpp"
+#include "src/games/IGame.hpp"
 #include "SolarFoxGame.hpp"
 
 extern "C" arc::IGame &getIGame()

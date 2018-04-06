@@ -5,8 +5,8 @@
 // PlayerController.cpp
 //
 
-#include <src/events/KeyEvent.hpp>
-#include <src/events/EventHandler.hpp>
+#include "src/events/KeyEvent.hpp"
+#include "src/events/EventHandler.hpp"
 #include "PlayerController.hpp"
 
 arc::PlayerController::PlayerController(

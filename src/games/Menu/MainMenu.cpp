@@ -5,9 +5,9 @@
 // Menu.cpp
 //
 
-#include <src/std/DirectoryReader.hpp>
-#include <src/graphic/shape/ShapeContainer.hpp>
-#include <src/games/utils/ScoreHandler.hpp>
+#include "src/std/DirectoryReader.hpp"
+#include "src/graphic/shape/ShapeContainer.hpp"
+#include "src/games/utils/ScoreHandler.hpp"
 #include "MainMenu.hpp"
 
 arc::IGame &arc::MainMenu::getInstance()
@@ -27,8 +27,8 @@ arc::MainMenu::MainMenu():
 	assignKey(arc::KeyEvent::UP, arc::KeyEvent::JUSTPRESSED, &arc::MainMenu::_moveUp);
 	assignKey(arc::KeyEvent::DOWN, arc::KeyEvent::JUSTPRESSED, &arc::MainMenu::_moveDown);
 
-	_startButton = std::make_shared<arc::ShapeRect>(nullptr, arc::Texture(), arc::RectF(0.1, 0.85, 0.8, 0.1));
-	auto a = std::make_shared<arc::ShapeText>(_startButton, arc::Texture(arc::Color::Red), arc::RectF(0.4, 0.4, 0.2, 0.2), "START");
+	_startButton = std::MKS<arc::ShapeRect>(nullptr, arc::Texture(), arc::RectF(0.1, 0.85, 0.8, 0.1));
+	auto a = std::MKS<arc::ShapeText>(_startButton, arc::Texture(arc::Color::Red), arc::RectF(0.4, 0.4, 0.2, 0.2), "START");
 	_startButton->addChild(a);
 }
 
@@ -68,16 +68,16 @@ void arc::MainMenu::execKey(arc::EventHandler &event, arc::KeyEvent::Key key)
 	}
 }
 
-std::shared_ptr<arc::IShape> arc::MainMenu::start()
+std::SPTR<arc::IShape> arc::MainMenu::start()
 {
-	return std::shared_ptr<arc::IShape>();
+	return std::SPTR<arc::IShape>();
 }
 
-std::shared_ptr<arc::IShape> arc::MainMenu::update(arc::EventHandler &event)
+std::SPTR<arc::IShape> arc::MainMenu::update(arc::EventHandler &event)
 {
-	std::shared_ptr all = std::make_shared<arc::ShapeContainer>();
+	std::SPTR all = std::MKS<arc::ShapeContainer>();
 
-	auto title = std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::Cyan), arc::RectF(0.1, 0.1, 0.8, 0.3), "Arcade // fodil loui tngi pd");
+	auto title = std::MKS<arc::ShapeText>(nullptr, arc::Texture(arc::Color::Cyan), arc::RectF(0.1, 0.1, 0.8, 0.3), "Arcade // fodil loui tngi pd");
 	execKey(event);
 	all->addChild(_displayListGraphic(event, arc::RectF(0.05, 0.3, 0.4, 0.5)));
 	all->addChild(_displayListGame(event, arc::RectF(0.55, 0.3, 0.4, 0.5)));
@@ -86,7 +86,7 @@ std::shared_ptr<arc::IShape> arc::MainMenu::update(arc::EventHandler &event)
 	return all;
 }
 
-std::shared_ptr<arc::IShape> arc::MainMenu::_displayStartButton(EventHandler &event)
+std::SPTR<arc::IShape> arc::MainMenu::_displayStartButton(EventHandler &event)
 {
 	size_t maxLine = std::max(event.gameEvent().getListGraphics().size(), event.gameEvent().getListGames().size());
 
@@ -104,47 +104,47 @@ arc::MainMenu::_getListTexture(size_t pos, size_t selected, size_t col)
 	);
 }
 
-std::shared_ptr<arc::IShape> arc::MainMenu::_displayListGraphic(EventHandler &event, const arc::RectF &pos)
+std::SPTR<arc::IShape> arc::MainMenu::_displayListGraphic(EventHandler &event, const arc::RectF &pos)
 {
-	std::shared_ptr m = std::make_shared<arc::ShapeRect>(nullptr, arc::Texture(arc::Color::Red), pos);
+	std::SPTR m = std::MKS<arc::ShapeRect>(nullptr, arc::Texture(arc::Color::Red), pos);
 	size_t text = 0;
 	std::vector<std::string> list = event.gameEvent().getListGraphics();
 
 	for (std::string fileName : list) {
 		arc::Texture texture = _getListTexture(text, event.gameEvent().getPosGraphic(), 0);
-		auto file = std::make_shared<arc::ShapeText>(m, texture, RectF(0.05, (float)(text * 0.1 + 0.05), 0.9, 0.11), fileName);
+		auto file = std::MKS<arc::ShapeText>(m, texture, RectF(0.05, (float)(text * 0.1 + 0.05), 0.9, 0.11), fileName);
 		m->addChild(file);
 		text++;
 	}
 	return m;
 }
 
-std::shared_ptr<arc::IShape> arc::MainMenu::_displayListGame(EventHandler &event, const arc::RectF &pos)
+std::SPTR<arc::IShape> arc::MainMenu::_displayListGame(EventHandler &event, const arc::RectF &pos)
 {
-	std::shared_ptr m = std::make_shared<arc::ShapeRect>(nullptr, arc::Texture(arc::Color::Green), pos);
+	std::SPTR m = std::MKS<arc::ShapeRect>(nullptr, arc::Texture(arc::Color::Green), pos);
 	size_t text = 0;
 	std::vector<std::string> list = event.gameEvent().getListGames();
 
 	for (std::string fileName : list) {
 		arc::Texture texture = _getListTexture(text, event.gameEvent().getPosGame(), 1);
-		auto file = std::make_shared<arc::ShapeText>(m, texture, RectF(0.05, (float)(text * 0.20 + 0.05), 0.9, 0.10), fileName);
+		auto file = std::MKS<arc::ShapeText>(m, texture, RectF(0.05, (float)(text * 0.20 + 0.05), 0.9, 0.10), fileName);
 		m->addChild(file);
-		auto scores = std::make_shared<arc::ShapeText>(m, texture, RectF(0.05, (float)(text * 0.20 + 0.12), 0.9, 0.05),
+		auto scores = std::MKS<arc::ShapeText>(m, texture, RectF(0.05, (float)(text * 0.20 + 0.12), 0.9, 0.05),
 						"Best scores:");
 		m->addChild(scores);
-		ScoreHandler s;
-		s.setGame(s.getLinkedLib(fileName));
+		ScoreHandler SPTR;
+		SPTR.setGame(SPTR.getLinkedLib(fileName));
 		std::vector<std::pair<std::string, int>> sc;
 		try {
-			s.initScores();
-			sc = s.getScores();
+			SPTR.initScores();
+			sc = SPTR.getScores();
 		} catch (arc::Exception e) {}
 		if (sc.size() < 3) {
 			sc.push_back(std::pair<std::string, int>("None", 0));
 			sc.push_back(std::pair<std::string, int>("None", 0));
 			sc.push_back(std::pair<std::string, int>("None", 0));
 		}
-		auto scores2 = std::make_shared<arc::ShapeText>(m, texture, RectF(0.05, (float)(text * 0.20 + 0.17), 0.9, 0.10),
+		auto scores2 = std::MKS<arc::ShapeText>(m, texture, RectF(0.05, (float)(text * 0.20 + 0.17), 0.9, 0.10),
 						sc[0].first + " " + std::to_string(sc[0].second) + "  " +
 						sc[1].first + " " + std::to_string(sc[1].second) + "  " +
 						sc[2].first + " " + std::to_string(sc[2].second));

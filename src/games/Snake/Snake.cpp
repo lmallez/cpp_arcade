@@ -5,8 +5,8 @@
 // Snake.cpp
 //
 
-#include <src/std/Vertex.hpp>
-#include <src/exception/Exception.hpp>
+#include "src/std/Vertex.hpp"
+#include "src/exception/Exception.hpp"
 #include "Snake.hpp"
 
 arc::snake::Snake::Snake(const VertexS &mapSize):

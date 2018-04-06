@@ -8,7 +8,7 @@
 #include "ShapeRect.hpp"
 
 arc::ShapeRect::ShapeRect(
-	const std::shared_ptr<IShape> &parent,
+	const std::SPTR<IShape> &parent,
 	const Texture &texture,
 	RectF geometry) :
 	AShape(parent, texture, geometry)
@@ -20,7 +20,7 @@ arc::ShapeRect::ShapeRect(const arc::ShapeRect &ex):
 {
 }
 
-std::unique_ptr<arc::IShape>
+std::UPTR<arc::IShape>
 arc::ShapeRect::convert(const arc::IShapeLoader &loader) const
 {
 	return loader.load(*this);

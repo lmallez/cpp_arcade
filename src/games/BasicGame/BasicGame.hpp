@@ -13,7 +13,7 @@
 #include "src/graphic/shape/ShapeCircle.hpp"
 #include "src/graphic/shape/ShapeText.hpp"
 #include "src/graphic/shape/ShapeRect.hpp"
-#include "../IGame.hpp"
+#include "src/games/IGame.hpp"
 
 namespace arc {
 	class BasicGame : public virtual IGame, protected SystemController, protected PlayerController {
@@ -21,8 +21,8 @@ namespace arc {
 	public:
 		static IGame &getInstance();
 		static void freeInstance();
-		std::shared_ptr<IShape> start() override;
-		std::shared_ptr<IShape> update(EventHandler &event) override;
+		std::SPTR<IShape> start() override;
+		std::SPTR<IShape> update(EventHandler &event) override;
 
 	private:
 		static arc::IGame *_instance;

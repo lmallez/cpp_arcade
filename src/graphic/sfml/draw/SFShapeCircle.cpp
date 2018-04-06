@@ -5,17 +5,17 @@
 // SFShapeCircle.cpp
 //
 
-#include <src/graphic/sfml/SFMainWindow.hpp>
+#include "src/graphic/sfml/SFMainWindow.hpp"
 #include "SFShapeCircle.hpp"
 
-arc::SFShapeCircle::SFShapeCircle(std::shared_ptr<arc::IShape> parent,
+arc::SFShapeCircle::SFShapeCircle(std::SPTR<arc::IShape> parent,
 	const arc::Texture &texture, const arc::VertexF &pos, float radius):
 	ShapeCircle(parent, texture, pos, radius), SFShape()
 {
 
 }
 
-arc::SFShapeCircle::SFShapeCircle(std::shared_ptr<arc::IShape> parent,
+arc::SFShapeCircle::SFShapeCircle(std::SPTR<arc::IShape> parent,
 	const arc::Texture &texture, const arc::RectF &rect):
 	ShapeCircle(parent, texture, rect), SFShape()
 {

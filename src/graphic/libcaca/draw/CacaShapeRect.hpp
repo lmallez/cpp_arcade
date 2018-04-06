@@ -19,7 +19,7 @@ namespace arc {
 	class CacaShapeRect : public ShapeRect, public CacaShape {
 	public:
 		explicit CacaShapeRect(
-			std::shared_ptr<IShape> parent = nullptr,
+			std::SPTR<IShape> parent = nullptr,
 			const arc::Texture &texture = arc::Texture(),
 			const RectF &rect = RectF(0, 0, 0, 0));
 		bool drawFromFile() const;

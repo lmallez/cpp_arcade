@@ -9,6 +9,7 @@
 #define CPP_ARCADE_SHAPELOADER_HPP
 
 #include <memory>
+#include "src/main.hpp"
 
 namespace arc {
 	class IShape;
@@ -18,14 +19,14 @@ namespace arc {
 
 	class IShapeLoader {
 	public:
-		virtual std::unique_ptr<arc::IShape> load(
+		virtual std::UPTR<arc::IShape> load(
 			const arc::ShapeRect &item) const = 0;
-		virtual std::unique_ptr<arc::IShape> load(
+		virtual std::UPTR<arc::IShape> load(
 			const arc::ShapeCircle &item) const = 0;
-		virtual std::unique_ptr<arc::IShape> load(
+		virtual std::UPTR<arc::IShape> load(
 			const arc::ShapeText &item) const = 0;
 		virtual void loadChild(const arc::IShape &from,
-			std::unique_ptr<IShape> &dest) const = 0;
+			std::UPTR<IShape> &dest) const = 0;
 	};
 }
 

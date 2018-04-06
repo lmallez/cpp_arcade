@@ -8,7 +8,7 @@
 #ifndef CPP_ARCADE_MOUSEEVENT_HPP
 #define CPP_ARCADE_MOUSEEVENT_HPP
 
-#include <src/std/Vertex.hpp>
+#include "src/std/Vertex.hpp"
 
 namespace arc
 {

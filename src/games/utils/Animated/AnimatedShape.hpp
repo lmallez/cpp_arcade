@@ -16,16 +16,16 @@
 namespace arc {
 	class AnimatedShape : public AnimatedObject {
 	public:
-		AnimatedShape(const std::vector<std::shared_ptr<IShape>> &obj, size_t update);
+		AnimatedShape(const std::vector<std::SPTR<IShape>> &obj, size_t update);
 
-		std::shared_ptr<IShape>
-		draw(const std::shared_ptr<arc::IShape> &parent) const override;
+		std::SPTR<IShape>
+		draw(const std::SPTR<arc::IShape> &parent) const override;
 		bool collision(const RectF &obj) const override;
 
 		void nextFrame() override;
 
 	private:
-		std::vector<std::shared_ptr<IShape>> _obj;
+		std::vector<std::SPTR<IShape>> _obj;
 		size_t _selected;
 	};
 }

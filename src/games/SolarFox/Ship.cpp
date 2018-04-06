@@ -28,19 +28,19 @@ arc::RectF arc::solarfox::Ship::getPos() const
 }
 
 
-std::shared_ptr<arc::IShape>
-arc::solarfox::Ship::drawShip(const std::shared_ptr<arc::IShape> &parent,
+std::SPTR<arc::IShape>
+arc::solarfox::Ship::drawShip(const std::SPTR<arc::IShape> &parent,
 	arc::RectF pos, arc::Direction dir) const
 {
-	std::shared_ptr ship = std::make_shared<arc::ShapeContainer>(parent, pos);
+	std::SPTR ship = std::MKS<arc::ShapeContainer>(parent, pos);
 
-	ship->addChild(std::make_shared<arc::ShapeRect>(ship, arc::Texture(arc::Color::Blue, arc::Color::Blue), arc::RectF(0.2, 0.2, 0.6, 0.6)));
-	ship->addChild(std::make_shared<arc::ShapeRect>(ship, arc::Texture(arc::Color::Red, arc::Color::Red), _getCanonSize(dir)));
+	ship->addChild(std::MKS<arc::ShapeRect>(ship, arc::Texture(arc::Color::Blue, arc::Color::Blue), arc::RectF(0.2, 0.2, 0.6, 0.6)));
+	ship->addChild(std::MKS<arc::ShapeRect>(ship, arc::Texture(arc::Color::Red, arc::Color::Red), _getCanonSize(dir)));
 	return ship;
 }
 
-std::shared_ptr<arc::IShape>
-arc::solarfox::Ship::draw(const std::shared_ptr<arc::IShape> &parent) const
+std::SPTR<arc::IShape>
+arc::solarfox::Ship::draw(const std::SPTR<arc::IShape> &parent) const
 {
 	return drawShip(parent, getPos(), _pCtrlDir);
 }
@@ -67,10 +67,10 @@ arc::RectF arc::solarfox::Ship::_getCanonSize(Direction dir) const
 	return canonPos;
 }
 
-std::shared_ptr<arc::IShape>
-arc::solarfox::Ship::drawLife(const std::shared_ptr<arc::IShape> &zone, arc::RectF pos) const
+std::SPTR<arc::IShape>
+arc::solarfox::Ship::drawLife(const std::SPTR<arc::IShape> &zone, arc::RectF pos) const
 {
-	std::shared_ptr lifeContainer = std::make_shared<arc::ShapeContainer>(zone, pos);
+	std::SPTR lifeContainer = std::MKS<arc::ShapeContainer>(zone, pos);
 	float elemSize = 1.0f / _maxLife;
 	for (int i = 0; i < _life; i++) {
 		arc::RectF shipPos = arc::RectF(elemSize * i, 0, elemSize, 1);
@@ -95,7 +95,7 @@ bool arc::solarfox::Ship::moveLife(int nb)
 	return (_life + nb <= 0);
 }
 
-std::shared_ptr<arc::solarfox::AMissile> arc::solarfox::Ship::shot() const
+std::SPTR<arc::solarfox::AMissile> arc::solarfox::Ship::shot() const
 {
 	auto b = _pCtrlPos;
 	float size = BULLET_SIZE;
@@ -104,6 +104,6 @@ std::shared_ptr<arc::solarfox::AMissile> arc::solarfox::Ship::shot() const
 		b.moveDir(&_pCtrlDir, dec);
 	else
 		b.moveDir(*_pCtrlDir, dec);
-	std::shared_ptr<arc::solarfox::AMissile> a = std::make_unique<arc::solarfox::ShipMissile>(b, arc::VertexF(size, size), _pCtrlDir);
+	std::SPTR<arc::solarfox::AMissile> a = std::MKU<arc::solarfox::ShipMissile>(b, arc::VertexF(size, size), _pCtrlDir);
 	return a;
 }

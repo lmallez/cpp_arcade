@@ -21,7 +21,7 @@ namespace arc {
 	class CacaShapeText : public ShapeText, public CacaShape {
 	public:
 		explicit CacaShapeText(
-			std::shared_ptr<IShape> parent = nullptr,
+			std::SPTR<IShape> parent = nullptr,
 			const arc::Texture &texture = arc::Texture(),
 			const RectF &rect = RectF(0, 0, 0, 0),
 			const std::string &text = 0);

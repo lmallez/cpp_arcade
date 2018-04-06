@@ -9,15 +9,15 @@
 #include "AnimatedShape.hpp"
 
 arc::AnimatedShape::AnimatedShape(
-	const std::vector<std::shared_ptr<arc::IShape>> &obj, size_t update):
+	const std::vector<std::SPTR<arc::IShape>> &obj, size_t update):
 	AnimatedObject(update)
 {
 	if (obj.empty())
 		throw arc::Exception("AnimatedShape", "Invalid Object");
 }
 
-std::shared_ptr<arc::IShape>
-arc::AnimatedShape::draw(const std::shared_ptr<arc::IShape> &parent) const
+std::SPTR<arc::IShape>
+arc::AnimatedShape::draw(const std::SPTR<arc::IShape> &parent) const
 {
 	return _obj[_selected];
 }

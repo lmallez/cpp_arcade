@@ -10,7 +10,7 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Vector2.hpp>
-#include <src/graphic/IShapeLoader.hpp>
+#include "src/graphic/IShapeLoader.hpp"
 #include "src/graphic/IGraphic.hpp"
 #include "src/std/Vertex.hpp"
 #include "SFShapeLoader.hpp"

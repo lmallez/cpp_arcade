@@ -24,17 +24,17 @@ namespace arc
 		void display();
 		VertexF getSize() const;
 		void close();
-		std::unique_ptr<SDL_Renderer, void (&)(SDL_Renderer *)> &
+		std::UPTR<SDL_Renderer, void (&)(SDL_Renderer *)> &
 		getRenderer();
 		void pollEvent(arc::EventHandler &);
 		bool TextureInCache(const std::string &) const;
-		std::shared_ptr<SDL_Texture> getTextureCache(
+		std::SPTR<SDL_Texture> getTextureCache(
 			const std::string &) const;
 		void addTexture(const std::string &);
 	private:
 		explicit SDLMainWindow(VertexI = {400, 400});
-		std::unique_ptr<SDL_Window, void (&)(SDL_Window*)> _window;
-		std::unique_ptr<SDL_Renderer, void (&)(SDL_Renderer*)> _render;
+		std::UPTR<SDL_Window, void (&)(SDL_Window*)> _window;
+		std::UPTR<SDL_Renderer, void (&)(SDL_Renderer*)> _render;
 		static std::unordered_map<SDL_Keycode,
 			arc::KeyEvent::Key> _keyMap;
 		static std::unordered_map<int, arc::MouseEvent::MouseButton>

@@ -9,8 +9,8 @@
 #define CPP_ARCADE_CORELOADER_HPP
 
 #include <memory>
-#include <src/core/loader/GameLoader.hpp>
-#include <src/core/loader/LibLoader.hpp>
+#include "src/core/loader/GameLoader.hpp"
+#include "src/core/loader/LibLoader.hpp"
 #include "CoreClock.hpp"
 
 #define CLOCK_TIME 0.0016

@@ -14,8 +14,8 @@
 namespace arc {
 	class IGame {
 	public:
-		virtual std::shared_ptr<IShape> start() = 0;
-		virtual std::shared_ptr<IShape> update(
+		virtual std::SPTR<IShape> start() = 0;
+		virtual std::SPTR<IShape> update(
 			EventHandler &event) = 0;
 	};
 }

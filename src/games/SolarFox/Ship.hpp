@@ -26,17 +26,17 @@ namespace arc {
 				int life = 5);
 
 			void execKey(EventHandler &event) override;
-			std::shared_ptr<IShape> draw(
-				const std::shared_ptr<arc::IShape> &parent) const;
-			std::shared_ptr<IShape> drawShip(const std::shared_ptr<arc::IShape> &parent, RectF pos, Direction dir) const;
+			std::SPTR<IShape> draw(
+				const std::SPTR<arc::IShape> &parent) const;
+			std::SPTR<IShape> drawShip(const std::SPTR<arc::IShape> &parent, RectF pos, Direction dir) const;
 			RectF getPos() const;
 
-			std::shared_ptr<IShape> drawLife(const std::shared_ptr<arc::IShape> &zone, arc::RectF pos) const;
+			std::SPTR<IShape> drawLife(const std::SPTR<arc::IShape> &zone, arc::RectF pos) const;
 			int getLife() const;
 			void setLife(int life);
 			bool moveLife(int nb);
 
-			std::shared_ptr<AMissile>  shot() const;
+			std::SPTR<AMissile>  shot() const;
 
 		private:
 			arc::RectF _getCanonSize(Direction dir) const;

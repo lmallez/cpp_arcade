@@ -26,15 +26,15 @@ $(CORE_NAME): cmake
 core:	$(CORE_NAME)
 
 games:	cmake | $(GAMES_DIR)
-	make -C $(BUILD_DIR) GAME_BasicGame
-	make -C $(BUILD_DIR) GAME_SNAKE
-	make -C $(BUILD_DIR) GAME_SOLAR_FOX
-	cp build/libGAME_BasicGame.so build/libGAME_SNAKE.so build/libGAME_SOLAR_FOX.so games/
+	make -C $(BUILD_DIR) _arcade_basicgame
+	make -C $(BUILD_DIR) _arcade_snake
+	make -C $(BUILD_DIR) _arcade_solar_fox
+	cp build/lib_arcade_basicgame.so build/lib_arcade_snake.so build/lib_arcade_solar_fox.so games/
 
 graphicals: cmake | $(LIB_DIR)
-	make -C $(BUILD_DIR) GRAPHIC_SFML
-	make -C $(BUILD_DIR) GRAPHIC_Caca
-	cp build/libGRAPHIC_SFML.so build/libGRAPHIC_Caca.so lib/
+	make -C $(BUILD_DIR) _graphic_sfml
+	make -C $(BUILD_DIR) _graphic_caca
+	cp build/lib_arcade_sfml.so build/lib_arcade_caca.so lib/
 
 TESTED_SRCS	= \
 		  src/core/corebuild/CoreBuild.cpp \

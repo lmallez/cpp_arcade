@@ -12,9 +12,8 @@ arc::IGraphic & arc::SDLGraphic::getInstance()
 {
 	static arc::IGraphic *instance = nullptr;
 
-	if (!instance) {
+	if (!instance)
 		instance = new SDLGraphic();
-	}
 	return *instance;
 }
 

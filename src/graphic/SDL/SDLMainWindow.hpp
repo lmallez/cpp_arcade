@@ -10,6 +10,7 @@
 
 #include <unordered_map>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL2_gfxPrimitives.h>
 #include <SDL2/SDL_video.h>
 #include "src/graphic/IGraphic.hpp"
 #include "src/std/Vertex.hpp"

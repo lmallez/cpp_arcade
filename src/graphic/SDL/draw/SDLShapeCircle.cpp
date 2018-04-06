@@ -31,13 +31,16 @@ void arc::SDLShapeCircle::draw() const
 	arc::RectF geo = winGeometry();
 
 	aaellipseColor(arc::SDLMainWindow::getInstance().getRenderer().get(),
-		       (Sint16) geo.pos().x(), (Sint16) geo.pos().y(),
+		       (Sint16) geo.pos().x() + (Sint16) geo.size().x() / 2,
+		       (Sint16) geo.pos().y() + (Sint16) geo.size().y() / 2,
 		       (Sint16) geo.size().x() / 2,
 		       (Sint16) geo.size().y() / 2,
 		       _texture.lineColor().values());
 	filledEllipseColor(arc::SDLMainWindow::getInstance().getRenderer().get(),
-			   (Sint16) geo.pos().x(), (Sint16) geo.pos().y(),
-			   (Sint16) geo.size().x(), (Sint16) geo.size().y(),
+			   (Sint16) geo.pos().x() + (Sint16) geo.size().x() / 2,
+			   (Sint16) geo.pos().y() + (Sint16) geo.size().x() / 2,
+			   (Sint16) geo.size().x() / 2,
+			   (Sint16) geo.size().y() / 2,
 			   _texture.bgColor().values());
 	AShape::draw();
 }

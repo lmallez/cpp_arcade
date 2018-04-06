@@ -31,3 +31,8 @@ void arc::MouseEvent::setButtonPressed(arc::MouseEvent::MouseButton btnClicked)
 {
 	_buttonClicked = btnClicked;
 }
+
+void arc::MouseEvent::setButtonReleased(arc::MouseEvent::MouseButton)
+{
+	_buttonClicked = arc::MouseEvent::NONE;
+}

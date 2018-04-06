@@ -139,6 +139,10 @@ void arc::SFMainWindow::pollEvent(EventHandler &evtHandler)
 		case sf::Event::MouseButtonPressed:
 			evtHandler.mouseEvent().setButtonPressed(_mouseMap[evt.mouseButton.button]);
 			break;
+		case sf::Event::MouseButtonReleased:
+			evtHandler.mouseEvent().setButtonReleased(_mouseMap[evt
+				.mouseButton.button]);
+			break;
 		default:
 			break;
 		}

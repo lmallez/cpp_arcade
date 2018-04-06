@@ -16,9 +16,7 @@ namespace arc {
 		public:
 			BasicMob(RectF pos, int health);
 
-			bool collision(const RectF &obj) override;
-			std::shared_ptr<arc::IShape>
-			draw(std::shared_ptr<arc::IShape> parent) const override;
+			std::shared_ptr<arc::IShape> draw(const std::shared_ptr<IShape> &parent) const override;
 		};
 	}
 }

@@ -26,7 +26,8 @@ namespace arc {
 				int life = 5);
 
 			void execKey(EventHandler &event) override;
-			std::shared_ptr<IShape> drawShip(const std::shared_ptr<arc::IShape> &parent) const;
+			std::shared_ptr<IShape> draw(
+				const std::shared_ptr<arc::IShape> &parent) const;
 			std::shared_ptr<IShape> drawShip(const std::shared_ptr<arc::IShape> &parent, RectF pos, Direction dir) const;
 			RectF getPos() const;
 

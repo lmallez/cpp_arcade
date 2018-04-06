@@ -54,7 +54,7 @@ bool arc::solarfox::AMissile::move(float speed)
 	return _dist < _range;
 }
 
-bool arc::solarfox::AMissile::collision(const arc::RectF &obj)
+bool arc::solarfox::AMissile::collision(const arc::RectF &obj) const
 {
 	return getPos().isCollide(obj);
 }

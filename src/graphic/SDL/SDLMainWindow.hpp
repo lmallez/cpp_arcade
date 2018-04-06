@@ -37,7 +37,7 @@ namespace arc
 		std::UPTR<SDL_Renderer, void (&)(SDL_Renderer*)> _render;
 		static std::unordered_map<SDL_Keycode,
 			arc::KeyEvent::Key> _keyMap;
-		static std::unordered_map<int, arc::MouseEvent::MouseButton>
+		static std::unordered_map<Uint8, arc::MouseEvent::MouseButton>
 			_mouseMap;
 		std::unordered_map<std::string, int>
 			_textureCache;

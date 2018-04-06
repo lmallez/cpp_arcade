@@ -9,7 +9,7 @@
 #define CPP_ARCADE_SNAKE_HPP
 
 #include <vector>
-#include "src/games/Controller/PlayerController.hpp"
+#include "src/games/utils/Controller/PlayerController.hpp"
 
 #define START_SIZE 4
 
@@ -28,8 +28,7 @@ namespace arc {
 			const std::vector<VertexS> &getBody() const;
 			const VertexS &getHead() const;
 			bool inSnake(const arc::VertexS &pos) const;
-			bool
-			eatFlower(const arc::VertexS &flowerPos, size_t value);
+			bool eatFlower(const arc::VertexS &flowerPos, size_t value);
 
 			size_t getScore() const;
 

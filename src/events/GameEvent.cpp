@@ -152,3 +152,8 @@ size_t arc::GameEvent::getPosGraphic() const
 {
 	return _posGraphic;
 }
+
+const std::string &arc::GameEvent::playerName() const
+{
+	return _playerName;
+}

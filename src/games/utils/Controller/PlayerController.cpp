@@ -104,7 +104,7 @@ void arc::PlayerController::_moveRigth(arc::EventHandler &event[[maybe_unused]])
 }
 
 void arc::PlayerController::_moveDir(arc::EventHandler &event,
-	std::pair<bool, arc::PlayerController::Direction> dir,
+	std::pair<bool, arc::Direction> dir,
 	std::pair<bool, arc::VertexF> speed)
 {
 	auto tmpSpeed = _pCtrlSpeed;

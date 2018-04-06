@@ -147,6 +147,52 @@ arc::Rect<T> arc::Rect<T>::operator-(T other) const
 	return res;
 }
 
+template <typename T>
+arc::Vertex<T> arc::Rect<T>::topLeft() const
+{
+	return _pos;
+}
+
+template <typename T>
+arc::Vertex<T> arc::Rect<T>::topRight() const
+{
+	return arc::Vertex(_pos.x(), _pos.y() + _size.y());
+}
+
+template <typename T>
+arc::Vertex<T> arc::Rect<T>::botLeft() const
+{
+	return arc::Vertex(_pos.x() + _size.x(), _pos.y());
+}
+
+template <typename T>
+arc::Vertex<T> arc::Rect<T>::botRight() const
+{
+	return arc::Vertex(_pos.x() + _size.x(), _pos.y() + _size.x());
+}
+
+template <typename T>
+bool arc::Rect<T>::isInside(const Vertex<T> &other)
+{
+	return  (_pos.x() <= other.x() && other.x() <= _pos.x() + _size.x()
+		&& _pos.y() <= other.y() && other.y() <= _pos.y() + _size.y());
+}
+
+template <typename T>
+bool arc::Rect<T>::isInside(const Rect<T> &other)
+{
+	return (isInside(other.pos()) && isInside(other.pos() + other.size()));
+}
+
+template <typename T>
+bool arc::Rect<T>::isCollide(const Rect<T> &other)
+{
+	return (isInside(other.topRight())
+		|| isInside(other.topLeft())
+		|| isInside(other.botRight())
+		|| isInside(other.botLeft()));
+}
+
 template class arc::Rect<size_t>;
 template class arc::Rect<int>;
 template class arc::Rect<float>;

@@ -20,15 +20,6 @@
 namespace arc {
 	class PlayerController {
 		typedef void (PlayerController::*playerController_t)(EventHandler &event);
-	public:
-		enum Direction {
-			NONE,
-			UP,
-			DOWN,
-			LEFT,
-			RIGHT
-		};
-
 	protected:
 
 		explicit PlayerController(
@@ -55,7 +46,7 @@ namespace arc {
 		bool _pCtrlHaveMove = false;
 
 		void _moveDir(EventHandler &event,
-			std::pair<bool, PlayerController::Direction> dir = {false, NONE},
+			std::pair<bool, Direction> dir = {false, NONE},
 			std::pair<bool, VertexF> speed = {false, {0, 0}});
 
 		void _moveUp(EventHandler &event);

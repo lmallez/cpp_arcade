@@ -39,6 +39,7 @@ arcade
 .*.vim
 build/
 doc/latex
+scores.arcade/
 
 # tests
 tests_run

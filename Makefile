@@ -28,7 +28,8 @@ core:	$(CORE_NAME)
 games:	cmake | $(GAMES_DIR)
 	make -C $(BUILD_DIR) GAME_BasicGame
 	make -C $(BUILD_DIR) GAME_SNAKE
-	cp build/libGAME_BasicGame.so build/libGAME_SNAKE.so games/
+	make -C $(BUILD_DIR) GAME_SOLAR_FOX
+	cp build/libGAME_BasicGame.so build/libGAME_SNAKE.so build/libGAME_SOLAR_FOX.so games/
 
 graphicals: cmake | $(LIB_DIR)
 	make -C $(BUILD_DIR) GRAPHIC_SFML
@@ -36,6 +37,7 @@ graphicals: cmake | $(LIB_DIR)
 	cp build/libGRAPHIC_SFML.so build/libGRAPHIC_Caca.so lib/
 
 TESTED_SRCS	= \
+		  src/core/corebuild/CoreBuild.cpp \
 		  src/core/corebuild/CoreClock.cpp \
 		  src/core/loader/GameLoader.cpp \
 		  src/core/loader/LibLoader.cpp \
@@ -44,13 +46,26 @@ TESTED_SRCS	= \
 		  src/events/KeyEvent.cpp \
 		  src/events/MouseEvent.cpp \
 		  src/exception/Exception.cpp \
-		  src/games/Controller/PlayerController.cpp \
-		  src/games/Controller/SystemController.cpp \
-		  src/games/ScoreHandler.cpp \
+		  src/games/Menu/MainMenu.cpp \
 		  src/games/Snake/Snake.cpp \
+		  src/games/Snake/SnakeGame.cpp \
+		  src/games/SolarFox/AMissile.cpp \
+		  src/games/SolarFox/AObject.cpp \
+		  src/games/SolarFox/BasicMob.cpp \
+		  src/games/SolarFox/MapManager.cpp \
+		  src/games/SolarFox/Monster.cpp\
+		  src/games/SolarFox/MonsterMissile.cpp \
+		  src/games/SolarFox/Ship.cpp \
+		  src/games/SolarFox/ShipMissile.cpp \
+		  src/games/SolarFox/SolarFoxGame.cpp \
+		  src/games/utils/Controller/PlayerController.cpp \
+		  src/games/utils/Controller/SystemController.cpp \
+		  src/games/utils/ScoreHandler.cpp \
+		  src/games/utils/mapReader/MapReader.cpp \
 		  src/graphic/AShapeLoader.cpp \
 		  src/graphic/glu/GLMainWindow.cpp \
 		  src/graphic/libcaca/CacaGraphic.cpp \
+		  src/graphic/libcaca/CacaImage.cpp \
 		  src/graphic/libcaca/CacaMainWindow.cpp \
 		  src/graphic/libcaca/CacaShape.cpp \
 		  src/graphic/libcaca/CacaShapeLoader.cpp \
@@ -70,13 +85,11 @@ TESTED_SRCS	= \
 		  src/graphic/shape/ShapeRect.cpp \
 		  src/graphic/shape/ShapeText.cpp \
 		  src/std/Color.cpp \
+		  src/std/Direction.cpp \
 		  src/std/DirectoryReader.cpp \
 		  src/std/Rect.cpp \
 		  src/std/Texture.cpp \
 		  src/std/Vertex.cpp \
-		  #src/core/corebuild/CoreBuild.cpp \
-		  #src/games/Menu/MainMenu.cpp \
-		  #src/games/Snake/SnakeGame.cpp \
 
 TESTS_SRCS	= \
 		  tests/core/corebuild/coreclock.cpp \
@@ -85,7 +98,7 @@ TESTS_SRCS	= \
 		  tests/events/keyevent.cpp \
 		  tests/events/mouseevent.cpp \
 		  tests/exception.cpp \
-		  tests/games/scorehandler.cpp \
+		  tests/games/utils/scorehandler.cpp \
 		  tests/graphics/shape/circle.cpp \
 		  tests/graphics/shape/rect.cpp \
 		  tests/graphics/shape/text.cpp \
@@ -101,12 +114,12 @@ TESTS_SRCS	= \
 		  tests/std/verti.cpp \
 		  tests/std/verts.cpp \
 
-CTESTEDFLAGS	= -Wall -Wextra -fprofile-arcs -ftest-coverage
+CTESTEDFLAGS	= -W -Wall -Wextra -fprofile-arcs -ftest-coverage -std=c++17
 
 %.o: %.cpp
 	$(CC) -I. $(CTESTEDFLAGS) -c $< -o $@
 %.test.o: %.cpp
-	$(CC) -I. -c $< -o $@
+	$(CC) -I. -W -Wall -Wextra -std=c++17 -c $< -o $@
 
 TESTED_OBJS	= $(patsubst %.cpp, %.o, $(TESTED_SRCS))
 TESTED_GCNO	= $(patsubst %.cpp, %.gcno, $(TESTED_SRCS))
@@ -114,7 +127,7 @@ TESTED_GCDA	= $(patsubst %.cpp, %.gcda, $(TESTED_SRCS))
 TESTS_OBJS	= $(patsubst %.cpp, %.test.o, $(TESTS_SRCS))
 
 tests_run: $(TESTS_OBJS) $(TESTED_OBJS) games graphicals
-	g++ $(TESTED_OBJS) $(TESTS_OBJS) -ldl -lcaca -lsfml-graphics -lsfml-window -lsfml-system -lcriterion --coverage -o $@
+	g++ $(TESTED_OBJS) $(TESTS_OBJS) -ldl -lImlib2 -lcaca -lsfml-graphics -lsfml-window -lsfml-system -lcriterion --coverage -o $@
 	./$@
 
 tests:	tests_run

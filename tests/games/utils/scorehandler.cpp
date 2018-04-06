@@ -6,12 +6,12 @@
 */
 
 #include <criterion/criterion.h>
-#include "src/games/ScoreHandler.hpp"
+#include "src/games/utils/ScoreHandler.hpp"
 
 Test(ScoreHandler, aled)
 {
-	ScoreHandler s("tests1");
-	ScoreHandler s1;
+	arc::ScoreHandler s("tests1");
+	arc::ScoreHandler s1;
 
 	s.addScore(std::pair<std::string, int>("aled", 1));
 	std::vector<std::pair<std::string, int>> res = s.getScores();

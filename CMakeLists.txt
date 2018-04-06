@@ -9,8 +9,8 @@ set(CMAKE_AUTOMOC ON)
 
 set(
         STD_FILES
-        src/games/ScoreHandler.cpp
-        src/games/ScoreHandler.hpp
+        src/games/utils/ScoreHandler.cpp
+        src/games/utils/ScoreHandler.hpp
         src/std/Vertex.cpp
         src/std/Vertex.hpp
         src/std/Rect.cpp
@@ -34,10 +34,9 @@ set(
         src/events/GameEvent.cpp
         src/events/GameEvent.cpp
         src/events/GameEvent.hpp
-        src/games/Controller/SystemController.cpp
-        src/games/Controller/SystemController.hpp
-        src/games/Controller/IController.hpp
-)
+        src/games/utils/Controller/SystemController.cpp
+        src/games/utils/Controller/SystemController.hpp
+        src/std/Direction.cpp src/std/Direction.hpp)
 
 set(
         SHAPE_FILES
@@ -117,6 +116,8 @@ set(
         GRAPHIC_Caca
         src/graphic/libcaca/CacaGraphic.cpp
         src/graphic/libcaca/CacaGraphic.hpp
+        src/graphic/libcaca/CacaImage.cpp
+        src/graphic/libcaca/CacaImage.hpp
         src/graphic/libcaca/CacaShape.cpp
         src/graphic/libcaca/CacaShape.hpp
         src/graphic/libcaca/CacaShapeLoader.cpp
@@ -134,7 +135,7 @@ set(
 add_library(GRAPHIC_Caca SHARED ${GRAPHIC_Caca} ${STD_FILES} ${SHAPE_FILES}
         src/graphic/libcaca/extern.cpp
         )
-target_link_libraries(GRAPHIC_Caca caca)
+target_link_libraries(GRAPHIC_Caca caca Imlib2)
 
 #set(
 #        GRAPHIC_GLU)
@@ -148,11 +149,11 @@ set(
         GAME_BASICGAME
         src/games/BasicGame/BasicGame.cpp
         src/games/BasicGame/BasicGame.hpp
-        src/games/Controller/PlayerController.cpp
-        src/games/Controller/PlayerController.hpp
+        src/games/utils/Controller/PlayerController.cpp
+        src/games/utils/Controller/PlayerController.hpp
 )
 
-add_library(GAME_BasicGame SHARED ${GAME_BASICGAME} ${GAME_MODULE} ${STD_FILES} ${SHAPE_FILES}
+add_library(GAME_BasicGame SHARED ${GAME_BASICGAME} ${STD_FILES} ${SHAPE_FILES}
         src/games/BasicGame/extern.cpp
         )
 
@@ -160,15 +161,40 @@ set(
         GAME_SNAKE
         src/games/Snake/SnakeGame.cpp
         src/games/Snake/SnakeGame.hpp
-        src/games/Controller/PlayerController.cpp
-        src/games/Controller/PlayerController.hpp
+        src/games/utils/Controller/PlayerController.cpp
+        src/games/utils/Controller/PlayerController.hpp
         src/games/Snake/Snake.cpp
         src/games/Snake/Snake.hpp
         src/core/corebuild/CoreClock.cpp
-        src/core/corebuild/CoreClock.hpp)
+        src/core/corebuild/CoreClock.hpp
+        src/games/utils/mapReader/MapReader.cpp src/games/utils/mapReader/MapReader.hpp src/games/utils/IGameObject.hpp)
 
-add_library(GAME_SNAKE SHARED ${GAME_SNAKE} ${GAME_MODULE} ${STD_FILES} ${SHAPE_FILES}
+add_library(GAME_SNAKE SHARED ${GAME_SNAKE} ${STD_FILES} ${SHAPE_FILES}
         src/games/Snake/extern.cpp
+        )
+
+set(
+        GAME_SOLAR_FOX
+        src/games/utils/Controller/PlayerController.cpp
+        src/games/utils/Controller/PlayerController.hpp
+        src/games/SolarFox/SolarFoxGame.cpp
+        src/games/SolarFox/SolarFoxGame.hpp
+        src/games/SolarFox/Ship.cpp
+        src/games/SolarFox/Ship.hpp
+        src/games/SolarFox/Monster.cpp
+        src/games/SolarFox/Monster.hpp
+        src/core/corebuild/CoreClock.cpp
+        src/core/corebuild/CoreClock.hpp
+        src/games/SolarFox/AMissile.cpp
+        src/games/SolarFox/AMissile.hpp
+        src/games/SolarFox/MonsterMissile.cpp
+        src/games/SolarFox/MonsterMissile.hpp
+        src/games/SolarFox/ShipMissile.cpp
+        src/games/SolarFox/ShipMissile.hpp
+        src/games/utils/mapReader/MapReader.cpp src/games/utils/mapReader/MapReader.hpp src/games/utils/IGameObject.hpp src/games/SolarFox/MapManager.cpp src/games/SolarFox/MapManager.hpp src/games/SolarFox/AObject.cpp src/games/SolarFox/AObject.hpp src/games/SolarFox/BasicMob.cpp src/games/SolarFox/BasicMob.hpp)
+
+add_library(GAME_SOLAR_FOX SHARED ${GAME_SOLAR_FOX} ${STD_FILES} ${SHAPE_FILES}
+        src/games/SolarFox/extern.cpp
         )
 
 ### CORE BUILD ###

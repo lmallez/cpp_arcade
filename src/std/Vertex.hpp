@@ -9,6 +9,7 @@
 #define CPP_ARCADE_VERTEX_HPP
 
 #include <iostream>
+#include "Direction.hpp"
 
 namespace arc
 {
@@ -34,6 +35,7 @@ namespace arc
 		Vertex operator-(T) const;
 		Vertex operator*(T) const;
 		Vertex operator/(T) const;
+		Vertex moveDir(Direction, T dist);
 
 	private:
 		T _x;

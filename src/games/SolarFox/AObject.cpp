@@ -8,7 +8,7 @@
 #include "AObject.hpp"
 
 arc::solarfox::AObject::AObject(const arc::RectF &pos, int health):
-	_pos(pos), _health(health)
+	_health(health), _pos(pos)
 {
 }
 

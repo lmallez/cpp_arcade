@@ -41,18 +41,22 @@ namespace arc {
 		CoreClock _clock;
 		solarfox::Ship _ship;
 		std::vector<solarfox::Monster> _monster;
-		std::vector<std::shared_ptr<solarfox::AMissile>> _monsterMissile;
-		std::vector<std::shared_ptr<solarfox::AMissile>> _playerMissile;
+		std::vector<std::shared_ptr<solarfox::AMissile>> _monsterShot;
+		std::vector<std::shared_ptr<solarfox::AMissile>> _playerShot;
 
 		void _monsterMissileMove();
 		void _playerMissileMove();
+		bool _checkObject(const std::shared_ptr<solarfox::AMissile> &shot);
+
+		template <typename T>
+		static void deleteMissile(std::vector<std::shared_ptr<T>> &vec, size_t id);
 
 		bool _isOver = false;
 		std::shared_ptr<IShape> _game(EventHandler &event);
 		std::shared_ptr<IShape> _gameOver(EventHandler &event);
 		std::shared_ptr<IShape> _drawGame() const;
 
-		void _playerShot(EventHandler &event);
+		void _shot(EventHandler &event);
 
 		solarfox::MapManager _mapManager;
 		std::vector<std::shared_ptr<solarfox::AObject>> _object;

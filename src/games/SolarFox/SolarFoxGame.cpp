@@ -25,7 +25,7 @@ arc::SolarFoxGame::SolarFoxGame():
 	_mapManager("../assets/solarfox"),
 	_scoreboard("solarfox")
 {
-	assignKey(arc::KeyEvent::A, arc::KeyEvent::JUSTPRESSED, &arc::SolarFoxGame::_playerShot);
+	assignKey(arc::KeyEvent::SPACE, arc::KeyEvent::JUSTPRESSED, &arc::SolarFoxGame::_shot);
 }
 
 void arc::SolarFoxGame::assignKey(arc::KeyEvent::Key key,
@@ -93,11 +93,11 @@ std::shared_ptr<arc::IShape> arc::SolarFoxGame::_game(arc::EventHandler &event)
 		for (auto &monster : _monster) {
 			monster.move(0.01);
 			if (random() % 1000 < SHOT_PROBA)
-				_monsterMissile.push_back(monster.shot());
+				_monsterShot.push_back(monster.shot());
 		}
 		_monsterMissileMove();
 		_playerMissileMove();
-		if (_object.size() == 0) {
+		if (_object.empty()) {
 			_isOver = _mapManager.lastLvl();
 			if (!_isOver)
 				_object = _mapManager.nextMap();
@@ -113,13 +113,13 @@ std::shared_ptr<arc::IShape> arc::SolarFoxGame::_game(arc::EventHandler &event)
 
 void arc::SolarFoxGame::_monsterMissileMove()
 {
-	for (size_t i = 0; i < _monsterMissile.size(); i++) {
-		if (!_monsterMissile[i]->move(0.01)) {
-			_monsterMissile.erase(_monsterMissile.begin() + i);
+	for (size_t i = 0; i < _monsterShot.size(); i++) {
+		if (!_monsterShot[i]->move(0.01)) {
+			deleteMissile(_monsterShot, i);
 			i--;
-		} else if (_monsterMissile[i]->collision(_ship.getPos())) {
+		} else if (_monsterShot[i]->collision(_ship.getPos())) {
 			_isOver = _ship.moveLife(-1);
-			_monsterMissile.erase(_monsterMissile.begin() + i);
+			deleteMissile(_monsterShot, i);
 			i--;
 		}
 	}
@@ -127,24 +127,38 @@ void arc::SolarFoxGame::_monsterMissileMove()
 
 void arc::SolarFoxGame::_playerMissileMove()
 {
-	for (size_t i = 0; i < _playerMissile.size(); i++) {
-		if (!_playerMissile[i] || !_playerMissile[i]->move(0.01)) {
-			_playerMissile.erase(_playerMissile.begin() + i);
+	for (size_t i = 0; i < _playerShot.size(); i++) {
+		if (!_playerShot[i] || !_playerShot[i]->move(0.01)) {
+			deleteMissile(_playerShot, i);
 			i--;
-		} else {
-			for (size_t j = 0; j < _object.size(); j++)
-				if (_object[j]->collision(_playerMissile[i]->getPos())) {
-					if (_object[j]->getHealth() <= 0) {
-						_object.erase(_object.begin() + j);
-						_score += 1;
-					}
-					_playerMissile.erase(_playerMissile.begin() + i);
-					i--;
-					break;
-				}
-
+		} else if (_checkObject(_playerShot[i])) {
+			deleteMissile(_playerShot, i);
+			i--;
 		}
 	}
+}
+
+bool arc::SolarFoxGame::_checkObject(const std::shared_ptr<arc::solarfox::AMissile> &shot)
+{
+	for (size_t i = 0; i < _object.size(); i++)
+		if (_object[i]->collision(shot->getPos())) {
+			if (_object[i]->getHealth() <= 0) {
+				deleteMissile(_object, i);
+				_score += 1;
+				return true;
+			}
+		}
+	return false;
+}
+
+template <typename T>
+void arc::SolarFoxGame::deleteMissile(
+	std::vector<std::shared_ptr<T>> &vec, size_t id)
+{
+	if (id > vec.size())
+		throw arc::Exception("SolarFox", "Invalid Missile");
+	vec[id].reset();
+	vec.erase(vec.begin() + id);
 }
 
 std::shared_ptr<arc::IShape> arc::SolarFoxGame::_gameOver(
@@ -164,9 +178,9 @@ std::shared_ptr<arc::IShape> arc::SolarFoxGame::_drawGame() const
 
 	for (auto &monster : _monster)
 		map->addChild(monster.draw(map));
-	for (auto &missile : _monsterMissile)
+	for (auto &missile : _monsterShot)
 		map->addChild(missile->draw(map));
-	for (auto &missile : _playerMissile)
+	for (auto &missile : _playerShot)
 		map->addChild(missile->draw(map));
 	for (auto &obj : _object)
 		map->addChild(obj->draw(map));
@@ -175,7 +189,7 @@ std::shared_ptr<arc::IShape> arc::SolarFoxGame::_drawGame() const
 	return map;
 }
 
-void arc::SolarFoxGame::_playerShot(arc::EventHandler &event[[maybe_unused]])
+void arc::SolarFoxGame::_shot(arc::EventHandler &event[[maybe_unused]])
 {
-	_playerMissile.push_back(_ship.shot());
+	_playerShot.push_back(_ship.shot());
 }

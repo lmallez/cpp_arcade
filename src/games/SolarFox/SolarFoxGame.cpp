@@ -65,7 +65,7 @@ void arc::SolarFoxGame::execKey(arc::EventHandler &event, arc::KeyEvent::Key key
 	}
 }
 
-std::shared_ptr <arc::IShape> arc::SolarFoxGame::start()
+std::SPTR <arc::IShape> arc::SolarFoxGame::start()
 {
 	srandom(time(nullptr));
 	_isOver = false;
@@ -76,17 +76,17 @@ std::shared_ptr <arc::IShape> arc::SolarFoxGame::start()
 	_object = _mapManager.initMap(0);
 	_score = 0;
 	_scoreboard.initScores();
-	return std::make_shared<arc::ShapeContainer>();
+	return std::MKS<arc::ShapeContainer>();
 }
 
-std::shared_ptr <arc::IShape> arc::SolarFoxGame::update(EventHandler &event)
+std::SPTR <arc::IShape> arc::SolarFoxGame::update(EventHandler &event)
 {
 	return _isOver ? _gameOver(event) : _game(event);
 }
 
-std::shared_ptr<arc::IShape> arc::SolarFoxGame::_game(arc::EventHandler &event)
+std::SPTR<arc::IShape> arc::SolarFoxGame::_game(arc::EventHandler &event)
 {
-	std::shared_ptr all = std::make_shared<arc::ShapeContainer>();
+	std::SPTR all = std::MKS<arc::ShapeContainer>();
 
 	execKey(event);
 	if (_clock.updateTime()) {
@@ -104,8 +104,8 @@ std::shared_ptr<arc::IShape> arc::SolarFoxGame::_game(arc::EventHandler &event)
 		}
 	}
 	all->addChild(_drawGame());
-	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.1, 0, 0.1, 0.4), "Score: " + std::to_string(_score)));
-	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.5, 0, 0.1, 0.4), ("HighScore: " + std::to_string(_scoreboard.getHighScore().second)) + " " + _scoreboard.getHighScore().first));
+	all->addChild(std::MKS<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.1, 0, 0.1, 0.4), "Score: " + std::to_string(_score)));
+	all->addChild(std::MKS<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.5, 0, 0.1, 0.4), ("HighScore: " + std::to_string(_scoreboard.getHighScore().second)) + " " + _scoreboard.getHighScore().first));
 	if (_isOver)
 		_scoreboard.addScore(event.gameEvent().playerName(), (int)_score);
 	return all;
@@ -138,22 +138,22 @@ void arc::SolarFoxGame::_playerMissileMove()
 	}
 }
 
-bool arc::SolarFoxGame::_checkObject(const std::shared_ptr<arc::solarfox::AMissile> &shot)
+bool arc::SolarFoxGame::_checkObject(const std::SPTR<arc::solarfox::AMissile> &shot)
 {
 	for (size_t i = 0; i < _object.size(); i++)
 		if (_object[i]->tryCollision(shot->getPos())) {
 			if (_object[i]->getHealth() <= 0) {
 				deleteMissile(_object, i);
 				_score += 1;
-				return true;
 			}
+			return true;
 		}
 	return false;
 }
 
 template <typename T>
 void arc::SolarFoxGame::deleteMissile(
-	std::vector<std::shared_ptr<T>> &vec, size_t id)
+	std::vector<std::SPTR<T>> &vec, size_t id)
 {
 	if (id > vec.size())
 		throw arc::Exception("SolarFox", "Invalid Missile");
@@ -161,20 +161,20 @@ void arc::SolarFoxGame::deleteMissile(
 	vec.erase(vec.begin() + id);
 }
 
-std::shared_ptr<arc::IShape> arc::SolarFoxGame::_gameOver(
+std::SPTR<arc::IShape> arc::SolarFoxGame::_gameOver(
 	arc::EventHandler &event)
 {
 	arc::SystemController::execKey(event);
-	std::shared_ptr all = std::make_shared<arc::ShapeContainer>();
+	std::SPTR all = std::MKS<arc::ShapeContainer>();
 
-	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.4, 0.4, 0.2, 0.4), "Game Over"));
-	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.4, 0.6, 0.1, 0.4), "Score: " + std::to_string(_score)));
+	all->addChild(std::MKS<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.4, 0.4, 0.2, 0.4), "Game Over"));
+	all->addChild(std::MKS<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.4, 0.6, 0.1, 0.4), "Score: " + std::to_string(_score)));
 	return all;
 }
 
-std::shared_ptr<arc::IShape> arc::SolarFoxGame::_drawGame() const
+std::SPTR<arc::IShape> arc::SolarFoxGame::_drawGame() const
 {
-	std::shared_ptr map = std::make_shared<arc::ShapeRect>(nullptr, arc::Texture(arc::Color::Red), arc::RectF(0.1, 0.1, 0.8, 0.8));
+	std::SPTR map = std::MKS<arc::ShapeRect>(nullptr, arc::Texture(arc::Color::Red), arc::RectF(0.1, 0.1, 0.8, 0.8));
 
 	for (auto &monster : _monster)
 		map->addChild(monster.draw(map));

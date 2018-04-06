@@ -7,7 +7,7 @@
 
 #include "SDLShapeText.hpp"
 
-arc::SDLShapeText::SDLShapeText(std::shared_ptr<arc::IShape> parent,
+arc::SDLShapeText::SDLShapeText(std::SPTR<arc::IShape> parent,
 	const arc::Texture &texture, const arc::RectF &rect,
 	const std::string &text):
 	ShapeText(parent, texture, rect, text), SDLShape()

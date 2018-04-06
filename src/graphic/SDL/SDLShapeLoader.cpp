@@ -14,26 +14,26 @@ arc::SDLShapeLoader::SDLShapeLoader()
 {
 }
 
-std::unique_ptr<arc::IShape>
+std::UPTR<arc::IShape>
 arc::SDLShapeLoader::load(const arc::ShapeRect &item) const
 {
-	std::unique_ptr<arc::IShape> a = std::make_unique<arc::SDLShapeRect>(item);
+	std::UPTR<arc::IShape> a = std::MKU<arc::SDLShapeRect>(item);
 	loadChild(item, a);
 	return a;
 }
 
-std::unique_ptr<arc::IShape>
+std::UPTR<arc::IShape>
 arc::SDLShapeLoader::load(const arc::ShapeCircle &item) const
 {
-	std::unique_ptr<arc::IShape> a = std::make_unique<arc::SDLShapeCircle>(item);
+	std::UPTR<arc::IShape> a = std::MKU<arc::SDLShapeCircle>(item);
 	loadChild(item, a);
 	return a;
 }
 
-std::unique_ptr<arc::IShape>
+std::UPTR<arc::IShape>
 arc::SDLShapeLoader::load(const arc::ShapeText &item) const
 {
-	std::unique_ptr<arc::IShape> a = std::make_unique<arc::SDLShapeText>(item);
+	std::UPTR<arc::IShape> a = std::MKU<arc::SDLShapeText>(item);
 	loadChild(item, a);
 	return a;
 }

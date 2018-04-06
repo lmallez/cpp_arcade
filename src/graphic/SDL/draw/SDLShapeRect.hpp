@@ -18,7 +18,7 @@ namespace arc {
 	class SDLShapeRect : public ShapeRect, public SDLShape {
 	public:
 		explicit SDLShapeRect(
-			std::shared_ptr<IShape> parent = nullptr,
+			std::SPTR<IShape> parent = nullptr,
 			const arc::Texture &texture = arc::Texture(),
 			const RectF &rect = RectF(0, 0, 0, 0));
 		explicit SDLShapeRect(const ShapeRect &shape);

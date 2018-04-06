@@ -21,8 +21,8 @@ namespace arc {
 	public:
 		static IGame &getInstance();
 		static void freeInstance();
-		std::shared_ptr<IShape> start() override;
-		std::shared_ptr<IShape> update(EventHandler &event) override;
+		std::SPTR<IShape> start() override;
+		std::SPTR<IShape> update(EventHandler &event) override;
 
 	private:
 		static arc::IGame *_instance;

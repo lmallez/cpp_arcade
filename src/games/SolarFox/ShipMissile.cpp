@@ -13,9 +13,9 @@ arc::solarfox::ShipMissile::ShipMissile(arc::VertexF pos, arc::VertexF size,
 {
 }
 
-std::shared_ptr <arc::IShape>
-arc::solarfox::ShipMissile::draw(const std::shared_ptr<IShape> &ptr) const
+std::SPTR <arc::IShape>
+arc::solarfox::ShipMissile::draw(const std::SPTR<IShape> &ptr) const
 {
-	std::shared_ptr<arc::IShape> a = std::make_shared<arc::ShapeRect>(ptr, arc::Texture(arc::Color::Magenta, arc::Color::Magenta), getPos());
+	std::SPTR<arc::IShape> a = std::MKS<arc::ShapeRect>(ptr, arc::Texture(arc::Color::Magenta, arc::Color::Magenta), getPos());
 	return a;
 }

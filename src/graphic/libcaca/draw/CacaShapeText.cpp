@@ -7,7 +7,7 @@
 
 #include "CacaShapeText.hpp"
 
-arc::CacaShapeText::CacaShapeText(std::shared_ptr<arc::IShape> parent,
+arc::CacaShapeText::CacaShapeText(std::SPTR<arc::IShape> parent,
 	const arc::Texture &texture, const arc::RectF &rect,
 	const std::string &text):
 	ShapeText(parent, texture, rect, text), CacaShape()
@@ -30,6 +30,6 @@ void arc::CacaShapeText::draw() const
 		return;
 	setColor(texture.lineColor(), texture.bgColor());
 	caca_printf(arc::CacaMainWindow::getInstance().getCanvas().get(),
-		    geo.pos().x(), geo.pos().y(), "%s", text.c_str());
+		    geo.pos().x(), geo.pos().y(), "%SPTR", text.c_str());
 	AShape::draw();
 }

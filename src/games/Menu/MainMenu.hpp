@@ -25,8 +25,8 @@ namespace arc {
 	public:
 		static IGame &getInstance();
 		~MainMenu() = default;
-		std::shared_ptr<IShape> start() override;
-		std::shared_ptr<IShape> update(EventHandler &event) override;
+		std::SPTR<IShape> start() override;
+		std::SPTR<IShape> update(EventHandler &event) override;
 
 	private:
 		MainMenu();
@@ -35,10 +35,10 @@ namespace arc {
 		void execKey(arc::EventHandler &event);
 		void execKey(arc::EventHandler &event, arc::KeyEvent::Key key);
 
-		std::shared_ptr<arc::IShape> _startButton;
-		std::shared_ptr<arc::IShape> _displayStartButton(EventHandler &event);
-		std::shared_ptr<arc::IShape> _displayListGraphic(EventHandler &event, const arc::RectF &pos);
-		std::shared_ptr<arc::IShape> _displayListGame(EventHandler &event, const arc::RectF &pos);
+		std::SPTR<arc::IShape> _startButton;
+		std::SPTR<arc::IShape> _displayStartButton(EventHandler &event);
+		std::SPTR<arc::IShape> _displayListGraphic(EventHandler &event, const arc::RectF &pos);
+		std::SPTR<arc::IShape> _displayListGame(EventHandler &event, const arc::RectF &pos);
 		arc::Texture _getListTexture(size_t pos, size_t selected, size_t col);
 
 		arc::VertexS _userPos = arc::VertexS(0, 0);

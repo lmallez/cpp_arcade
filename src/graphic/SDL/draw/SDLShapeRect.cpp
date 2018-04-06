@@ -7,7 +7,7 @@
 
 #include "SDLShapeRect.hpp"
 
-arc::SDLShapeRect::SDLShapeRect(std::shared_ptr<arc::IShape> parent,
+arc::SDLShapeRect::SDLShapeRect(std::SPTR<arc::IShape> parent,
 	const arc::Texture &texture, const arc::RectF &rect) :
 	ShapeRect(parent, texture, rect), SDLShape()
 {

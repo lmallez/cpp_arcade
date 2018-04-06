@@ -14,8 +14,8 @@
 namespace arc {
 	class IGameObject {
 	public:
-		virtual std::unique_ptr<IGameObject> clone() = 0;
-		virtual std::shared_ptr<IShape> draw(std::shared_ptr<IShape> parent) = 0;
+		virtual std::UPTR<IGameObject> clone() = 0;
+		virtual std::SPTR<IShape> draw(std::SPTR<IShape> parent) = 0;
 	};
 }
 

@@ -70,19 +70,19 @@ void arc::BasicGame::execKey(arc::EventHandler &event, arc::KeyEvent::Key key)
 	}
 }
 
-std::shared_ptr<arc::IShape> arc::BasicGame::start()
+std::SPTR<arc::IShape> arc::BasicGame::start()
 {
 	arc::Texture basic(arc::Color::Red, arc::Color::Blue);
 
-	std::shared_ptr s1 = std::make_shared<arc::ShapeCircle>(nullptr, basic, _playerPos);
+	std::SPTR s1 = std::MKS<arc::ShapeCircle>(nullptr, basic, _playerPos);
 
-	/*std::shared_ptr s2 = std::make_shared<arc::ShapeCircle>(s1, basic, _playerPos);
+	/*std::SPTR s2 = std::MKS<arc::ShapeCircle>(s1, basic, _playerPos);
 	s1->addChild(s2);*/
 	_frame = 0;
 	return s1;
 }
 
-std::shared_ptr<arc::IShape> arc::BasicGame::update(EventHandler &event)
+std::SPTR<arc::IShape> arc::BasicGame::update(EventHandler &event)
 {
 	arc::Texture basic(ASSETS_DIR + "/ramage.jpg");
 	_playerPos.rsize() = _playerPos.size() + _playerPos.size() * _grownCoef;
@@ -90,14 +90,14 @@ std::shared_ptr<arc::IShape> arc::BasicGame::update(EventHandler &event)
 
 	execKey(event);
 	_playerPos.rpos() = _pCtrlPos;
-	std::shared_ptr s1 = std::make_shared<arc::ShapeCircle>(nullptr, basic, _playerPos);
-	std::shared_ptr s2 = std::make_shared<arc::ShapeText>(s1,
+	std::SPTR s1 = std::MKS<arc::ShapeCircle>(nullptr, basic, _playerPos);
+	std::SPTR s2 = std::MKS<arc::ShapeText>(s1,
 		arc::Texture(arc::Color::Yellow), RectF(0.5, 0.5, 0.25, 0.25), std::to_string(_frame));
-	std::shared_ptr s3 = std::make_shared<arc::ShapeRect>(s1,
+	std::SPTR s3 = std::MKS<arc::ShapeRect>(s1,
 		arc::Texture(ASSETS_DIR + "/aled.png"), RectF(0.1, 0.2, 0.25, 0.25));
-	std::shared_ptr s4 = std::make_shared<arc::ShapeRect>(s1,
+	std::SPTR s4 = std::MKS<arc::ShapeRect>(s1,
 		arc::Texture(ASSETS_DIR + "/aled.png"), RectF(0.9 - 0.25, 0.2, 0.25, 0.25));
-	std::shared_ptr s5 = std::make_shared<arc::ShapeRect>(s1,
+	std::SPTR s5 = std::MKS<arc::ShapeRect>(s1,
 		arc::Texture(arc::Color::Red, arc::Color::Black), RectF(0.1, 0.6, 0.75, 0.25));
 	s1->addChild(s2);
 	s1->addChild(s3);

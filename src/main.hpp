@@ -12,4 +12,9 @@
 #define DIR_GAME std::string("../games")
 #define DIR_GRAPHIC std::string("../graphics")
 
+#define MKU make_unique
+#define MKS make_shared
+#define UPTR unique_ptr
+#define SPTR shared_ptr
+
 #endif /* CPP_ARCADE_MAIN_HPP */

@@ -16,7 +16,7 @@ namespace arc {
 	protected:
 		virtual void
 		loadChild(const arc::IShape &from,
-			std::unique_ptr<IShape> &dest) const override;
+			std::UPTR<IShape> &dest) const override;
 	};
 }
 

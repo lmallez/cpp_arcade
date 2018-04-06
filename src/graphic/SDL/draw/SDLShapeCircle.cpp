@@ -8,14 +8,14 @@
 #include <src/graphic/SDL/SDLMainWindow.hpp>
 #include "SDLShapeCircle.hpp"
 
-arc::SDLShapeCircle::SDLShapeCircle(std::shared_ptr<arc::IShape> parent,
+arc::SDLShapeCircle::SDLShapeCircle(std::SPTR<arc::IShape> parent,
 	const arc::Texture &texture, const arc::VertexF &pos, float radius):
 	ShapeCircle(parent, texture, pos, radius), SDLShape()
 {
 
 }
 
-arc::SDLShapeCircle::SDLShapeCircle(std::shared_ptr<arc::IShape> parent,
+arc::SDLShapeCircle::SDLShapeCircle(std::SPTR<arc::IShape> parent,
 	const arc::Texture &texture, const arc::RectF &rect):
 	ShapeCircle(parent, texture, rect), SDLShape()
 {

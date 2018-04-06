@@ -16,11 +16,11 @@ namespace arc {
 	class ShapeContainer : public AShape {
 	public:
 		explicit ShapeContainer(
-			const std::shared_ptr<IShape> &parent = nullptr,
+			const std::SPTR<IShape> &parent = nullptr,
 			const RectF &geometry = arc::RectF(0, 0, 1, 1));
 		ShapeContainer(const ShapeContainer &ex);
 
-		virtual std::unique_ptr<IShape>
+		virtual std::UPTR<IShape>
 		convert(const arc::IShapeLoader &loader) const override;
 	};
 }

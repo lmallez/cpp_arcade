@@ -16,12 +16,12 @@ namespace arc {
 	class ShapeRect : public AShape {
 	public:
 		ShapeRect(
-			const std::shared_ptr<IShape> &parent,
+			const std::SPTR<IShape> &parent,
 			const Texture &texture,
 			RectF geometry);
 		ShapeRect(const ShapeRect &ex);
 
-		virtual std::unique_ptr<IShape>
+		virtual std::UPTR<IShape>
 		convert(const arc::IShapeLoader &loader) const override;
 	};
 }

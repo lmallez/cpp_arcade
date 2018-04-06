@@ -8,7 +8,7 @@
 #include "src/exception/Exception.hpp"
 #include "AnimatedContainer.hpp"
 
-arc::AnimatedContainer::AnimatedContainer(const std::vector<std::shared_ptr<arc::IObject>> &obj,
+arc::AnimatedContainer::AnimatedContainer(const std::vector<std::SPTR<arc::IObject>> &obj,
 	size_t update):
 	AnimatedObject(update), _obj(obj), _selected(0)
 {
@@ -16,8 +16,8 @@ arc::AnimatedContainer::AnimatedContainer(const std::vector<std::shared_ptr<arc:
 		throw arc::Exception("AnimatedContainer", "Invalid Object");
 }
 
-std::shared_ptr <arc::IShape>
-arc::AnimatedContainer::draw(const std::shared_ptr <arc::IShape> &parent) const
+std::SPTR <arc::IShape>
+arc::AnimatedContainer::draw(const std::SPTR <arc::IShape> &parent) const
 {
 	return _obj[_selected]->draw(parent);
 }

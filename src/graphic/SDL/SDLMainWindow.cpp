@@ -11,7 +11,7 @@
 
 arc::SDLMainWindow &arc::SDLMainWindow::getInstance()
 {
-	static std::unique_ptr<SDLMainWindow> instance = nullptr;
+	static std::UPTR<SDLMainWindow> instance = nullptr;
 
 	if (instance == nullptr)
 		instance.reset(new SDLMainWindow(arc::VertexI(700, 700)));
@@ -69,14 +69,14 @@ bool arc::SDLMainWindow::TextureInCache(const std::string &str) const
 	return _textureCache.find(str) != _textureCache.end();
 }
 
-std::shared_ptr<SDL_Texture> arc::SDLMainWindow::getTextureCache(
+std::SPTR<SDL_Texture> arc::SDLMainWindow::getTextureCache(
 	const std::string &str)
 const
 {
 	return nullptr;
 }
 
-std::unique_ptr<SDL_Renderer, void (&)(SDL_Renderer *)> & arc::SDLMainWindow::getRenderer()
+std::UPTR<SDL_Renderer, void (&)(SDL_Renderer *)> & arc::SDLMainWindow::getRenderer()
 {
 	return _render;
 }

@@ -17,13 +17,13 @@ namespace arc {
 	class SFShapeLoader : public AShapeLoader {
 	public:
 		SFShapeLoader();
-		virtual std::unique_ptr<IShape>
+		virtual std::UPTR<IShape>
 		load(const arc::ShapeRect &item) const override;
 
-		virtual std::unique_ptr<IShape>
+		virtual std::UPTR<IShape>
 		load(const arc::ShapeCircle &item) const override;
 
-		virtual std::unique_ptr<IShape>
+		virtual std::UPTR<IShape>
 		load(const arc::ShapeText &item) const override;
 	};
 }

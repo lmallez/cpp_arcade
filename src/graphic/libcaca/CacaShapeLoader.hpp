@@ -17,13 +17,13 @@ namespace arc {
 	class CacaShapeLoader : public AShapeLoader {
 	public:
 		CacaShapeLoader();
-		virtual std::unique_ptr<IShape>
+		virtual std::UPTR<IShape>
 		load(const arc::ShapeRect &item) const override;
 
-		virtual std::unique_ptr<IShape>
+		virtual std::UPTR<IShape>
 		load(const arc::ShapeCircle &item) const override;
 
-		virtual std::unique_ptr<IShape>
+		virtual std::UPTR<IShape>
 		load(const arc::ShapeText &item) const override;
 	};
 }

@@ -8,7 +8,7 @@
 #include "AShapeLoader.hpp"
 
 void arc::AShapeLoader::loadChild(const arc::IShape &from,
-	std::unique_ptr<IShape> &dest) const
+	std::UPTR<IShape> &dest) const
 {
 	for (size_t i = 0; i < from.nbChild(); i++)
 		dest->addChild(from.getChild(i).convert(*this));

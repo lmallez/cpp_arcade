@@ -16,18 +16,18 @@ namespace arc {
 	class ShapeCircle : public AShape {
 	public:
 		ShapeCircle(
-			const std::shared_ptr<IShape> &parent,
+			const std::SPTR<IShape> &parent,
 			const Texture &texture,
 			VertexF pos,
 			float radius
 		);
 		ShapeCircle(
-			const std::shared_ptr<IShape> &parent,
+			const std::SPTR<IShape> &parent,
 			const Texture &texture,
 			RectF geometry);
 		ShapeCircle(const ShapeCircle &ex);
 
-		virtual std::unique_ptr<IShape>
+		virtual std::UPTR<IShape>
 		convert(const arc::IShapeLoader &loader) const override;
 	};
 }

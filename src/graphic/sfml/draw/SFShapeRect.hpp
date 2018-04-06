@@ -17,7 +17,7 @@ namespace arc {
 	class SFShapeRect : public ShapeRect, public SFShape {
 	public:
 		explicit SFShapeRect(
-			std::shared_ptr<IShape> parent = nullptr,
+			std::SPTR<IShape> parent = nullptr,
 			const arc::Texture &texture = arc::Texture(),
 			const RectF &rect = RectF(0, 0, 0, 0));
 		explicit SFShapeRect(const ShapeRect &shape);

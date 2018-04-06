@@ -19,6 +19,7 @@
 #include "Snake.hpp"
 #include "src/games/IGame.hpp"
 #include "MapManager.hpp"
+#include "src/main.hpp"
 
 #define MAP_SIZE 20
 #define NIBBLER_ASSETS_DIR std::string(ASSETS_DIR) + "/nibbler"
@@ -32,8 +33,8 @@ namespace arc {
 		static IGame &getInstance();
 		static void freeInstance();
 
-		std::shared_ptr<IShape> start() override;
-		std::shared_ptr<IShape> update(EventHandler &event) override;
+		std::SPTR<IShape> start() override;
+		std::SPTR<IShape> update(EventHandler &event) override;
 
 	protected:
 
@@ -58,13 +59,13 @@ namespace arc {
 		void _move(EventHandler &event);
 		void _move(EventHandler &event, snake::Snake &snake);
 		bool _isOver;
-		std::shared_ptr<arc::IShape> _game(EventHandler &event);
-		std::shared_ptr<IShape> _drawSnake() const;
-		std::shared_ptr<IShape> _drawObstacle() const;
+		std::SPTR<arc::IShape> _game(EventHandler &event);
+		std::SPTR<IShape> _drawSnake() const;
+		std::SPTR<IShape> _drawObstacle() const;
 
 		bool _collideObstacle(const VertexS &pos) const;
 
-		std::shared_ptr<IShape> _gameOver(EventHandler &event);
+		std::SPTR<IShape> _gameOver(EventHandler &event);
 
 		snake::MapManager _mapManager;
 		std::vector<arc::VertexS> _obstacle;

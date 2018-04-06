@@ -25,8 +25,8 @@ namespace arc {
 		static IGame &getInstance();
 		static void freeInstance();
 
-		std::shared_ptr<IShape> start() override;
-		std::shared_ptr<IShape> update(EventHandler &event) override;
+		std::SPTR<IShape> start() override;
+		std::SPTR<IShape> update(EventHandler &event) override;
 
 	protected:
 		typedef void (SolarFoxGame::*SolarFoxEvt_t)(EventHandler &event);
@@ -41,25 +41,25 @@ namespace arc {
 		CoreClock _clock;
 		solarfox::Ship _ship;
 		std::vector<solarfox::Monster> _monster;
-		std::vector<std::shared_ptr<solarfox::AMissile>> _monsterShot;
-		std::vector<std::shared_ptr<solarfox::AMissile>> _playerShot;
+		std::vector<std::SPTR<solarfox::AMissile>> _monsterShot;
+		std::vector<std::SPTR<solarfox::AMissile>> _playerShot;
 
 		void _monsterMissileMove();
 		void _playerMissileMove();
-		bool _checkObject(const std::shared_ptr<solarfox::AMissile> &shot);
+		bool _checkObject(const std::SPTR<solarfox::AMissile> &shot);
 
 		template <typename T>
-		static void deleteMissile(std::vector<std::shared_ptr<T>> &vec, size_t id);
+		static void deleteMissile(std::vector<std::SPTR<T>> &vec, size_t id);
 
 		bool _isOver = false;
-		std::shared_ptr<IShape> _game(EventHandler &event);
-		std::shared_ptr<IShape> _gameOver(EventHandler &event);
-		std::shared_ptr<IShape> _drawGame() const;
+		std::SPTR<IShape> _game(EventHandler &event);
+		std::SPTR<IShape> _gameOver(EventHandler &event);
+		std::SPTR<IShape> _drawGame() const;
 
 		void _shot(EventHandler &event);
 
 		solarfox::MapManager _mapManager;
-		std::vector<std::shared_ptr<solarfox::AObject>> _object;
+		std::vector<std::SPTR<solarfox::AObject>> _object;
 
 		size_t _score;
 

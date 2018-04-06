@@ -35,7 +35,6 @@ void arc::ScoreHandler::addScore(const std::pair<const std::string &, int> &entr
 		throw arc::Exception("ScoreHandler", "game name not set");
 	std::ofstream f(std::string(SCORES_DIR) + "/" + _game,
 			std::ofstream::app);
-	std::cout << (std::string(SCORES_DIR) + "/" + _game) << std::endl;
 	if (!f)
 		throw arc::Exception("ScoreHandler", "could not load score"
 				"file for " + _game);

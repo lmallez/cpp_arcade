@@ -8,8 +8,8 @@
 #ifndef CPP_ARCADE_BASICGAME_HPP
 #define CPP_ARCADE_BASICGAME_HPP
 
-#include "src/games/Controller/PlayerController.hpp"
-#include "src/games/Controller/SystemController.hpp"
+#include "src/games/utils/Controller/PlayerController.hpp"
+#include "src/games/utils/Controller/SystemController.hpp"
 #include "src/graphic/shape/ShapeCircle.hpp"
 #include "src/graphic/shape/ShapeText.hpp"
 #include "src/graphic/shape/ShapeRect.hpp"

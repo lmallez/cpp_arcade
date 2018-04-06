@@ -143,16 +143,16 @@ arc::Vertex<T> arc::Vertex<T>::moveDir(arc::Direction dir, T dist)
 {
 	switch (dir) {
 	case UP:
-		_y += dist;
-		break;
-	case LEFT:
-		_x += dist;
-		break;
-	case DOWN:
 		_y -= dist;
 		break;
-	case RIGHT:
+	case LEFT:
 		_x -= dist;
+		break;
+	case DOWN:
+		_y += dist;
+		break;
+	case RIGHT:
+		_x += dist;
 		break;
 	default:
 		break;

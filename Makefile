@@ -46,9 +46,9 @@ TESTED_SRCS	= \
 		  src/events/KeyEvent.cpp \
 		  src/events/MouseEvent.cpp \
 		  src/exception/Exception.cpp \
-		  src/games/Controller/PlayerController.cpp \
-		  src/games/Controller/SystemController.cpp \
 		  src/games/Menu/MainMenu.cpp \
+		  src/games/utils/Controller/PlayerController.cpp \
+		  src/games/utils/Controller/SystemController.cpp \
 		  src/games/ScoreHandler.cpp \
 		  src/games/Snake/Snake.cpp \
 		  src/games/Snake/SnakeGame.cpp \

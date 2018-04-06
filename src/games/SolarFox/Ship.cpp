@@ -7,10 +7,11 @@
 
 #include "src/graphic/shape/ShapeContainer.hpp"
 #include "Ship.hpp"
+#include "ShipMissile.hpp"
 
 arc::solarfox::Ship::Ship(const arc::VertexS &mapSize,
 	const arc::VertexF &shipSize, int life) :
-	PlayerController({0.005, 0.005}, arc::KeyEvent::PRESSED, true, {0, 0}, {true, arc::RectF(0, 0, 1 - shipSize.x(), 1 - shipSize.y())}),
+	PlayerController({0.001, 0.001}, arc::KeyEvent::PRESSED, true, {0, 0}, {true, arc::RectF(0, 0, 1 - shipSize.x(), 1 - shipSize.y())}),
 	_life(life), _maxLife(life)
 {
 	_pCtrlPos = {(float)mapSize.x() / 2, (float)mapSize.y() / 2};
@@ -92,4 +93,17 @@ bool arc::solarfox::Ship::moveLife(int nb)
 {
 	setLife(_life + nb);
 	return (_life + nb <= 0);
+}
+
+std::shared_ptr<arc::solarfox::AMissile> arc::solarfox::Ship::shot() const
+{
+	auto b = _pCtrlPos;
+	float size = BULLET_SIZE;
+	float dec = 0.5f * (std::abs(getPos().size().x()) - size);
+	if (_pCtrlDir == UP || _pCtrlDir == RIGHT)
+		b.moveDir(&_pCtrlDir, dec);
+	else
+		b.moveDir(*_pCtrlDir, dec);
+	std::shared_ptr<arc::solarfox::AMissile> a = std::make_unique<arc::solarfox::ShipMissile>(b, arc::VertexF(size, size), _pCtrlDir);
+	return a;
 }

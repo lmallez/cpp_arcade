@@ -6,7 +6,7 @@
 */
 
 #include <criterion/criterion.h>
-#include "src/games/ScoreHandler.hpp"
+#include "src/games/utils/ScoreHandler.hpp"
 
 Test(ScoreHandler, aled)
 {

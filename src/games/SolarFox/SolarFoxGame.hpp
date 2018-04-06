@@ -8,11 +8,14 @@
 #ifndef CPP_ARCADE_SOLARFOXGAME_HPP
 #define CPP_ARCADE_SOLARFOXGAME_HPP
 
+#include <src/games/utils/ScoreHandler.hpp>
 #include "src/core/corebuild/CoreClock.hpp"
-#include "src/games/Controller/SystemController.hpp"
+#include "src/games/utils/Controller/SystemController.hpp"
 #include "src/games/IGame.hpp"
 #include "Ship.hpp"
 #include "Monster.hpp"
+#include "AObject.hpp"
+#include "MapManager.hpp"
 
 #define SHOT_PROBA 20
 
@@ -38,12 +41,25 @@ namespace arc {
 		CoreClock _clock;
 		solarfox::Ship _ship;
 		std::vector<solarfox::Monster> _monster;
-		std::vector<std::shared_ptr<solarfox::AMissile>> _missile;
+		std::vector<std::shared_ptr<solarfox::AMissile>> _monsterMissile;
+		std::vector<std::shared_ptr<solarfox::AMissile>> _playerMissile;
+
+		void _monsterMissileMove();
+		void _playerMissileMove();
 
 		bool _isOver = false;
 		std::shared_ptr<IShape> _game(EventHandler &event);
 		std::shared_ptr<IShape> _gameOver(EventHandler &event);
 		std::shared_ptr<IShape> _drawGame() const;
+
+		void _playerShot(EventHandler &event);
+
+		solarfox::MapManager _mapManager;
+		std::vector<std::shared_ptr<solarfox::AObject>> _object;
+
+		size_t _score;
+
+		ScoreHandler _scoreboard;
 	};
 }
 

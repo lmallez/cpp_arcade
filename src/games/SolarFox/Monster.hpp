@@ -8,7 +8,7 @@
 #ifndef CPP_ARCADE_MONSTER_HPP
 #define CPP_ARCADE_MONSTER_HPP
 
-#include "src/games/Controller/PlayerController.hpp"
+#include "src/games/utils/Controller/PlayerController.hpp"
 #include "src/graphic/shape/ShapeRect.hpp"
 #include "MonsterMissile.hpp"
 

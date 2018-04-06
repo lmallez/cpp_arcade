@@ -1,2 +1,2 @@
-lib_game_snake.so;snake
-lib_game_solar_fox.so;solar_fox
+lib_arcade_nibbler.so;nibbler
+lib_arcade_solarfox.so;solarfox

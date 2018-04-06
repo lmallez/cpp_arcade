@@ -26,14 +26,14 @@ $(CORE_NAME): cmake
 core:	$(CORE_NAME)
 
 games:	cmake | $(GAMES_DIR)
-	make -C $(BUILD_DIR) _arcade_basicgame
-	make -C $(BUILD_DIR) _arcade_snake
-	make -C $(BUILD_DIR) _arcade_solar_fox
-	cp build/lib_arcade_basicgame.so build/lib_arcade_snake.so build/lib_arcade_solar_fox.so games/
+	make -C $(BUILD_DIR) _arcade_basic_game
+	make -C $(BUILD_DIR) _arcade_nibbler
+	make -C $(BUILD_DIR) _arcade_solarfox
+	cp build/lib_arcade_basic_game.so build/lib_arcade_nibbler.so build/lib_arcade_solarfox.so games/
 
 graphicals: cmake | $(LIB_DIR)
-	make -C $(BUILD_DIR) _graphic_sfml
-	make -C $(BUILD_DIR) _graphic_caca
+	make -C $(BUILD_DIR) _arcade_sfml
+	make -C $(BUILD_DIR) _arcade_caca
 	cp build/lib_arcade_sfml.so build/lib_arcade_caca.so lib/
 
 TESTED_SRCS	= \

@@ -28,7 +28,7 @@ namespace arc {
 		uint8_t g() const;
 		uint8_t b() const;
 		uint8_t a() const;
-		uint64_t values() const;
+		uint32_t values() const;
 
 		static const Color Black;
 		static const Color White;

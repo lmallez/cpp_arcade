@@ -86,9 +86,32 @@ set(
 )
 
 add_library(GRAPHIC_SFML SHARED ${GRAPHIC_SFML} ${STD_FILES} ${SHAPE_FILES}
-        src/graphic/sfml/extern.cpp
-        )
+        src/graphic/sfml/extern.cpp)
 target_link_libraries(GRAPHIC_SFML sfml-graphics sfml-window sfml-system)
+
+
+set(
+        GRAPHIC_SDL
+        src/graphic/SDL/SDLGraphic.cpp
+        src/graphic/SDL/SDLGraphic.hpp
+        src/graphic/SDL/draw/SDLShapeRect.cpp
+        src/graphic/SDL/draw/SDLShapeRect.hpp
+        src/graphic/SDL/SDLShape.cpp
+        src/graphic/SDL/SDLShape.hpp
+        src/graphic/SDL/draw/SDLShapeCircle.cpp
+        src/graphic/SDL/draw/SDLShapeCircle.hpp
+        src/graphic/SDL/SDLShapeLoader.cpp
+        src/graphic/SDL/SDLShapeLoader.hpp
+        src/graphic/SDL/draw/SDLShapeText.cpp
+        src/graphic/SDL/draw/SDLShapeText.hpp
+        src/graphic/SDL/SDLMainWindow.cpp
+        src/graphic/SDL/SDLMainWindow.hpp
+)
+
+add_library(GRAPHIC_SDL SHARED ${GRAPHIC_SDL} ${STD_FILES} ${SHAPE_FILES}
+        src/graphic/SDL/extern.cpp
+        )
+target_link_libraries(GRAPHIC_SDL libSDL2-2.0.so libSDL2_gfx.so)
 
 set(
         GRAPHIC_Caca

@@ -55,7 +55,7 @@ uint8_t arc::Color::a() const
 	return _color._part[3];
 }
 
-uint64_t arc::Color::values() const
+uint32_t arc::Color::values() const
 {
 	return _color._all;
 }

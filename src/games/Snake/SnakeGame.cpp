@@ -27,7 +27,8 @@ arc::SnakeGame::SnakeGame():
 	_map(arc::RectF(0.1, 0.1, 0.8, 0.8)),
 	_snake(arc::VertexS(MAP_SIZE, MAP_SIZE)),
 	_clock(0.1),
-	_score(0)
+	_score(0),
+	_mapManager("../assets/nibbler")
 {
 	assignKey(arc::KeyEvent::SPACE, arc::KeyEvent::JUSTPRESSED, &arc::SnakeGame::_move);
 	srandom(time(nullptr));
@@ -76,6 +77,7 @@ std::shared_ptr<arc::IShape> arc::SnakeGame::start()
 	_score = 0;
 	_isOver = false;
 	_scoreboard.initScores();
+	_obstacle = _mapManager.loadRandMap();
 	return _drawSnake();
 }
 
@@ -106,6 +108,7 @@ std::shared_ptr<arc::IShape> arc::SnakeGame::_game(EventHandler &event)
 	}
 	std::shared_ptr all = std::make_shared<arc::ShapeContainer>();
 	all->addChild(_drawSnake());
+	all->addChild(_drawObstacle());
 	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.1, 0, 0.2, 0.4), "Score: " + std::to_string(_score)));
 	all->addChild(std::make_shared<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.5, 0, 0.5, 0.4), ("HighScore: " + std::to_string(_scoreboard.getHighScore().second)) + " " + _scoreboard.getHighScore().first));
 	return all;
@@ -131,8 +134,31 @@ std::shared_ptr<arc::IShape> arc::SnakeGame::_drawSnake() const
 	if (_specialFlower.second > 0) {
 		RectF flowerSpecialSize(_specialFlower.first.x() * partSize.x(), _specialFlower.first.y() * partSize.y(), partSize.x(), partSize.y());
 		s->addChild(std::make_shared<arc::ShapeCircle>(s, arc::Texture(arc::Color::Yellow, arc::Color::Yellow), flowerSpecialSize));
+		s->addChild(std::make_shared<arc::ShapeCircle>(s, arc::Texture(arc::Color::Yellow, arc::Color::Yellow), flowerSpecialSize));
 	}
 	return s;
+}
+
+std::shared_ptr<arc::IShape> arc::SnakeGame::_drawObstacle() const
+{
+	std::shared_ptr s = std::make_shared<arc::ShapeContainer>(nullptr, _map);
+	arc::Texture texture = arc::Texture(arc::Color::Red, arc::Color::Red);
+
+	arc::VertexF partSize(1.0 / (MAP_SIZE + 1), 1.0 / (MAP_SIZE + 1));
+	for (auto &obs : _obstacle) {
+		arc::RectF size({obs.x() * partSize.x(), obs.y() * partSize.y()}, partSize);
+		s->addChild(std::make_shared<arc::ShapeRect>(s, texture, size));
+	}
+	return s;
+}
+
+bool arc::SnakeGame::_collideObstacle(const arc::VertexS &pos) const
+{
+	for (auto &obs : _obstacle) {
+		if (obs.x() == pos.x() && obs.y() == pos.y())
+			return true;
+	}
+	return false;
 }
 
 void arc::SnakeGame::_genFlower()
@@ -140,7 +166,7 @@ void arc::SnakeGame::_genFlower()
 	do {
 		_flowerPos.rx() = (size_t)(random() % MAP_SIZE);
 		_flowerPos.ry() = (size_t)(random() % MAP_SIZE);
-	} while (_snake.inSnake(_flowerPos));
+	} while (_snake.inSnake(_flowerPos) || _collideObstacle(_flowerPos));
 }
 
 void arc::SnakeGame::_genSpecialFlower()
@@ -148,13 +174,13 @@ void arc::SnakeGame::_genSpecialFlower()
 	do {
 		_specialFlower.first.rx() = (size_t)(random() % MAP_SIZE);
 		_specialFlower.first.ry() = (size_t)(random() % MAP_SIZE);
-	} while (_snake.inSnake(_specialFlower.first));
+	} while (_snake.inSnake(_specialFlower.first) || _collideObstacle(_specialFlower.first));
 	_specialFlower.second = SPECIAL_FLOWER_DURATION;
 }
 
 void arc::SnakeGame::_move(arc::EventHandler &event, arc::snake::Snake &snake)
 {
-	if (!snake.move(event))
+	if (!snake.move(event) || _collideObstacle(_snake.getHead()))
 		_isOver = true;
 	else if (snake.eatFlower(_flowerPos, 1))
 		_genFlower();

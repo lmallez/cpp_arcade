@@ -8,6 +8,7 @@
 #ifndef CPP_ARCADE_SNAKEGAME_HPP
 #define CPP_ARCADE_SNAKEGAME_HPP
 
+#include <vector>
 #include "src/games/utils/Controller/SystemController.hpp"
 #include "src/games/utils/Controller/PlayerController.hpp"
 #include "src/games/utils/ScoreHandler.hpp"
@@ -16,7 +17,8 @@
 #include "src/graphic/shape/ShapeRect.hpp"
 #include "src/core/corebuild/CoreClock.hpp"
 #include "Snake.hpp"
-#include "../IGame.hpp"
+#include "src/games/IGame.hpp"
+#include "MapManager.hpp"
 
 #define MAP_SIZE 20
 
@@ -57,7 +59,14 @@ namespace arc {
 		bool _isOver;
 		std::shared_ptr<arc::IShape> _game(EventHandler &event);
 		std::shared_ptr<IShape> _drawSnake() const;
+		std::shared_ptr<IShape> _drawObstacle() const;
+
+		bool _collideObstacle(const VertexS &pos) const;
+
 		std::shared_ptr<IShape> _gameOver(EventHandler &event);
+
+		snake::MapManager _mapManager;
+		std::vector<arc::VertexS> _obstacle;
 	};
 }
 

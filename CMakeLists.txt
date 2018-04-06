@@ -160,7 +160,7 @@ set(
         src/games/utils/mapReader/MapReader.cpp
         src/games/utils/mapReader/MapReader.hpp
         src/games/utils/IGameObject.hpp
-)
+        src/games/Snake/MapManager.cpp src/games/Snake/MapManager.hpp)
 
 add_library(_arcade_nibbler SHARED ${STD_GAME} ${GAME_SNAKE} ${STD_FILES} ${SHAPE_FILES}
         src/games/Snake/extern.cpp

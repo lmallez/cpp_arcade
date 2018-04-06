@@ -84,7 +84,7 @@ std::shared_ptr<arc::IShape> arc::BasicGame::start()
 
 std::shared_ptr<arc::IShape> arc::BasicGame::update(EventHandler &event)
 {
-	arc::Texture basic(arc::Color::Red, arc::Color::Blue);
+	arc::Texture basic("../assets/ramage.jpg");
 	_playerPos.rsize() = _playerPos.size() + _playerPos.size() * _grownCoef;
 	_frame++;
 
@@ -94,9 +94,9 @@ std::shared_ptr<arc::IShape> arc::BasicGame::update(EventHandler &event)
 	std::shared_ptr s2 = std::make_shared<arc::ShapeText>(s1,
 		arc::Texture(arc::Color::Yellow), RectF(0.5, 0.5, 0.25, 0.25), std::to_string(_frame));
 	std::shared_ptr s3 = std::make_shared<arc::ShapeRect>(s1,
-		arc::Texture(arc::Color::Red, arc::Color::Cyan), RectF(0.1, 0.2, 0.25, 0.25));
+		arc::Texture("../assets/aled.png"), RectF(0.1, 0.2, 0.25, 0.25));
 	std::shared_ptr s4 = std::make_shared<arc::ShapeRect>(s1,
-		arc::Texture(arc::Color::Red, arc::Color::Cyan), RectF(0.9 - 0.25, 0.2, 0.25, 0.25));
+		arc::Texture("../assets/aled.png"), RectF(0.9 - 0.25, 0.2, 0.25, 0.25));
 	std::shared_ptr s5 = std::make_shared<arc::ShapeRect>(s1,
 		arc::Texture(arc::Color::Red, arc::Color::Black), RectF(0.1, 0.6, 0.75, 0.25));
 	s1->addChild(s2);

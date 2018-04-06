@@ -25,12 +25,32 @@ arc::CacaShapeCircle::CacaShapeCircle(const arc::ShapeCircle &shape):
 {
 }
 
+bool arc::CacaShapeCircle::drawFromFile() const
+{
+	arc::RectF geo = winGeometry();
+	arc::Texture texture = getTexture();
+	if (texture.getFilePath().empty())
+		return false;
+	static std::unique_ptr<CacaImage> im = std::make_unique<CacaImage>(texture.getFilePath());
+
+	caca_dither_bitmap(arc::CacaMainWindow::getInstance().getCanvas().get(),
+				geo.pos().x(), geo.pos().y(),
+				geo.size().x(), geo.size().y(),
+				im->getDither(),
+				im->getPixels());
+	return true;
+}
+
 void arc::CacaShapeCircle::draw() const
 {
 	arc::RectF geo = winGeometry();
 	arc::Texture texture = getTexture();
 
 	setColor(texture.lineColor(), arc::Color::Black);
+	if (drawFromFile() == true) {
+		AShape::draw();
+		return;
+	}
 	caca_draw_thin_ellipse(arc::CacaMainWindow::getInstance().getCanvas().get(),
 				geo.pos().x() + geo.size().x() / 2,
 				geo.pos().y() + geo.size().y() / 2,

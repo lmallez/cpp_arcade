@@ -19,6 +19,22 @@ arc::ScoreHandler::~ScoreHandler()
 {
 }
 
+std::string arc::ScoreHandler::getLinkedLib(const std::string &path)
+{
+	if (path.empty())
+		return "";
+	std::ifstream f(SCORES_LINK_FILE);
+	if (!f)
+		throw arc::Exception("ScoreHandler", "could not load lib-score linking file");
+	std::string line;
+	while(std::getline(f, line)) {
+		size_t pos = line.find(";");
+		if (line.substr(0, pos) == path)
+			return line.substr(pos + 1);
+	}
+	return path;
+}
+
 void arc::ScoreHandler::setGame(const std::string &game)
 {
 	_game = game;

@@ -15,13 +15,16 @@
 	#include <sys/stat.h>
 	#include "src/exception/Exception.hpp"
 
-	#define SCORES_DIR	"scores.arcade"
+	#define SCORES_DIR		"scores.arcade"
+	#define SCORES_LINK_FILE	"link.scores.arcade"
 
 namespace arc {
 	class ScoreHandler {
 	public:
 		explicit ScoreHandler(const std::string &game = "");
 		~ScoreHandler();
+
+		std::string getLinkedLib(const std::string &path);
 
 		void setGame(const std::string &game);
 		void addScore(const std::pair<const std::string &, int> &entry);

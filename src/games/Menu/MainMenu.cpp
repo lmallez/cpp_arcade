@@ -7,7 +7,7 @@
 
 #include <src/std/DirectoryReader.hpp>
 #include <src/graphic/shape/ShapeContainer.hpp>
-#include <src/games/ScoreHandler.hpp>
+#include <src/games/utils/ScoreHandler.hpp>
 #include "MainMenu.hpp"
 
 arc::IGame &arc::MainMenu::getInstance()
@@ -132,7 +132,8 @@ std::shared_ptr<arc::IShape> arc::MainMenu::_displayListGame(EventHandler &event
 		auto scores = std::make_shared<arc::ShapeText>(m, texture, RectF(0.05, (float)(text * 0.20 + 0.12), 0.9, 0.05),
 						"Best scores:");
 		m->addChild(scores);
-		ScoreHandler s(fileName);
+		ScoreHandler s;
+		s.setGame(s.getLinkedLib(fileName));
 		std::vector<std::pair<std::string, int>> sc;
 		try {
 			s.initScores();

@@ -12,6 +12,7 @@
 #include "src/std/Rect.hpp"
 #include "src/graphic/shape/ShapeCircle.hpp"
 #include "src/graphic/libcaca/CacaShape.hpp"
+#include "src/graphic/libcaca/CacaImage.hpp"
 #include "src/graphic/libcaca/CacaMainWindow.hpp"
 
 namespace arc {
@@ -29,6 +30,7 @@ namespace arc {
 		explicit CacaShapeCircle(const ShapeCircle &shape);
 		~CacaShapeCircle() = default;
 
+		bool drawFromFile() const;
 		virtual void draw() const override;
 	};
 }

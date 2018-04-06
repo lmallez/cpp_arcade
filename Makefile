@@ -47,16 +47,21 @@ TESTED_SRCS	= \
 		  src/events/MouseEvent.cpp \
 		  src/exception/Exception.cpp \
 		  src/games/Menu/MainMenu.cpp \
-		  src/games/utils/Controller/PlayerController.cpp \
-		  src/games/utils/Controller/SystemController.cpp \
-		  src/games/ScoreHandler.cpp \
 		  src/games/Snake/Snake.cpp \
 		  src/games/Snake/SnakeGame.cpp \
 		  src/games/SolarFox/AMissile.cpp \
+		  src/games/SolarFox/AObject.cpp \
+		  src/games/SolarFox/BasicMob.cpp \
+		  src/games/SolarFox/MapManager.cpp \
 		  src/games/SolarFox/Monster.cpp\
 		  src/games/SolarFox/MonsterMissile.cpp \
 		  src/games/SolarFox/Ship.cpp \
+		  src/games/SolarFox/ShipMissile.cpp \
 		  src/games/SolarFox/SolarFoxGame.cpp \
+		  src/games/utils/Controller/PlayerController.cpp \
+		  src/games/utils/Controller/SystemController.cpp \
+		  src/games/utils/ScoreHandler.cpp \
+		  src/games/utils/mapReader/MapReader.cpp \
 		  src/graphic/AShapeLoader.cpp \
 		  src/graphic/glu/GLMainWindow.cpp \
 		  src/graphic/libcaca/CacaGraphic.cpp \
@@ -80,6 +85,7 @@ TESTED_SRCS	= \
 		  src/graphic/shape/ShapeRect.cpp \
 		  src/graphic/shape/ShapeText.cpp \
 		  src/std/Color.cpp \
+		  src/std/Direction.cpp \
 		  src/std/DirectoryReader.cpp \
 		  src/std/Rect.cpp \
 		  src/std/Texture.cpp \
@@ -92,7 +98,7 @@ TESTS_SRCS	= \
 		  tests/events/keyevent.cpp \
 		  tests/events/mouseevent.cpp \
 		  tests/exception.cpp \
-		  tests/games/scorehandler.cpp \
+		  tests/games/utils/scorehandler.cpp \
 		  tests/graphics/shape/circle.cpp \
 		  tests/graphics/shape/rect.cpp \
 		  tests/graphics/shape/text.cpp \

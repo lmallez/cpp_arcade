@@ -23,7 +23,7 @@ void arc::SnakeGame::freeInstance()
 }
 
 arc::SnakeGame::SnakeGame():
-	_scoreboard("libGAME_SNAKE.so"),
+	_scoreboard("snake"),
 	_map(arc::RectF(0.1, 0.1, 0.8, 0.8)),
 	_snake(arc::VertexS(MAP_SIZE, MAP_SIZE)),
 	_clock(0.1),

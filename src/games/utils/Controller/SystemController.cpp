@@ -10,7 +10,7 @@
 
 arc::SystemController::SystemController()
 {
-	assignKey(arc::KeyEvent::Key::NUM4, arc::KeyEvent::JUSTPRESSED, &arc::SystemController::_prevGame);
+	assignKey(arc::KeyEvent::Key::NUM1, arc::KeyEvent::JUSTPRESSED, &arc::SystemController::_prevGame);
 	assignKey(arc::KeyEvent::Key::NUM2, arc::KeyEvent::JUSTPRESSED, &arc::SystemController::_restartGame);
 	assignKey(arc::KeyEvent::Key::NUM3, arc::KeyEvent::JUSTPRESSED, &arc::SystemController::_nextGame);
 	assignKey(arc::KeyEvent::Key::NUM4, arc::KeyEvent::JUSTPRESSED, &arc::SystemController::_prevGraphic);

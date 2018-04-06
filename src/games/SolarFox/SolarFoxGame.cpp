@@ -141,7 +141,7 @@ void arc::SolarFoxGame::_playerMissileMove()
 bool arc::SolarFoxGame::_checkObject(const std::shared_ptr<arc::solarfox::AMissile> &shot)
 {
 	for (size_t i = 0; i < _object.size(); i++)
-		if (_object[i]->collision(shot->getPos())) {
+		if (_object[i]->tryCollision(shot->getPos())) {
 			if (_object[i]->getHealth() <= 0) {
 				deleteMissile(_object, i);
 				_score += 1;
@@ -184,7 +184,7 @@ std::shared_ptr<arc::IShape> arc::SolarFoxGame::_drawGame() const
 		map->addChild(missile->draw(map));
 	for (auto &obj : _object)
 		map->addChild(obj->draw(map));
-	map->addChild(_ship.drawShip(map));
+	map->addChild(_ship.draw(map));
 	map->addChild(_ship.drawLife(map, arc::RectF(0, 1.05, 0.5, 0.07)));
 	return map;
 }

@@ -10,20 +10,21 @@
 
 #include <vector>
 #include <memory>
+#include <src/games/utils/IObject.hpp>
 #include "src/graphic/IShape.hpp"
 #include "src/std/Rect.hpp"
 
 namespace arc {
 	namespace solarfox {
-		class AObject {
+		class AObject : virtual public IObject {
 		public:
 			AObject(const RectF &pos, int health);
 
-			virtual bool collision(const RectF &obj) = 0;
-			virtual std::shared_ptr<arc::IShape>
-			draw(std::shared_ptr<arc::IShape> parent) const = 0;
 			arc::RectF getPos() const;
 			int getHealth() const;
+
+			bool collision(const RectF &obj) const override;
+			bool tryCollision(const RectF &obj);
 
 		protected:
 			int _health;

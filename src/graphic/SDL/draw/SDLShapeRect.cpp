@@ -37,6 +37,5 @@ void arc::SDLShapeRect::draw() const
 	rectangleColor(arc::SDLMainWindow::getInstance().getRenderer().get(),
 		 x, y, sx + x, sy + y,
 		 _texture.lineColor().values());
-	std::cout << "Draw Rectangle" << std::endl;
 	AShape::draw();
 }

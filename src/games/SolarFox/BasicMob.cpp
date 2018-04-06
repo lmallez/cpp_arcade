@@ -13,17 +13,8 @@ arc::solarfox::BasicMob::BasicMob(arc::RectF pos, int health):
 {
 }
 
-bool arc::solarfox::BasicMob::collision(const RectF &obj)
-{
-	if (getPos().isCollide(obj)) {
-		_health--;
-		return true;
-	}
-	return false;
-}
-
 std::shared_ptr<arc::IShape>
-arc::solarfox::BasicMob::draw(std::shared_ptr<arc::IShape> parent) const
+arc::solarfox::BasicMob::draw(const std::shared_ptr<IShape> &parent) const
 {
 	uint8_t a;
 	if (_health > 0)

@@ -10,7 +10,8 @@
 #include "Snake.hpp"
 
 arc::snake::Snake::Snake(const VertexS &mapSize):
-	PlayerController({0, 0}, arc::KeyEvent::JUSTPRESSED, false, {0, 0}, {true, arc::RectF(0, 0, mapSize.x(), mapSize.y())}),
+	PlayerController({0, 0}, arc::KeyEvent::JUSTPRESSED, false, {0, 0},
+		{true, arc::RectF(0, 0, mapSize.x(), mapSize.y())}),
 	_score(0),
 	_head(mapSize / 2)
 {

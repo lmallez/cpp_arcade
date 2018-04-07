@@ -20,7 +20,8 @@ arc::solarfox::Monster::Monster(arc::Direction dir, arc::VertexF size):
 std::SPTR<arc::IShape>
 arc::solarfox::Monster::draw(const std::SPTR<arc::IShape> &parent) const
 {
-	return std::MKS<arc::ShapeRect>(parent, arc::Texture(arc::Color::Magenta, arc::Color::Red), _getPos());
+	return std::MKS<arc::ShapeRect>(parent,
+		arc::Texture(arc::Color::Magenta, arc::Color::Red), _getPos());
 }
 
 void arc::solarfox::Monster::move(float speed)
@@ -32,7 +33,9 @@ void arc::solarfox::Monster::move(float speed)
 
 std::SPTR<arc::solarfox::AMissile> arc::solarfox::Monster::shot() const
 {
-	std::SPTR<arc::solarfox::AMissile> a = std::MKU<arc::solarfox::MonsterMissile>(_getPos().pos(), arc::VertexF(0.05, 0.05), _dir);
+	std::SPTR<arc::solarfox::AMissile> a =
+		std::MKU<arc::solarfox::MonsterMissile>
+		        (_getPos().pos(), arc::VertexF(0.05, 0.05), _dir);
 	return a;
 }
 

@@ -10,17 +10,27 @@
 #include "SFGraphic.hpp"
 #include "SFMainWindow.hpp"
 
-extern sf::Font consolasFont;
+extern std::UPTR<sf::Font> consolasFont;
 
-arc::IGraphic & arc::SFGraphic::getInstance()
+arc::IGraphic & arc::SFGraphic::getInstance(bool destroy)
 {
-	static arc::IGraphic *instance = nullptr;
+	static std::UPTR<arc::IGraphic> instance = nullptr;
 
 	if (!instance) {
-		consolasFont.loadFromFile(ASSETS_DIR + "/Consolas.ttf");
-		instance = new SFGraphic();
+		consolasFont.reset(new sf::Font());
+		consolasFont->loadFromFile(ASSETS_DIR + "/Consolas.ttf");
+		instance.reset(new SFGraphic());
+	}
+	if (destroy) {
+		consolasFont.reset(nullptr);
+		instance.reset(nullptr);
 	}
 	return *instance;
+}
+
+arc::SFGraphic::~SFGraphic()
+{
+	SFMainWindow::getInstance(true);
 }
 
 void arc::SFGraphic::display() const

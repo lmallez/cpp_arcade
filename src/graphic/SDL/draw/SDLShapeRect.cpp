@@ -20,22 +20,24 @@ arc::SDLShapeRect::SDLShapeRect(const arc::ShapeRect &shape):
 
 void arc::SDLShapeRect::draw() const
 {
-	RectF geo = winGeometry();
-
+	SDL_Rect geo = winGeometry();
+	SDLMainWindow &mainWin = arc::SDLMainWindow::getInstance();
 	Sint16 x, y, sx, sy;
-
-	x = (Sint16) geo.pos().x();
-	y = (Sint16) geo.pos().y();
-	sx = (Sint16) geo.size().x();
-	sy = (Sint16) geo.size().y();
-	boxColor(arc::SDLMainWindow::getInstance().getRenderer().get(),
-	x, y, sx + x, sy + y,
-	_texture.bgColor().values());
-	boxColor(arc::SDLMainWindow::getInstance().getRenderer().get(),
-		 x, y, sx + x, sy + y,
-		 _texture.bgColor().values());
-	rectangleColor(arc::SDLMainWindow::getInstance().getRenderer().get(),
+	x = (Sint16) geo.x;
+	y = (Sint16) geo.y;
+	sx = (Sint16) geo.w;
+	sy = (Sint16) geo.h;
+	rectangleColor(mainWin.getRenderer().get(),
 		 x, y, sx + x, sy + y,
 		 _texture.lineColor().values());
+	if (_texture.getFilePath().empty())
+		boxColor(mainWin.getRenderer().get(),
+		 x, y, sx + x, sy + y, _texture.bgColor().values());
+	else {
+		SDL_Texture *texture = SDLShape::getTexture(
+			_texture.getFilePath());
+		SDL_RenderCopy(mainWin.getRenderer().get(), texture, nullptr,
+			       &geo);
+	}
 	AShape::draw();
 }

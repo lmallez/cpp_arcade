@@ -23,12 +23,16 @@ void arc::BasicGame::freeInstance()
 }
 
 arc::BasicGame::BasicGame():
-	PlayerController({0.01, 0.01}, arc::KeyEvent::PRESSED, true, {0, 0}, {true, arc::RectF(0, 0, 1, 1)}),
+	PlayerController({0.01, 0.01}, arc::KeyEvent::PRESSED,
+		true, {0, 0}, {true, arc::RectF(0, 0, 1, 1)}),
 	_playerPos(arc::RectF(0, 0, 0.01, 0.01))
 {
-	assignKey(arc::KeyEvent::P, arc::KeyEvent::JUSTPRESSED, &arc::BasicGame::_startGrown);
-	assignKey(arc::KeyEvent::O, arc::KeyEvent::JUSTPRESSED, &arc::BasicGame::_stopGrown);
-	assignKey(arc::KeyEvent::I, arc::KeyEvent::JUSTPRESSED, &arc::BasicGame::_unGrown);
+	assignKey(arc::KeyEvent::P, arc::KeyEvent::JUSTPRESSED,
+		&arc::BasicGame::_startGrown);
+	assignKey(arc::KeyEvent::O, arc::KeyEvent::JUSTPRESSED,
+		&arc::BasicGame::_stopGrown);
+	assignKey(arc::KeyEvent::I, arc::KeyEvent::JUSTPRESSED,
+		&arc::BasicGame::_unGrown);
 }
 
 void arc::BasicGame::assignKey(arc::KeyEvent::Key key,
@@ -91,18 +95,18 @@ std::SPTR<arc::IShape> arc::BasicGame::update(EventHandler &event)
 	execKey(event);
 	_playerPos.rpos() = _pCtrlPos;
 	std::SPTR s1 = std::MKS<arc::ShapeCircle>(nullptr, basic, _playerPos);
-	std::SPTR s2 = std::MKS<arc::ShapeText>(s1,
-		arc::Texture(arc::Color::Yellow), RectF(0.5, 0.5, 0.25, 0.25), std::to_string(_frame));
-	std::SPTR s3 = std::MKS<arc::ShapeRect>(s1,
-		arc::Texture(ASSETS_DIR + "/aled.png"), RectF(0.1, 0.2, 0.25, 0.25));
-	std::SPTR s4 = std::MKS<arc::ShapeRect>(s1,
-		arc::Texture(ASSETS_DIR + "/aled.png"), RectF(0.9 - 0.25, 0.2, 0.25, 0.25));
-	std::SPTR s5 = std::MKS<arc::ShapeRect>(s1,
-		arc::Texture(arc::Color::Red, arc::Color::Black), RectF(0.1, 0.6, 0.75, 0.25));
-	s1->addChild(s2);
-	s1->addChild(s3);
-	s1->addChild(s4);
-	s1->addChild(s5);
+	s1->addChild(std::MKS<arc::ShapeText>(s1,
+		arc::Texture(arc::Color::Yellow),
+		RectF(0.5, 0.5, 0.25, 0.25), std::to_string(_frame)));
+	s1->addChild(std::MKS<arc::ShapeRect>(s1,
+		arc::Texture(ASSETS_DIR + "/aled.png"),
+		RectF(0.1, 0.2, 0.25, 0.25)));
+	s1->addChild(std::MKS<arc::ShapeRect>(s1,
+		arc::Texture(ASSETS_DIR + "/aled.png"),
+		RectF(0.9 - 0.25, 0.2, 0.25, 0.25)));
+	s1->addChild(std::MKS<arc::ShapeRect>(s1,
+		arc::Texture(arc::Color::Red, arc::Color::Black),
+		RectF(0.1, 0.6, 0.75, 0.25)));
 	return s1;
 }
 

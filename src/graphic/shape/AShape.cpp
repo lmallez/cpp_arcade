@@ -34,11 +34,15 @@ arc::IShape &arc::AShape::getChild(size_t pos) const
 
 void arc::AShape::addChild(std::UPTR<arc::IShape> child)
 {
+	if (child.get() == this)
+		throw arc::Exception("addChild", "Parent != Child");
 	_children.push_back(std::move(child));
 }
 
 void arc::AShape::addChild(std::SPTR<arc::IShape> child)
 {
+	if (child.get() == this)
+		throw arc::Exception("addChild", "Parent != Child");
 	_children.push_back(std::move(child));
 }
 

@@ -37,6 +37,10 @@ bool arc::LibLoader::unload()
 	std::cout << "UNLOADING: " << _libName << std::endl;
 	if (_sym == nullptr)
 		return false;
+	void (*destroyer)() = (void(*)()) dlsym(_sym, "freeIGraphic");
+	if (destroyer == nullptr)
+		throw arc::Exception("LibLoader", dlerror());
+	destroyer();
 	dlclose(_sym);
 	_sym = nullptr;
 	_libName = "";

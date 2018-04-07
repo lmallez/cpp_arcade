@@ -19,7 +19,8 @@ namespace arc {
 		SDLShape();
 
 	protected:
-		arc::RectF winGeometry() const;
+		SDL_Rect winGeometry() const;
+		SDL_Texture * getTexture(const std::string &) const;
 	};
 }
 

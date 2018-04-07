@@ -21,25 +21,25 @@ arc::solarfox::AMissile::AMissile(arc::RectF rect, arc::Direction dir,
 
 arc::RectF arc::solarfox::AMissile::getPos() const
 {
-	arc::RectF pos;
+	arc::RectF p;
 
 	switch (_dir) {
 	case UP:
-		pos = arc::RectF(_pos.pos(), {_pos.size().x(), _pos.size().y()});
+		p = arc::RectF(_pos.pos(), {_pos.size().x(), _pos.size().y()});
 		break;
 	case LEFT:
-		pos = arc::RectF(_pos.pos(), {_pos.size().y(), _pos.size().x()});
+		p = arc::RectF(_pos.pos(), {_pos.size().y(), _pos.size().x()});
 		break;
 	case DOWN:
-		pos = arc::RectF(_pos.pos(), {_pos.size().x(), _pos.size().y()});
+		p = arc::RectF(_pos.pos(), {_pos.size().x(), _pos.size().y()});
 		break;
 	case RIGHT:
-		pos = arc::RectF(_pos.pos(), {_pos.size().y(), _pos.size().x()});
+		p = arc::RectF(_pos.pos(), {_pos.size().y(), _pos.size().x()});
 		break;
 	default:
 		break;
 	}
-	return pos;
+	return p;
 }
 
 bool arc::solarfox::AMissile::move()

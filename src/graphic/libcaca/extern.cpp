@@ -13,3 +13,8 @@ extern "C" arc::IGraphic &getIGraphic()
 {
 	return arc::CacaGraphic::getInstance();
 }
+
+extern "C" arc::IGraphic &freeIGraphic()
+{
+	return arc::CacaGraphic::getInstance(false);
+}

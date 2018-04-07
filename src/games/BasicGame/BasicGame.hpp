@@ -16,8 +16,10 @@
 #include "src/games/IGame.hpp"
 
 namespace arc {
-	class BasicGame : public virtual IGame, protected SystemController, protected PlayerController {
-		typedef void (arc::BasicGame::*BasicGameEvent_t)(arc::EventHandler &event);
+	class BasicGame : public virtual IGame,
+		protected SystemController, protected PlayerController {
+		typedef void (arc::BasicGame::*BasicGameEvent_t)
+			(arc::EventHandler &event);
 	public:
 		static IGame &getInstance();
 		static void freeInstance();
@@ -28,7 +30,9 @@ namespace arc {
 		static arc::IGame *_instance;
 		BasicGame();
 
-		std::unordered_map<KeyEvent::Key, std::pair<KeyEvent::Status, BasicGameEvent_t>> _keyEvent;
+		std::unordered_map<KeyEvent::Key,
+			std::pair<KeyEvent::Status, BasicGameEvent_t>>
+			_keyEvent;
 		void assignKey(arc::KeyEvent::Key key,
 			arc::KeyEvent::Status status, BasicGameEvent_t func);
 		void execKey(arc::EventHandler &event);

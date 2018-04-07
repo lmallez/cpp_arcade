@@ -39,8 +39,10 @@ namespace arc {
 	protected:
 
 		typedef void (SnakeGame::*SnakeEvt_t)(EventHandler &event);
-		std::unordered_map<KeyEvent::Key, std::pair<KeyEvent::Status, SnakeEvt_t>> _snakeEvent;
-		void assignKey(KeyEvent::Key, KeyEvent::Status status, SnakeEvt_t);
+		std::unordered_map<KeyEvent::Key,
+			std::pair<KeyEvent::Status, SnakeEvt_t>> _snakeEvent;
+		void assignKey(KeyEvent::Key,
+			KeyEvent::Status status, SnakeEvt_t);
 		void execKey(EventHandler &event) override;
 		void execKey(EventHandler &event, KeyEvent::Key key) override;
 
@@ -60,8 +62,15 @@ namespace arc {
 		void _move(EventHandler &event, snake::Snake &snake);
 		bool _isOver;
 		std::SPTR<arc::IShape> _game(EventHandler &event);
-		std::SPTR<IShape> _drawSnake() const;
-		std::SPTR<IShape> _drawObstacle() const;
+
+		std::SPTR<IShape> _drawGame(const std::SPTR<IShape> &all) const;
+		std::SPTR<IShape> _drawHUD(const std::SPTR<IShape> &all) const;
+		std::SPTR<IShape> _drawSnake(
+			const std::SPTR<IShape> &map, VertexF partSize) const;
+		std::SPTR<IShape> _drawFlower(
+			const std::SPTR<IShape> &map, VertexF partSize) const;
+		std::SPTR<IShape> _drawObstacle(
+			const std::SPTR<IShape> &map, VertexF partSize) const;
 
 		bool _collideObstacle(const VertexS &pos) const;
 

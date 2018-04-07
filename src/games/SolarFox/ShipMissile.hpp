@@ -16,9 +16,12 @@ namespace arc {
 	namespace solarfox {
 		class ShipMissile : public AMissile {
 		public:
-			ShipMissile(arc::VertexF pos, arc::VertexF size, Direction dir);
+			ShipMissile(
+				arc::VertexF pos, arc::VertexF size,
+				Direction dir);
 
-			std::SPTR<IShape> draw(const std::SPTR<IShape> &ptr) const override;
+			std::SPTR<IShape> draw(
+				const std::SPTR<IShape> &ptr) const override;
 		};
 	}
 }

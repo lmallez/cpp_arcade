@@ -12,7 +12,6 @@ arc::SDLShapeCircle::SDLShapeCircle(std::SPTR<arc::IShape> parent,
 	const arc::Texture &texture, const arc::VertexF &pos, float radius):
 	ShapeCircle(parent, texture, pos, radius), SDLShape()
 {
-
 }
 
 arc::SDLShapeCircle::SDLShapeCircle(std::SPTR<arc::IShape> parent,
@@ -28,19 +27,26 @@ arc::SDLShapeCircle::SDLShapeCircle(const arc::ShapeCircle &shape):
 
 void arc::SDLShapeCircle::draw() const
 {
-	arc::RectF geo = winGeometry();
-
-	aaellipseColor(arc::SDLMainWindow::getInstance().getRenderer().get(),
-		       (Sint16) geo.pos().x() + (Sint16) geo.size().x() / 2,
-		       (Sint16) geo.pos().y() + (Sint16) geo.size().y() / 2,
-		       (Sint16) geo.size().x() / 2,
-		       (Sint16) geo.size().y() / 2,
-		       _texture.lineColor().values());
-	filledEllipseColor(arc::SDLMainWindow::getInstance().getRenderer().get(),
-			   (Sint16) geo.pos().x() + (Sint16) geo.size().x() / 2,
-			   (Sint16) geo.pos().y() + (Sint16) geo.size().x() / 2,
-			   (Sint16) geo.size().x() / 2,
-			   (Sint16) geo.size().y() / 2,
-			   _texture.bgColor().values());
+	SDLMainWindow &mainWin = arc::SDLMainWindow::getInstance();
+	SDL_Rect geo = winGeometry();
+	geo.x = geo.x + geo.w / 2;
+	geo.y = geo.y + geo.h / 2;
+	geo.w = geo.w / 2;
+	geo.h = geo.h / 2;
+	aaellipseColor(mainWin.getRenderer().get(),
+		       geo.x, geo.y, geo.w, geo.h, _texture.lineColor().values());
+	if (_texture.getFilePath().empty())
+		filledEllipseColor(mainWin.getRenderer().get(),
+				   geo.x, geo.y, geo.w, geo.h, _texture.bgColor().values());
+	else {
+		SDL_Texture *texture = SDLShape::getTexture(
+			_texture.getFilePath());
+		geo.w *= 2;
+		geo.h *= 2;
+		geo.x -= geo.w / 2;
+		geo.y -= geo.h / 2;
+		SDL_RenderCopy(mainWin.getRenderer().get(), texture, nullptr,
+			       &geo);
+	}
 	AShape::draw();
 }

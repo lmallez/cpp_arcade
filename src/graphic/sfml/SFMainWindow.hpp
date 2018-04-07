@@ -20,7 +20,7 @@ namespace arc
 {
 	class SFMainWindow {
 	public:
-		static SFMainWindow &getInstance();
+		static SFMainWindow &getInstance(bool destroy = false);
 		void setWindowSize(size_t x, size_t y);
 		void display();
 		VertexF getSize() const;

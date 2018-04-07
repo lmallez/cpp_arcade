@@ -34,8 +34,6 @@ set(
         src/events/GameEvent.cpp
         src/events/GameEvent.cpp
         src/events/GameEvent.hpp
-        src/games/utils/Controller/SystemController.cpp
-        src/games/utils/Controller/SystemController.hpp
         src/std/Direction.cpp
         src/std/Direction.hpp
         src/main.hpp)
@@ -112,7 +110,8 @@ set(
 add_library(_arcade_sdl SHARED ${GRAPHIC_SDL} ${STD_FILES} ${SHAPE_FILES}
         src/graphic/SDL/extern.cpp
         )
-target_link_libraries(_arcade_sdl libSDL2-2.0.so libSDL2_gfx.so)
+target_link_libraries(_arcade_sdl libSDL2-2.0.so libSDL2_gfx.so
+        libSDL2_image.so)
 
 set(
         GRAPHIC_Caca
@@ -152,18 +151,20 @@ set(
         src/games/utils/IObject.hpp
         src/games/utils/Animated/AnimatedContainer.cpp
         src/games/utils/Animated/AnimatedContainer.hpp
+        src/games/utils/Controller/SystemController.cpp
+        src/games/utils/Controller/SystemController.hpp
+        src/games/utils/Animated/AnimatedShape.cpp
+        src/games/utils/Animated/AnimatedShape.hpp
+        src/games/utils/Animated/AnimatedObject.cpp
+        src/games/utils/Animated/AnimatedObject.hpp
+        src/games/utils/Controller/PlayerController.cpp
+        src/games/utils/Controller/PlayerController.hpp
 )
 
 set(
         GAME_BASICGAME
         src/games/BasicGame/BasicGame.cpp
         src/games/BasicGame/BasicGame.hpp
-        src/games/utils/Controller/PlayerController.cpp
-        src/games/utils/Controller/PlayerController.hpp
-        src/games/utils/Animated/AnimatedShape.cpp
-        src/games/utils/Animated/AnimatedShape.hpp
-        src/games/utils/Animated/AnimatedObject.cpp
-        src/games/utils/Animated/AnimatedObject.hpp
 )
 
 add_library(_arcade_basic_game SHARED ${STD_GAME} ${GAME_BASICGAME} ${STD_FILES} ${SHAPE_FILES}
@@ -174,8 +175,6 @@ set(
         GAME_SNAKE
         src/games/Snake/SnakeGame.cpp
         src/games/Snake/SnakeGame.hpp
-        src/games/utils/Controller/PlayerController.cpp
-        src/games/utils/Controller/PlayerController.hpp
         src/games/Snake/Snake.cpp
         src/games/Snake/Snake.hpp
         src/core/corebuild/CoreClock.cpp
@@ -183,7 +182,8 @@ set(
         src/games/utils/mapReader/MapReader.cpp
         src/games/utils/mapReader/MapReader.hpp
         src/games/utils/IGameObject.hpp
-        src/games/Snake/MapManager.cpp src/games/Snake/MapManager.hpp)
+        src/games/Snake/MapManager.cpp
+        src/games/Snake/MapManager.hpp)
 
 add_library(_arcade_nibbler SHARED ${STD_GAME} ${GAME_SNAKE} ${STD_FILES} ${SHAPE_FILES}
         src/games/Snake/extern.cpp
@@ -191,8 +191,6 @@ add_library(_arcade_nibbler SHARED ${STD_GAME} ${GAME_SNAKE} ${STD_FILES} ${SHAP
 
 set(
         GAME_SOLAR_FOX
-        src/games/utils/Controller/PlayerController.cpp
-        src/games/utils/Controller/PlayerController.hpp
         src/games/SolarFox/SolarFoxGame.cpp
         src/games/SolarFox/SolarFoxGame.hpp
         src/games/SolarFox/Ship.cpp
@@ -246,6 +244,7 @@ add_executable(
         src/main.cpp
         ${CORE}
         ${STD_FILES}
+        ${STD_GAME}
         ${SHAPE_FILES}
         ${MENU}
 )

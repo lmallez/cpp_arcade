@@ -35,7 +35,8 @@ arc::SnakeGame::SnakeGame():
 	_genFlower();
 }
 
-void arc::SnakeGame::assignKey(arc::KeyEvent::Key key, arc::KeyEvent::Status status, arc::SnakeGame::SnakeEvt_t func)
+void arc::SnakeGame::assignKey(arc::KeyEvent::Key key,
+	arc::KeyEvent::Status status, arc::SnakeGame::SnakeEvt_t func)
 {
 	auto a = std::make_pair(key, std::make_pair(status, func));
 	_snakeEvent.insert(a);
@@ -78,7 +79,8 @@ std::SPTR<arc::IShape> arc::SnakeGame::start()
 	_isOver = false;
 	_scoreboard.initScores();
 	_obstacle = _mapManager.loadRandMap();
-	return _drawSnake();
+	std::SPTR map = std::MKS<arc::ShapeRect>(nullptr, arc::Texture(arc::Color::Red), _map);
+	return map;
 }
 
 std::SPTR<arc::IShape> arc::SnakeGame::update(arc::EventHandler &event)
@@ -91,8 +93,14 @@ std::SPTR<arc::IShape> arc::SnakeGame::_gameOver(EventHandler &event)
 	arc::SystemController::execKey(event);
 	std::SPTR all = std::MKS<arc::ShapeContainer>();
 
-	all->addChild(std::MKS<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.4, 0.4, 0.3, 0.4), "Game Over"));
-	all->addChild(std::MKS<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.4, 0.6, 0.3, 0.4), "Score: " + std::to_string(_score)));
+	all->addChild(std::MKS<arc::ShapeText>(nullptr,
+		arc::Texture(arc::Color::White),
+		arc::RectF(0.4, 0.4, 0.3, 0.4),
+		"Game Over"));
+	all->addChild(std::MKS<arc::ShapeText>(nullptr,
+		arc::Texture(arc::Color::White),
+		arc::RectF(0.4, 0.6, 0.3, 0.4),
+		"Score: " + std::to_string(_score)));
 	return all;
 }
 
@@ -107,49 +115,94 @@ std::SPTR<arc::IShape> arc::SnakeGame::_game(EventHandler &event)
 			_genSpecialFlower();
 	}
 	std::SPTR all = std::MKS<arc::ShapeContainer>();
-	all->addChild(_drawSnake());
-	all->addChild(_drawObstacle());
-	all->addChild(std::MKS<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.1, 0, 0.2, 0.4), "Score: " + std::to_string(_score)));
-	all->addChild(std::MKS<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.5, 0, 0.5, 0.4), ("HighScore: " + std::to_string(_scoreboard.getHighScore().second)) + " " + _scoreboard.getHighScore().first));
+
+	all->addChild(_drawGame(all));
+	all->addChild(_drawHUD(all));
 	return all;
 }
 
-std::SPTR<arc::IShape> arc::SnakeGame::_drawSnake() const
+std::shared_ptr<arc::IShape>
+arc::SnakeGame::_drawGame(const std::shared_ptr<arc::IShape> &all) const
 {
+	std::SPTR map = std::MKS<arc::ShapeRect>(all,
+		arc::Texture(arc::Color::Red), _map);
+	arc::VertexF partSize(1.0f / (MAP_SIZE + 1), 1.0f / (MAP_SIZE + 1));
+	map->addChild(_drawSnake(map, partSize));
+	map->addChild(_drawFlower(map, partSize));
+	map->addChild(_drawObstacle(map, partSize));
+	return map;
+}
+
+std::shared_ptr<arc::IShape>
+arc::SnakeGame::_drawHUD(const std::shared_ptr<arc::IShape> &all) const
+{
+	auto ctn = std::MKS<ShapeContainer>(all);
+
+	ctn->addChild(std::MKS<arc::ShapeText>(ctn,
+		arc::Texture(arc::Color::White),
+		arc::RectF(0.1, 0, 0.2, 0.4),
+		"Score: " + std::to_string(_score)));
+	ctn->addChild(std::MKS<arc::ShapeText>(ctn,
+		arc::Texture(arc::Color::White),
+		arc::RectF(0.5, 0, 0.5, 0.4),
+		"HighScore: " + _scoreboard.getHighScoreStr()));
+	return ctn;
+}
+
+std::SPTR<arc::IShape> arc::SnakeGame::_drawSnake(
+	const std::SPTR<arc::IShape> &map, VertexF partSize) const
+{
+	auto ctn = std::MKS<ShapeContainer>(map);
+
 	arc::Texture texture = Texture(arc::Color::Red);
-	std::SPTR SPTR = std::MKS<arc::ShapeRect>(nullptr, texture, _map);
 	auto body = _snake.getBody();
-	arc::VertexF partSize(1.0 / (MAP_SIZE + 1), 1.0 / (MAP_SIZE + 1));
 	texture = Texture(arc::Color::Blue, arc::Color::Blue);
 
 	for (const arc::VertexS &bodyPart : body) {
-		arc::RectF size({bodyPart.x() * partSize.x(), bodyPart.y() * partSize.y()}, partSize);
-		SPTR->addChild(std::MKS<arc::ShapeRect>(SPTR, texture, size));
+		arc::RectF size({bodyPart.x() * partSize.x(),
+			bodyPart.y() * partSize.y()}, partSize);
+		ctn->addChild(std::MKS<arc::ShapeRect>(ctn, texture, size));
 	}
 	const arc::VertexS &bodyPart = _snake.getHead();
-	RectF size(bodyPart.x() * partSize.x(), bodyPart.y() * partSize.y(), partSize.x(), partSize.y());
-	SPTR->addChild(std::MKS<arc::ShapeRect>(SPTR, arc::Texture(arc::Color::Cyan, arc::Color::Cyan), size));
-	RectF flowerSize(_flowerPos.x() * partSize.x(), _flowerPos.y() * partSize.y(), partSize.x(), partSize.y());
-	SPTR->addChild(std::MKS<arc::ShapeCircle>(SPTR, texture, flowerSize));
-	if (_specialFlower.second > 0) {
-		RectF flowerSpecialSize(_specialFlower.first.x() * partSize.x(), _specialFlower.first.y() * partSize.y(), partSize.x(), partSize.y());
-		SPTR->addChild(std::MKS<arc::ShapeCircle>(SPTR, arc::Texture(arc::Color::Yellow, arc::Color::Yellow), flowerSpecialSize));
-		SPTR->addChild(std::MKS<arc::ShapeCircle>(SPTR, arc::Texture(arc::Color::Yellow, arc::Color::Yellow), flowerSpecialSize));
-	}
-	return SPTR;
+	RectF size(bodyPart.x() * partSize.x(), bodyPart.y() * partSize.y(),
+		partSize.x(), partSize.y());
+	ctn->addChild(std::MKS<arc::ShapeRect>(ctn,
+		arc::Texture(arc::Color::Cyan, arc::Color::Cyan), size));
+	return ctn;
 }
 
-std::SPTR<arc::IShape> arc::SnakeGame::_drawObstacle() const
+std::SPTR<arc::IShape> arc::SnakeGame::_drawFlower(
+	const std::SPTR<arc::IShape> &map, VertexF partSize) const
 {
-	std::SPTR SPTR = std::MKS<arc::ShapeContainer>(nullptr, _map);
+	auto ctn = std::MKS<ShapeContainer>(map);
+	RectF flowerSize(_flowerPos.x() * partSize.x(),
+		_flowerPos.y() * partSize.y(), partSize.x(), partSize.y());
+	arc::Texture texture = arc::Texture(arc::Color::Blue, arc::Color::Blue);
+
+	ctn->addChild(std::MKS<arc::ShapeCircle>(ctn, texture, flowerSize));
+	if (_specialFlower.second > 0) {
+		texture = arc::Texture(arc::Color::Yellow, arc::Color::Yellow);
+		RectF flowerSpecialSize(_specialFlower.first.x() * partSize.x(),
+			_specialFlower.first.y() * partSize.y(),
+			partSize.x(), partSize.y());
+		ctn->addChild(std::MKS<arc::ShapeCircle>(ctn, texture,
+			flowerSpecialSize));
+	}
+	return ctn;
+}
+
+std::SPTR<arc::IShape> arc::SnakeGame::_drawObstacle(
+	const std::SPTR<arc::IShape> &map, VertexF partSize) const
+{
+	auto ctn = std::MKS<ShapeContainer>(map);
 	arc::Texture texture = arc::Texture(arc::Color::Red, arc::Color::Red);
 
-	arc::VertexF partSize(1.0 / (MAP_SIZE + 1), 1.0 / (MAP_SIZE + 1));
 	for (auto &obs : _obstacle) {
-		arc::RectF size({obs.x() * partSize.x(), obs.y() * partSize.y()}, partSize);
-		SPTR->addChild(std::MKS<arc::ShapeRect>(SPTR, texture, size));
+		arc::RectF size({obs.x() * partSize.x(),
+			obs.y() * partSize.y()}, partSize);
+		ctn->addChild(std::MKS<arc::ShapeRect>(ctn, texture, size));
 	}
-	return SPTR;
+	return ctn;
 }
 
 bool arc::SnakeGame::_collideObstacle(const arc::VertexS &pos) const

@@ -21,11 +21,11 @@ arc::MapReader::readMap(const std::string &path)
 	std::cout << "[" << path << "]" << std::endl;
 	std::vector<std::pair<arc::VertexS, int>> map;
 	std::string line;
-	std::ifstream f(std::string(ASSETS_DIR) + "/" + path);
+	std::ifstream f(path);
 	arc::VertexS pos(0, 0);
 
 	if (!f)
-		throw arc::Exception("readMap", "bad file");
+		throw arc::Exception("readMap", "bad file [" + path + "]");
 	while (!f.eof()) {
 		f >> line;
 		std::stringstream ss(line);

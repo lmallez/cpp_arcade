@@ -60,8 +60,15 @@ namespace arc {
 		void _move(EventHandler &event, snake::Snake &snake);
 		bool _isOver;
 		std::SPTR<arc::IShape> _game(EventHandler &event);
-		std::SPTR<IShape> _drawSnake() const;
-		std::SPTR<IShape> _drawObstacle() const;
+
+		std::SPTR<IShape> _drawGame(const std::SPTR<IShape> &all) const;
+		std::SPTR<IShape> _drawHUD(const std::SPTR<IShape> &all) const;
+		std::SPTR<IShape> _drawSnake(
+			const std::SPTR<IShape> &map, VertexF partSize) const;
+		std::SPTR<IShape> _drawFlower(
+			const std::SPTR<IShape> &map, VertexF partSize) const;
+		std::SPTR<IShape> _drawObstacle(
+			const std::SPTR<IShape> &map, VertexF partSize) const;
 
 		bool _collideObstacle(const VertexS &pos) const;
 

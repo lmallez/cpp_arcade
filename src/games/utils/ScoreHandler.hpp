@@ -34,6 +34,7 @@ namespace arc {
 
 		std::vector<std::pair<std::string, int>> getScores() const;
 		std::pair<std::string, int> getHighScore() const;
+		std::string getHighScoreStr() const;
 
 
 	private:

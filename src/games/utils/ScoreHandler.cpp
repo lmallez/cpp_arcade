@@ -106,3 +106,9 @@ std::pair<std::string, int> arc::ScoreHandler::getHighScore() const
 		return std::make_pair("Undefined", 0);
 	return _leaderBoard[0];
 }
+
+std::string arc::ScoreHandler::getHighScoreStr() const
+{
+	auto a = getHighScore();
+	return std::to_string(a.second) + " " + a.first;
+}

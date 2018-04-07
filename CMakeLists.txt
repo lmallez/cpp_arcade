@@ -36,7 +36,8 @@ set(
         src/events/GameEvent.hpp
         src/std/Direction.cpp
         src/std/Direction.hpp
-        src/main.hpp)
+        src/main.hpp
+)
 
 set(
         SHAPE_FILES
@@ -183,7 +184,8 @@ set(
         src/games/utils/mapReader/MapReader.hpp
         src/games/utils/IGameObject.hpp
         src/games/Snake/MapManager.cpp
-        src/games/Snake/MapManager.hpp)
+        src/games/Snake/MapManager.hpp
+)
 
 add_library(_arcade_nibbler SHARED ${STD_GAME} ${GAME_SNAKE} ${STD_FILES} ${SHAPE_FILES}
         src/games/Snake/extern.cpp
@@ -218,6 +220,22 @@ set(
 
 add_library(_arcade_solarfox SHARED ${STD_GAME} ${GAME_SOLAR_FOX} ${STD_FILES} ${SHAPE_FILES}
         src/games/SolarFox/extern.cpp
+        )
+
+set(
+        GAME_WOLF3D
+        src/games/Wolf3D/WolfGame.cpp
+        src/games/Wolf3D/WolfGame.hpp
+        src/games/Wolf3D/Player.cpp
+        src/games/Wolf3D/Player.hpp
+        src/games/Wolf3D/Map.cpp
+        src/games/Wolf3D/Map.hpp
+        src/games/Wolf3D/Ray.cpp
+        src/games/Wolf3D/Ray.hpp
+)
+
+add_library(_arcade_wolf3D SHARED ${STD_GAME} ${GAME_WOLF3D} ${STD_FILES} ${SHAPE_FILES}
+        src/games/Wolf3D/extern.cpp
         )
 
 ### CORE BUILD ###

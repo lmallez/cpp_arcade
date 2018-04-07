@@ -10,6 +10,7 @@
 
 #include <unordered_map>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
 #include <SDL2/SDL_video.h>
 #include "src/graphic/IGraphic.hpp"
@@ -19,7 +20,8 @@ namespace arc
 {
 	class SDLMainWindow {
 	public:
-		static SDLMainWindow &getInstance();
+		static SDLMainWindow &getInstance(bool destroy = false);
+		~SDLMainWindow();
 		void setWindowSize(size_t x, size_t y);
 		void display();
 		VertexF getSize() const;
@@ -28,7 +30,7 @@ namespace arc
 		getRenderer();
 		void pollEvent(arc::EventHandler &);
 		bool TextureInCache(const std::string &) const;
-		std::SPTR<SDL_Texture> getTextureCache(
+		SDL_Texture * getTextureCache(
 			const std::string &) const;
 		void addTexture(const std::string &);
 	private:
@@ -39,8 +41,8 @@ namespace arc
 			arc::KeyEvent::Key> _keyMap;
 		static std::unordered_map<Uint8, arc::MouseEvent::MouseButton>
 			_mouseMap;
-		std::unordered_map<std::string, int>
-			_textureCache;
+		std::unordered_map<std::string, SDL_Texture *> _textureCache;
+
 	};
 
 }

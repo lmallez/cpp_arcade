@@ -112,7 +112,8 @@ set(
 add_library(_arcade_sdl SHARED ${GRAPHIC_SDL} ${STD_FILES} ${SHAPE_FILES}
         src/graphic/SDL/extern.cpp
         )
-target_link_libraries(_arcade_sdl libSDL2-2.0.so libSDL2_gfx.so)
+target_link_libraries(_arcade_sdl libSDL2-2.0.so libSDL2_gfx.so
+        libSDL2_image.so)
 
 set(
         GRAPHIC_Caca

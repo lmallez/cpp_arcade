@@ -63,18 +63,20 @@ std::unordered_map<Uint8, arc::MouseEvent::MouseButton>
 	{SDL_BUTTON_MIDDLE, arc::MouseEvent::MIDDLE_BUTTON}
 };
 
-arc::SDLMainWindow &arc::SDLMainWindow::getInstance()
+arc::SDLMainWindow &arc::SDLMainWindow::getInstance(bool destroy)
 {
 	static std::UPTR<SDLMainWindow> instance = nullptr;
 
 	if (instance == nullptr)
 		instance.reset(new SDLMainWindow(arc::VertexI(700, 700)));
+	if (destroy)
+		instance.reset(nullptr);
 	return *instance;
 }
 
 arc::SDLMainWindow::SDLMainWindow(arc::VertexI size) :
-_window(nullptr, SDL_DestroyWindow),
-_render(nullptr, SDL_DestroyRenderer)
+	_window(nullptr, SDL_DestroyWindow),
+	_render(nullptr, SDL_DestroyRenderer)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	_window.reset(SDL_CreateWindow(WNAME, SDL_WINDOWPOS_UNDEFINED,
@@ -83,6 +85,13 @@ _render(nullptr, SDL_DestroyRenderer)
 	if (!_window)
 		throw arc::Exception("SDL Graphic", "Can't open the Window");
 	_render.reset(SDL_CreateRenderer(_window.get(), -1, SDL_RENDERER_ACCELERATED));
+}
+
+arc::SDLMainWindow::~SDLMainWindow()
+{
+	for (auto it = _textureCache.begin(); it != _textureCache.end(); it++) {
+		SDL_DestroyTexture(it->second);
+	}
 }
 
 void arc::SDLMainWindow::setWindowSize(size_t x, size_t y)
@@ -139,11 +148,10 @@ bool arc::SDLMainWindow::TextureInCache(const std::string &str) const
 	return _textureCache.find(str) != _textureCache.end();
 }
 
-std::SPTR<SDL_Texture> arc::SDLMainWindow::getTextureCache(
-	const std::string &str)
+SDL_Texture * arc::SDLMainWindow::getTextureCache(const std::string &str)
 const
 {
-	return nullptr;
+	return _textureCache.at(str);
 }
 
 std::UPTR<SDL_Renderer, void (&)(SDL_Renderer *)> & arc::SDLMainWindow::getRenderer()
@@ -154,4 +162,12 @@ std::UPTR<SDL_Renderer, void (&)(SDL_Renderer *)> & arc::SDLMainWindow::getRende
 
 void arc::SDLMainWindow::addTexture(const std::string &filePath)
 {
+	SDL_Surface *tmp = IMG_Load(filePath.c_str());
+	if (!tmp)
+		throw arc::Exception("SDL", "Can't load texture : " + filePath);
+	SDL_Texture *texture = SDL_CreateTextureFromSurface(_render.get(), tmp);
+	if (!texture)
+		throw arc::Exception("SDL", "Can't transform suface");
+	SDL_FreeSurface(tmp);
+	_textureCache[filePath] = texture;
 }

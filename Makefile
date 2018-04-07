@@ -16,7 +16,7 @@ MKDIR		= mkdir -p
 
 all:	$(CORE_NAME) graphicals games
 
-cmake:	$(BUILD_DIR)
+cmake:	| $(BUILD_DIR)
 	(cd $(BUILD_DIR) && cmake ..)
 
 $(CORE_NAME): cmake

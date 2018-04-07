@@ -29,6 +29,7 @@ namespace arc
 		std::UPTR<caca_canvas_t, int (*)(caca_canvas_t*)> _canvas;
 		std::UPTR<caca_display_t, int (*)(caca_display_t*)> _window;
 		static std::unordered_map<char, arc::KeyEvent::Key> _keyMap;
+		static std::vector<arc::MouseEvent::MouseButton> _mouseMap;
 	};
 }
 

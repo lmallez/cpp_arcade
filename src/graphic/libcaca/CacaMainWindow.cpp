@@ -88,6 +88,12 @@ std::unordered_map<char, arc::KeyEvent::Key> arc::CacaMainWindow::_keyMap = {
 	{' ', arc::KeyEvent::SPACE}
 };
 
+std::vector<arc::MouseEvent::MouseButton> arc::CacaMainWindow::_mouseMap = {
+	arc::MouseEvent::LEFT_BUTTON,
+	arc::MouseEvent::RIGHT_BUTTON,
+	arc::MouseEvent::MIDDLE_BUTTON
+};
+
 arc::CacaMainWindow &arc::CacaMainWindow::getInstance()
 {
 	static std::UPTR<arc::CacaMainWindow> instance = nullptr;
@@ -159,6 +165,14 @@ void arc::CacaMainWindow::pollEvent(arc::EventHandler &evtHandler)
 			break;
 		case CACA_EVENT_KEY_RELEASE:
 			evtHandler.keyEvent().setKeyReleased(_keyMap[caca_get_event_key_ch(&evt)]);
+			break;
+		case CACA_EVENT_MOUSE_MOTION:
+			evtHandler.mouseEvent()
+				.setPos(arc::VertexF(caca_get_mouse_x(_window.get()) / getSize().x(),
+						caca_get_mouse_y(_window.get()) / getSize().y()));
+			__attribute__ ((fallthrough));
+		case CACA_EVENT_MOUSE_PRESS:
+			evtHandler.mouseEvent().setButtonPressed(_mouseMap[caca_get_event_mouse_button(&evt) + 1]);
 			break;
 		default:
 			break;

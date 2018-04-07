@@ -16,7 +16,7 @@ MKDIR		= mkdir -p
 
 all:	$(CORE_NAME) graphicals games
 
-cmake:	$(BUILD_DIR)
+cmake:	| $(BUILD_DIR)
 	(cd $(BUILD_DIR) && cmake ..)
 
 $(CORE_NAME): cmake
@@ -26,15 +26,16 @@ $(CORE_NAME): cmake
 core:	$(CORE_NAME)
 
 games:	cmake | $(GAMES_DIR)
-	make -C $(BUILD_DIR) GAME_BasicGame
-	make -C $(BUILD_DIR) GAME_SNAKE
-	make -C $(BUILD_DIR) GAME_SOLAR_FOX
-	cp build/libGAME_BasicGame.so build/libGAME_SNAKE.so build/libGAME_SOLAR_FOX.so games/
+	make -C $(BUILD_DIR) _arcade_basic_game
+	make -C $(BUILD_DIR) _arcade_nibbler
+	make -C $(BUILD_DIR) _arcade_solarfox
+	cp build/lib_arcade_basic_game.so build/lib_arcade_nibbler.so build/lib_arcade_solarfox.so games/
 
 graphicals: cmake | $(LIB_DIR)
-	make -C $(BUILD_DIR) GRAPHIC_SFML
-	make -C $(BUILD_DIR) GRAPHIC_Caca
-	cp build/libGRAPHIC_SFML.so build/libGRAPHIC_Caca.so lib/
+	make -C $(BUILD_DIR) _arcade_sfml
+	make -C $(BUILD_DIR) _arcade_caca
+	make -C $(BUILD_DIR) _arcade_sdl
+	cp build/lib_arcade_sfml.so build/lib_arcade_caca.so build/lib_arcade_sdl.so lib/
 
 TESTED_SRCS	= \
 		  src/core/corebuild/CoreBuild.cpp \

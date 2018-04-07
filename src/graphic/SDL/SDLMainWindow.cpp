@@ -69,6 +69,12 @@ arc::SDLMainWindow &arc::SDLMainWindow::getInstance(bool destroy)
 
 	if (instance == nullptr)
 		instance.reset(new SDLMainWindow(arc::VertexI(700, 700)));
+	else if (instance->_window == nullptr) {
+		instance->_window.reset(SDL_CreateWindow(WNAME, SDL_WINDOWPOS_UNDEFINED,
+					SDL_WINDOWPOS_UNDEFINED, 700,
+					700, 0));
+		instance->_render.reset(SDL_CreateRenderer(instance->_window.get(), -1, SDL_RENDERER_ACCELERATED));
+	}
 	if (destroy)
 		instance.reset(nullptr);
 	return *instance;
@@ -80,8 +86,8 @@ arc::SDLMainWindow::SDLMainWindow(arc::VertexI size) :
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	_window.reset(SDL_CreateWindow(WNAME, SDL_WINDOWPOS_UNDEFINED,
-				       SDL_WINDOWPOS_UNDEFINED, size.x(),
-				       size.y(), 0));
+				SDL_WINDOWPOS_UNDEFINED, size.x(),
+				size.y(), 0));
 	if (!_window)
 		throw arc::Exception("SDL Graphic", "Can't open the Window");
 	_render.reset(SDL_CreateRenderer(_window.get(), -1, SDL_RENDERER_ACCELERATED));
@@ -101,7 +107,8 @@ void arc::SDLMainWindow::setWindowSize(size_t x, size_t y)
 
 void arc::SDLMainWindow::close()
 {
-	SDL_DestroyWindow(_window.get());
+	_render.reset(nullptr);
+	_window.reset(nullptr);
 	SDL_Quit();
 }
 

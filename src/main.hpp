@@ -10,7 +10,7 @@
 
 #define ASSETS_DIR std::string("./assets")
 #define DIR_GAME std::string("./games")
-#define DIR_GRAPHIC std::string("./graphics")
+#define DIR_GRAPHIC std::string("./lib")
 
 #define MKU make_unique
 #define MKS make_shared

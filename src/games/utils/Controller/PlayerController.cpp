@@ -65,7 +65,6 @@ void arc::PlayerController::execKey(EventHandler &event, KeyEvent::Key key)
 
 void arc::PlayerController::_moveUp(arc::EventHandler &event[[maybe_unused]])
 {
-	std::cout << "_moveUp" << std::endl;
 	if (!_pCtrlCanGoBack && _pCtrlDir == DOWN)
 		return;
 	_pCtrlHaveMove = (!_pCtrlLimit.first || _pCtrlPos.y() - _pCtrlSpeed.y() >= _pCtrlLimit.second.pos().y());
@@ -76,7 +75,6 @@ void arc::PlayerController::_moveUp(arc::EventHandler &event[[maybe_unused]])
 
 void arc::PlayerController::_moveLeft(arc::EventHandler &event[[maybe_unused]])
 {
-	std::cout << "_moveLeft" << std::endl;
 	if (!_pCtrlCanGoBack && _pCtrlDir == RIGHT)
 		return;
 	_pCtrlHaveMove = (!_pCtrlLimit.first || _pCtrlPos.x() - _pCtrlSpeed.x() >= _pCtrlLimit.second.pos().x());
@@ -87,7 +85,6 @@ void arc::PlayerController::_moveLeft(arc::EventHandler &event[[maybe_unused]])
 
 void arc::PlayerController::_moveDown(arc::EventHandler &event[[maybe_unused]])
 {
-	std::cout << "_moveDown" << std::endl;
 	if (!_pCtrlCanGoBack && _pCtrlDir == UP)
 		return;
 	_pCtrlHaveMove = (!_pCtrlLimit.first || _pCtrlPos.y() + _pCtrlSpeed.y() <= _pCtrlLimit.second.size().y());
@@ -98,7 +95,6 @@ void arc::PlayerController::_moveDown(arc::EventHandler &event[[maybe_unused]])
 
 void arc::PlayerController::_moveRigth(arc::EventHandler &event[[maybe_unused]])
 {
-	std::cout << "_moveRigth" << std::endl;
 	if (!_pCtrlCanGoBack && _pCtrlDir == LEFT)
 		return;
 	_pCtrlHaveMove = (!_pCtrlLimit.first || _pCtrlPos.x() + _pCtrlSpeed.x() <= _pCtrlLimit.second.size().x());

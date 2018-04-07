@@ -12,14 +12,16 @@
 
 extern sf::Font consolasFont;
 
-arc::IGraphic & arc::SFGraphic::getInstance()
+arc::IGraphic & arc::SFGraphic::getInstance(bool destroy)
 {
-	static arc::IGraphic *instance = nullptr;
+	static std::UPTR<arc::IGraphic> instance = nullptr;
 
 	if (!instance) {
 		consolasFont.loadFromFile(ASSETS_DIR + "/Consolas.ttf");
-		instance = new SFGraphic();
+		instance.reset(new SFGraphic());
 	}
+	if (destroy)
+		instance.reset(nullptr);
 	return *instance;
 }
 

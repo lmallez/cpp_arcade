@@ -8,13 +8,15 @@
 #include "CacaGraphic.hpp"
 #include "CacaMainWindow.hpp"
 
-arc::IGraphic & arc::CacaGraphic::getInstance()
+arc::IGraphic & arc::CacaGraphic::getInstance(bool destroy)
 {
-	static arc::IGraphic *instance = nullptr;
+	static std::UPTR<arc::IGraphic> instance = nullptr;
 
 	if (!instance) {
-		instance = new CacaGraphic();
+		instance.reset(new CacaGraphic());
 	}
+	if (destroy)
+		instance.reset(nullptr);
 	return *instance;
 }
 

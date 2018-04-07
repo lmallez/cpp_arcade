@@ -21,10 +21,10 @@ arc::SDLShapeText::SDLShapeText(const arc::ShapeText &shape):
 
 void arc::SDLShapeText::draw() const
 {
-	arc::RectF geo = winGeometry();
+	SDL_Rect geo = winGeometry();
 	gfxPrimitivesSetFont(nullptr, 42, 42);
 	stringColor(arc::SDLMainWindow::getInstance().getRenderer().get(),
-		    (Sint16) geo.pos().x(), (Sint16) geo.pos().y(),
+		    (Sint16) geo.x, (Sint16) geo.y,
 		getText().c_str(), _texture.lineColor().values());
 	AShape::draw();
 }

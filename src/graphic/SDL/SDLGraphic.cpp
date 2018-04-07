@@ -8,12 +8,14 @@
 #include "SDLGraphic.hpp"
 #include "SDLMainWindow.hpp"
 
-arc::IGraphic & arc::SDLGraphic::getInstance()
+arc::IGraphic &arc::SDLGraphic::getInstance(bool destroy)
 {
-	static arc::IGraphic *instance = nullptr;
+	static std::unique_ptr<arc::IGraphic> instance = nullptr;
 
 	if (!instance)
-		instance = new SDLGraphic();
+		instance.reset(new SDLGraphic());
+	if (destroy)
+		instance.reset(nullptr);
 	return *instance;
 }
 

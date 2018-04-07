@@ -9,7 +9,13 @@
 #include "SDLGraphic.hpp"
 #include "src/graphic/IGraphic.hpp"
 
-extern "C" arc::IGraphic & getIGraphic()
+extern "C" arc::IGraphic &getIGraphic()
 {
 	return arc::SDLGraphic::getInstance();
 }
+
+extern "C" void freeIGraphic()
+{
+	arc::SDLGraphic::getInstance(true);
+}
+

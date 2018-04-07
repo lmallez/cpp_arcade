@@ -16,6 +16,8 @@ arc::solarfox::MonsterMissile::MonsterMissile(arc::VertexF pos,
 std::SPTR<arc::IShape>
 arc::solarfox::MonsterMissile::draw(const std::SPTR<arc::IShape> &ptr) const
 {
-	std::SPTR<arc::IShape> a = std::MKS<arc::ShapeCircle>(ptr, arc::Texture(arc::Color::Magenta, arc::Color::Magenta), getPos());
+	std::SPTR<arc::IShape> a = std::MKS<arc::ShapeCircle>(ptr,
+		arc::Texture(arc::Color::Magenta, arc::Color::Magenta),
+		getPos());
 	return a;
 }

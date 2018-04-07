@@ -11,7 +11,9 @@
 
 arc::solarfox::Ship::Ship(const arc::VertexS &mapSize,
 	const arc::VertexF &shipSize, int life) :
-	PlayerController({0.0005, 0.0005}, arc::KeyEvent::PRESSED, false, {0, 0}, {true, arc::RectF(0, 0, 1 - shipSize.x(), 1 - shipSize.y())}),
+	PlayerController(
+		SHIP_SPEED, arc::KeyEvent::PRESSED,false, {0, 0},
+		{true, arc::RectF(0, 0, 1 - shipSize.x(), 1 - shipSize.y())}),
 	_life(life), _maxLife(life)
 {
 	_pCtrlPos = {(float)mapSize.x() / 2, (float)mapSize.y() / 2};
@@ -34,8 +36,12 @@ arc::solarfox::Ship::drawShip(const std::SPTR<arc::IShape> &parent,
 {
 	std::SPTR ship = std::MKS<arc::ShapeContainer>(parent, pos);
 
-	ship->addChild(std::MKS<arc::ShapeRect>(ship, arc::Texture(arc::Color::Blue, arc::Color::Blue), arc::RectF(0.2, 0.2, 0.6, 0.6)));
-	ship->addChild(std::MKS<arc::ShapeRect>(ship, arc::Texture(arc::Color::Red, arc::Color::Red), _getCanonSize(dir)));
+	ship->addChild(std::MKS<arc::ShapeRect>(ship,
+		arc::Texture(arc::Color::Blue, arc::Color::Blue),
+		arc::RectF(0.2, 0.2, 0.6, 0.6)));
+	ship->addChild(std::MKS<arc::ShapeRect>(ship,
+		arc::Texture(arc::Color::Red, arc::Color::Red),
+		_getCanonSize(dir)));
 	return ship;
 }
 
@@ -68,7 +74,8 @@ arc::RectF arc::solarfox::Ship::_getCanonSize(Direction dir) const
 }
 
 std::SPTR<arc::IShape>
-arc::solarfox::Ship::drawLife(const std::SPTR<arc::IShape> &zone, arc::RectF pos) const
+arc::solarfox::Ship::drawLife(
+	const std::SPTR<arc::IShape> &zone, arc::RectF pos) const
 {
 	std::SPTR lifeContainer = std::MKS<arc::ShapeContainer>(zone, pos);
 	float elemSize = 1.0f / _maxLife;
@@ -104,7 +111,8 @@ std::SPTR<arc::solarfox::AMissile> arc::solarfox::Ship::shot() const
 		b.moveDir(&_pCtrlDir, dec);
 	else
 		b.moveDir(*_pCtrlDir, dec);
-	std::SPTR<arc::solarfox::AMissile> a = std::MKU<arc::solarfox::ShipMissile>(b, arc::VertexF(size, size), _pCtrlDir);
+	auto a = std::MKU<arc::solarfox::ShipMissile>
+		        (b, arc::VertexF(size, size), _pCtrlDir);
 	return a;
 }
 

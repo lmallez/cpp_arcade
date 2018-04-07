@@ -16,6 +16,8 @@ arc::solarfox::ShipMissile::ShipMissile(arc::VertexF pos, arc::VertexF size,
 std::SPTR <arc::IShape>
 arc::solarfox::ShipMissile::draw(const std::SPTR<IShape> &ptr) const
 {
-	std::SPTR<arc::IShape> a = std::MKS<arc::ShapeRect>(ptr, arc::Texture(arc::Color::Magenta, arc::Color::Magenta), getPos());
+	auto a = std::MKS<arc::ShapeRect>(ptr,
+		arc::Texture(arc::Color::Magenta, arc::Color::Magenta),
+		getPos());
 	return a;
 }

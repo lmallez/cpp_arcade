@@ -39,8 +39,10 @@ namespace arc {
 	protected:
 
 		typedef void (SnakeGame::*SnakeEvt_t)(EventHandler &event);
-		std::unordered_map<KeyEvent::Key, std::pair<KeyEvent::Status, SnakeEvt_t>> _snakeEvent;
-		void assignKey(KeyEvent::Key, KeyEvent::Status status, SnakeEvt_t);
+		std::unordered_map<KeyEvent::Key,
+			std::pair<KeyEvent::Status, SnakeEvt_t>> _snakeEvent;
+		void assignKey(KeyEvent::Key,
+			KeyEvent::Status status, SnakeEvt_t);
 		void execKey(EventHandler &event) override;
 		void execKey(EventHandler &event, KeyEvent::Key key) override;
 

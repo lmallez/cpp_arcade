@@ -18,7 +18,8 @@ namespace arc {
 		public:
 			Monster(Direction dir, VertexF size);
 
-			std::SPTR<IShape> draw(const std::SPTR<IShape> &parent) const;
+			std::SPTR<IShape> draw(
+				const std::SPTR<IShape> &parent) const;
 			void move(float speed);
 			std::SPTR<AMissile> shot() const;
 

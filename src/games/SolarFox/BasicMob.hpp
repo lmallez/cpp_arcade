@@ -16,7 +16,8 @@ namespace arc {
 		public:
 			BasicMob(RectF pos, int health);
 
-			std::SPTR<arc::IShape> draw(const std::SPTR<IShape> &parent) const override;
+			std::SPTR<arc::IShape> draw(
+				const std::SPTR<IShape> &parent) const override;
 		};
 	}
 }

@@ -30,7 +30,8 @@ arc::SnakeGame::SnakeGame():
 	_score(0),
 	_mapManager(std::string(NIBBLER_ASSETS_DIR) + "/map")
 {
-	assignKey(arc::KeyEvent::SPACE, arc::KeyEvent::JUSTPRESSED, &arc::SnakeGame::_move);
+	assignKey(arc::KeyEvent::SPACE, arc::KeyEvent::JUSTPRESSED,
+		&arc::SnakeGame::_move);
 	srandom(time(nullptr));
 	_genFlower();
 }
@@ -79,7 +80,8 @@ std::SPTR<arc::IShape> arc::SnakeGame::start()
 	_isOver = false;
 	_scoreboard.initScores();
 	_obstacle = _mapManager.loadRandMap();
-	std::SPTR map = std::MKS<arc::ShapeRect>(nullptr, arc::Texture(arc::Color::Red), _map);
+	std::SPTR map = std::MKS<arc::ShapeRect>(nullptr,
+		arc::Texture(arc::Color::Red), _map);
 	return map;
 }
 
@@ -227,7 +229,8 @@ void arc::SnakeGame::_genSpecialFlower()
 	do {
 		_specialFlower.first.rx() = (size_t)(random() % MAP_SIZE);
 		_specialFlower.first.ry() = (size_t)(random() % MAP_SIZE);
-	} while (_snake.inSnake(_specialFlower.first) || _collideObstacle(_specialFlower.first));
+	} while (_snake.inSnake(_specialFlower.first)
+		|| _collideObstacle(_specialFlower.first));
 	_specialFlower.second = SPECIAL_FLOWER_DURATION;
 }
 
@@ -243,7 +246,8 @@ void arc::SnakeGame::_move(arc::EventHandler &event, arc::snake::Snake &snake)
 		snake.deleteTail();
 	_score = snake.getScore();
 	if (_isOver)
-		_scoreboard.addScore(event.gameEvent().playerName(), (int)_score);
+		_scoreboard.addScore(event.gameEvent().playerName(),
+			(int)_score);
 }
 
 void arc::SnakeGame::_move(arc::EventHandler &event)

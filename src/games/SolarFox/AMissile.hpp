@@ -16,8 +16,10 @@ namespace arc {
 	namespace solarfox {
 		class AMissile : virtual public IObject {
 		public:
-			AMissile(VertexF pos, VertexF size, Direction dir, float speed, float range = 1);
-			AMissile(RectF rect, Direction dir, float speed, float range = 1);
+			AMissile(VertexF pos, VertexF size, Direction dir,
+				float speed, float range = 1);
+			AMissile(RectF rect, Direction dir, float speed,
+				float range = 1);
 
 			RectF getPos() const;
 			bool move();

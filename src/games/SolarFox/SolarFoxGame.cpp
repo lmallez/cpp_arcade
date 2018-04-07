@@ -25,42 +25,43 @@ arc::SolarFoxGame::SolarFoxGame():
 	_mapManager(ASSETS_DIR + "/solarfox/map"),
 	_scoreboard("solarfox")
 {
-	assignKey(arc::KeyEvent::SPACE, arc::KeyEvent::JUSTPRESSED, &arc::SolarFoxGame::_shot);
+	assignKey(arc::KeyEvent::SPACE, arc::KeyEvent::JUSTPRESSED,
+		&arc::SolarFoxGame::_shot);
 }
 
 void arc::SolarFoxGame::assignKey(arc::KeyEvent::Key key,
 	arc::KeyEvent::Status status, arc::SolarFoxGame::SolarFoxEvt_t func)
 {
 	auto a = std::make_pair(key, std::make_pair(status, func));
-	_solarForEvent.insert(a);
+	_solarFoxEvt.insert(a);
 }
 
 void arc::SolarFoxGame::execKey(arc::EventHandler &event)
 {
 	SystemController::execKey(event);
 	_ship.execKey(event);
-	for (auto a : _solarForEvent)
+	for (auto a : _solarFoxEvt)
 		execKey(event, a.first);
 }
 
-void arc::SolarFoxGame::execKey(arc::EventHandler &event, arc::KeyEvent::Key key)
+void arc::SolarFoxGame::execKey(arc::EventHandler &evt, arc::KeyEvent::Key key)
 {
-	switch (_solarForEvent[key].first) {
+	switch (_solarFoxEvt[key].first) {
 	case arc::KeyEvent::Status::PRESSED:
-		if (event.keyEvent().isKeyPressed(key))
-			(this->*(_solarForEvent[key].second))(event);
+		if (evt.keyEvent().isKeyPressed(key))
+			(this->*(_solarFoxEvt[key].second))(evt);
 		break;
 	case arc::KeyEvent::Status::RELEASED:
-		if (!event.keyEvent().isKeyPressed(key))
-			(this->*(_solarForEvent[key].second))(event);
+		if (!evt.keyEvent().isKeyPressed(key))
+			(this->*(_solarFoxEvt[key].second))(evt);
 		break;
 	case arc::KeyEvent::Status::JUSTPRESSED:
-		if (event.keyEvent().isKeyjustPressed(key))
-			(this->*(_solarForEvent[key].second))(event);
+		if (evt.keyEvent().isKeyjustPressed(key))
+			(this->*(_solarFoxEvt[key].second))(evt);
 		break;
 	case arc::KeyEvent::Status::JUSTRELEASED:
-		if (event.keyEvent().isKeyjustPressed(key))
-			(this->*(_solarForEvent[key].second))(event);
+		if (evt.keyEvent().isKeyjustPressed(key))
+			(this->*(_solarFoxEvt[key].second))(evt);
 		break;
 	}
 }
@@ -86,9 +87,24 @@ std::SPTR <arc::IShape> arc::SolarFoxGame::update(EventHandler &event)
 
 std::SPTR<arc::IShape> arc::SolarFoxGame::_game(arc::EventHandler &event)
 {
-	std::SPTR all = std::MKS<arc::ShapeContainer>();
-
 	execKey(event);
+	_gameAlgortyhm(event);
+	std::SPTR all = std::MKS<arc::ShapeContainer>();
+	all->addChild(_drawGame());
+	all->addChild(std::MKS<arc::ShapeText>(nullptr,
+		arc::Texture(arc::Color::White), arc::RectF(0.1, 0, 0.1, 0.4),
+		"Score: " + std::to_string(_score)));
+	all->addChild(std::MKS<arc::ShapeText>(nullptr,
+		arc::Texture(arc::Color::White), arc::RectF(0.5, 0, 0.1, 0.4),
+		"HighScore: " + _scoreboard.getHighScoreStr()));
+	if (_isOver)
+		_scoreboard.addScore(event.gameEvent().playerName(),
+			(int)_score);
+	return all;
+}
+
+void arc::SolarFoxGame::_gameAlgortyhm(EventHandler &event)
+{
 	_ship.forceMove(event);
 	_playerMissileMove();
 	if (_clock.updateTime()) {
@@ -105,12 +121,6 @@ std::SPTR<arc::IShape> arc::SolarFoxGame::_game(arc::EventHandler &event)
 				_object = _mapManager.nextMap();
 		}
 	}
-	all->addChild(_drawGame());
-	all->addChild(std::MKS<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.1, 0, 0.1, 0.4), "Score: " + std::to_string(_score)));
-	all->addChild(std::MKS<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.5, 0, 0.1, 0.4), ("HighScore: " + std::to_string(_scoreboard.getHighScore().second)) + " " + _scoreboard.getHighScore().first));
-	if (_isOver)
-		_scoreboard.addScore(event.gameEvent().playerName(), (int)_score);
-	return all;
 }
 
 void arc::SolarFoxGame::_monsterMissileMove()
@@ -152,7 +162,8 @@ void arc::SolarFoxGame::_killMonsterMissile()
 	}
 }
 
-bool arc::SolarFoxGame::_checkObject(const std::SPTR<arc::solarfox::AMissile> &shot)
+bool arc::SolarFoxGame::_checkObject(
+	const std::SPTR<arc::solarfox::AMissile> &shot)
 {
 	for (size_t i = 0; i < _object.size(); i++)
 		if (_object[i]->tryCollision(shot->getPos())) {
@@ -181,14 +192,21 @@ std::SPTR<arc::IShape> arc::SolarFoxGame::_gameOver(
 	arc::SystemController::execKey(event);
 	std::SPTR all = std::MKS<arc::ShapeContainer>();
 
-	all->addChild(std::MKS<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.4, 0.4, 0.2, 0.4), "Game Over"));
-	all->addChild(std::MKS<arc::ShapeText>(nullptr, arc::Texture(arc::Color::White), arc::RectF(0.4, 0.6, 0.1, 0.4), "Score: " + std::to_string(_score)));
+	all->addChild(std::MKS<arc::ShapeText>(nullptr,
+		arc::Texture(arc::Color::White),
+		arc::RectF(0.4, 0.4, 0.2, 0.4),
+		"Game Over"));
+	all->addChild(std::MKS<arc::ShapeText>(nullptr,
+		arc::Texture(arc::Color::White),
+		arc::RectF(0.4, 0.6, 0.1, 0.4),
+		"Score: " + std::to_string(_score)));
 	return all;
 }
 
 std::SPTR<arc::IShape> arc::SolarFoxGame::_drawGame() const
 {
-	std::SPTR map = std::MKS<arc::ShapeRect>(nullptr, arc::Texture(arc::Color::Red), arc::RectF(0.1, 0.1, 0.8, 0.8));
+	std::SPTR map = std::MKS<arc::ShapeRect>(nullptr,
+		arc::Texture(arc::Color::Red), arc::RectF(0.1, 0.1, 0.8, 0.8));
 
 	for (auto &monster : _monster)
 		map->addChild(monster.draw(map));

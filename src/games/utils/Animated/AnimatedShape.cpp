@@ -17,7 +17,7 @@ arc::AnimatedShape::AnimatedShape(
 }
 
 std::SPTR<arc::IShape>
-arc::AnimatedShape::draw(const std::SPTR<arc::IShape> &parent) const
+arc::AnimatedShape::draw(const std::SPTR<arc::IShape> &parent[[maybe_unused]]) const
 {
 	return _obj[_selected];
 }

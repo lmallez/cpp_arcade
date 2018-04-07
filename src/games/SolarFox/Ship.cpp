@@ -11,7 +11,7 @@
 
 arc::solarfox::Ship::Ship(const arc::VertexS &mapSize,
 	const arc::VertexF &shipSize, int life) :
-	PlayerController({0.001, 0.001}, arc::KeyEvent::PRESSED, true, {0, 0}, {true, arc::RectF(0, 0, 1 - shipSize.x(), 1 - shipSize.y())}),
+	PlayerController({0.0005, 0.0005}, arc::KeyEvent::PRESSED, false, {0, 0}, {true, arc::RectF(0, 0, 1 - shipSize.x(), 1 - shipSize.y())}),
 	_life(life), _maxLife(life)
 {
 	_pCtrlPos = {(float)mapSize.x() / 2, (float)mapSize.y() / 2};
@@ -106,4 +106,9 @@ std::SPTR<arc::solarfox::AMissile> arc::solarfox::Ship::shot() const
 		b.moveDir(*_pCtrlDir, dec);
 	std::SPTR<arc::solarfox::AMissile> a = std::MKU<arc::solarfox::ShipMissile>(b, arc::VertexF(size, size), _pCtrlDir);
 	return a;
+}
+
+void arc::solarfox::Ship::forceMove(EventHandler &event)
+{
+	_moveDir(event);
 }

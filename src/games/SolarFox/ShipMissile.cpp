@@ -9,7 +9,7 @@
 
 arc::solarfox::ShipMissile::ShipMissile(arc::VertexF pos, arc::VertexF size,
 	Direction dir):
-	AMissile(pos, size, dir, 0.005, 0.2)
+	AMissile(pos, size, dir, 0.01, 0.2)
 {
 }
 

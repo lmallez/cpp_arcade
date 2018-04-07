@@ -36,7 +36,8 @@ namespace arc {
 			void setLife(int life);
 			bool moveLife(int nb);
 
-			std::SPTR<AMissile>  shot() const;
+			std::SPTR<AMissile> shot() const;
+			void forceMove(EventHandler &event);
 
 		private:
 			arc::RectF _getCanonSize(Direction dir) const;

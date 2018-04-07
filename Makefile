@@ -34,7 +34,8 @@ games:	cmake | $(GAMES_DIR)
 graphicals: cmake | $(LIB_DIR)
 	make -C $(BUILD_DIR) _arcade_sfml
 	make -C $(BUILD_DIR) _arcade_caca
-	cp build/lib_arcade_sfml.so build/lib_arcade_caca.so lib/
+	make -C $(BUILD_DIR) _arcade_sdl
+	cp build/lib_arcade_sfml.so build/lib_arcade_caca.so build/lib_arcade_sdl.so lib/
 
 TESTED_SRCS	= \
 		  src/core/corebuild/CoreBuild.cpp \

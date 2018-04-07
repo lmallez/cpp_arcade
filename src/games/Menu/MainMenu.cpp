@@ -28,8 +28,11 @@ arc::MainMenu::MainMenu():
 	assignKey(arc::KeyEvent::DOWN, arc::KeyEvent::JUSTPRESSED, &arc::MainMenu::_moveDown);
 
 	_startButton = std::MKS<arc::ShapeRect>(nullptr, arc::Texture(), arc::RectF(0.1, 0.85, 0.8, 0.1));
-	auto a = std::MKS<arc::ShapeText>(_startButton, arc::Texture(arc::Color::Red), arc::RectF(0.4, 0.4, 0.2, 0.2), "START");
+	auto a = std::MKS<arc::ShapeText>(_startButton, arc::Texture(arc::Color::Red), arc::RectF(0.1, 0.1, 0.8, 0.8), "START");
 	_startButton->addChild(a);
+	_nameButton = std::MKS<arc::ShapeRect>(nullptr, arc::Texture(), arc::RectF(0.1, 0.75, 0.8, 0.1));
+	auto b = std::MKS<arc::ShapeText>(_nameButton, arc::Texture(arc::Color::Red), arc::RectF(0.1, 0.1, 0.8, 0.8), _name);
+	_nameButton->addChild(b);
 }
 
 void arc::MainMenu::assignKey(arc::KeyEvent::Key key, arc::KeyEvent::Status status, MainMenuEvent_t func)
@@ -79,8 +82,9 @@ std::SPTR<arc::IShape> arc::MainMenu::update(arc::EventHandler &event)
 
 	auto title = std::MKS<arc::ShapeText>(nullptr, arc::Texture(arc::Color::Cyan), arc::RectF(0.1, 0.1, 0.8, 0.3), "Arcade // fodil loui tngi pd");
 	execKey(event);
-	all->addChild(_displayListGraphic(event, arc::RectF(0.05, 0.3, 0.4, 0.5)));
-	all->addChild(_displayListGame(event, arc::RectF(0.55, 0.3, 0.4, 0.5)));
+	all->addChild(_displayListGraphic(event, arc::RectF(0.05, 0.2, 0.4, 0.5)));
+	all->addChild(_displayListGame(event, arc::RectF(0.55, 0.2, 0.4, 0.5)));
+	all->addChild(_displayNameButton(event));
 	all->addChild(_displayStartButton(event));
 	all->addChild(title);
 	return all;
@@ -88,11 +92,20 @@ std::SPTR<arc::IShape> arc::MainMenu::update(arc::EventHandler &event)
 
 std::SPTR<arc::IShape> arc::MainMenu::_displayStartButton(EventHandler &event)
 {
-	size_t maxLine = std::max(event.gameEvent().getListGraphics().size(), event.gameEvent().getListGames().size());
+	size_t maxLine = std::max(event.gameEvent().getListGraphics().size(), event.gameEvent().getListGames().size() + 1);
 
 	arc::Texture texture(arc::Color::Red, _userPos.y() >= maxLine ? arc::Color::White : arc::Color::Cyan);
 	_startButton->setTexture(texture);
 	return _startButton;
+}
+
+std::SPTR<arc::IShape> arc::MainMenu::_displayNameButton(EventHandler &event)
+{
+	size_t maxLine = std::max(event.gameEvent().getListGraphics().size(), event.gameEvent().getListGames().size() + 1);
+
+	arc::Texture texture(arc::Color::Red, _userPos.y() == maxLine - 1 ? arc::Color::White : arc::Color::Cyan);
+	_nameButton->setTexture(texture);
+	return _nameButton;
 }
 
 arc::Texture
@@ -156,9 +169,11 @@ std::SPTR<arc::IShape> arc::MainMenu::_displayListGame(EventHandler &event, cons
 
 void arc::MainMenu::_pressedStart(arc::EventHandler &event)
 {
-	size_t maxLine = std::max(event.gameEvent().getListGraphics().size(), event.gameEvent().getListGames().size());
+	size_t maxLine = std::max(event.gameEvent().getListGraphics().size(), event.gameEvent().getListGames().size() + 1);
 
 	if (_userPos.y() >= maxLine)
+		event.gameEvent().setMenu(false);
+	else if (_userPos.y() == maxLine - 1)
 		event.gameEvent().setMenu(false);
 	else {
 		if (_userPos.x() == 0 && _userPos.y() < event.gameEvent().getListGraphics().size()) {

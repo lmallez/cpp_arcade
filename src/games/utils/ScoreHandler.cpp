@@ -25,7 +25,7 @@ std::string arc::ScoreHandler::getLinkedLib(const std::string &path)
 		return "";
 	std::ifstream f(SCORES_LINK_FILE);
 	if (!f)
-		throw arc::Exception("ScoreHandler", "could not load lib-score linking file");
+		return path;
 	std::string line;
 	while(std::getline(f, line)) {
 		size_t pos = line.find(";");

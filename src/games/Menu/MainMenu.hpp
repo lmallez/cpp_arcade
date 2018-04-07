@@ -35,8 +35,12 @@ namespace arc {
 		void execKey(arc::EventHandler &event);
 		void execKey(arc::EventHandler &event, arc::KeyEvent::Key key);
 
+		std::string _name;
+
 		std::SPTR<arc::IShape> _startButton;
+		std::SPTR<arc::IShape> _nameButton;
 		std::SPTR<arc::IShape> _displayStartButton(EventHandler &event);
+		std::SPTR<arc::IShape> _displayNameButton(EventHandler &event);
 		std::SPTR<arc::IShape> _displayListGraphic(EventHandler &event, const arc::RectF &pos);
 		std::SPTR<arc::IShape> _displayListGame(EventHandler &event, const arc::RectF &pos);
 		arc::Texture _getListTexture(size_t pos, size_t selected, size_t col);

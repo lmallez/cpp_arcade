@@ -38,7 +38,7 @@ set(
         src/games/utils/Controller/SystemController.hpp
         src/std/Direction.cpp
         src/std/Direction.hpp
-)
+        src/main.hpp)
 
 set(
         SHAPE_FILES
@@ -90,6 +90,29 @@ add_library(_arcade_sfml SHARED ${GRAPHIC_SFML} ${STD_FILES} ${SHAPE_FILES}
         src/graphic/sfml/extern.cpp
         )
 target_link_libraries(_arcade_sfml sfml-graphics sfml-window sfml-system)
+
+set(
+        GRAPHIC_SDL
+        src/graphic/SDL/SDLGraphic.cpp
+        src/graphic/SDL/SDLGraphic.hpp
+        src/graphic/SDL/draw/SDLShapeRect.cpp
+        src/graphic/SDL/draw/SDLShapeRect.hpp
+        src/graphic/SDL/SDLShape.cpp
+        src/graphic/SDL/SDLShape.hpp
+        src/graphic/SDL/draw/SDLShapeCircle.cpp
+        src/graphic/SDL/draw/SDLShapeCircle.hpp
+        src/graphic/SDL/SDLShapeLoader.cpp
+        src/graphic/SDL/SDLShapeLoader.hpp
+        src/graphic/SDL/draw/SDLShapeText.cpp
+        src/graphic/SDL/draw/SDLShapeText.hpp
+        src/graphic/SDL/SDLMainWindow.cpp
+        src/graphic/SDL/SDLMainWindow.hpp
+)
+
+add_library(_arcade_sdl SHARED ${GRAPHIC_SDL} ${STD_FILES} ${SHAPE_FILES}
+        src/graphic/SDL/extern.cpp
+        )
+target_link_libraries(_arcade_sdl libSDL2-2.0.so libSDL2_gfx.so)
 
 set(
         GRAPHIC_Caca
@@ -160,7 +183,7 @@ set(
         src/games/utils/mapReader/MapReader.cpp
         src/games/utils/mapReader/MapReader.hpp
         src/games/utils/IGameObject.hpp
-)
+        src/games/Snake/MapManager.cpp src/games/Snake/MapManager.hpp)
 
 add_library(_arcade_nibbler SHARED ${STD_GAME} ${GAME_SNAKE} ${STD_FILES} ${SHAPE_FILES}
         src/games/Snake/extern.cpp

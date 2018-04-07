@@ -13,9 +13,9 @@ arc::solarfox::MonsterMissile::MonsterMissile(arc::VertexF pos,
 {
 }
 
-std::shared_ptr<arc::IShape>
-arc::solarfox::MonsterMissile::draw(const std::shared_ptr<arc::IShape> &ptr) const
+std::SPTR<arc::IShape>
+arc::solarfox::MonsterMissile::draw(const std::SPTR<arc::IShape> &ptr) const
 {
-	std::shared_ptr<arc::IShape> a = std::make_shared<arc::ShapeCircle>(ptr, arc::Texture(arc::Color::Magenta, arc::Color::Magenta), getPos());
+	std::SPTR<arc::IShape> a = std::MKS<arc::ShapeCircle>(ptr, arc::Texture(arc::Color::Magenta, arc::Color::Magenta), getPos());
 	return a;
 }

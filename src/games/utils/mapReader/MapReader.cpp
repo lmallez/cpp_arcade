@@ -18,6 +18,7 @@ arc::MapReader::MapReader(const std::string &pathFile):
 std::vector<std::pair<arc::VertexS, int>>
 arc::MapReader::readMap(const std::string &path)
 {
+	std::cout << "[" << path << "]" << std::endl;
 	std::vector<std::pair<arc::VertexS, int>> map;
 	std::string line;
 	std::ifstream f(std::string(ASSETS_DIR) + "/" + path);

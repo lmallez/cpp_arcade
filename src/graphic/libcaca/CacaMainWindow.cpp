@@ -44,12 +44,12 @@ std::unordered_map<char, arc::KeyEvent::Key> arc::CacaMainWindow::_keyMap = {
 	{'Q', arc::KeyEvent::Q},
 	{'r', arc::KeyEvent::R},
 	{'R', arc::KeyEvent::R},
-	{'s', arc::KeyEvent::S},
-	{'S', arc::KeyEvent::S},
+	{'SPTR', arc::KeyEvent::S},
+	{'SPTR', arc::KeyEvent::S},
 	{'t', arc::KeyEvent::T},
 	{'T', arc::KeyEvent::T},
-	{'u', arc::KeyEvent::U},
-	{'U', arc::KeyEvent::U},
+	{'UPTR', arc::KeyEvent::U},
+	{'UPTR', arc::KeyEvent::U},
 	{'v', arc::KeyEvent::V},
 	{'V', arc::KeyEvent::V},
 	{'w', arc::KeyEvent::W},
@@ -96,7 +96,7 @@ std::vector<arc::MouseEvent::MouseButton> arc::CacaMainWindow::_mouseMap = {
 
 arc::CacaMainWindow &arc::CacaMainWindow::getInstance()
 {
-	static std::unique_ptr<arc::CacaMainWindow> instance = nullptr;
+	static std::UPTR<arc::CacaMainWindow> instance = nullptr;
 
 	if (instance == nullptr)
 		instance.reset(new CacaMainWindow(arc::VertexI(100, 50)));
@@ -122,7 +122,7 @@ void arc::CacaMainWindow::setWindowSize(size_t x, size_t y)
 	caca_set_canvas_size(_canvas.get(), x, y);
 }
 
-std::unique_ptr<caca_canvas, int (*)(caca_canvas_t*)>
+std::UPTR<caca_canvas, int (*)(caca_canvas_t*)>
 &arc::CacaMainWindow::getCanvas()
 {
 	return _canvas;

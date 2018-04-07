@@ -15,7 +15,7 @@ namespace arc {
 	class ShapeText : public AShape {
 	public:
 		ShapeText(
-			const std::shared_ptr<IShape> &parent,
+			const std::SPTR<IShape> &parent,
 			const Texture &texture,
 			RectF geometry,
 			const std::string &text);
@@ -23,7 +23,7 @@ namespace arc {
 
 		const std::string &getText() const;
 
-		virtual std::unique_ptr<IShape>
+		virtual std::UPTR<IShape>
 		convert(const arc::IShapeLoader &loader) const override;
 
 	private:

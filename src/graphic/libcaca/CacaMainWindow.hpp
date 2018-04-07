@@ -8,8 +8,8 @@
 #define CPP_ARCADE_CACAMAINWINDOW_HPP
 
 #include <caca.h>
-#include <src/graphic/IGraphic.hpp>
-#include <src/std/Vertex.hpp>
+#include "src/graphic/IGraphic.hpp"
+#include "src/std/Vertex.hpp"
 
 namespace arc
 {
@@ -17,7 +17,7 @@ namespace arc
 	public:
 		static CacaMainWindow &getInstance();
 		void setWindowSize(size_t x, size_t y);
-		std::unique_ptr<caca_canvas_t,
+		std::UPTR<caca_canvas_t,
 			int (*)(caca_canvas_t*)> &getCanvas();
 		void display();
 		VertexF getSize() const;
@@ -26,8 +26,8 @@ namespace arc
 
 	private:
 		explicit CacaMainWindow(VertexI = {400, 400});
-		std::unique_ptr<caca_canvas_t, int (*)(caca_canvas_t*)> _canvas;
-		std::unique_ptr<caca_display_t, int (*)(caca_display_t*)> _window;
+		std::UPTR<caca_canvas_t, int (*)(caca_canvas_t*)> _canvas;
+		std::UPTR<caca_display_t, int (*)(caca_display_t*)> _window;
 		static std::unordered_map<char, arc::KeyEvent::Key> _keyMap;
 		static std::vector<arc::MouseEvent::MouseButton> _mouseMap;
 	};

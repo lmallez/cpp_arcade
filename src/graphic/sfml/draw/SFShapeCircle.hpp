@@ -17,12 +17,12 @@ namespace arc {
 	class SFShapeCircle : public ShapeCircle, public SFShape {
 	public:
 		explicit SFShapeCircle(
-			std::shared_ptr<IShape> parent = nullptr,
+			std::SPTR<IShape> parent = nullptr,
 			const arc::Texture &texture = arc::Texture(),
 			const VertexF &pos = VertexF(0, 0),
 			float radius = 0);
 		explicit SFShapeCircle(
-			std::shared_ptr<IShape> parent = nullptr,
+			std::SPTR<IShape> parent = nullptr,
 			const arc::Texture &texture = arc::Texture(),
 			const RectF &rect = RectF(0, 0, 0, 0));
 		explicit SFShapeCircle(const ShapeCircle &shape);

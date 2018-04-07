@@ -13,8 +13,8 @@ arc::solarfox::BasicMob::BasicMob(arc::RectF pos, int health):
 {
 }
 
-std::shared_ptr<arc::IShape>
-arc::solarfox::BasicMob::draw(const std::shared_ptr<IShape> &parent) const
+std::SPTR<arc::IShape>
+arc::solarfox::BasicMob::draw(const std::SPTR<IShape> &parent) const
 {
 	uint8_t a;
 	if (_health > 0)
@@ -22,5 +22,5 @@ arc::solarfox::BasicMob::draw(const std::shared_ptr<IShape> &parent) const
 	else
 		a = 255;
 	arc::Color color = arc::Color(a, a, a);
-	return std::make_shared<arc::ShapeCircle>(parent, arc::Texture(color, color), getPos());
+	return std::MKS<arc::ShapeCircle>(parent, arc::Texture(color, color), getPos());
 }

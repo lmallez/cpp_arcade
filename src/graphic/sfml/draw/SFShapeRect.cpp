@@ -7,7 +7,7 @@
 
 #include "SFShapeRect.hpp"
 
-arc::SFShapeRect::SFShapeRect(std::shared_ptr<arc::IShape> parent,
+arc::SFShapeRect::SFShapeRect(std::SPTR<arc::IShape> parent,
 	const arc::Texture &texture, const arc::RectF &rect) :
 	ShapeRect(parent, texture, rect), SFShape()
 {

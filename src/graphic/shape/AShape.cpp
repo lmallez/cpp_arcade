@@ -8,7 +8,7 @@
 #include "src/exception/Exception.hpp"
 #include "AShape.hpp"
 
-arc::AShape::AShape(std::shared_ptr<IShape> parent,
+arc::AShape::AShape(std::SPTR<IShape> parent,
 	const arc::Texture &texture,
 	const RectF &geometry):
 	_parent(parent), _geometry(geometry), _texture(texture)
@@ -20,7 +20,7 @@ arc::AShape::AShape(const arc::IShape &ex):
 {
 }
 
-const std::shared_ptr<arc::IShape> &arc::AShape::getParent() const
+const std::SPTR<arc::IShape> &arc::AShape::getParent() const
 {
 	return _parent;
 }
@@ -32,12 +32,12 @@ arc::IShape &arc::AShape::getChild(size_t pos) const
 	return *(_children[pos]);
 }
 
-void arc::AShape::addChild(std::unique_ptr<arc::IShape> child)
+void arc::AShape::addChild(std::UPTR<arc::IShape> child)
 {
 	_children.push_back(std::move(child));
 }
 
-void arc::AShape::addChild(std::shared_ptr<arc::IShape> child)
+void arc::AShape::addChild(std::SPTR<arc::IShape> child)
 {
 	_children.push_back(std::move(child));
 }
@@ -72,12 +72,12 @@ arc::IShape &arc::AShape::operator[](size_t pos) const
 	return getChild(pos);
 }
 
-void arc::AShape::operator<<(std::unique_ptr<arc::IShape> child)
+void arc::AShape::operator<<(std::UPTR<arc::IShape> child)
 {
 	addChild(std::move(child));
 }
 
-void arc::AShape::operator<<(std::shared_ptr<arc::IShape> child)
+void arc::AShape::operator<<(std::SPTR<arc::IShape> child)
 {
 	addChild(child);
 }
@@ -85,7 +85,7 @@ void arc::AShape::operator<<(std::shared_ptr<arc::IShape> child)
 arc::RectF arc::AShape::winPos() const
 {
 	arc::RectF geo = getGeometry();
-	std::shared_ptr<IShape> parent = getParent();
+	std::SPTR<IShape> parent = getParent();
 	arc::RectF parentPos;
 
 	if (!parent)

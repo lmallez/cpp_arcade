@@ -64,7 +64,7 @@ std::unordered_map<sf::Mouse::Button, arc::MouseEvent::MouseButton> arc::SFMainW
 
 arc::SFMainWindow &arc::SFMainWindow::getInstance()
 {
-	static std::unique_ptr<SFMainWindow> instance = nullptr;
+	static std::UPTR<SFMainWindow> instance = nullptr;
 
 	if (instance == nullptr)
 		instance.reset(new SFMainWindow(arc::VertexI(700, 700)));
@@ -75,7 +75,7 @@ arc::SFMainWindow &arc::SFMainWindow::getInstance()
 
 arc::SFMainWindow::SFMainWindow(arc::VertexI size)
 {
-	_window = std::make_unique<sf::RenderWindow>();
+	_window = std::MKU<sf::RenderWindow>();
 	_window->create(sf::VideoMode(size.x(), size.y()), WNAME);
 	if (!_window->isOpen())
 		throw arc::Exception("SF Graphic", "Can't open the Window");
@@ -139,6 +139,10 @@ void arc::SFMainWindow::pollEvent(EventHandler &evtHandler)
 		case sf::Event::MouseButtonPressed:
 			evtHandler.mouseEvent().setButtonPressed(_mouseMap[evt.mouseButton.button]);
 			break;
+		case sf::Event::MouseButtonReleased:
+			evtHandler.mouseEvent().setButtonReleased(_mouseMap[evt
+				.mouseButton.button]);
+			break;
 		default:
 			break;
 		}
@@ -150,7 +154,7 @@ bool arc::SFMainWindow::TextureInCache(const std::string &str) const
 	return _textureCache.find(str) != _textureCache.end();
 }
 
-std::shared_ptr<sf::Texture> arc::SFMainWindow::getTextureCache(
+std::SPTR<sf::Texture> arc::SFMainWindow::getTextureCache(
 	const std::string &str)
 const
 {
@@ -159,7 +163,7 @@ const
 
 void arc::SFMainWindow::addTexture(const std::string &filePath)
 {
-	_textureCache[filePath] = std::make_unique<sf::Texture>();
+	_textureCache[filePath] = std::MKU<sf::Texture>();
 	auto tc = _textureCache[filePath];
 	tc->loadFromFile(filePath);
 }

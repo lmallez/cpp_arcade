@@ -10,7 +10,7 @@
 
 #include <dlfcn.h>
 #include <iostream>
-#include <src/graphic/IGraphic.hpp>
+#include "src/graphic/IGraphic.hpp"
 
 namespace arc
 {

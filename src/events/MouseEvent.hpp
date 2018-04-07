@@ -8,7 +8,7 @@
 #ifndef CPP_ARCADE_MOUSEEVENT_HPP
 #define CPP_ARCADE_MOUSEEVENT_HPP
 
-#include <src/std/Vertex.hpp>
+#include "src/std/Vertex.hpp"
 
 namespace arc
 {
@@ -26,7 +26,7 @@ namespace arc
 		void setPos(Vertex<float>);
 		MouseButton getButtonPressed() const;
 		void setButtonPressed(MouseButton);
-
+		void setButtonReleased(MouseButton);
 	private:
 		Vertex<float> _pos;
 		MouseButton _buttonClicked;

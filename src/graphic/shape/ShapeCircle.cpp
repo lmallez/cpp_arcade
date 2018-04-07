@@ -7,7 +7,7 @@
 
 #include "ShapeCircle.hpp"
 
-arc::ShapeCircle::ShapeCircle(const std::shared_ptr<arc::IShape> &parent,
+arc::ShapeCircle::ShapeCircle(const std::SPTR<arc::IShape> &parent,
 	const arc::Texture &texture, arc::VertexF pos, float radius):
 	AShape(parent, texture,
 		arc::RectF(pos.x() - radius / 2, pos.y() - radius / 2,
@@ -16,7 +16,7 @@ arc::ShapeCircle::ShapeCircle(const std::shared_ptr<arc::IShape> &parent,
 
 }
 
-arc::ShapeCircle::ShapeCircle(const std::shared_ptr<arc::IShape> &parent,
+arc::ShapeCircle::ShapeCircle(const std::SPTR<arc::IShape> &parent,
 	const arc::Texture &texture, arc::RectF geometry):
 	AShape(parent, texture, geometry)
 {
@@ -28,7 +28,7 @@ arc::ShapeCircle::ShapeCircle(const arc::ShapeCircle &ex):
 {
 }
 
-std::unique_ptr<arc::IShape>
+std::UPTR<arc::IShape>
 arc::ShapeCircle::convert(const arc::IShapeLoader &loader) const
 {
 	return loader.load(*this);

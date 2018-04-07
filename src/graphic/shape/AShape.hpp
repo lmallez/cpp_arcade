@@ -16,17 +16,17 @@ namespace arc {
 	class AShape : public virtual IShape,
 		std::enable_shared_from_this<AShape> {
 	public:
-		explicit AShape(std::shared_ptr<IShape> parent,
+		explicit AShape(std::SPTR<IShape> parent,
 			const arc::Texture &texture,
 			const RectF &geometry);
 		explicit AShape(const IShape &ex);
 
 		virtual ~AShape() = default;
 
-		virtual const std::shared_ptr<IShape> &getParent() const override;
+		virtual const std::SPTR<IShape> &getParent() const override;
 		virtual IShape &getChild(size_t pos) const override;
-		virtual void addChild(std::unique_ptr<IShape> child) override;
-		virtual void addChild(std::shared_ptr<IShape> child) override;
+		virtual void addChild(std::UPTR<IShape> child) override;
+		virtual void addChild(std::SPTR<IShape> child) override;
 		virtual size_t nbChild() const override;
 		virtual void setGeometry(const RectF &geometry) override;
 		virtual void setTexture(const Texture &texture) override;
@@ -40,16 +40,16 @@ namespace arc {
 
 		virtual IShape &operator[](size_t pos) const override;
 
-		virtual void operator<<(std::unique_ptr<IShape> child) override;
-		virtual void operator<<(std::shared_ptr<IShape> child) override;
+		virtual void operator<<(std::UPTR<IShape> child) override;
+		virtual void operator<<(std::SPTR<IShape> child) override;
 
 	protected:
-		std::shared_ptr<IShape> _parent;
+		std::SPTR<IShape> _parent;
 		RectF _geometry;
 		arc::Texture _texture;
 
 	private:
-		std::vector<std::shared_ptr<IShape>> _children;
+		std::vector<std::SPTR<IShape>> _children;
 	};
 }
 

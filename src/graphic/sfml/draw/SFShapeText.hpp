@@ -20,7 +20,7 @@ namespace arc {
 	class SFShapeText : public ShapeText, public SFShape {
 	public:
 		explicit SFShapeText(
-			std::shared_ptr<IShape> parent = nullptr,
+			std::SPTR<IShape> parent = nullptr,
 			const arc::Texture &texture = arc::Texture(),
 			const RectF &rect = RectF(0, 0, 0, 0),
 			const std::string &text = 0);

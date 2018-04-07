@@ -22,7 +22,7 @@ namespace arc {
 		void close();
 	private:
 		explicit GLMainWindow(VertexI = {400, 400});
-		std::unique_ptr<sf::RenderWindow> _window;
+		std::UPTR<sf::RenderWindow> _window;
 	};
 	};
 }

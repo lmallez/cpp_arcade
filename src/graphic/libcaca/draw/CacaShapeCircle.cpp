@@ -7,14 +7,14 @@
 
 #include "CacaShapeCircle.hpp"
 
-arc::CacaShapeCircle::CacaShapeCircle(std::shared_ptr<arc::IShape> parent,
+arc::CacaShapeCircle::CacaShapeCircle(std::SPTR<arc::IShape> parent,
 	const arc::Texture &texture, const arc::VertexF &pos, float radius):
 	ShapeCircle(parent, texture, pos, radius), CacaShape()
 {
 
 }
 
-arc::CacaShapeCircle::CacaShapeCircle(std::shared_ptr<arc::IShape> parent,
+arc::CacaShapeCircle::CacaShapeCircle(std::SPTR<arc::IShape> parent,
 	const arc::Texture &texture, const arc::RectF &rect):
 	ShapeCircle(parent, texture, rect), CacaShape()
 {
@@ -31,7 +31,7 @@ bool arc::CacaShapeCircle::drawFromFile() const
 	arc::Texture texture = getTexture();
 	if (texture.getFilePath().empty())
 		return false;
-	static std::unique_ptr<CacaImage> im = std::make_unique<CacaImage>(texture.getFilePath());
+	static std::UPTR<CacaImage> im = std::MKU<CacaImage>(texture.getFilePath());
 
 	caca_dither_bitmap(arc::CacaMainWindow::getInstance().getCanvas().get(),
 				geo.pos().x(), geo.pos().y(),

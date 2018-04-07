@@ -21,8 +21,8 @@ namespace arc {
 		public:
 			explicit MapManager(const std::string &dir);
 
-			std::vector<std::shared_ptr<AObject>> initMap(size_t lvl);
-			std::vector<std::shared_ptr<AObject>> nextMap();
+			std::vector<std::SPTR<AObject>> initMap(size_t lvl);
+			std::vector<std::SPTR<AObject>> nextMap();
 			bool lastLvl() const;
 
 		private:

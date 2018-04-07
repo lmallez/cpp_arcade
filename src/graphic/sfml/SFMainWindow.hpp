@@ -28,17 +28,17 @@ namespace arc
 		void draw(const sf::Drawable &toDraw);
 		void pollEvent(arc::EventHandler &);
 		bool TextureInCache(const std::string &) const;
-		std::shared_ptr<sf::Texture> getTextureCache(
+		std::SPTR<sf::Texture> getTextureCache(
 			const std::string &) const;
 		void addTexture(const std::string &);
 	private:
 		explicit SFMainWindow(VertexI = {400, 400});
-		std::unique_ptr<sf::RenderWindow> _window;
+		std::UPTR<sf::RenderWindow> _window;
 		static std::unordered_map<sf::Keyboard::Key, arc::KeyEvent::Key> _keyMap;
 		static std::unordered_map<sf::Mouse::Button, arc::MouseEvent::MouseButton> _mouseMap;
 		arc::Vertex<float > _tranformMousePos(const sf::Vector2i &)
 		const;
-		std::unordered_map<std::string, std::shared_ptr<sf::Texture>>
+		std::unordered_map<std::string, std::SPTR<sf::Texture>>
 			_textureCache;
 	};
 

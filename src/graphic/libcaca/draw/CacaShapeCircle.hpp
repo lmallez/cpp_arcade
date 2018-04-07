@@ -19,12 +19,12 @@ namespace arc {
 	class CacaShapeCircle : public ShapeCircle, public CacaShape {
 	public:
 		explicit CacaShapeCircle(
-			std::shared_ptr<IShape> parent = nullptr,
+			std::SPTR<IShape> parent = nullptr,
 			const arc::Texture &texture = arc::Texture(),
 			const VertexF &pos = VertexF(0, 0),
 			float radius = 0);
 		explicit CacaShapeCircle(
-			std::shared_ptr<IShape> parent = nullptr,
+			std::SPTR<IShape> parent = nullptr,
 			const arc::Texture &texture = arc::Texture(),
 			const RectF &rect = RectF(0, 0, 0, 0));
 		explicit CacaShapeCircle(const ShapeCircle &shape);

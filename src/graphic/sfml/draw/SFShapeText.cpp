@@ -7,7 +7,7 @@
 
 #include "SFShapeText.hpp"
 
-sf::Font consolasFont;
+std::UPTR<sf::Font> consolasFont;
 
 arc::SFShapeText::SFShapeText(std::SPTR<arc::IShape> parent,
 	const arc::Texture &texture, const arc::RectF &rect,
@@ -24,7 +24,7 @@ arc::SFShapeText::SFShapeText(const arc::ShapeText &shape):
 void arc::SFShapeText::draw() const
 {
 	sf::FloatRect geometry = winGeometry();
-	sf::Text text(getText(), consolasFont);
+	sf::Text text(getText(), *consolasFont);
 	size_t len = text.getString().getSize();
 	arc::Color color = _texture.lineColor();
 	sf::RectangleShape rect;

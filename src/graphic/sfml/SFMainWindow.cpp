@@ -62,7 +62,7 @@ std::unordered_map<sf::Mouse::Button, arc::MouseEvent::MouseButton> arc::SFMainW
 	{sf::Mouse::Button::Middle, arc::MouseEvent::MIDDLE_BUTTON}
 };
 
-arc::SFMainWindow &arc::SFMainWindow::getInstance()
+arc::SFMainWindow &arc::SFMainWindow::getInstance(bool destroy)
 {
 	static std::UPTR<SFMainWindow> instance = nullptr;
 
@@ -70,6 +70,10 @@ arc::SFMainWindow &arc::SFMainWindow::getInstance()
 		instance.reset(new SFMainWindow(arc::VertexI(700, 700)));
 	else if (!instance->_window->isOpen())
 		instance->_window->create(sf::VideoMode(700, 700), WNAME);
+	if (destroy) {
+		instance->close();
+		instance.reset(nullptr);
+	}
 	return *instance;
 }
 

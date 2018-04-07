@@ -9,7 +9,7 @@
 
 arc::solarfox::MonsterMissile::MonsterMissile(arc::VertexF pos,
 	arc::VertexF size, arc::Direction dir):
-	AMissile(pos, size, !dir, 0.01)
+	AMissile(pos, size, !dir, 0.005)
 {
 }
 

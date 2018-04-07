@@ -17,7 +17,7 @@
 #include "AObject.hpp"
 #include "MapManager.hpp"
 
-#define SHOT_PROBA 20
+#define SHOT_PROBA 10
 
 namespace arc {
 	class SolarFoxGame : virtual public IGame, protected SystemController {
@@ -46,10 +46,11 @@ namespace arc {
 
 		void _monsterMissileMove();
 		void _playerMissileMove();
+		void _killMonsterMissile();
 		bool _checkObject(const std::SPTR<solarfox::AMissile> &shot);
 
 		template <typename T>
-		static void deleteMissile(std::vector<std::SPTR<T>> &vec, size_t id);
+		void deleteMissile(std::vector<std::SPTR<T>> &vec, size_t id);
 
 		bool _isOver = false;
 		std::SPTR<IShape> _game(EventHandler &event);

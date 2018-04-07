@@ -89,14 +89,16 @@ std::SPTR<arc::IShape> arc::SolarFoxGame::_game(arc::EventHandler &event)
 	std::SPTR all = std::MKS<arc::ShapeContainer>();
 
 	execKey(event);
+	_ship.forceMove(event);
+	_playerMissileMove();
 	if (_clock.updateTime()) {
+		_monsterMissileMove();
+		_killMonsterMissile();
 		for (auto &monster : _monster) {
 			monster.move(0.01);
 			if (random() % 1000 < SHOT_PROBA)
 				_monsterShot.push_back(monster.shot());
 		}
-		_monsterMissileMove();
-		_playerMissileMove();
 		if (_object.empty()) {
 			_isOver = _mapManager.lastLvl();
 			if (!_isOver)
@@ -114,7 +116,7 @@ std::SPTR<arc::IShape> arc::SolarFoxGame::_game(arc::EventHandler &event)
 void arc::SolarFoxGame::_monsterMissileMove()
 {
 	for (size_t i = 0; i < _monsterShot.size(); i++) {
-		if (!_monsterShot[i]->move(0.01)) {
+		if (!_monsterShot[i]->move()) {
 			deleteMissile(_monsterShot, i);
 			i--;
 		} else if (_monsterShot[i]->collision(_ship.getPos())) {
@@ -128,12 +130,24 @@ void arc::SolarFoxGame::_monsterMissileMove()
 void arc::SolarFoxGame::_playerMissileMove()
 {
 	for (size_t i = 0; i < _playerShot.size(); i++) {
-		if (!_playerShot[i] || !_playerShot[i]->move(0.01)) {
+		if (!_playerShot[i] || !_playerShot[i]->move()) {
 			deleteMissile(_playerShot, i);
 			i--;
 		} else if (_checkObject(_playerShot[i])) {
 			deleteMissile(_playerShot, i);
 			i--;
+		}
+	}
+}
+
+void arc::SolarFoxGame::_killMonsterMissile()
+{
+	for (auto &missile : _playerShot) {
+		for (size_t j = 0; j < _monsterShot.size(); j++) {
+			if (_monsterShot[j]->collision(missile->getPos())) {
+				deleteMissile(_monsterShot, j);
+				j--;
+			}
 		}
 	}
 }

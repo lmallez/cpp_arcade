@@ -33,7 +33,8 @@ namespace arc {
 
 		virtual arc::RectF winPos() const = 0;
 		virtual void draw() const = 0;
-		virtual std::UPTR<IShape> convert(const arc::IShapeLoader &loader) const = 0;
+		virtual std::UPTR<IShape> convert(
+				const arc::IShapeLoader &loader) const = 0;
 
 		virtual IShape &operator[](size_t pos) const = 0;
 		virtual void operator<<(std::UPTR<IShape> child) = 0;

@@ -19,6 +19,9 @@ namespace arc {
 		bool compare(const std::chrono::duration<double> &time);
 		bool updateTime();
 		void waitTime();
+
+		void setWaitTime(double _waitTime);
+
 	private:
 		std::chrono::duration<double> _waitTime;
 		std::chrono::duration<double> _timescamp;

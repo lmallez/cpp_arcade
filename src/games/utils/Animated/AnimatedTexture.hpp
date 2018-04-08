@@ -21,7 +21,6 @@ namespace arc {
 
 		std::SPTR<IShape> draw(const std::SPTR<arc::IShape> &parent) const override;
 		bool collision(const RectF &obj) const override;
-
 		void nextFrame() override;
 
 	private:

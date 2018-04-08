@@ -10,7 +10,7 @@
 
 arc::AnimatedTexture::AnimatedTexture(const std::vector<Texture> &obj, arc::RectF pos,
 		float update) :
-	AnimatedObject(update), _obj(obj), _pos(pos)
+	AnimatedObject(update), _obj(obj), _pos(pos), _selected(0)
 {
 }
 

@@ -22,10 +22,16 @@ namespace arc {
 				const RectF &pos);
 			void setHead(const Texture &head);
 			void setBody(const AnimatedTexture &_body);
+			void moveHeart();
+			void feelInLove();
+			void dance();
+			void setSpeed(float speed);
 
 		private:
 			Texture _head;
+			Texture _loveText;
 			AnimatedTexture _body;
+			std::vector<arc::VertexF> _love;
 		};
 	}
 }

@@ -91,8 +91,8 @@ std::unordered_map<char, arc::KeyEvent::Key> arc::CacaMainWindow::_keyMap = {
 
 std::vector<arc::MouseEvent::MouseButton> arc::CacaMainWindow::_mouseMap = {
 	arc::MouseEvent::LEFT_BUTTON,
-	arc::MouseEvent::RIGHT_BUTTON,
-	arc::MouseEvent::MIDDLE_BUTTON
+	arc::MouseEvent::MIDDLE_BUTTON,
+	arc::MouseEvent::RIGHT_BUTTON
 };
 
 arc::CacaMainWindow &arc::CacaMainWindow::getInstance()

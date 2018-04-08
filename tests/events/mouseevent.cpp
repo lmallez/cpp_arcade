@@ -16,7 +16,6 @@ Test(MouseEvent, creation)
 	e.setPos(arc::VertexF(1, 1));
 	cr_assert(e.getPos().x() == 1);
 	cr_assert(e.getPos().y() == 1);
-	cr_assert(e.getButtonPressed() == arc::MouseEvent::MouseButton::NONE);
 	e.setButtonPressed(arc::MouseEvent::MouseButton::LEFT_BUTTON);
-	cr_assert(e.getButtonPressed() == arc::MouseEvent::MouseButton::LEFT_BUTTON);
+	cr_assert(e.isButtonPressed(arc::MouseEvent::MouseButton::LEFT_BUTTON));
 }

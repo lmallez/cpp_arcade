@@ -20,7 +20,8 @@ namespace arc {
 	public:
 		explicit MapReader(const std::string &pathFile = "");
 
-		static std::vector<std::pair<arc::VertexS, int>> readMap(const std::string &path);
+		static std::vector<std::pair<arc::VertexS, int>>
+			readMap(const std::string &path);
 		std::vector<std::pair<arc::VertexS, int>> readMap() const;
 
 	private:

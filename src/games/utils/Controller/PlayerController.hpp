@@ -19,7 +19,8 @@
 
 namespace arc {
 	class PlayerController {
-		typedef void (PlayerController::*playerController_t)(EventHandler &event);
+		typedef void (PlayerController::*playerController_t)
+			(EventHandler &event);
 	protected:
 
 		explicit PlayerController(
@@ -27,7 +28,8 @@ namespace arc {
 			KeyEvent::Status execStatus = KeyEvent::JUSTPRESSED,
 			bool canGoBack = false,
 			const VertexF &initialPos = VertexF(0, 0),
-			const std::pair<bool, RectF> &limit = {false, RectF(0, 0, 0, 0)},
+			const std::pair<bool, RectF> &limit = {false,
+				RectF(0, 0, 0, 0)},
 			std::array<KeyEvent::Key, 4> key = KEY_ZQSD
 		);
 
@@ -55,7 +57,9 @@ namespace arc {
 		void _moveRigth(EventHandler &event);
 
 	private:
-		std::unordered_map<KeyEvent::Key, std::pair<KeyEvent::Status, playerController_t>> _playerKey;
+		std::unordered_map<KeyEvent::Key,
+			std::pair<KeyEvent::Status,
+				playerController_t>> _playerKey;
 	};
 }
 

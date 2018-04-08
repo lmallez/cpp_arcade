@@ -10,17 +10,26 @@
 
 arc::SystemController::SystemController()
 {
-	assignKey(arc::KeyEvent::Key::NUM1, arc::KeyEvent::JUSTPRESSED, &arc::SystemController::_prevGame);
-	assignKey(arc::KeyEvent::Key::NUM2, arc::KeyEvent::JUSTPRESSED, &arc::SystemController::_restartGame);
-	assignKey(arc::KeyEvent::Key::NUM3, arc::KeyEvent::JUSTPRESSED, &arc::SystemController::_nextGame);
-	assignKey(arc::KeyEvent::Key::NUM4, arc::KeyEvent::JUSTPRESSED, &arc::SystemController::_prevGraphic);
-	assignKey(arc::KeyEvent::Key::NUM5, arc::KeyEvent::JUSTPRESSED, &arc::SystemController::_nextGraphic);
-	assignKey(arc::KeyEvent::Key::NUM9, arc::KeyEvent::JUSTPRESSED, &arc::SystemController::_backMenu);
-	assignKey(arc::KeyEvent::Key::NUM0, arc::KeyEvent::JUSTPRESSED, &arc::SystemController::_exit);
+	assignKey(arc::KeyEvent::Key::NUM1, arc::KeyEvent::JUSTPRESSED,
+			&arc::SystemController::_prevGame);
+	assignKey(arc::KeyEvent::Key::NUM2, arc::KeyEvent::JUSTPRESSED,
+			&arc::SystemController::_restartGame);
+	assignKey(arc::KeyEvent::Key::NUM3, arc::KeyEvent::JUSTPRESSED,
+			&arc::SystemController::_nextGame);
+	assignKey(arc::KeyEvent::Key::NUM4, arc::KeyEvent::JUSTPRESSED,
+			&arc::SystemController::_prevGraphic);
+	assignKey(arc::KeyEvent::Key::NUM5, arc::KeyEvent::JUSTPRESSED,
+			&arc::SystemController::_nextGraphic);
+	assignKey(arc::KeyEvent::Key::NUM9, arc::KeyEvent::JUSTPRESSED,
+			&arc::SystemController::_backMenu);
+	assignKey(arc::KeyEvent::Key::NUM0, arc::KeyEvent::JUSTPRESSED,
+			&arc::SystemController::_exit);
 }
 
 void
-arc::SystemController::assignKey(arc::KeyEvent::Key key, arc::KeyEvent::Status status, arc::SystemController::systemController_t func)
+arc::SystemController::assignKey(arc::KeyEvent::Key key,
+				arc::KeyEvent::Status status,
+				arc::SystemController::systemController_t func)
 {
 	auto a = std::make_pair(key, std::make_pair(status, func));
 	_systemKey.insert(a);
@@ -33,7 +42,8 @@ void arc::SystemController::execKey(arc::EventHandler &event)
 	}
 }
 
-void arc::SystemController::execKey(arc::EventHandler &event, arc::KeyEvent::Key key)
+void arc::SystemController::execKey(arc::EventHandler &event,
+					arc::KeyEvent::Key key)
 {
 	switch (_systemKey[key].first) {
 	case arc::KeyEvent::Status::PRESSED:

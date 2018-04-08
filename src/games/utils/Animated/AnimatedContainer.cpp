@@ -8,7 +8,8 @@
 #include "src/exception/Exception.hpp"
 #include "AnimatedContainer.hpp"
 
-arc::AnimatedContainer::AnimatedContainer(const std::vector<std::SPTR<arc::IObject>> &obj,
+arc::AnimatedContainer::AnimatedContainer(
+	const std::vector<std::SPTR<arc::IObject>> &obj,
 	size_t update):
 	AnimatedObject(update), _obj(obj), _selected(0)
 {

@@ -39,13 +39,16 @@ void arc::ScoreHandler::setGame(const std::string &game)
 {
 	_game = game;
 	if (!_game.empty()) {
-		std::ofstream f(std::string(SCORES_DIR) + "/" + _game, std::ofstream::app);
-		if (!f && mkdir(("./" + std::string(SCORES_DIR)).c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) != 0)
+		std::ofstream f(std::string(SCORES_DIR) + "/"
+			+ _game, std::ofstream::app);
+		if (!f && mkdir(("./" + std::string(SCORES_DIR)).c_str(),
+				S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH) != 0)
 			throw arc::Exception("ScoreHandler", strerror(errno));
 	}
 }
 
-void arc::ScoreHandler::addScore(const std::pair<const std::string &, int> &entry)
+void arc::ScoreHandler::addScore(
+			const std::pair<const std::string &, int> &entry)
 {
 	if (_game.empty())
 		throw arc::Exception("ScoreHandler", "game name not set");
@@ -61,7 +64,7 @@ void arc::ScoreHandler::addScore(const std::pair<const std::string &, int> &entr
 
 void arc::ScoreHandler::addScore(const std::string &player, int score)
 {
-	const std::pair<const std::string &, int> &entry = std::make_pair(player, score);
+	const auto &entry = std::make_pair(player, score);
 
 	addScore(entry);
 }

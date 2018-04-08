@@ -34,7 +34,8 @@ arc::MapReader::readMap(const std::string &path)
 			std::string substr;
 			getline(ss, substr, ';');
 			if (!substr.empty()) {
-				map.push_back(std::make_pair(pos, std::stoi(substr)));
+				map.push_back(std::make_pair(pos,
+							std::stoi(substr)));
 				pos.rx() += 1;
 			}
 		}

@@ -1,2 +1,5 @@
 lib_arcade_nibbler.so;nibbler
 lib_arcade_solarfox.so;solarfox
+lib_arcade_basic_game.so;basic_game
+lib_arcade_tamagotchi.so;tamagotchi
+lib_arcade_wolf3D.so;wolf3D

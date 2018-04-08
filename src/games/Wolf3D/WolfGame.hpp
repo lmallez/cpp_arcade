@@ -13,10 +13,12 @@
 #include "src/games/Wolf3D/Map.hpp"
 #include "src/games/Wolf3D/Player.hpp"
 #include "src/games/Wolf3D/Ray.hpp"
+#include "MapManager.hpp"
 
 #define NB_RAY 100
 #define ANGLE 120
 #define SPEED float(0.01)
+#define WOLF_ASSETS_DIR std::string(ASSETS_DIR + "/wolf3d")
 
 namespace arc {
 	class WolfGame : public IGame, protected SystemController {
@@ -39,7 +41,7 @@ namespace arc {
 	private:
 		WolfGame();
 
-		wolf::Map _map;
+		wolf::MapManager _mapMgr;
 		wolf::Player _player;
 		std::vector<std::SPTR<wolf::Ray>> _ray;
 

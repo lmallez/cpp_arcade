@@ -15,8 +15,6 @@ arc::snake::MapManager::MapManager(const std::string &dir):
 {
 	arc::DirectoryReader mapDir(dir);
 	_mapList = mapDir.fileName();
-	std::sort(_mapList.begin(), _mapList.end(), [](const std::string &a,
-		const std::string &b) {return a < b;});
 }
 
 std::vector<arc::VertexS> arc::snake::MapManager::initMap(size_t lvl) const

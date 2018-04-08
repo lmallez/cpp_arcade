@@ -160,6 +160,8 @@ set(
         src/games/utils/Animated/AnimatedObject.hpp
         src/games/utils/Controller/PlayerController.cpp
         src/games/utils/Controller/PlayerController.hpp
+        src/games/utils/mapReader/MapReader.cpp
+        src/games/utils/mapReader/MapReader.hpp
 )
 
 set(
@@ -180,8 +182,6 @@ set(
         src/games/Snake/Snake.hpp
         src/core/corebuild/CoreClock.cpp
         src/core/corebuild/CoreClock.hpp
-        src/games/utils/mapReader/MapReader.cpp
-        src/games/utils/mapReader/MapReader.hpp
         src/games/utils/IGameObject.hpp
         src/games/Snake/MapManager.cpp
         src/games/Snake/MapManager.hpp
@@ -207,8 +207,6 @@ set(
         src/games/SolarFox/MonsterMissile.hpp
         src/games/SolarFox/ShipMissile.cpp
         src/games/SolarFox/ShipMissile.hpp
-        src/games/utils/mapReader/MapReader.cpp
-        src/games/utils/mapReader/MapReader.hpp
         src/games/utils/IGameObject.hpp
         src/games/SolarFox/MapManager.cpp
         src/games/SolarFox/MapManager.hpp
@@ -232,7 +230,8 @@ set(
         src/games/Wolf3D/Map.hpp
         src/games/Wolf3D/Ray.cpp
         src/games/Wolf3D/Ray.hpp
-)
+        src/games/Wolf3D/MapManager.cpp
+        src/games/Wolf3D/MapManager.hpp)
 
 add_library(_arcade_wolf3D SHARED ${STD_GAME} ${GAME_WOLF3D} ${STD_FILES} ${SHAPE_FILES}
         src/games/Wolf3D/extern.cpp

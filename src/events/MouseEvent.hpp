@@ -19,8 +19,8 @@ namespace arc
 	public:
 		enum MouseButton {
 			LEFT_BUTTON = 0,
-			MIDDLE_BUTTON,
-			RIGHT_BUTTON
+			RIGHT_BUTTON,
+			MIDDLE_BUTTON
 		};
 		MouseEvent();
 		Vertex<float> getPos() const;

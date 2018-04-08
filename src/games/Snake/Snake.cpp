@@ -13,6 +13,7 @@ arc::snake::Snake::Snake(const VertexS &mapSize):
 	PlayerController({0, 0}, arc::KeyEvent::JUSTPRESSED, false, {0, 0},
 		{true, arc::RectF(0, 0, mapSize.x(), mapSize.y())}),
 	_score(0),
+	_growthSize(0),
 	_head(mapSize / 2)
 {
 	_pCtrlDir = RIGHT;
@@ -41,7 +42,8 @@ void arc::snake::Snake::deleteTail()
 	if (_pCtrlHaveMove) {
 		if (_body.size() == 0)
 			throw arc::Exception("snake", "Snake size is 0");
-		_body.erase(_body.begin());
+		if (_growthSize-- <= 0)
+			_body.erase(_body.begin());
 	}
 }
 
@@ -77,6 +79,7 @@ bool arc::snake::Snake::eatFlower(const arc::VertexS &flowerPos, size_t value)
 {
 	if (_pCtrlPos.x() == flowerPos.x() && _pCtrlPos.y() == flowerPos.y()) {
 		_score += value;
+		_growthSize = random() % 2 + 1;
 		return true;
 	}
 	return false;

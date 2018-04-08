@@ -21,7 +21,6 @@ namespace arc {
 			draw(const std::shared_ptr<arc::IShape> &parent,
 				const RectF &pos);
 			void setHead(const Texture &head);
-
 			void setBody(const AnimatedTexture &_body);
 
 		private:

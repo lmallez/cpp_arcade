@@ -18,7 +18,7 @@ std::SPTR<arc::IShape>
 arc::AnimatedTexture::draw(const std::SPTR<arc::IShape> &parent) const
 {
 	if (_obj.empty())
-		throw arc::Exception("AnimatedTexture", "Invalid Object");
+		throw arc::Exception("Anim(atedTexture", "Invalid Object");
 	return std::MKS<arc::ShapeRect>(parent, _obj[_selected], _pos);
 }
 

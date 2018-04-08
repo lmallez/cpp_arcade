@@ -7,8 +7,9 @@
 
 #include "Texture.hpp"
 
-arc::Texture::Texture(const std::string &filePath) :
-	_backgroundColor(), _lineColor(), _filePath(filePath)
+arc::Texture::Texture(const std::string &filePath,
+	const arc::Color &line, const arc::Color &bg) :
+	_backgroundColor(bg), _lineColor(line), _filePath(filePath)
 {
 }
 

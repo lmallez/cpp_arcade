@@ -25,8 +25,8 @@ namespace arc {
 		void nextFrame() override;
 
 	private:
-		RectF _pos;
 		std::vector<arc::Texture> _obj;
+		RectF _pos;
 		size_t _selected;
 	};
 }

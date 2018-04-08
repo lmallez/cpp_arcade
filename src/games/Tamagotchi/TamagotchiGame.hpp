@@ -12,6 +12,8 @@
 #include "src/games/IGame.hpp"
 #include "src/games/Tamagotchi/Tamago.hpp"
 
+#define TAMAGO_ASSETS_DIR std::string(ASSETS_DIR + "/tamagotchi")
+
 namespace arc {
 	class TamagotchiGame : virtual public IGame,
 	protected SystemController {

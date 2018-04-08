@@ -25,8 +25,9 @@ std::shared_ptr <arc::IShape> arc::TamagotchiGame::start()
 
 std::shared_ptr <arc::IShape> arc::TamagotchiGame::update(EventHandler &event)
 {
+	execKey(event);
 	std::SPTR all = std::MKS<arc::ShapeContainer>();
-	all->addChild(_tamago.draw(all, arc::RectF(0, 0, 1, 1)));
+	all->addChild(_tamago.draw(all, arc::RectF(0, 0, 0.5, 0.5)));
 	return all;
 }
 
@@ -34,10 +35,10 @@ arc::TamagotchiGame::TamagotchiGame():
 	_tamago(arc::Texture(), arc::AnimatedTexture({}, arc::RectF(), 1))
 {
 	arc::AnimatedTexture body = arc::AnimatedTexture({
-		arc::Texture(arc::Color::Red, arc::Color::Red),
-		arc::Texture(arc::Color::Blue, arc::Color::Blue),
-		arc::Texture(arc::Color::Green, arc::Color::Green)
+		arc::Texture(TAMAGO_ASSETS_DIR + "/body1.png"),
+		arc::Texture(TAMAGO_ASSETS_DIR + "/body2.png"),
+		arc::Texture(TAMAGO_ASSETS_DIR + "/body3.png")
 	}, arc::RectF(0, 0.5, 1, 0.5), 0.5);
 	_tamago.setBody(body);
-	_tamago.setHead(arc::Texture(arc::Color::Blue, arc::Color::Yellow));
+	_tamago.setHead(arc::Texture(TAMAGO_ASSETS_DIR + "/old_ramage.png"));
 }

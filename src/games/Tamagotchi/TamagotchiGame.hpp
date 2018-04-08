@@ -24,10 +24,14 @@ namespace arc {
 		std::shared_ptr<IShape>
 		update(EventHandler &event) override;
 
+
 	private:
 		TamagotchiGame();
 
 		tamago::Tamago _tamago;
+		std::shared_ptr<arc::IShape> _drawButton(const std::shared_ptr<arc::IShape> &parent,
+			const arc::RectF &pos) const;
+		size_t _size = 0;
 	};
 }
 

@@ -33,14 +33,14 @@ void arc::SDLShapeCircle::draw() const
 	geo.y = geo.y + geo.h / 2;
 	geo.w = geo.w / 2;
 	geo.h = geo.h / 2;
-	aaellipseColor(mainWin.getRenderer().get(),
-		       geo.x, geo.y, geo.w, geo.h,
-		       _texture.lineColor().values());
-	if (_texture.getFilePath().empty())
+	if (_texture.getFilePath().empty()) {
+		aaellipseColor(mainWin.getRenderer().get(),
+			       geo.x, geo.y, geo.w, geo.h,
+			       _texture.lineColor().values());
 		filledEllipseColor(mainWin.getRenderer().get(),
 				   geo.x, geo.y, geo.w, geo.h,
 				   _texture.bgColor().values());
-	else {
+	} else {
 		SDL_Texture *texture = SDLShape::getTexture(
 			_texture.getFilePath());
 		geo.w *= 2;

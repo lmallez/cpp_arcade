@@ -27,10 +27,10 @@ void arc::SDLShapeRect::draw() const
 	y = (Sint16) geo.y;
 	sx = (Sint16) geo.w;
 	sy = (Sint16) geo.h;
+	rectangleColor(mainWin.getRenderer().get(),
+		       x, y, sx + x, sy + y,
+		       _texture.lineColor().values());
 	if (_texture.getFilePath().empty()) {
-		rectangleColor(mainWin.getRenderer().get(),
-			       x, y, sx + x, sy + y,
-			       _texture.lineColor().values());
 		boxColor(mainWin.getRenderer().get(),
 			 x, y, sx + x, sy + y, _texture.bgColor().values());
 	} else {

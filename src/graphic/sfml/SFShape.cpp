@@ -27,9 +27,9 @@ void arc::SFShape::_colorItem(sf::Shape &item) const
 	arc::Color l = texture.lineColor();
 	arc::Color bg = texture.bgColor();
 
+	item.setOutlineColor(sf::Color(l.r(), l.g(), l.b(), l.a()));
 	if (texture.getFilePath().empty()) {
 		item.setFillColor(sf::Color(bg.r(), bg.g(), bg.b(), bg.a()));
-		item.setOutlineColor(sf::Color(l.r(), l.g(), l.b(), l.a()));
 	}
 	else {
 		if (!arc::SFMainWindow::getInstance().TextureInCache

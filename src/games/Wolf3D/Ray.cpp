@@ -66,7 +66,7 @@ arc::wolf::Ray::draw(const std::SPTR<arc::IShape> &parent) const
 	return a;
 }
 
-bool arc::wolf::Ray::collision(const arc::RectF &obj) const
+bool arc::wolf::Ray::collision(const arc::RectF &obj[[maybe_unused]]) const
 {
 	return false;
 }

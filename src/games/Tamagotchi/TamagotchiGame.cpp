@@ -42,10 +42,15 @@ std::shared_ptr <arc::IShape> arc::TamagotchiGame::update(EventHandler &event)
 	_tamago.dance();
 	arc::RectF buttonPos(0.6, 0.4, 0.3, 0.2);
 	all->addChild(_drawButton(all, buttonPos));
-	if (buttonPos.isInside(event.mouseEvent().getPos()))
+	if (buttonPos.isInside(event.mouseEvent().getPos()) &&
+		event.mouseEvent().
+			isButtonjustPressed(MouseEvent::RIGHT_BUTTON)) {
+		_tamago.feelInLove();
 		_size++;
+	}
 	if (!_hasGrowth && _size > 10)
-		_tamago.setHead(arc::Texture(TAMAGO_ASSETS_DIR + "/old_ramage.png"));
+		_tamago.setHead(
+			arc::Texture(TAMAGO_ASSETS_DIR + "/old_ramage.png"));
 	return all;
 }
 
@@ -74,6 +79,6 @@ arc::TamagotchiGame::_drawButton(const std::shared_ptr<arc::IShape> &parent,
 		pos));
 	all->addChild(std::MKS<arc::ShapeText>(all,
 		arc::Texture(arc::Color::Blue),
-		pos, "MANGER " + std::to_string(_size) + std::to_string(_love)));
+		pos, "MANGER"));
 	return all;
 }

@@ -130,6 +130,7 @@ void arc::SFMainWindow::pollEvent(EventHandler &evtHandler)
 {
 	sf::Event evt;
 	evtHandler.keyEvent().makeOld();
+	evtHandler.mouseEvent().makeOld();
 	while (_window->pollEvent(evt)) {
 		switch (evt.type) {
 		case sf::Event::KeyPressed:

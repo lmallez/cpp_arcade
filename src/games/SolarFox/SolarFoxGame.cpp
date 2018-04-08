@@ -92,10 +92,10 @@ std::SPTR<arc::IShape> arc::SolarFoxGame::_game(arc::EventHandler &event)
 	std::SPTR all = std::MKS<arc::ShapeContainer>();
 	all->addChild(_drawGame());
 	all->addChild(std::MKS<arc::ShapeText>(nullptr,
-		arc::Texture(arc::Color::White), arc::RectF(0.1, 0, 0.1, 0.4),
+		arc::Texture(arc::Color::White), arc::RectF(0.1, 0, 0.3, 0.4),
 		"Score: " + std::to_string(_score)));
 	all->addChild(std::MKS<arc::ShapeText>(nullptr,
-		arc::Texture(arc::Color::White), arc::RectF(0.5, 0, 0.1, 0.4),
+		arc::Texture(arc::Color::White), arc::RectF(0.5, 0, 0.5, 0.4),
 		"HighScore: " + _scoreboard.getHighScoreStr()));
 	if (_isOver)
 		_scoreboard.addScore(event.gameEvent().playerName(),

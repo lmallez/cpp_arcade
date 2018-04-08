@@ -19,6 +19,11 @@ arc::ShapeText::ShapeText(const arc::ShapeText &ex):
 {
 }
 
+void arc::ShapeText::setText(const std::string &text)
+{
+	_text = text;
+}
+
 const std::string &arc::ShapeText::getText() const
 {
 	return _text;

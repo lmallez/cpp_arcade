@@ -71,6 +71,11 @@ void arc::AShape::setGeometry(const arc::RectF &geometry)
 	_geometry = geometry;
 }
 
+void arc::AShape::setText(const std::string &text)
+{
+	(void) text;
+}
+
 arc::IShape &arc::AShape::operator[](size_t pos) const
 {
 	return getChild(pos);

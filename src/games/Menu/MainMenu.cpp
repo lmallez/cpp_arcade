@@ -10,6 +10,46 @@
 #include "src/games/utils/ScoreHandler.hpp"
 #include "MainMenu.hpp"
 
+std::unordered_map<arc::KeyEvent::Key, char> arc::MainMenu::_nameKeyMap = {
+	{arc::KeyEvent::A, 'A'},
+	{arc::KeyEvent::B, 'B'},
+	{arc::KeyEvent::C, 'C'},
+	{arc::KeyEvent::D, 'D'},
+	{arc::KeyEvent::E, 'E'},
+	{arc::KeyEvent::F, 'F'},
+	{arc::KeyEvent::G, 'G'},
+	{arc::KeyEvent::H, 'H'},
+	{arc::KeyEvent::I, 'I'},
+	{arc::KeyEvent::J, 'J'},
+	{arc::KeyEvent::K, 'K'},
+	{arc::KeyEvent::L, 'L'},
+	{arc::KeyEvent::M, 'M'},
+	{arc::KeyEvent::N, 'N'},
+	{arc::KeyEvent::O, 'O'},
+	{arc::KeyEvent::P, 'P'},
+	{arc::KeyEvent::Q, 'Q'},
+	{arc::KeyEvent::R, 'R'},
+	{arc::KeyEvent::S, 'S'},
+	{arc::KeyEvent::T, 'T'},
+	{arc::KeyEvent::U, 'U'},
+	{arc::KeyEvent::V, 'V'},
+	{arc::KeyEvent::W, 'W'},
+	{arc::KeyEvent::X, 'X'},
+	{arc::KeyEvent::Y, 'Y'},
+	{arc::KeyEvent::Z, 'Z'},
+	{arc::KeyEvent::NUM1, '1'},
+	{arc::KeyEvent::NUM2, '2'},
+	{arc::KeyEvent::NUM3, '3'},
+	{arc::KeyEvent::NUM4, '4'},
+	{arc::KeyEvent::NUM5, '5'},
+	{arc::KeyEvent::NUM6, '6'},
+	{arc::KeyEvent::NUM7, '7'},
+	{arc::KeyEvent::NUM8, '8'},
+	{arc::KeyEvent::NUM9, '9'},
+	{arc::KeyEvent::NUM0, '0'},
+	{arc::KeyEvent::SPACE, ' '}
+};
+
 arc::IGame &arc::MainMenu::getInstance()
 {
 	static arc::IGame *instance = nullptr;
@@ -43,7 +83,14 @@ void arc::MainMenu::assignKey(arc::KeyEvent::Key key, arc::KeyEvent::Status stat
 
 void arc::MainMenu::execKey(arc::EventHandler &event)
 {
+	size_t maxLine = std::max(event.gameEvent().getListGraphics().size(), event.gameEvent().getListGames().size() + 1);
 	arc::SystemController::execKey(event);
+	if (_userPos.y() == maxLine - 1) {
+		for (auto key : _nameKeyMap) {
+			if (event.keyEvent().isKeyjustPressed(key.first))
+				_name += key.second;
+		}
+	}
 	for (auto key : _keyEvent) {
 		arc::MainMenu::execKey(event, key.first);
 	}
@@ -80,7 +127,7 @@ std::SPTR<arc::IShape> arc::MainMenu::update(arc::EventHandler &event)
 {
 	std::SPTR all = std::MKS<arc::ShapeContainer>();
 
-	auto title = std::MKS<arc::ShapeText>(nullptr, arc::Texture(arc::Color::Cyan), arc::RectF(0.1, 0.1, 0.8, 0.3), "Arcade // fodil loui tngi pd");
+	auto title = std::MKS<arc::ShapeText>(nullptr, arc::Texture(arc::Color::Cyan), arc::RectF(0.1, 0.1, 0.8, 0.3), "Arcade // fodil loui tngi");
 	execKey(event);
 	all->addChild(_displayListGraphic(event, arc::RectF(0.05, 0.2, 0.4, 0.5)));
 	all->addChild(_displayListGame(event, arc::RectF(0.55, 0.2, 0.4, 0.5)));
@@ -105,6 +152,7 @@ std::SPTR<arc::IShape> arc::MainMenu::_displayNameButton(EventHandler &event)
 
 	arc::Texture texture(arc::Color::Red, _userPos.y() == maxLine - 1 ? arc::Color::White : arc::Color::Cyan);
 	_nameButton->setTexture(texture);
+	_nameButton->getChild(0).setText(_name);
 	return _nameButton;
 }
 
@@ -172,8 +220,6 @@ void arc::MainMenu::_pressedStart(arc::EventHandler &event)
 	size_t maxLine = std::max(event.gameEvent().getListGraphics().size(), event.gameEvent().getListGames().size() + 1);
 
 	if (_userPos.y() >= maxLine)
-		event.gameEvent().setMenu(false);
-	else if (_userPos.y() == maxLine - 1)
 		event.gameEvent().setMenu(false);
 	else {
 		if (_userPos.x() == 0 && _userPos.y() < event.gameEvent().getListGraphics().size()) {

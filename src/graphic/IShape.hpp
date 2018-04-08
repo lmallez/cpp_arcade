@@ -29,6 +29,7 @@ namespace arc {
 		virtual const Texture &getTexture() const = 0;
 		virtual void setGeometry(const RectF &rect) = 0;
 		virtual const RectF &getGeometry() const = 0;
+		virtual void setText(const std::string &text) = 0;
 
 		virtual arc::RectF winPos() const = 0;
 		virtual void draw() const = 0;

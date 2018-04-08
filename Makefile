@@ -48,38 +48,11 @@ TESTED_SRCS	= \
 		  src/events/MouseEvent.cpp \
 		  src/exception/Exception.cpp \
 		  src/games/Menu/MainMenu.cpp \
-		  src/games/Snake/Snake.cpp \
-		  src/games/Snake/SnakeGame.cpp \
-		  src/games/SolarFox/AMissile.cpp \
-		  src/games/SolarFox/AObject.cpp \
-		  src/games/SolarFox/BasicMob.cpp \
-		  src/games/SolarFox/MapManager.cpp \
-		  src/games/SolarFox/Monster.cpp\
-		  src/games/SolarFox/MonsterMissile.cpp \
-		  src/games/SolarFox/Ship.cpp \
-		  src/games/SolarFox/ShipMissile.cpp \
-		  src/games/SolarFox/SolarFoxGame.cpp \
 		  src/games/utils/Controller/PlayerController.cpp \
 		  src/games/utils/Controller/SystemController.cpp \
 		  src/games/utils/ScoreHandler.cpp \
 		  src/games/utils/mapReader/MapReader.cpp \
 		  src/graphic/AShapeLoader.cpp \
-		  src/graphic/glu/GLMainWindow.cpp \
-		  src/graphic/libcaca/CacaGraphic.cpp \
-		  src/graphic/libcaca/CacaImage.cpp \
-		  src/graphic/libcaca/CacaMainWindow.cpp \
-		  src/graphic/libcaca/CacaShape.cpp \
-		  src/graphic/libcaca/CacaShapeLoader.cpp \
-		  src/graphic/libcaca/draw/CacaShapeCircle.cpp \
-		  src/graphic/libcaca/draw/CacaShapeRect.cpp \
-		  src/graphic/libcaca/draw/CacaShapeText.cpp \
-		  src/graphic/sfml/SFGraphic.cpp \
-		  src/graphic/sfml/SFMainWindow.cpp \
-		  src/graphic/sfml/SFShape.cpp \
-		  src/graphic/sfml/SFShapeLoader.cpp \
-		  src/graphic/sfml/draw/SFShapeCircle.cpp \
-		  src/graphic/sfml/draw/SFShapeRect.cpp \
-		  src/graphic/sfml/draw/SFShapeText.cpp \
 		  src/graphic/shape/AShape.cpp \
 		  src/graphic/shape/ShapeCircle.cpp \
 		  src/graphic/shape/ShapeContainer.cpp \

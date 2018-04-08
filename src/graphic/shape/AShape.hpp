@@ -30,6 +30,7 @@ namespace arc {
 		virtual size_t nbChild() const override;
 		virtual void setGeometry(const RectF &geometry) override;
 		virtual void setTexture(const Texture &texture) override;
+		virtual void setText(const std::string &text) override;
 
 		virtual const Texture &getTexture() const override;
 		virtual const RectF &getGeometry() const override;

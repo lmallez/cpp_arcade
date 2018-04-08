@@ -35,6 +35,7 @@ namespace arc {
 		void execKey(arc::EventHandler &event);
 		void execKey(arc::EventHandler &event, arc::KeyEvent::Key key);
 
+		static std::unordered_map<arc::KeyEvent::Key, char> _nameKeyMap;
 		std::string _name;
 
 		std::SPTR<arc::IShape> _startButton;

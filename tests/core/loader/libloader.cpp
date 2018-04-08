@@ -12,7 +12,7 @@
 Test(LibLoader, creation_and_loading)
 {
 	arc::LibLoader l;
-	arc::LibLoader l1("./lib/libGRAPHIC_SFML.so");
+	arc::LibLoader l1("./lib/lib_arcade_caca.so");
 	arc::LibLoader l2("aled");
 	cr_assert(!l);
 	cr_assert(!(!l1));
@@ -25,5 +25,5 @@ Test(LibLoader, creation_and_loading)
 	}
 	l1.getIGraphic();
 	cr_assert(l1.unload());
-	cr_assert(l.load("lib/libGRAPHIC_SFML.so"));
+	cr_assert(l.load("lib/lib_arcade_sdl.so"));
 }

@@ -12,7 +12,7 @@
 Test(GameLoader, creation_and_loading)
 {
 	arc::GameLoader l;
-	arc::GameLoader l1("./games/libGAME_SNAKE.so");
+	arc::GameLoader l1("./games/lib_arcade_nibbler.so");
 	arc::GameLoader l2("aled");
 	cr_assert(!l);
 	cr_assert(!(!l1));
@@ -25,5 +25,5 @@ Test(GameLoader, creation_and_loading)
 	}
 	l1.getIGame();
 	cr_assert(l1.unload());
-	cr_assert(l.load("lib/libGRAPHIC_SFML.so"));
+	cr_assert(l.load("games/lib_arcade_solarfox.so"));
 }

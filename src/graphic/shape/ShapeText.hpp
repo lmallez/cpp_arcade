@@ -21,6 +21,7 @@ namespace arc {
 			const std::string &text);
 		ShapeText(const ShapeText &ex);
 
+		void setText(const std::string &text);
 		const std::string &getText() const;
 
 		virtual std::UPTR<IShape>

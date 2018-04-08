@@ -165,6 +165,13 @@ void arc::SDLMainWindow::pollEvent(EventHandler &evtHandler)
 		case SDL_MOUSEMOTION:
 			evtHandler.mouseEvent().setPos(getRelPos());
 			break;
+		case SDL_MOUSEBUTTONDOWN:
+			evtHandler.mouseEvent().setButtonPressed(
+				_mouseMap[evt.button.button]);
+			break;
+		case SDL_MOUSEBUTTONUP:
+			evtHandler.mouseEvent().setButtonReleased(
+				_mouseMap[evt.button.button]);
 		default:
 			break;
 		}

@@ -24,7 +24,14 @@ bool arc::CacaShapeRect::drawFromFile() const
 	arc::Texture texture = getTexture();
 	if (texture.getFilePath().empty())
 		return false;
-	static std::UPTR<CacaImage> im = std::MKU<CacaImage>(texture.getFilePath());
+	CacaMainWindow &win = arc::CacaMainWindow::getInstance();
+	CacaImage *im;
+	if (!win.TextureInCache(texture.getFilePath())) {
+		im = new CacaImage(texture.getFilePath());
+		win.addTexture(texture.getFilePath(), im);
+	} else {
+		im = win.getTextureCache(texture.getFilePath());
+	}
 
 	caca_dither_bitmap(arc::CacaMainWindow::getInstance().getCanvas().get(),
 				geo.pos().x(), geo.pos().y(),

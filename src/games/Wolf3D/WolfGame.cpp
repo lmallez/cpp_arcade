@@ -18,7 +18,8 @@ arc::IGame &arc::WolfGame::getInstance()
 	return *instance;
 }
 
-arc::WolfGame::WolfGame()
+arc::WolfGame::WolfGame():
+	_mapMgr(WOLF_ASSETS_DIR + "/map")
 {
 	assignKey(KeyEvent::Z, KeyEvent::PRESSED, &arc::WolfGame::_moveUp);
 	assignKey(KeyEvent::Q, KeyEvent::PRESSED, &arc::WolfGame::_moveLeft);
@@ -79,7 +80,7 @@ std::shared_ptr<arc::IShape> arc::WolfGame::update(arc::EventHandler &event)
 	execKey(event);
 	std::SPTR all = std::MKS<arc::ShapeContainer>();
 	for (auto &ray : _ray) {
-		ray->castMath(_player.getPos(), _player.getAngle(), _map);
+		ray->castMath(_player.getPos(), _player.getAngle(), _mapMgr.getMap());
 		all->addChild(ray->draw(all));
 	}
 	return all;
@@ -87,13 +88,13 @@ std::shared_ptr<arc::IShape> arc::WolfGame::update(arc::EventHandler &event)
 
 void arc::WolfGame::_moveUp(arc::EventHandler &event[[maybe_unused]])
 {
-	if (_player.canMove(_map, SPEED))
+	if (_player.canMove(_mapMgr.getMap(), SPEED))
 		_player.move(SPEED);
 }
 
 void arc::WolfGame::_moveDown(arc::EventHandler &event[[maybe_unused]])
 {
-	if (_player.canMove(_map, -SPEED))
+	if (_player.canMove(_mapMgr.getMap(), -SPEED))
 		_player.move(-SPEED);
 }
 

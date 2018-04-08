@@ -44,6 +44,7 @@ std::unordered_map<SDL_Keycode, arc::KeyEvent::Key> arc::SDLMainWindow::_keyMap 
 	{SDLK_RSHIFT, arc::KeyEvent::Key::RSHIFT},
 	{SDLK_TAB, arc::KeyEvent::Key::TAB},
 	{SDLK_RETURN, arc::KeyEvent::Key::RETURN},
+	{SDLK_BACKSPACE, arc::KeyEvent::Key::BACKSPACE},
 	{SDLK_0, arc::KeyEvent::Key::NUM0},
 	{SDLK_1, arc::KeyEvent::Key::NUM1},
 	{SDLK_2, arc::KeyEvent::Key::NUM2},

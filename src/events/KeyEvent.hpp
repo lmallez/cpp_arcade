@@ -12,7 +12,7 @@
 #include <unordered_map>
 #include <vector>
 
-#define KEY_NUMBER 48
+#define KEY_NUMBER 49
 
 namespace arc
 {
@@ -38,7 +38,7 @@ namespace arc
 			UP, DOWN,
 			ESCAPE, SPACE,
 			LSHIFT, RSHIFT,
-			TAB, MAJ, RETURN,
+			TAB, MAJ, RETURN, BACKSPACE,
 			NUM0, NUM1, NUM2, NUM3,
 			NUM4, NUM5, NUM6,
 			NUM7, NUM8, NUM9

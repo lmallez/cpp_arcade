@@ -44,6 +44,7 @@ std::unordered_map<sf::Keyboard::Key, arc::KeyEvent::Key> arc::SFMainWindow::_ke
 	{sf::Keyboard::RShift, arc::KeyEvent::Key::RSHIFT},
 	{sf::Keyboard::Tab, arc::KeyEvent::Key::TAB},
 	{sf::Keyboard::Return, arc::KeyEvent::Key::RETURN},
+	{sf::Keyboard::BackSpace, arc::KeyEvent::Key::BACKSPACE},
 	{sf::Keyboard::Num0, arc::KeyEvent::Key::NUM0},
 	{sf::Keyboard::Num1, arc::KeyEvent::Key::NUM1},
 	{sf::Keyboard::Num2, arc::KeyEvent::Key::NUM2},

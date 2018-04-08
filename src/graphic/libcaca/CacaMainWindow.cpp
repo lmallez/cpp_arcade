@@ -171,7 +171,7 @@ void arc::CacaMainWindow::pollEvent(arc::EventHandler &evtHandler)
 			evtHandler.mouseEvent()
 				.setPos(arc::VertexF(caca_get_mouse_x(_window.get()) / getSize().x(),
 						caca_get_mouse_y(_window.get()) / getSize().y()));
-			__attribute__ ((fallthrough));
+			break;
 		case CACA_EVENT_MOUSE_PRESS:
 			evtHandler.mouseEvent().setButtonPressed(_mouseMap[caca_get_event_mouse_button(&evt) - 1]);
 			break;

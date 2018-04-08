@@ -102,7 +102,8 @@ arc::CacaMainWindow &arc::CacaMainWindow::getInstance()
 	if (instance == nullptr)
 		instance.reset(new CacaMainWindow(arc::VertexI(100, 50)));
 	else if (instance->_window == nullptr)
-		instance->_window.reset(caca_create_display(instance->_canvas.get()));
+		instance->_window.reset(caca_create_display(instance->_canvas.
+							get()));
 	return *instance;
 }
 
@@ -162,18 +163,22 @@ void arc::CacaMainWindow::pollEvent(arc::EventHandler &evtHandler)
 		evtType = caca_get_event_type(&evt);
 		switch (evtType) {
 		case CACA_EVENT_KEY_PRESS:
-			evtHandler.keyEvent().setKeyPressed(_keyMap[caca_get_event_key_ch(&evt)]);
+			evtHandler.keyEvent().setKeyPressed(
+				_keyMap[caca_get_event_key_ch(&evt)]);
 			break;
 		case CACA_EVENT_KEY_RELEASE:
-			evtHandler.keyEvent().setKeyReleased(_keyMap[caca_get_event_key_ch(&evt)]);
+			evtHandler.keyEvent().setKeyReleased(
+				_keyMap[caca_get_event_key_ch(&evt)]);
 			break;
 		case CACA_EVENT_MOUSE_MOTION:
 			evtHandler.mouseEvent()
-				.setPos(arc::VertexF(caca_get_mouse_x(_window.get()) / getSize().x(),
-						caca_get_mouse_y(_window.get()) / getSize().y()));
+				.setPos(arc::VertexF(
+				caca_get_mouse_x(_window.get()) / getSize().x(),
+				caca_get_mouse_y(_window.get()) / getSize().y()));
 			break;
 		case CACA_EVENT_MOUSE_PRESS:
-			evtHandler.mouseEvent().setButtonPressed(_mouseMap[caca_get_event_mouse_button(&evt) - 1]);
+			evtHandler.mouseEvent().setButtonPressed(
+				_mouseMap[caca_get_event_mouse_button(&evt) - 1]);
 			break;
 		default:
 			break;

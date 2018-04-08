@@ -19,7 +19,8 @@ CacaImage::CacaImage(const std::string &path)
 	_im_image = imlib_load_image(path.c_str());
 	imlib_context_set_image(_im_image);
 	_pixels = imlib_image_get_data_for_reading_only();
-	_size = arc::VertexF(imlib_image_get_width(), imlib_image_get_height());
+	_size = arc::VertexF(imlib_image_get_width(),
+			imlib_image_get_height());
 
 	_dither = caca_create_dither(bpp, _size.x(), _size.y(),
 				depth * _size.x(), rmask, gmask, bmask, amask);

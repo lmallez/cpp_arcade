@@ -121,8 +121,8 @@ arc::SFMainWindow::_tranformMousePos(const sf::Vector2i &mPos) const
 {
 	arc::Vertex<float> res;
 
-	res.rx() = mPos.x / _window->getSize().x;
-	res.ry() = mPos.y / _window->getSize().y;
+	res.rx() = (float) mPos.x / _window->getSize().x;
+	res.ry() =  (float) mPos.y / _window->getSize().y;
 	return res;
 }
 
@@ -142,7 +142,7 @@ void arc::SFMainWindow::pollEvent(EventHandler &evtHandler)
 			evtHandler.mouseEvent()
 				.setPos(_tranformMousePos(sf::Mouse::
 				getPosition()));
-			__attribute__ ((fallthrough));
+			break;
 		case sf::Event::MouseButtonPressed:
 			evtHandler.mouseEvent().setButtonPressed(_mouseMap[evt.mouseButton.button]);
 			break;

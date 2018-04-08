@@ -27,11 +27,13 @@ void arc::MouseEvent::setPos(arc::Vertex<float> pos)
 
 void arc::MouseEvent::setButtonReleased(arc::MouseEvent::MouseButton key)
 {
+	_oldSts[key] = _btns[key];
 	_btns[key] = false;
 }
 
 void arc::MouseEvent::setButtonPressed(arc::MouseEvent::MouseButton key)
 {
+	_oldSts[key] = _btns[key];
 	_btns[key] = true;
 }
 

@@ -46,6 +46,7 @@ namespace arc {
 		size_t getPosGame() const;
 		size_t getPosGraphic() const;
 
+		void setPlayerName(const std::string &name);
 		const std::string &playerName() const;
 
 	private:

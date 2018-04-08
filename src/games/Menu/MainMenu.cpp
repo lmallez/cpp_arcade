@@ -153,6 +153,7 @@ std::SPTR<arc::IShape> arc::MainMenu::_displayNameButton(EventHandler &event)
 	arc::Texture texture(arc::Color::Red, _userPos.y() == maxLine - 1 ? arc::Color::White : arc::Color::Cyan);
 	_nameButton->setTexture(texture);
 	_nameButton->getChild(0).setText(_name);
+	event.gameEvent().setPlayerName(_name);
 	return _nameButton;
 }
 

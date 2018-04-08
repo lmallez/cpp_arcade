@@ -44,6 +44,10 @@ namespace arc {
 		std::SPTR<arc::IShape> _displayNameButton(EventHandler &event);
 		std::SPTR<arc::IShape> _displayListGraphic(EventHandler &event, const arc::RectF &pos);
 		std::SPTR<arc::IShape> _displayListGame(EventHandler &event, const arc::RectF &pos);
+		std::SPTR<arc::IShape> formattedSc(const std::string &fileName,
+					arc::Texture &texture,
+					const std::SPTR<arc::ShapeRect> &m,
+					size_t text);
 		arc::Texture _getListTexture(size_t pos, size_t selected, size_t col);
 
 		arc::VertexS _userPos = arc::VertexS(0, 0);

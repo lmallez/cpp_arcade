@@ -165,7 +165,8 @@ std::SPTR<arc::IShape> arc::MainMenu::_displayStartButton(EventHandler &event)
 	size_t maxLine = std::max(event.gameEvent().getListGraphics().size(),
 				event.gameEvent().getListGames().size() + 1);
 
-	arc::Texture texture(arc::Color::Red, _userPos.y() >= maxLine ? arc::Color::White : arc::Color::Cyan);
+	arc::Texture texture(arc::Color::Red, _userPos.y() >= maxLine
+			? arc::Color::White : arc::Color::Cyan);
 	_startButton->setTexture(texture);
 	return _startButton;
 }
@@ -175,7 +176,8 @@ std::SPTR<arc::IShape> arc::MainMenu::_displayNameButton(EventHandler &event)
 	size_t maxLine = std::max(event.gameEvent().getListGraphics().size(),
 				event.gameEvent().getListGames().size() + 1);
 
-	arc::Texture texture(arc::Color::Red, _userPos.y() == maxLine - 1 ? arc::Color::White : arc::Color::Cyan);
+	arc::Texture texture(arc::Color::Red, _userPos.y() == maxLine - 1
+			? arc::Color::White : arc::Color::Cyan);
 	_nameButton->setTexture(texture);
 	_nameButton->getChild(0).setText(_name);
 	event.gameEvent().setPlayerName(_name);
@@ -187,7 +189,8 @@ arc::MainMenu::_getListTexture(size_t pos, size_t selected, size_t col)
 {
 	return arc::Texture (
 		selected == pos ? arc::Color::Green : arc::Color::Red,
-		_userPos.x() == col && _userPos.y() == pos ? arc::Color::White : arc::Color::Transparent
+		_userPos.x() == col && _userPos.y() == pos
+		? arc::Color::White : arc::Color::Transparent
 	);
 }
 
@@ -201,48 +204,61 @@ std::SPTR<arc::IShape> arc::MainMenu::_displayListGraphic(EventHandler &event,
 
 	for (std::string fileName : list) {
 		arc::Texture texture = _getListTexture(text,
-						event.gameEvent().getPosGraphic(),
-						0);
+					event.gameEvent().getPosGraphic(), 0);
 		auto file = std::MKS<arc::ShapeText>(m, texture,
-						RectF(0.05, (float)(text * 0.1 + 0.05), 0.9, 0.11),
-						fileName);
+			RectF(0.05, (float)(text * 0.1 + 0.05), 0.9, 0.11),
+			fileName);
 		m->addChild(file);
 		text++;
 	}
 	return m;
 }
 
+std::SPTR<arc::IShape> arc::MainMenu::formattedSc(const std::string &fileName,
+					arc::Texture &texture,
+					const std::SPTR<arc::ShapeRect> &m,
+					size_t text)
+{
+	ScoreHandler s;
+	s.setGame(s.getLinkedLib(fileName));
+	std::vector<std::pair<std::string, int>> sc;
+	try {
+		s.initScores();
+		sc = s.getScores();
+	} catch (arc::Exception e) {}
+	if (sc.size() < 3) {
+		sc.push_back(std::pair<std::string, int>("None", 0));
+		sc.push_back(std::pair<std::string, int>("None", 0));
+		sc.push_back(std::pair<std::string, int>("None", 0));
+	}
+	auto scores2 = std::MKS<arc::ShapeText>(m, texture,
+		RectF(0.05, (float)(text * 0.20 + 0.17), 0.9, 0.10),
+		sc[0].first + " " + std::to_string(sc[0].second) + "  " +
+		sc[1].first + " " + std::to_string(sc[1].second) + "  " +
+		sc[2].first + " " + std::to_string(sc[2].second));
+	return (scores2);
+}
+
 std::SPTR<arc::IShape> arc::MainMenu::_displayListGame(EventHandler &event,
 						const arc::RectF &pos)
 {
-	std::SPTR m = std::MKS<arc::ShapeRect>(nullptr, arc::Texture(arc::Color::Green), pos);
+	std::SPTR m = std::MKS<arc::ShapeRect>(nullptr,
+					arc::Texture(arc::Color::Green), pos);
 	size_t text = 0;
 	std::vector<std::string> list = event.gameEvent().getListGames();
-
 	for (std::string fileName : list) {
-		arc::Texture texture = _getListTexture(text, event.gameEvent().getPosGame(), 1);
-		auto file = std::MKS<arc::ShapeText>(m, texture, RectF(0.05, (float)(text * 0.20 + 0.05), 0.9, 0.10), fileName);
+		arc::Texture texture = _getListTexture(text,
+					event.gameEvent().getPosGame(), 1);
+		ScoreHandler s;
+		auto file = std::MKS<arc::ShapeText>(m, texture,
+			RectF(0.05, (float)(text * 0.20 + 0.05), 0.9, 0.07),
+			s.getLinkedLib(fileName));
 		m->addChild(file);
-		auto scores = std::MKS<arc::ShapeText>(m, texture, RectF(0.05, (float)(text * 0.20 + 0.12), 0.9, 0.05),
-						"Best scores:");
+		auto scores = std::MKS<arc::ShapeText>(m, texture,
+			RectF(0.05, (float)(text * 0.20 + 0.12), 0.9, 0.05),
+			"Best scores:");
 		m->addChild(scores);
-		ScoreHandler SPTR;
-		SPTR.setGame(SPTR.getLinkedLib(fileName));
-		std::vector<std::pair<std::string, int>> sc;
-		try {
-			SPTR.initScores();
-			sc = SPTR.getScores();
-		} catch (arc::Exception e) {}
-		if (sc.size() < 3) {
-			sc.push_back(std::pair<std::string, int>("None", 0));
-			sc.push_back(std::pair<std::string, int>("None", 0));
-			sc.push_back(std::pair<std::string, int>("None", 0));
-		}
-		auto scores2 = std::MKS<arc::ShapeText>(m, texture, RectF(0.05, (float)(text * 0.20 + 0.17), 0.9, 0.10),
-						sc[0].first + " " + std::to_string(sc[0].second) + "  " +
-						sc[1].first + " " + std::to_string(sc[1].second) + "  " +
-						sc[2].first + " " + std::to_string(sc[2].second));
-		m->addChild(scores2);
+		m->addChild(formattedSc(fileName, texture, m, text));
 		text++;
 	}
 	return m;
@@ -256,9 +272,11 @@ void arc::MainMenu::_pressedStart(arc::EventHandler &event)
 	if (_userPos.y() >= maxLine)
 		event.gameEvent().setMenu(false);
 	else {
-		if (_userPos.x() == 0 && _userPos.y() < event.gameEvent().getListGraphics().size()) {
+		if (_userPos.x() == 0 && _userPos.y() < event.gameEvent().
+				getListGraphics().size()) {
 			event.gameEvent().setGraphic(_userPos.y());
-		} else if (_userPos.x() == 1 && _userPos.y() < event.gameEvent().getListGames().size()) {
+		} else if (_userPos.x() == 1 && _userPos.y() < event.
+				gameEvent().getListGames().size()) {
 			event.gameEvent().setGame(_userPos.y());
 		}
 	}

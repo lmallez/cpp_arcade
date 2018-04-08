@@ -44,17 +44,18 @@ bool arc::CoreBuild::setGame(const std::string &name)
 
 void arc::CoreBuild::updateGraphic()
 {
-	std::pair<std::string, bool> &reloadGraphic = _event.gameEvent().getReloadGraphic();
+	auto &reloadGraphic = _event.gameEvent().getReloadGraphic();
 
 	if (reloadGraphic.second) {
-		setGraphic(std::string(DIR_GRAPHIC) + "/" + reloadGraphic.first);
+		setGraphic(std::string(DIR_GRAPHIC) + "/"
+			+ reloadGraphic.first);
 		reloadGraphic.second = false;
 	}
 }
 
 void arc::CoreBuild::updateGame()
 {
-	std::pair<std::string, bool> &reloadGame = _event.gameEvent().getReloadGame();
+	auto &reloadGame = _event.gameEvent().getReloadGame();
 
 	if (reloadGame.second) {
 		setGame(std::string(DIR_GAME) + "/" + reloadGame.first);
@@ -74,20 +75,25 @@ bool arc::CoreBuild::_checkEvent(arc::GameEvent &event)
 
 void arc::CoreBuild::start()
 {
-	_loaderGame.getIGame().start()->convert(_loaderGraphic.getIGraphic().getShapeLoader())->draw();
+	_loaderGame.getIGame().start()->convert(_loaderGraphic.getIGraphic().
+					getShapeLoader())->draw();
 	_loaderGraphic.getIGraphic().display();
 }
 
 void arc::CoreBuild::update()
 {
-	_loaderGame.getIGame().update(_event)->convert(_loaderGraphic.getIGraphic().getShapeLoader())->draw();
+	_loaderGame.getIGame().update(_event)->convert(_loaderGraphic.
+						getIGraphic().
+						getShapeLoader())->draw();
 	_loaderGraphic.getIGraphic().display();
 	_loaderGraphic.getIGraphic().catchEvent(_event);
 }
 
 void arc::CoreBuild::menu()
 {
-	arc::MainMenu::getInstance().update(_event)->convert(_loaderGraphic.getIGraphic().getShapeLoader())->draw();
+	arc::MainMenu::getInstance().update(_event)->convert(_loaderGraphic.
+						getIGraphic().
+						getShapeLoader())->draw();
 	_loaderGraphic.getIGraphic().display();
 	_loaderGraphic.getIGraphic().catchEvent(_event);
 }

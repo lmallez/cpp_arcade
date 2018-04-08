@@ -13,7 +13,7 @@
 namespace arc {
 	class CoreClock {
 	public:
-		explicit CoreClock(const std::chrono::duration<double> &waitTime);
+		explicit CoreClock(const std::chrono::duration<double> &a);
 		explicit CoreClock(double waitTime);
 
 		bool compare(const std::chrono::duration<double> &time);

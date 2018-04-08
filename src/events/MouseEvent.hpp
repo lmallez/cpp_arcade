@@ -30,10 +30,12 @@ namespace arc
 
 		bool isButtonPressed(MouseButton);
 		bool isButtonjustPressed(MouseButton);
+		bool hasMoved();
 		void makeOld();
 
 	private:
 		Vertex<float> _pos;
+		Vertex<float> _oldPos;
 		bool _btns[BUTTON_NUMBER];
 		bool _oldSts[BUTTON_NUMBER];
 	};

@@ -9,7 +9,7 @@
 #include <cstring>
 
 arc::MouseEvent::MouseEvent() :
-	_pos(0, 0)
+	_pos(0, 0), _oldPos(0, 0)
 {
 	std::memset(_btns, false, BUTTON_NUMBER);
 	std::memset(_oldSts, false, BUTTON_NUMBER);
@@ -45,9 +45,15 @@ bool arc::MouseEvent::isButtonjustPressed(arc::MouseEvent::MouseButton key)
 	return _btns[key] && !_oldSts[key];
 }
 
+bool arc::MouseEvent::hasMoved()
+{
+	return _pos.x() != _oldPos.x() || _pos.y() != _oldPos.y();
+}
+
 void arc::MouseEvent::makeOld()
 {
 	for (int i = 0; i < BUTTON_NUMBER; i++) {
 		_oldSts[i] = _btns[i];
 	}
+	_oldPos = _pos;
 }

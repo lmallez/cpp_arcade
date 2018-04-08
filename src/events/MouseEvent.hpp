@@ -10,26 +10,34 @@
 
 #include "src/std/Vertex.hpp"
 
+#define BUTTON_NUMBER	3
+
 namespace arc
 {
 	class MouseEvent
 	{
 	public:
 		enum MouseButton {
-			NONE,
-			LEFT_BUTTON,
+			LEFT_BUTTON = 0,
 			MIDDLE_BUTTON,
 			RIGHT_BUTTON
 		};
 		MouseEvent();
 		Vertex<float> getPos() const;
 		void setPos(Vertex<float>);
-		MouseButton getButtonPressed() const;
 		void setButtonPressed(MouseButton);
 		void setButtonReleased(MouseButton);
+
+		bool isButtonPressed(MouseButton);
+		bool isButtonjustPressed(MouseButton);
+		bool hasMoved();
+		void makeOld();
+
 	private:
 		Vertex<float> _pos;
-		MouseButton _buttonClicked;
+		Vertex<float> _oldPos;
+		bool _btns[BUTTON_NUMBER];
+		bool _oldSts[BUTTON_NUMBER];
 	};
 }
 

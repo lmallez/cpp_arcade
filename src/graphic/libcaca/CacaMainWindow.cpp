@@ -180,6 +180,10 @@ void arc::CacaMainWindow::pollEvent(arc::EventHandler &evtHandler)
 			evtHandler.mouseEvent().setButtonPressed(
 				_mouseMap[caca_get_event_mouse_button(&evt) - 1]);
 			break;
+		case CACA_EVENT_MOUSE_RELEASE:
+			evtHandler.mouseEvent().setButtonReleased(
+				_mouseMap[caca_get_event_mouse_button(&evt) - 1]);
+			break;
 		default:
 			break;
 		}

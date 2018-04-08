@@ -6,10 +6,13 @@
 //
 
 #include "MouseEvent.hpp"
+#include <cstring>
 
 arc::MouseEvent::MouseEvent() :
-	_pos(0, 0), _buttonClicked(arc::MouseEvent::NONE)
+	_pos(0, 0), _oldPos(0, 0)
 {
+	std::memset(_btns, false, BUTTON_NUMBER);
+	std::memset(_oldSts, false, BUTTON_NUMBER);
 }
 
 arc::Vertex<float> arc::MouseEvent::getPos() const
@@ -22,17 +25,35 @@ void arc::MouseEvent::setPos(arc::Vertex<float> pos)
 	_pos = pos;
 }
 
-arc::MouseEvent::MouseButton arc::MouseEvent::getButtonPressed() const
+void arc::MouseEvent::setButtonReleased(arc::MouseEvent::MouseButton key)
 {
-	return _buttonClicked;
+	_btns[key] = false;
 }
 
-void arc::MouseEvent::setButtonPressed(arc::MouseEvent::MouseButton btnClicked)
+void arc::MouseEvent::setButtonPressed(arc::MouseEvent::MouseButton key)
 {
-	_buttonClicked = btnClicked;
+	_btns[key] = true;
 }
 
-void arc::MouseEvent::setButtonReleased(arc::MouseEvent::MouseButton)
+bool arc::MouseEvent::isButtonPressed(arc::MouseEvent::MouseButton key)
 {
-	_buttonClicked = arc::MouseEvent::NONE;
+	return _btns[key];
+}
+
+bool arc::MouseEvent::isButtonjustPressed(arc::MouseEvent::MouseButton key)
+{
+	return _btns[key] && !_oldSts[key];
+}
+
+bool arc::MouseEvent::hasMoved()
+{
+	return _pos.x() != _oldPos.x() || _pos.y() != _oldPos.y();
+}
+
+void arc::MouseEvent::makeOld()
+{
+	for (int i = 0; i < BUTTON_NUMBER; i++) {
+		_oldSts[i] = _btns[i];
+	}
+	_oldPos = _pos;
 }

@@ -29,7 +29,9 @@ games:	cmake | $(GAMES_DIR)
 	make -C $(BUILD_DIR) _arcade_basic_game
 	make -C $(BUILD_DIR) _arcade_nibbler
 	make -C $(BUILD_DIR) _arcade_solarfox
-	cp build/lib_arcade_basic_game.so build/lib_arcade_nibbler.so build/lib_arcade_solarfox.so games/
+	make -C $(BUILD_DIR) _arcade_wolf3D
+	cp build/lib_arcade_basic_game.so build/lib_arcade_nibbler.so \
+		build/lib_arcade_solarfox.so build/lib_arcade_wolf3D.so games/
 
 graphicals: cmake | $(LIB_DIR)
 	make -C $(BUILD_DIR) _arcade_sfml

@@ -30,6 +30,7 @@ namespace arc
 		getRenderer();
 		void pollEvent(arc::EventHandler &);
 		bool TextureInCache(const std::string &) const;
+		arc::VertexF getRelPos() const;
 		SDL_Texture * getTextureCache(
 			const std::string &) const;
 		void addTexture(const std::string &);

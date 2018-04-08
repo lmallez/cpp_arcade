@@ -141,7 +141,7 @@ void arc::SFMainWindow::pollEvent(EventHandler &evtHandler)
 		case sf::Event::MouseMoved:
 			evtHandler.mouseEvent()
 				.setPos(_tranformMousePos(sf::Mouse::
-				getPosition()));
+				getPosition(*_window.get())));
 			break;
 		case sf::Event::MouseButtonPressed:
 			evtHandler.mouseEvent().setButtonPressed(_mouseMap[evt.mouseButton.button]);

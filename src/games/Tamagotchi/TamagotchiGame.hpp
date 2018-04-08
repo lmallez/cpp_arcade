@@ -29,9 +29,12 @@ namespace arc {
 		TamagotchiGame();
 
 		tamago::Tamago _tamago;
-		std::shared_ptr<arc::IShape> _drawButton(const std::shared_ptr<arc::IShape> &parent,
+		std::shared_ptr<arc::IShape> _drawButton(
+			const std::shared_ptr<arc::IShape> &parent,
 			const arc::RectF &pos) const;
+		size_t _love = 0;
 		size_t _size = 0;
+		bool _hasGrowth = false;
 	};
 }
 

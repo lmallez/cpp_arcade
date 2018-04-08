@@ -17,3 +17,8 @@ void arc::AnimatedObject::update()
 	if (_clock.updateTime())
 		nextFrame();
 }
+
+void arc::AnimatedObject::setSpeed(double speed)
+{
+	_clock.setWaitTime(speed);
+}

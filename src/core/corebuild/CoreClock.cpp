@@ -37,3 +37,8 @@ void arc::CoreClock::waitTime()
 {
 	while (!updateTime());
 }
+
+void arc::CoreClock::setWaitTime(double waitTime)
+{
+	_waitTime = std::chrono::duration<double>(waitTime);
+}

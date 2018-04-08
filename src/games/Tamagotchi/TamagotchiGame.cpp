@@ -21,6 +21,7 @@ arc::IGame &arc::TamagotchiGame::getInstance()
 
 std::shared_ptr <arc::IShape> arc::TamagotchiGame::start()
 {
+	_tamago.feelInLove();
 	std::SPTR all = std::MKS<arc::ShapeContainer>();
 	return all;
 }
@@ -29,25 +30,42 @@ std::shared_ptr <arc::IShape> arc::TamagotchiGame::update(EventHandler &event)
 {
 	execKey(event);
 	std::SPTR all = std::MKS<arc::ShapeContainer>();
-	all->addChild(_tamago.draw(all, arc::RectF(0, 0, 0.5, 0.5)));
+	arc::Rect tamagoPos = arc::RectF(0.1, 0.4, 0.5, 0.5);
+	all->addChild(_tamago.draw(all, tamagoPos));
+	if (tamagoPos.isInside(event.mouseEvent().getPos()))
+		_love++;
+	else
+		_love = 0;
+	_tamago.setSpeed(_love * 0.0001 < 1 ? 1 - _love * 0.0001 : 0);
+	if (_love > 0 && _love % 1000 == 0)
+		_tamago.feelInLove();
+	_tamago.dance();
 	arc::RectF buttonPos(0.6, 0.4, 0.3, 0.2);
 	all->addChild(_drawButton(all, buttonPos));
-	std::cout << event.mouseEvent().getPos().x() << " " <<  event.mouseEvent().getPos().y() << std::endl;
-	if (buttonPos.isInside(event.mouseEvent().getPos()))
+	if (buttonPos.isInside(event.mouseEvent().getPos()) &&
+		event.mouseEvent().
+			isButtonjustPressed(MouseEvent::RIGHT_BUTTON)) {
+		_tamago.feelInLove();
 		_size++;
+	}
+	if (!_hasGrowth && _size > 10)
+		_tamago.setHead(
+			arc::Texture(TAMAGO_ASSETS_DIR + "/old_ramage.png"));
 	return all;
 }
 
 arc::TamagotchiGame::TamagotchiGame():
 	_tamago(arc::Texture(), arc::AnimatedTexture({}, arc::RectF(), 1))
 {
+	srandom(time(nullptr));
 	arc::AnimatedTexture body = arc::AnimatedTexture({
 		arc::Texture(TAMAGO_ASSETS_DIR + "/body1.png"),
 		arc::Texture(TAMAGO_ASSETS_DIR + "/body2.png"),
-		arc::Texture(TAMAGO_ASSETS_DIR + "/body3.png")
-	}, arc::RectF(0, 0.5, 1, 0.5), 0.5);
+		arc::Texture(TAMAGO_ASSETS_DIR + "/body3.png"),
+		arc::Texture(TAMAGO_ASSETS_DIR + "/body2.png")
+	}, arc::RectF(0, 0.5, 1, 0.5), 0.1);
 	_tamago.setBody(body);
-	_tamago.setHead(arc::Texture(TAMAGO_ASSETS_DIR + "/old_ramage.png"));
+	_tamago.setHead(arc::Texture(TAMAGO_ASSETS_DIR + "/young_ramage.png"));
 }
 
 std::shared_ptr<arc::IShape>
@@ -61,6 +79,6 @@ arc::TamagotchiGame::_drawButton(const std::shared_ptr<arc::IShape> &parent,
 		pos));
 	all->addChild(std::MKS<arc::ShapeText>(all,
 		arc::Texture(arc::Color::Blue),
-		pos, "MANGER " + std::to_string(_size)));
+		pos, "MANGER"));
 	return all;
 }

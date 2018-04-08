@@ -152,6 +152,7 @@ void arc::SDLMainWindow::pollEvent(EventHandler &evtHandler)
 	SDL_Event evt;
 
 	evtHandler.keyEvent().makeOld();
+	evtHandler.mouseEvent().makeOld();
 	while (SDL_PollEvent(&evt)) {
 		switch (evt.type) {
 		case SDL_KEYDOWN:

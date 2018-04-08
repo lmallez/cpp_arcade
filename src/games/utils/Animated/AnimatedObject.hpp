@@ -18,6 +18,7 @@ namespace arc {
 
 	virtual void nextFrame() = 0;
 	void update();
+	void setSpeed(double speed);
 
 	private:
 		CoreClock _clock;

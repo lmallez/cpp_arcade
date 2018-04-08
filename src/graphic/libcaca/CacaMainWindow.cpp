@@ -159,6 +159,7 @@ void arc::CacaMainWindow::pollEvent(arc::EventHandler &evtHandler)
 	caca_event_t evt;
 
 	evtHandler.keyEvent().makeOld();
+	evtHandler.mouseEvent().makeOld();
 	while (caca_get_event(_window.get(), CACA_EVENT_ANY, &evt, 140)) {
 		evtType = caca_get_event_type(&evt);
 		switch (evtType) {

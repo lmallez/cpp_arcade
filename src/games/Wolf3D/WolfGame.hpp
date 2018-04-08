@@ -15,8 +15,7 @@
 #include "src/games/Wolf3D/Ray.hpp"
 #include "MapManager.hpp"
 
-#define NB_RAY 500
-#define ANGLE 120
+#define NB_RAY 100
 #define SPEED float(0.01)
 #define WOLF_ASSETS_DIR std::string(ASSETS_DIR + "/wolf3d")
 

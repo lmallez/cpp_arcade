@@ -22,7 +22,9 @@ namespace arc {
 			VertexF castMath(const VertexF &playPos, float angle,
 				const Map &map);
 
-			std::shared_ptr<IShape> draw(const std::SPTR<arc::IShape> &parent) const override;
+			std::shared_ptr<IShape> draw(
+				const std::SPTR<arc::IShape> &parent)
+			const override;
 			bool collision(const RectF &obj) const override;
 
 		private:

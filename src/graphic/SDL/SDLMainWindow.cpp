@@ -136,6 +136,17 @@ void arc::SDLMainWindow::display()
 	SDL_RenderClear(_render.get());
 }
 
+arc::VertexF arc::SDLMainWindow::getRelPos() const
+{
+	arc::VertexF relPos;
+	int x, y, w, h;
+	SDL_GetMouseState(&x, &y);
+	SDL_GetWindowSize(_window.get(), &w, &h);
+	relPos.rx() = (float) x / w;
+	relPos.ry() = (float) y / h;
+	return relPos;
+}
+
 void arc::SDLMainWindow::pollEvent(EventHandler &evtHandler)
 {
 	SDL_Event evt;
@@ -150,6 +161,9 @@ void arc::SDLMainWindow::pollEvent(EventHandler &evtHandler)
 		case SDL_KEYUP:
 			evtHandler.keyEvent().setKeyReleased(_keyMap[evt.key
 				.keysym.sym]);
+			break;
+		case SDL_MOUSEMOTION:
+			evtHandler.mouseEvent().setPos(getRelPos());
 			break;
 		default:
 			break;

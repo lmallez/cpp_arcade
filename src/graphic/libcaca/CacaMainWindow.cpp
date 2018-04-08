@@ -185,3 +185,19 @@ void arc::CacaMainWindow::pollEvent(arc::EventHandler &evtHandler)
 		}
 	}
 }
+
+bool arc::CacaMainWindow::TextureInCache(const std::string &str) const
+{
+	return _textureCache.find(str) != _textureCache.end();
+}
+
+CacaImage *arc::CacaMainWindow::getTextureCache(const std::string &str) const
+{
+	return _textureCache.at(str);
+}
+
+void arc::CacaMainWindow::addTexture(const std::string &filePath,
+				CacaImage *im)
+{
+	_textureCache[filePath] = im;
+}

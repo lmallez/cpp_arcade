@@ -9,6 +9,7 @@
 
 #include <caca.h>
 #include "src/graphic/IGraphic.hpp"
+#include "src/graphic/libcaca/CacaImage.hpp"
 #include "src/std/Vertex.hpp"
 
 namespace arc
@@ -23,6 +24,10 @@ namespace arc
 		VertexF getSize() const;
 		void close();
 		void pollEvent(arc::EventHandler &);
+		bool TextureInCache(const std::string &) const;
+		CacaImage *getTextureCache(
+			const std::string &) const;
+		void addTexture(const std::string &, CacaImage *);
 
 	private:
 		explicit CacaMainWindow(VertexI = {400, 400});
@@ -30,6 +35,7 @@ namespace arc
 		std::UPTR<caca_display_t, int (*)(caca_display_t*)> _window;
 		static std::unordered_map<char, arc::KeyEvent::Key> _keyMap;
 		static std::vector<arc::MouseEvent::MouseButton> _mouseMap;
+		std::unordered_map<std::string, CacaImage*> _textureCache;
 	};
 }
 

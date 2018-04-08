@@ -7,7 +7,8 @@
 
 #include "SFMainWindow.hpp"
 
-std::unordered_map<sf::Keyboard::Key, arc::KeyEvent::Key> arc::SFMainWindow::_keyMap = {
+std::unordered_map<sf::Keyboard::Key,
+	arc::KeyEvent::Key> arc::SFMainWindow::_keyMap = {
 	{sf::Keyboard::A, arc::KeyEvent::Key::A},
 	{sf::Keyboard::B, arc::KeyEvent::Key::B},
 	{sf::Keyboard::C, arc::KeyEvent::Key::C},
@@ -57,7 +58,8 @@ std::unordered_map<sf::Keyboard::Key, arc::KeyEvent::Key> arc::SFMainWindow::_ke
 	{sf::Keyboard::Num9, arc::KeyEvent::Key::NUM9},
 };
 
-std::unordered_map<sf::Mouse::Button, arc::MouseEvent::MouseButton> arc::SFMainWindow::_mouseMap = {
+std::unordered_map<sf::Mouse::Button,
+	arc::MouseEvent::MouseButton> arc::SFMainWindow::_mouseMap = {
 	{sf::Mouse::Button::Right, arc::MouseEvent::RIGHT_BUTTON},
 	{sf::Mouse::Button::Left, arc::MouseEvent::LEFT_BUTTON},
 	{sf::Mouse::Button::Middle, arc::MouseEvent::MIDDLE_BUTTON}

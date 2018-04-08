@@ -36,9 +36,10 @@ void arc::SFShapeText::draw() const
 		return;
 	text.setPosition(geometry.left, geometry.top);
 	text.setCharacterSize((geometry.width > geometry.height * len / 1.7
-			       ? geometry.height * 1.0
-			       : geometry.width / len * 1.7) / SFML_TEXT_PADING);
-	text.setFillColor(sf::Color(color.r(), color.g(), color.b(), color.a()));
+			? geometry.height * 1.0
+			: geometry.width / len * 1.7) / SFML_TEXT_PADING);
+	text.setFillColor(sf::Color(color.r(), color.g(), color.b(),
+				color.a()));
 	_displayItem(rect);
 	_displayItem(text);
 	AShape::draw();

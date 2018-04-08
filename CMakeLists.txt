@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.9)
 project(cpp_arcade)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -Wall -Wextra -std=c++17")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -Wall -Wextra -std=c++17 -g -Ofast")
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
@@ -154,14 +154,16 @@ set(
         src/games/utils/Animated/AnimatedContainer.hpp
         src/games/utils/Controller/SystemController.cpp
         src/games/utils/Controller/SystemController.hpp
-        src/games/utils/Animated/AnimatedShape.cpp
-        src/games/utils/Animated/AnimatedShape.hpp
+        src/games/utils/Animated/AnimatedTexture.cpp
+        src/games/utils/Animated/AnimatedTexture.hpp
         src/games/utils/Animated/AnimatedObject.cpp
         src/games/utils/Animated/AnimatedObject.hpp
         src/games/utils/Controller/PlayerController.cpp
         src/games/utils/Controller/PlayerController.hpp
         src/games/utils/mapReader/MapReader.cpp
         src/games/utils/mapReader/MapReader.hpp
+        src/core/corebuild/CoreClock.cpp
+        src/core/corebuild/CoreClock.hpp
 )
 
 set(
@@ -236,6 +238,18 @@ set(
 add_library(_arcade_wolf3D SHARED ${STD_GAME} ${GAME_WOLF3D} ${STD_FILES} ${SHAPE_FILES}
         src/games/Wolf3D/extern.cpp
         )
+
+set(
+        GAME_TAMAGOTCHI
+        src/games/Tamagotchi/TamagotchiGame.cpp
+        src/games/Tamagotchi/TamagotchiGame.hpp
+        src/games/Tamagotchi/Tamago.cpp
+        src/games/Tamagotchi/Tamago.hpp)
+
+add_library(
+        _arcade_tamagotchi SHARED ${STD_GAME} ${GAME_TAMAGOTCHI} ${STD_FILES} ${SHAPE_FILES}
+        src/games/Tamagotchi/extern.cpp
+)
 
 ### CORE BUILD ###
 

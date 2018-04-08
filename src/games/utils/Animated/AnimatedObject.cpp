@@ -7,7 +7,7 @@
 
 #include "AnimatedObject.hpp"
 
-arc::AnimatedObject::AnimatedObject(size_t update):
+arc::AnimatedObject::AnimatedObject(float update):
 	_clock(update)
 {
 }

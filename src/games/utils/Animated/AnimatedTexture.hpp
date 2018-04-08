@@ -11,22 +11,22 @@
 #include <vector>
 #include "src/core/corebuild/CoreClock.hpp"
 #include "src/games/utils/IObject.hpp"
+#include "src/graphic/shape/ShapeRect.hpp"
 #include "AnimatedObject.hpp"
 
 namespace arc {
-	class AnimatedShape : public AnimatedObject {
+	class AnimatedTexture : public AnimatedObject {
 	public:
-		AnimatedShape(const std::vector<std::SPTR<IShape>> &obj,
-			size_t update);
+		AnimatedTexture(const std::vector<Texture> &obj, RectF pos, float update);
 
-		std::SPTR<IShape>
-		draw(const std::SPTR<arc::IShape> &parent) const override;
+		std::SPTR<IShape> draw(const std::SPTR<arc::IShape> &parent) const override;
 		bool collision(const RectF &obj) const override;
 
 		void nextFrame() override;
 
 	private:
-		std::vector<std::SPTR<IShape>> _obj;
+		RectF _pos;
+		std::vector<arc::Texture> _obj;
 		size_t _selected;
 	};
 }

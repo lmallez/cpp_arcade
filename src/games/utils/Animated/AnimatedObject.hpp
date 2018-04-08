@@ -14,7 +14,7 @@
 namespace arc {
 	class AnimatedObject : virtual public IObject {
 	public:
-	AnimatedObject(size_t update);
+	AnimatedObject(float update);
 
 	virtual void nextFrame() = 0;
 	void update();

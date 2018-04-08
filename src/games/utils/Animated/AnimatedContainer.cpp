@@ -10,7 +10,7 @@
 
 arc::AnimatedContainer::AnimatedContainer(
 	const std::vector<std::SPTR<arc::IObject>> &obj,
-	size_t update):
+	float update):
 	AnimatedObject(update), _obj(obj), _selected(0)
 {
 	if (obj.empty())

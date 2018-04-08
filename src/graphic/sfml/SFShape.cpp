@@ -34,8 +34,10 @@ void arc::SFShape::_colorItem(sf::Shape &item) const
 	else {
 		if (!arc::SFMainWindow::getInstance().TextureInCache
 			(texture.getFilePath()))
-			arc::SFMainWindow::getInstance().addTexture(texture.getFilePath());
-		item.setTexture(arc::SFMainWindow::getInstance().getTextureCache(texture.getFilePath()).get(), false);
+			arc::SFMainWindow::getInstance().
+				addTexture(texture.getFilePath());
+		item.setTexture(arc::SFMainWindow::getInstance().
+			getTextureCache(texture.getFilePath()).get(), false);
 	}
 }
 

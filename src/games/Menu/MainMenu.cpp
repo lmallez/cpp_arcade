@@ -232,7 +232,7 @@ std::SPTR<arc::IShape> arc::MainMenu::formattedSc(const std::string &fileName,
 		sc.push_back(std::pair<std::string, int>("None", 0));
 	}
 	auto scores2 = std::MKS<arc::ShapeText>(m, texture,
-		RectF(0.05, (float)(text * 0.20 + 0.17), 0.9, 0.10),
+		RectF(0.05, (float)(text * 0.18 + 0.13), 0.9, 0.05),
 		sc[0].first + " " + std::to_string(sc[0].second) + "  " +
 		sc[1].first + " " + std::to_string(sc[1].second) + "  " +
 		sc[2].first + " " + std::to_string(sc[2].second));
@@ -251,11 +251,11 @@ std::SPTR<arc::IShape> arc::MainMenu::_displayListGame(EventHandler &event,
 					event.gameEvent().getPosGame(), 1);
 		ScoreHandler s;
 		auto file = std::MKS<arc::ShapeText>(m, texture,
-			RectF(0.05, (float)(text * 0.20 + 0.05), 0.9, 0.07),
+			RectF(0.05, (float)(text * 0.18 + 0.01), 0.9, 0.07),
 			s.getLinkedLib(fileName));
 		m->addChild(file);
 		auto scores = std::MKS<arc::ShapeText>(m, texture,
-			RectF(0.05, (float)(text * 0.20 + 0.12), 0.9, 0.05),
+			RectF(0.05, (float)(text * 0.18 + 0.08), 0.9, 0.05),
 			"Best scores:");
 		m->addChild(scores);
 		m->addChild(formattedSc(fileName, texture, m, text));

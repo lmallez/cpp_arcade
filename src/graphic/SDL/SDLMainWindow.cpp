@@ -7,7 +7,8 @@
 
 #include "SDLMainWindow.hpp"
 
-std::unordered_map<SDL_Keycode, arc::KeyEvent::Key> arc::SDLMainWindow::_keyMap = {
+std::unordered_map<SDL_Keycode,
+	arc::KeyEvent::Key> arc::SDLMainWindow::_keyMap = {
 	{SDLK_a, arc::KeyEvent::Key::A},
 	{SDLK_b, arc::KeyEvent::Key::B},
 	{SDLK_c, arc::KeyEvent::Key::C},
@@ -71,10 +72,13 @@ arc::SDLMainWindow &arc::SDLMainWindow::getInstance(bool destroy)
 	if (instance == nullptr)
 		instance.reset(new SDLMainWindow(arc::VertexI(700, 700)));
 	else if (instance->_window == nullptr) {
-		instance->_window.reset(SDL_CreateWindow(WNAME, SDL_WINDOWPOS_UNDEFINED,
+		instance->_window.reset(SDL_CreateWindow(WNAME,
+					SDL_WINDOWPOS_UNDEFINED,
 					SDL_WINDOWPOS_UNDEFINED, 700,
 					700, 0));
-		instance->_render.reset(SDL_CreateRenderer(instance->_window.get(), -1, SDL_RENDERER_ACCELERATED));
+		instance->_render.
+			reset(SDL_CreateRenderer(instance->_window.get(), -1,
+						SDL_RENDERER_ACCELERATED));
 	}
 	if (destroy)
 		instance.reset(nullptr);
@@ -91,12 +95,14 @@ arc::SDLMainWindow::SDLMainWindow(arc::VertexI size) :
 				size.y(), 0));
 	if (!_window)
 		throw arc::Exception("SDL Graphic", "Can't open the Window");
-	_render.reset(SDL_CreateRenderer(_window.get(), -1, SDL_RENDERER_ACCELERATED));
+	_render.reset(SDL_CreateRenderer(_window.get(), -1,
+					SDL_RENDERER_ACCELERATED));
 }
 
 arc::SDLMainWindow::~SDLMainWindow()
 {
-	for (auto it = _textureCache.begin(); it != _textureCache.end(); it++) {
+	for (auto it = _textureCache.begin(); it != _textureCache.end();
+		it++) {
 		SDL_DestroyTexture(it->second);
 	}
 }
@@ -162,7 +168,8 @@ const
 	return _textureCache.at(str);
 }
 
-std::UPTR<SDL_Renderer, void (&)(SDL_Renderer *)> & arc::SDLMainWindow::getRenderer()
+std::UPTR<SDL_Renderer, void (&)(SDL_Renderer *)>
+&arc::SDLMainWindow::getRenderer()
 {
 	return _render;
 }

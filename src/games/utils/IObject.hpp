@@ -14,7 +14,8 @@
 namespace arc {
 	class IObject {
 	public:
-		virtual std::SPTR<arc::IShape> draw(const std::SPTR<arc::IShape> &parent) const = 0;
+		virtual std::SPTR<arc::IShape> draw(
+			const std::SPTR<arc::IShape> &parent) const = 0;
 		virtual bool collision(const RectF &obj) const = 0;
 	};
 }

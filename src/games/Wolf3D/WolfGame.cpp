@@ -80,7 +80,8 @@ std::shared_ptr<arc::IShape> arc::WolfGame::update(arc::EventHandler &event)
 	execKey(event);
 	std::SPTR all = std::MKS<arc::ShapeContainer>();
 	for (auto &ray : _ray) {
-		ray->castMath(_player.getPos(), _player.getAngle(), _mapMgr.getMap());
+		ray->castMath(_player.getPos(), _player.getAngle(),
+			_mapMgr.getMap());
 		all->addChild(ray->draw(all));
 	}
 	return all;

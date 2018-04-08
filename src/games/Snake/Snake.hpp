@@ -28,7 +28,8 @@ namespace arc {
 			const std::vector<VertexS> &getBody() const;
 			const VertexS &getHead() const;
 			bool inSnake(const arc::VertexS &pos) const;
-			bool eatFlower(const arc::VertexS &flowerPos, size_t value);
+			bool eatFlower(const arc::VertexS &flowerPos,
+					size_t value);
 
 			size_t getScore() const;
 

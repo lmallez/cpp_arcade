@@ -16,7 +16,8 @@
 namespace arc {
 	class AnimatedContainer : public AnimatedObject {
 	public:
-		AnimatedContainer(const std::vector<std::SPTR<IObject>> &obj, size_t update);
+		AnimatedContainer(const std::vector<std::SPTR<IObject>> &obj,
+				size_t update);
 
 		std::SPTR<IShape>
 		draw(const std::SPTR<arc::IShape> &parent) const override;

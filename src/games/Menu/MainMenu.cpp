@@ -59,7 +59,11 @@ arc::IGame &arc::MainMenu::getInstance()
 }
 
 arc::MainMenu::MainMenu():
-	SystemController()
+	SystemController(),
+	_startButton(std::MKS<arc::ShapeRect>(nullptr, arc::Texture(),
+					arc::RectF(0.1, 0.85, 0.8, 0.1))),
+	_nameButton(std::MKS<arc::ShapeRect>(nullptr, arc::Texture(),
+					arc::RectF(0.1, 0.75, 0.8, 0.05)))
 {
 	assignKey(arc::KeyEvent::RETURN, arc::KeyEvent::JUSTPRESSED,
 			&arc::MainMenu::_pressedStart);
@@ -72,14 +76,12 @@ arc::MainMenu::MainMenu():
 	assignKey(arc::KeyEvent::DOWN, arc::KeyEvent::JUSTPRESSED,
 			&arc::MainMenu::_moveDown);
 
-	_nameButton = std::MKS<arc::ShapeRect>(nullptr, arc::Texture(),
-					arc::RectF(0.1, 0.75, 0.8, 0.05));
-	auto b = std::MKS<arc::ShapeText>(_nameButton, arc::Texture(arc::Color::Red),
-					arc::RectF(0.1, 0.1, 0.8, 0.8), _name);
+	auto b = std::MKS<arc::ShapeText>(_nameButton,
+				arc::Texture(arc::Color::Red),
+				arc::RectF(0.1, 0.1, 0.8, 0.8), _name);
 	_nameButton->addChild(b);
-	_startButton = std::MKS<arc::ShapeRect>(nullptr, arc::Texture(),
-					arc::RectF(0.1, 0.85, 0.8, 0.1));
-	auto a = std::MKS<arc::ShapeText>(_startButton, arc::Texture(arc::Color::Red),
+	auto a = std::MKS<arc::ShapeText>(_startButton,
+				arc::Texture(arc::Color::Red),
 				arc::RectF(0.1, 0.1, 0.8, 0.8), "START");
 	_startButton->addChild(a);
 }
@@ -101,6 +103,10 @@ void arc::MainMenu::execKey(arc::EventHandler &event)
 		for (auto key : _nameKeyMap) {
 			if (event.keyEvent().isKeyjustPressed(key.first))
 				_name += key.second;
+		}
+		if (event.keyEvent().isKeyjustPressed(arc::KeyEvent::BACKSPACE)
+			&& _name.size() > 0) {
+			_name.pop_back();
 		}
 	}
 	for (auto key : _keyEvent) {

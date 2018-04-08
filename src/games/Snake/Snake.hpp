@@ -35,6 +35,7 @@ namespace arc {
 
 		private:
 			size_t _score;
+			int _growthSize;
 			arc::VertexS _head;
 			std::vector<arc::VertexS> _body;
 		};
